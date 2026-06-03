@@ -1187,6 +1187,130 @@
       </div>
     </div>
 
+    <!-- PORT SECURITY & SENSORS -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <h2>🔌 Port Security &amp; Sensors</h2>
+        <span class="badge">⚠ ON TEST</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <h3>Port Security</h3>
+        <ul>
+          <li>A <strong>switch feature</strong> that controls which devices are allowed to connect to specific switch ports based on MAC address</li>
+          <li>Administrators can allow only specific MAC addresses or <strong>limit the number of devices</strong> per port</li>
+          <li>If an unauthorized device is detected, the switch can: <strong>shut down the port</strong>, restrict traffic, or send an alert</li>
+          <li>Protects against <strong>MAC flooding</strong> and unauthorized device connections</li>
+          <li>Used in environments where physical access to ports cannot be fully controlled (offices, classrooms)</li>
+        </ul>
+        <h3>Sensors</h3>
+        <ul>
+          <li>Components that <strong>collect and monitor data</strong> from network traffic, systems, or environments to detect potential threats</li>
+          <li>Used in IDS, IPS, and SIEM solutions — think of them as the <strong>"eyes and ears"</strong> of your security system</li>
+          <li><strong>Passive sensor</strong> — monitors traffic without interfering (like NIDS; no impact on performance)</li>
+          <li><strong>Inline sensor</strong> — sits directly in the traffic path; can support prevention actions (like NIPS)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- LOAD BALANCER DEEP DIVE -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <h2>⚖️ Load Balancers — Deep Dive</h2>
+        <span class="badge">⚠ ON TEST</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <div class="callout warn">
+          <strong>Exam tip:</strong> Load balancer may be called <strong>"Distributive Allocation"</strong> on the test.
+        </div>
+        <h3>Scheduling Methods</h3>
+        <table>
+          <tr><th>Method</th><th>How It Works</th><th>Exam Tip</th></tr>
+          <tr><td><strong>Round Robin</strong></td><td>Distributes requests evenly and sequentially across all servers (1→A, 2→B, 3→C, repeat). Simple but doesn't consider server load.</td><td>Simplest method</td></tr>
+          <tr><td><strong>Least Connection</strong></td><td>Sends traffic to the server with the <strong>fewest active connections</strong> — balances real workload</td><td>More efficient than Round Robin</td></tr>
+          <tr><td><strong>Weighted Round Robin</strong></td><td>Like Round Robin but powerful servers receive more requests based on assigned weight</td><td>Server capacity matters</td></tr>
+          <tr><td><strong>Weighted Least Connection</strong></td><td>Combines least connection and server capacity weighting — most dynamic</td><td>Most efficient method</td></tr>
+          <tr><td><strong>IP Hash</strong></td><td>Uses the client's IP address to determine which server handles the request — enables sticky sessions</td><td>Enables session persistence</td></tr>
+        </table>
+        <h3>Session Affinity (Sticky Sessions)</h3>
+        <ul>
+          <li>Also called <strong>affinity</strong> or <strong>stickiness</strong></li>
+          <li>A user's requests are consistently sent to the <strong>same server</strong> for the duration of their session</li>
+          <li>Achieved using cookies, IP hash, or session IDs</li>
+          <li>Required for apps that store user-specific data locally (login state, shopping cart)</li>
+          <li><strong>Risk:</strong> If that server fails, the user's session data may be lost</li>
+        </ul>
+        <h3>Active-Active vs Active-Passive</h3>
+        <table>
+          <tr><th>Configuration</th><th>How It Works</th><th>Trade-off</th></tr>
+          <tr><td><strong>Active-Active</strong></td><td>ALL systems run simultaneously and handle traffic. If one fails, others absorb the load.</td><td>Best performance and availability — but more complex to manage</td></tr>
+          <tr><td><strong>Active-Passive</strong></td><td>One system handles traffic; the other sits idle as a standby. Passive only activates on failover.</td><td>Simpler, less resource usage — but passive system is idle/wasted during normal ops</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- EDR & XDR -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <h2>🔍 EDR &amp; XDR</h2>
+        <span class="badge">⚠ ON TEST</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <table>
+          <tr><th>Technology</th><th>Scope</th><th>How It Works</th><th>Exam Tip</th></tr>
+          <tr><td><strong>EDR</strong> (Endpoint Detection &amp; Response)</td><td>Individual endpoints (laptops, desktops, servers)</td><td>Continuously monitors endpoint activity using <strong>behavior-based detection</strong>. Detects advanced attacks like zero-days and fileless malware that traditional AV misses. Also written as ETDR (Endpoint Threat Detection &amp; Response).</td><td>EDR &gt; HIPS. Behavior-based not signature-based</td></tr>
+          <tr><td><strong>XDR</strong> (Extended Detection &amp; Response)</td><td>Entire environment: endpoints + networks + servers + cloud</td><td>Integrates data from multiple security tools into a <strong>single unified platform</strong>. Correlates data across layers to detect complex, coordinated attacks. Reduces alert fatigue. Detects APTs and multi-stage attacks.</td><td>XDR = integrates multiple tools for unified detection and response. Two questions expected on exam.</td></tr>
+        </table>
+        <div class="callout warn">
+          <strong>Difference:</strong> EDR focuses on <em>individual devices</em>. XDR extends across <em>the entire environment</em> — endpoints, networks, servers, and cloud — all in one platform.
+        </div>
+      </div>
+    </div>
+
+    <!-- VPN & IPSec -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <h2>🔐 VPN Types &amp; IPSec</h2>
+        <span class="badge">⚠ ON TEST — SIMULATION</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <h3>VPN Types</h3>
+        <table>
+          <tr><th>Type</th><th>Description</th><th>Also Called</th></tr>
+          <tr><td><strong>Site-to-Site VPN</strong></td><td>Connects entire networks to each other (e.g., main office to branch office). Established between routers/firewalls. Users don't need to log in — always on.</td><td><strong>Always-On VPN</strong></td></tr>
+          <tr><td><strong>Remote Access VPN</strong></td><td>Connects individual users to the corporate network. User must authenticate and log in using VPN software. Routes some traffic through VPN, rest goes direct.</td><td><strong>Split Tunnel VPN</strong></td></tr>
+        </table>
+        <h3>IPSec — Internet Protocol Security</h3>
+        <ul>
+          <li>Suite of protocols that secures network communications — operates at <strong>Layer 3 (Network Layer)</strong></li>
+          <li>Used for VPN tunneling — provides confidentiality, integrity, and authentication</li>
+        </ul>
+        <table>
+          <tr><th>Protocol</th><th>Provides</th><th>Encryption?</th><th>When to Use</th></tr>
+          <tr><td><strong>AH</strong> (Authentication Header)</td><td>Integrity + Authentication</td><td>❌ NO</td><td>Internal use / transport mode</td></tr>
+          <tr><td><strong>ESP</strong> (Encapsulating Security Payload)</td><td>Encryption + Integrity + Authentication</td><td>✅ YES</td><td>Always prefer ESP — full protection</td></tr>
+        </table>
+        <div class="callout warn">
+          <strong>Exam tip:</strong> Always choose <strong>ESP</strong> over AH — ESP provides full protection (encryption + integrity + authentication). AH only gives you integrity and authentication, NO encryption.
+        </div>
+        <h3>IPSec Modes</h3>
+        <table>
+          <tr><th>Mode</th><th>What Gets Encrypted</th><th>Use Case</th></tr>
+          <tr><td><strong>Transport Mode</strong></td><td>Data portion only — original IP header left intact</td><td>End-to-end communication between hosts (internal)</td></tr>
+          <tr><td><strong>Tunnel Mode</strong></td><td>Entire original packet encapsulated in a new packet</td><td>VPNs — connecting networks across the internet (always use on SIM)</td></tr>
+        </table>
+        <div class="callout">
+          <strong>IPSec Key Concepts:</strong><br>
+          <strong>SA (Security Association)</strong> — defines how the connection is secured (written as SAM on exam)<br>
+          <strong>IKE (Internet Key Exchange)</strong> — negotiates encryption keys and establishes secure connection automatically<br>
+          <strong>Best encryption on SIM:</strong> AES-256 + SHA (highest number available)
+        </div>
+      </div>
+    </div>
+
     <!-- SOFTWARE-DEFINED NETWORKING -->
     <div class="section">
       <div class="section-header" onclick="toggle(this)">
@@ -1210,6 +1334,22 @@
           <li>Provides better visibility and faster security enforcement</li>
           <li>Containers control how <em>applications</em> run; SDN controls how <em>data moves across networks</em></li>
         </ul>
+        <h3>SD-WAN (Software-Defined Wide Area Network)</h3>
+        <ul>
+          <li>Creates a software-defined network over <strong>long-range links (WAN)</strong>, typically between data centers</li>
+          <li>Each link is authenticated and secure; governed by an <strong>SD-WAN controller</strong></li>
+          <li>Uses centralized controller to dynamically route traffic based on performance, latency, and priority</li>
+          <li>On the exam, SD-WAN is often associated with <strong>SASE</strong></li>
+        </ul>
+        <h3>SASE &amp; SSE — ON TEST</h3>
+        <table>
+          <tr><th>Term</th><th>What It Is</th><th>Includes</th><th>Exam Tip</th></tr>
+          <tr><td><strong>SASE</strong> (Secure Access Service Edge)</td><td>Cloud-based architecture combining <strong>networking + security</strong> into one integrated solution delivered over the internet</td><td>SD-WAN, Secure Web Gateway (SWG), CASB, Firewall-as-a-Service, Zero Trust Network Access (ZTNA)</td><td>SASE = Networking + Security. Aligns with Zero Trust.</td></tr>
+          <tr><td><strong>SSE</strong> (Security Service Edge)</td><td>A <strong>subset of SASE</strong> — security services only, no networking component</td><td>SWG, CASB, ZTNA, Firewall-as-a-Service</td><td>SSE = Security only. SASE = Networking + Security.</td></tr>
+        </table>
+        <div class="callout warn">
+          <strong>Key distinction:</strong> SASE = Networking + Security · SSE = Security only (no networking layer). Security follows the user anywhere — aligns with Zero Trust.
+        </div>
       </div>
     </div>
 
@@ -1301,6 +1441,85 @@
         <div class="callout warn">
           <strong>Simple exam rule:</strong> Passive = observe only · Inline Detection = observe + positioned to act · Inline Security = block and prevent. This ties directly to IDS (passive/inline detection) vs IPS (inline security).
         </div>
+      </div>
+    </div>
+
+    <!-- DATA STATES & PROTECTION -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <h2>🗄️ Data States, Classification &amp; Protection</h2>
+        <span class="badge">⚠ ON TEST</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <h3>Three States of Data</h3>
+        <table>
+          <tr><th>State</th><th>Description</th><th>Example Protection</th></tr>
+          <tr><td><strong>Data in Transit</strong></td><td>Data moving across a network</td><td>VPN, TLS/SSL encryption</td></tr>
+          <tr><td><strong>Data at Rest</strong></td><td>Data stored on a device or storage system</td><td>FDE (BitLocker, FileVault), SED</td></tr>
+          <tr><td><strong>Data in Use</strong></td><td>Data actively being processed in memory</td><td>Secure enclaves, access control</td></tr>
+        </table>
+        <h3>Data Classification Levels</h3>
+        <table>
+          <tr><th>Level (Low → High)</th><th>Description</th></tr>
+          <tr><td><strong>Public / Unclassified</strong></td><td>Intended for public release — little to no harm if disclosed. Minimal protection needed.</td></tr>
+          <tr><td><strong>Confidential / Secret</strong></td><td>Moderate sensitivity — exposure causes serious but not catastrophic damage. Strong protection required.</td></tr>
+          <tr><td><strong>Critical / Top Secret / Restricted</strong></td><td>Highest sensitivity — unauthorized disclosure causes severe or catastrophic damage. Very limited access.</td></tr>
+        </table>
+        <h3>Regulated Data Types — Must Know</h3>
+        <table>
+          <tr><th>Data Type</th><th>Regulation</th><th>What It Covers</th></tr>
+          <tr><td><strong>Healthcare data (PHI)</strong></td><td>HIPAA</td><td>Protected health information</td></tr>
+          <tr><td><strong>Payment card data</strong></td><td>PCI-DSS</td><td>Credit card and payment data</td></tr>
+          <tr><td><strong>Personal data</strong></td><td>GDPR</td><td>EU personal data — strict privacy requirements</td></tr>
+          <tr><td><strong>Trade secrets</strong></td><td>IP law</td><td>Proprietary formulas, algorithms, strategies — loss = competitive damage</td></tr>
+          <tr><td><strong>Legal information</strong></td><td>Legal requirements</td><td>Contracts, lawsuits, legal proceedings</td></tr>
+          <tr><td><strong>Financial data</strong></td><td>Various</td><td>Bank records, credit card data, financial statements — heavily targeted</td></tr>
+        </table>
+        <div class="callout warn">
+          Must classify data BEFORE you can protect it. Each type has different compliance rules. Exam emphasizes protecting IP from theft — especially in environments where designs or software are stored digitally.
+        </div>
+      </div>
+    </div>
+
+    <!-- BACKUPS, REPLICATION & SNAPSHOTS -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <h2>💾 Backups, Replication &amp; Snapshots</h2>
+        <span class="badge">⚠ ON TEST</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <h3>Backup Types</h3>
+        <table>
+          <tr><th>Type</th><th>What Is Backed Up</th><th>Backup Time</th><th>Restore Time</th></tr>
+          <tr><td><strong>Full Backup</strong></td><td>ALL data every time — starting point for other backups</td><td>High (slowest)</td><td>Low (fastest) — all data in one set</td></tr>
+          <tr><td><strong>Incremental Backup</strong></td><td>Only changes since the <strong>last backup of any kind</strong></td><td>Low (fastest)</td><td>High (slowest) — need full + every incremental in order</td></tr>
+          <tr><td><strong>Differential Backup</strong></td><td>Only changes since the <strong>last full backup</strong></td><td>Medium</td><td>Medium — need full + most recent differential only</td></tr>
+        </table>
+        <h3>Off-Site Backups</h3>
+        <ul>
+          <li>Store backups in an <strong>entirely separate geographic location</strong> — critical if a disaster (fire, flood) affects the main site</li>
+          <li>Backup systems must have the same level of security as primary systems — they contain a complete copy of sensitive data</li>
+        </ul>
+        <h3>Snapshots</h3>
+        <ul>
+          <li>A <strong>saved state of operation</strong> — not exactly a backup</li>
+          <li>Does not matter what state the system was in before being shut down</li>
+          <li>Used for quick rollbacks; not a substitute for a full backup strategy</li>
+        </ul>
+        <h3>Replication</h3>
+        <table>
+          <tr><th>Type</th><th>How It Works</th><th>Use Case</th></tr>
+          <tr><td><strong>Synchronous</strong></td><td>Copies data simultaneously across two peered systems — changes in one are <strong>immediately</strong> reflected in the other</td><td>High-availability environments; zero data loss</td></tr>
+          <tr><td><strong>Asynchronous</strong></td><td>Copies data from primary to a secondary location — changes are reflected for safekeeping and <strong>failover</strong></td><td>DR sites; some data loss possible</td></tr>
+        </table>
+        <h3>Failover &amp; Tabletop Exercises</h3>
+        <table>
+          <tr><th>Term</th><th>Definition</th></tr>
+          <tr><td><strong>Failover</strong></td><td>The capability to switch over automatically to a redundant system (alternate processing site) upon failure of the regularly active system. Used to prevent loss of service.</td></tr>
+          <tr><td><strong>Tabletop Exercise</strong></td><td>Discussion-based exercise where personnel go through disaster recovery roles and responsibilities in a classroom setting — WITHOUT actually simulating a disaster. Familiarizes staff with recovery procedures.</td></tr>
+        </table>
       </div>
     </div>
 
@@ -2223,6 +2442,123 @@
       ],
       answer: 2,
       explain: 'Inline Security places the device directly in the traffic path and actively blocks/prevents threats in real time. Associated with IPS (Intrusion Prevention Systems) and NGFW (Next-Generation Firewalls). All traffic must flow through it — this can impact performance if it becomes a bottleneck.'
+    },
+    {
+      q: 'On the Security+ exam, a load balancer may also be referred to as:',
+      options: ['Traffic Shaper', 'Distributive Allocation', 'Network Aggregator', 'Bandwidth Controller'],
+      answer: 1,
+      explain: 'Load balancers may be called "Distributive Allocation" on the Security+ exam. Know both terms. Load balancers distribute incoming traffic across multiple servers to improve availability, performance, and resilience.'
+    },
+    {
+      q: 'A load balancer uses a client\'s IP address to determine which server handles the request, keeping that user on the same server throughout their session. What method and feature is this?',
+      options: [
+        'Round Robin — session timeout',
+        'Least Connection — connection pooling',
+        'IP Hash — Session Affinity (Sticky Sessions)',
+        'Weighted Round Robin — server persistence'
+      ],
+      answer: 2,
+      explain: 'IP Hash uses the client\'s IP address to consistently route them to the same server. This enables Session Affinity (also called Sticky Sessions or Stickiness) — important for apps that store user state locally (shopping carts, login sessions).'
+    },
+    {
+      q: 'ALL servers are running and handling live traffic simultaneously. If one fails, the others absorb the load. What configuration is this?',
+      options: ['Active-Passive', 'Failover Cluster', 'Active-Active', 'Hot Standby'],
+      answer: 2,
+      explain: 'Active-Active means all systems are running and sharing traffic at the same time. If one fails, the others continue without disruption. Active-Passive keeps one system idle as a standby — only activates on failover.'
+    },
+    {
+      q: 'The BASIC function of a firewall is to:',
+      options: [
+        'Stop all malicious traffic',
+        'Block unauthorized users',
+        'Filter traffic based on predefined security rules',
+        'Encrypt data in transit'
+      ],
+      answer: 2,
+      explain: 'The basic function of a firewall is to FILTER traffic — monitoring and controlling incoming and outbound traffic based on predefined security rules. Common mistake: saying it "stops" or "blocks" traffic — the exam wants "filter."'
+    },
+    {
+      q: 'UTM (Unified Threat Management) consolidates many security tools into one appliance. What is its KEY security risk?',
+      options: [
+        'It is too complex to manage for most organizations',
+        'It cannot support VPN connections',
+        'It creates a single point of failure — if the UTM fails, all security is lost',
+        'It does not support deep packet inspection'
+      ],
+      answer: 2,
+      explain: 'UTM\'s main risk is being a single point of failure. Because everything is in one box, if the UTM fails or is compromised, all security features go down simultaneously. This is why large enterprises often prefer dedicated tools.'
+    },
+    {
+      q: 'EDR differs from traditional antivirus primarily because:',
+      options: [
+        'EDR only scans files on demand, while AV scans in real time',
+        'EDR uses behavior-based detection to catch zero-days and fileless malware that signature-based AV misses',
+        'EDR operates at the network level, while AV is host-based',
+        'EDR is a cloud-only solution, while AV runs locally'
+      ],
+      answer: 1,
+      explain: 'Traditional AV looks for known malware signatures. EDR (Endpoint Detection & Response) uses behavior-based detection and threat analysis — catching advanced attacks like zero-days and fileless malware that AV would miss. EDR also continuously monitors and can respond in real time.'
+    },
+    {
+      q: 'XDR extends beyond EDR by:',
+      options: [
+        'Focusing exclusively on endpoint devices for deeper analysis',
+        'Replacing the firewall and IDS with a single tool',
+        'Integrating data from endpoints, networks, servers, and cloud into a unified detection and response platform',
+        'Providing offline malware scanning across removable media'
+      ],
+      answer: 2,
+      explain: 'XDR (Extended Detection & Response) goes beyond EDR by correlating data across the entire environment — endpoints, networks, servers, and cloud — in a single platform. This reduces alert fatigue and improves detection of APTs and multi-stage attacks.'
+    },
+    {
+      q: 'A site-to-site VPN is also called an "always-on VPN" because:',
+      options: [
+        'Users must log in at all times to maintain the connection',
+        'It permanently connects entire networks — devices communicate automatically without individual logins',
+        'It uses IPSec in transport mode for persistent encryption',
+        'It keeps a session open indefinitely using sticky sessions'
+      ],
+      answer: 1,
+      explain: 'A site-to-site VPN creates a permanent encrypted tunnel between two networks (e.g., main office and branch). Devices communicate through it automatically — no individual user login required. This is why it\'s called "always-on." Remote access VPN is the opposite — individual users authenticate each time.'
+    },
+    {
+      q: 'In IPSec, which protocol provides the MOST complete protection — encryption, integrity, AND authentication?',
+      options: [
+        'AH (Authentication Header) — provides all three',
+        'ESP (Encapsulating Security Payload) — provides encryption, integrity, and authentication',
+        'IKE (Internet Key Exchange) — encrypts the full packet',
+        'SA (Security Association) — negotiates all security parameters'
+      ],
+      answer: 1,
+      explain: 'ESP (Encapsulating Security Payload) provides encryption + integrity + authentication — full protection. AH only provides integrity and authentication with NO encryption. Always prefer ESP on the exam. AH is used internally in transport mode.'
+    },
+    {
+      q: 'SASE differs from SSE in that SASE includes:',
+      options: [
+        'More security tools than SSE',
+        'Only cloud-based firewall services',
+        'Both networking (SD-WAN) AND security services, while SSE is security only',
+        'On-premises hardware components, while SSE is cloud-only'
+      ],
+      answer: 2,
+      explain: 'SASE (Secure Access Service Edge) = Networking (SD-WAN) + Security. SSE (Security Service Edge) is a subset of SASE — it includes only the security services (SWG, CASB, ZTNA, FWaaS) without the networking layer. Both align with Zero Trust principles.'
+    },
+    {
+      q: 'A backup strategy backs up ONLY changes since the last full backup — requiring a full backup plus ONLY the most recent backup set to restore. What type is this?',
+      options: [
+        'Incremental — changes since any prior backup',
+        'Differential — changes since the last full backup',
+        'Full — all data every time',
+        'Snapshot — saved operational state'
+      ],
+      answer: 1,
+      explain: 'Differential backup captures all changes since the last full backup. To restore, you only need the full backup + the most recent differential. Incremental requires the full + every incremental in sequence — slower to restore. Full backup requires no additional sets but takes the longest to back up.'
+    },
+    {
+      q: 'Data replication where changes in the primary system are immediately reflected in the secondary — with zero data loss — is called:',
+      options: ['Asynchronous Replication', 'Incremental Replication', 'Synchronous Replication', 'Differential Replication'],
+      answer: 2,
+      explain: 'Synchronous replication copies data simultaneously across two systems — changes are immediately reflected. Zero data loss. Used in high-availability environments. Asynchronous replication copies data to a secondary location with a slight delay — some data loss possible but less resource-intensive.'
     }
   ];
 
