@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Security+ Study Guide</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #22263a;
+      --accent: #4f8ef7;
+      --accent2: #7c3aed;
+      --warn: #f59e0b;
+      --green: #10b981;
+      --red: #ef4444;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --border: #2d3348;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+    /* NAV */
+    nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav .logo {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent);
+      padding: 1rem 0;
+      white-space: nowrap;
+    }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      padding: 1rem 0;
+      border-bottom: 2px solid transparent;
+      transition: all .2s;
+      white-space: nowrap;
+    }
+    nav a:hover, nav a.active { color: var(--text); border-bottom-color: var(--accent); }
+    nav .date-sep {
+      color: var(--border);
+      font-size: .8rem;
+      padding: 1rem 0;
+    }
+    .tag-warn { display:inline-block; background:var(--warn); color:#000; font-size:.65rem; font-weight:700; padding:.15rem .45rem; border-radius:4px; margin-left:.4rem; vertical-align:middle; }
+    .tag-new  { display:inline-block; background:var(--green); color:#000; font-size:.65rem; font-weight:700; padding:.15rem .45rem; border-radius:4px; margin-left:.4rem; vertical-align:middle; }
+
+    /* LAYOUT */
+    .container { max-width: 1000px; margin: 0 auto; padding: 2rem 1.5rem; }
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* HEADER */
+    .page-header {
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .page-header h1 { font-size: 1.75rem; color: var(--accent); }
+    .page-header p { color: var(--muted); margin-top: .25rem; font-size: .9rem; }
+
+    /* SECTIONS */
+    .section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+    }
+    .section-header {
+      padding: .85rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      cursor: pointer;
+      user-select: none;
+      background: var(--surface2);
+    }
+    .section-header:hover { background: #2a2f47; }
+    .section-header h2 { font-size: 1rem; font-weight: 600; flex: 1; }
+    .section-header .badge {
+      font-size: .7rem;
+      padding: .2rem .55rem;
+      border-radius: 99px;
+      font-weight: 700;
+      background: var(--warn);
+      color: #000;
+    }
+    .section-header .chevron {
+      color: var(--muted);
+      font-size: .8rem;
+      transition: transform .2s;
+    }
+    .section-header.open .chevron { transform: rotate(180deg); }
+    .section-body {
+      padding: 1.25rem;
+      display: none;
+    }
+    .section-body.open { display: block; }
+
+    /* TABLES */
+    table { width: 100%; border-collapse: collapse; margin: .75rem 0; font-size: .875rem; }
+    th {
+      background: var(--surface2);
+      color: var(--accent);
+      text-align: left;
+      padding: .6rem .85rem;
+      font-weight: 600;
+      border-bottom: 1px solid var(--border);
+    }
+    td { padding: .55rem .85rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #1e2235; }
+    td strong { color: #c4b5fd; }
+
+    /* CALLOUT */
+    .callout {
+      border-left: 3px solid var(--accent);
+      background: #1a2035;
+      padding: .75rem 1rem;
+      border-radius: 0 6px 6px 0;
+      margin: .75rem 0;
+      font-size: .875rem;
+    }
+    .callout.warn { border-color: var(--warn); background: #1f1a10; }
+    .callout.green { border-color: var(--green); background: #0f1f18; }
+
+    /* LISTS */
+    ul, ol { padding-left: 1.4rem; margin: .5rem 0; }
+    li { margin-bottom: .3rem; }
+    li strong { color: #93c5fd; }
+
+    /* FLOW */
+    .flow {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      flex-wrap: wrap;
+      margin: .75rem 0;
+    }
+    .flow-step {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      padding: .4rem .85rem;
+      border-radius: 6px;
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+    .flow-arrow { color: var(--muted); font-size: .8rem; }
+
+    /* QUIZ */
+    .quiz-intro {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .quiz-intro h2 { font-size: 1.4rem; margin-bottom: .5rem; }
+    .quiz-intro p { color: var(--muted); margin-bottom: 1rem; }
+    .btn {
+      display: inline-block;
+      padding: .65rem 1.5rem;
+      border-radius: 7px;
+      font-weight: 600;
+      font-size: .9rem;
+      cursor: pointer;
+      border: none;
+      transition: all .2s;
+    }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: #3b7de9; }
+    .btn-secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+    .btn-secondary:hover { background: #2a2f47; }
+    .btn-green { background: var(--green); color: #fff; }
+    .btn-green:hover { background: #059669; }
+
+    .question-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+      transition: border-color .2s;
+    }
+    .question-card.correct { border-color: var(--green); }
+    .question-card.incorrect { border-color: var(--red); }
+    .question-top {
+      padding: 1rem 1.25rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .q-num {
+      background: var(--surface2);
+      color: var(--accent);
+      font-weight: 700;
+      font-size: .8rem;
+      padding: .25rem .6rem;
+      border-radius: 5px;
+      white-space: nowrap;
+      margin-top: .1rem;
+    }
+    .q-text { font-size: .95rem; flex: 1; }
+    .q-text code {
+      background: var(--surface2);
+      padding: .1rem .4rem;
+      border-radius: 4px;
+      font-family: 'Consolas', monospace;
+      font-size: .85rem;
+      color: #93c5fd;
+    }
+    .options { padding: 0 1.25rem 1rem; display: flex; flex-direction: column; gap: .5rem; }
+    .option {
+      padding: .6rem 1rem;
+      border-radius: 7px;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      font-size: .875rem;
+      transition: all .15s;
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+    .option:hover:not(.locked) { border-color: var(--accent); background: #1a2035; }
+    .option .opt-letter {
+      font-weight: 700;
+      color: var(--muted);
+      min-width: 1.25rem;
+      font-size: .8rem;
+    }
+    .option.selected { border-color: var(--accent); background: #1a2035; }
+    .option.correct-ans { border-color: var(--green); background: #0f1f18; }
+    .option.correct-ans .opt-letter { color: var(--green); }
+    .option.wrong-ans { border-color: var(--red); background: #1f1010; }
+    .option.wrong-ans .opt-letter { color: var(--red); }
+    .explanation {
+      margin: 0 1.25rem 1rem;
+      background: var(--surface2);
+      border-radius: 7px;
+      padding: .75rem 1rem;
+      font-size: .85rem;
+      color: var(--muted);
+      display: none;
+    }
+    .explanation.show { display: block; }
+    .explanation strong { color: var(--green); }
+
+    /* SCORE */
+    .score-bar {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      display: none;
+    }
+    .score-bar.show { display: block; }
+    .score-num { font-size: 3rem; font-weight: 800; color: var(--accent); }
+    .score-label { color: var(--muted); font-size: .9rem; margin-top: .25rem; }
+    .progress-track {
+      background: var(--border);
+      border-radius: 99px;
+      height: 8px;
+      margin: 1rem 0 .5rem;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      border-radius: 99px;
+      background: var(--accent);
+      transition: width .6s ease;
+    }
+    .quiz-controls {
+      display: flex;
+      gap: .75rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    p { margin-bottom: .5rem; }
+    h3 { margin: 1rem 0 .5rem; font-size: .95rem; color: var(--accent); }
+
+    /* GRID */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media(max-width:640px) { .two-col { grid-template-columns: 1fr; } nav { gap: 1rem; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Security+</div>
+  <span class="date-sep">Jun 1</span>
+  <a href="#" class="active" onclick="showPage('notes',this)">Ch.1 Notes</a>
+  <a href="#" onclick="showPage('quiz',this)">Ch.1 Test</a>
+  <span class="date-sep">Jun 2</span>
+  <a href="#" onclick="showPage('notes2',this)">Ch.2 Notes</a>
+  <a href="#" onclick="showPage('quiz2',this)">Ch.2 Test</a>
+</nav>
+
+<div class="container">
+
+  <!-- ===================== NOTES PAGE ===================== -->
+  <div id="notes" class="page active">
+    <div class="page-header">
+      <h1>Study Notes — June 1, 2026</h1>
+      <p>Click any section to expand. Sections marked <span style="color:var(--warn);font-weight:700">⚠ ON TEST</span> are exam-priority.</p>
+    </div>
+
+    <!-- NETWORKING -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <h2>🌐 Networking Foundations</h2>
+        <span style="font-size:.75rem;color:var(--muted)">Background knowledge</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <table>
+          <tr><th>Concept</th><th>Key Point</th></tr>
+          <tr><td>OSI Model</td><td>7 layers — good background knowledge</td></tr>
+          <tr><td>DoD Model</td><td>4 layers — review it</td></tr>
+          <tr><td>Layer 2 Switch</td><td>Works with MAC addresses — no routing</td></tr>
+          <tr><td>Layer 3 Switch</td><td>Can route between VLANs (IP-aware)</td></tr>
+          <tr><td>Private vs Public IP</td><td>Private ranges: <strong>10.x</strong> · <strong>172.16–31.x</strong> · <strong>192.168.x</strong></td></tr>
+          <tr><td>VLANs</td><td>Logically separate network segments for security isolation</td></tr>
+        </table>
+        <div class="callout">To allow two VLANs to communicate, you need a <strong>Layer 3 switch</strong> or router.</div>
+      </div>
+    </div>
+
+    <!-- CIA -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <h2>🔐 CIA Triad</h2>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <table>
+          <tr><th>Pillar</th><th>Meaning</th><th>Tool / Example</th></tr>
+          <tr><td><strong>C</strong>onfidentiality</td><td>Keep it secret</td><td>Encryption</td></tr>
+          <tr><td><strong>I</strong>ntegrity</td><td>Data has not been altered</td><td>Hashing</td></tr>
+          <tr><td><strong>A</strong>vailability</td><td>Data/service is there when needed</td><td>Redundancy, uptime</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- AAA -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <h2>🪪 AAA Framework</h2>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <div class="flow">
+          <div class="flow-step">Identification</div><div class="flow-arrow">→</div>
+          <div class="flow-step">Authentication</div><div class="flow-arrow">→</div>
+          <div class="flow-step">Authorization</div><div class="flow-arrow">→</div>
+          <div class="flow-step">Accounting</div>
+        </div>
+        <ul>
+          <li><strong>Identification</strong> — Who are you claiming to be?</li>
+          <li><strong>Authentication</strong> — Prove it</li>
+          <li><strong>Authorization</strong> — What are you allowed to do?</li>
+          <li><strong>Accounting</strong> — Logging what you did</li>
+        </ul>
+        <div class="callout green" style="margin-top:.75rem"><strong>Non-repudiation</strong> — You cannot deny doing something. Digital signatures prove it.</div>
+      </div>
+    </div>
+
+    <!-- ZERO TRUST -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <h2>🛡️ Zero Trust</h2>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <ul>
+          <li>Trust <strong>nothing</strong> by default — verify every user, device, and session</li>
+          <li>Even internal users must authenticate</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- GAP ANALYSIS -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <h2>📊 Gap Analysis</h2>
+        <span class="badge">⚠ ON TEST</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <ul>
+          <li>Analysis of the <strong>gap between an organization's current security posture and required standards</strong></li>
+          <li>Allows organizations to plan <strong>corrective action</strong> for deviations</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- DECEPTION -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <h2>🍯 Deception &amp; Disruption</h2>
+        <span class="badge">⚠ ON TEST</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <table>
+          <tr><th>Term</th><th>Definition</th></tr>
+          <tr><td><strong>Honeypot</strong></td><td>Fake attractive target to lure attackers away from real assets</td></tr>
+          <tr><td><strong>Honeynet</strong></td><td>A network of honeypots — entirely a virtual environment</td></tr>
+          <tr><td><strong>Honeyfile</strong></td><td>A fake <em>file</em> with a marker; alerts you when opened</td></tr>
+          <tr><td><strong>Honeytoken</strong></td><td>Fake <em>data</em> (credentials, DB records) that looks real; used to track attacker</td></tr>
+        </table>
+        <div class="callout warn">
+          <strong>Honeyfile vs Honeytoken:</strong> A honeyfile is a fake <em>file</em>. A honeytoken is a piece of fake <em>data</em> (like a fake API key or DB record) embedded in systems to detect misuse.
+        </div>
+      </div>
+    </div>
+
+    <!-- SECURITY CONTROLS -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <h2>🔒 Security Controls</h2>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <h3>Categories</h3>
+        <table>
+          <tr><th>Category</th><th>Description</th><th>Examples</th></tr>
+          <tr><td><strong>Technical</strong></td><td>Technology-based</td><td>Firewalls, encryption, AV</td></tr>
+          <tr><td><strong>Operational</strong></td><td>Implemented by people</td><td>Training, security procedures</td></tr>
+          <tr><td><strong>Managerial</strong></td><td>Policies and oversight</td><td>Risk management, SOPs, policies</td></tr>
+          <tr><td><strong>Physical</strong></td><td>Physical barriers</td><td>Gates, locks, lights, cameras</td></tr>
+        </table>
+        <h3>Types</h3>
+        <table>
+          <tr><th>Type</th><th>Description</th></tr>
+          <tr><td><strong>Deterrent</strong></td><td>Discourages attack, does NOT prevent it (signs, warnings)</td></tr>
+          <tr><td><strong>Detective</strong></td><td>Detects but does NOT correct (IDS, audit logs)</td></tr>
+          <tr><td><strong>Corrective</strong></td><td>Designed to mitigate/fix after an event</td></tr>
+          <tr><td><strong>Compensating</strong></td><td>Backup control when primary control isn't possible</td></tr>
+          <tr><td><strong>Directive</strong></td><td>Provides guidance, rules, expectations (policies, SOPs)</td></tr>
+          <tr><td><strong>Preventive</strong></td><td>Stops the attack from happening</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- CHANGE MANAGEMENT -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <h2>📋 Change Management</h2>
+        <span class="badge">⚠ ON TEST</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <div class="callout">
+          <strong>Change Management = Governance + Documentation + Approval</strong>
+        </div>
+        <ul>
+          <li>Version control is primarily for <strong>code</strong></li>
+          <li>All changes must be tracked, controlled, and approved</li>
+          <li><strong>Always have a rollback plan</strong> (backup plan if things go wrong)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- CRYPTOGRAPHY -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <h2>🔑 Cryptography — Core Concepts</h2>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <table>
+          <tr><th>Concept</th><th>Direction</th><th>Purpose</th><th>Notes</th></tr>
+          <tr><td><strong>Hashing</strong></td><td>One-way (irreversible)</td><td>Integrity</td><td>Cannot be reversed; CAN be cracked</td></tr>
+          <tr><td><strong>Encryption</strong></td><td>Two-way (reversible)</td><td>Confidentiality</td><td>Requires a key</td></tr>
+          <tr><td><strong>Obfuscation</strong></td><td>N/A</td><td>Hides meaning</td><td>Renames variables to random characters</td></tr>
+          <tr><td><strong>Steganography</strong></td><td>N/A</td><td>Hides existence</td><td>Hides data inside another file (image/audio)</td></tr>
+        </table>
+        <h3>Hash Algorithms</h3>
+        <ul>
+          <li><strong>MD5</strong> — fast, not secure (avoid for passwords)</li>
+          <li><strong>SHA-256</strong> — fast, more secure</li>
+          <li><strong>SHA-512</strong> — fast, most secure of the three</li>
+        </ul>
+        <div class="callout warn">Fast = not reliable for password storage</div>
+        <h3>Password Protection</h3>
+        <table>
+          <tr><th>Technique</th><th>What it does</th><th>Where stored</th></tr>
+          <tr><td><strong>Salting</strong></td><td>Adds random data before hashing — prevents duplicate hashes</td><td>Alongside the hash</td></tr>
+          <tr><td><strong>Peppering</strong></td><td>Adds a secret value to the hash</td><td><strong>Separately</strong> (secrets manager / HSM)</td></tr>
+          <tr><td><strong>PBKDF2 / bcrypt</strong></td><td>Slow hashing — better for passwords</td><td>Alongside hash</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- SYMMETRIC / ASYMMETRIC -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <h2>⚖️ Symmetric vs Asymmetric Encryption</h2>
+        <span class="badge">⚠ ON TEST</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <table>
+          <tr><th></th><th>Symmetric</th><th>Asymmetric</th></tr>
+          <tr><td>Keys</td><td><strong>Same key</strong> to encrypt and decrypt</td><td><strong>Two keys</strong> — public + private</td></tr>
+          <tr><td>Speed</td><td><strong>Fast</strong></td><td><strong>Slow</strong> (computationally intense)</td></tr>
+          <tr><td>Key name</td><td>PSK (Pre-Shared Key)</td><td>Public key / Private key</td></tr>
+          <tr><td>Security</td><td>More secure (if key is protected)</td><td>Keys are mathematically related</td></tr>
+          <tr><td>Use case</td><td>Bulk data encryption</td><td>Key exchange, digital signatures</td></tr>
+        </table>
+        <h3>Asymmetric Rules — Memorize These!</h3>
+        <div class="callout warn">
+          <ul>
+            <li><strong>Only the private key</strong> can decrypt data encrypted with the public key</li>
+            <li><strong>Only the public key</strong> can decrypt data encrypted with the private key</li>
+            <li>The public key <strong>verifies</strong> but does <strong>NOT decrypt</strong> a private key's signature</li>
+          </ul>
+        </div>
+        <h3>Key Exchange</h3>
+        <table>
+          <tr><th>Method</th><th>Description</th></tr>
+          <tr><td><strong>Out-of-Band</strong></td><td>Uses a separate, independent channel — <strong>more secure</strong></td></tr>
+          <tr><td><strong>In-Band</strong></td><td>Same channel as data — vulnerable to <strong>on-path / MITM attacks</strong></td></tr>
+        </table>
+        <p style="margin-top:.75rem;font-size:.875rem;color:var(--muted)"><strong style="color:var(--text)">Key Length = Key Strength.</strong> Asymmetric keys should be <strong>longer</strong> than symmetric keys.</p>
+        <h3>Encryption Levels</h3>
+        <div class="flow">
+          <div class="flow-step">Full Disk</div><div class="flow-arrow">→</div>
+          <div class="flow-step">Partition</div><div class="flow-arrow">→</div>
+          <div class="flow-step">Volume</div><div class="flow-arrow">→</div>
+          <div class="flow-step">File</div><div class="flow-arrow">→</div>
+          <div class="flow-step">Database</div><div class="flow-arrow">→</div>
+          <div class="flow-step">Record</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PKI -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <h2>📜 PKI — Public Key Infrastructure</h2>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <div class="callout"><strong>Problem PKI solves:</strong> Without it, anyone could impersonate someone using a fake public key.</div>
+        <h3>3 Main PKI Entities</h3>
+        <table>
+          <tr><th>Entity</th><th>Role</th></tr>
+          <tr><td><strong>CA</strong> (Certificate Authority)</td><td>Generates, issues, and stores certificates — the core of PKI</td></tr>
+          <tr><td><strong>RA</strong> (Registration Authority)</td><td>Verifies your identity to the CA</td></tr>
+          <tr><td><strong>CS</strong> (Certificate Store)</td><td>Stores/houses certificates</td></tr>
+        </table>
+        <h3>Certificate Lifecycle</h3>
+        <div class="flow">
+          <div class="flow-step">Fill CSR</div><div class="flow-arrow">→</div>
+          <div class="flow-step">Send to CA</div><div class="flow-arrow">→</div>
+          <div class="flow-step">RA verifies you</div><div class="flow-arrow">→</div>
+          <div class="flow-step">RA confirms to CA</div><div class="flow-arrow">→</div>
+          <div class="flow-step">Cert issued</div>
+        </div>
+        <h3>Intermediate CA (ICA)</h3>
+        <ul>
+          <li>Root CA stays <strong>offline</strong> to protect itself</li>
+          <li><strong>ICA</strong> handles day-to-day certificate operations</li>
+        </ul>
+        <h3>Certificate Revocation</h3>
+        <table>
+          <tr><th>Method</th><th>Description</th></tr>
+          <tr><td><strong>CRL</strong></td><td>Certificate Revocation List — old method; static list of revoked certs</td></tr>
+          <tr><td><strong>OCSP</strong></td><td>Online Certificate Status Protocol — real-time check; current standard</td></tr>
+        </table>
+        <div class="callout warn">Revoked ≠ Suspended. A revoked certificate <strong>cannot</strong> be un-revoked.</div>
+        <h3>Certificate Types</h3>
+        <table>
+          <tr><th>Type</th><th>Coverage</th></tr>
+          <tr><td><strong>Wildcard</strong></td><td>Main domain + all subdomains (*.example.com)</td></tr>
+          <tr><td><strong>SAN</strong></td><td>Subject Alternative Name — multiple specific domains</td></tr>
+          <tr><td><strong>EV</strong></td><td>Extended Validation — highest trust level</td></tr>
+          <tr><td><strong>Self-signed</strong></td><td>Only valid inside your own organization</td></tr>
+        </table>
+        <p style="margin-top:.75rem;font-size:.875rem"><strong>X.509</strong> — Standard certificate format. <strong>Key Escrow</strong> — CA holds a copy of your key for recovery.</p>
+      </div>
+    </div>
+
+    <!-- CRYPTO TOOLS -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <h2>🖥️ Cryptographic Tools</h2>
+        <span class="badge">⚠ ON TEST</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <table>
+          <tr><th>Tool</th><th>Where</th><th>Purpose</th></tr>
+          <tr><td><strong>TPM</strong> (Trusted Platform Module)</td><td>Inside the motherboard (chip)</td><td>Stores keys for a single device; supports secure boot / BitLocker</td></tr>
+          <tr><td><strong>HSM</strong> (Hardware Security Module)</td><td>Dedicated enterprise hardware</td><td>Stores and processes keys for an organization (CAs, banks)</td></tr>
+          <tr><td><strong>Secure Enclave</strong></td><td>Inside devices (Apple, etc.)</td><td>Isolated processor protecting biometrics and keys</td></tr>
+          <tr><td><strong>KMS</strong> (Key Management System)</td><td>Cloud/enterprise software</td><td>Creates, rotates, revokes keys; often integrates with HSM</td></tr>
+        </table>
+        <div class="callout warn"><strong>TPM 2.0</strong> is required for Windows <strong>BitLocker</strong> — know this!</div>
+      </div>
+    </div>
+
+    <!-- DIGITAL SIGNATURES / BLOCKCHAIN / DATA -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <h2>✍️ Digital Signatures, Blockchain &amp; Data Protection</h2>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <h3>Digital Signatures &amp; Code Signing</h3>
+        <ul>
+          <li><strong>Digital Signature</strong> — proves authenticity and non-repudiation (created with <em>private key</em>, verified with <em>public key</em>)</li>
+          <li><strong>Code Signing</strong> — developer signs software so users can verify it hasn't been tampered with</li>
+        </ul>
+        <h3>Blockchain</h3>
+        <ul>
+          <li>Decentralized, distributed public ledger</li>
+          <li>Very secure — attacker must control <strong>majority of the network</strong> to falsify data</li>
+        </ul>
+        <h3>Data Protection Techniques</h3>
+        <table>
+          <tr><th>Technique</th><th>Purpose</th><th>Reversible?</th></tr>
+          <tr><td><strong>Tokenization</strong></td><td>Replaces sensitive data (credit cards) with a stand-in token</td><td>Yes</td></tr>
+          <tr><td><strong>Data Masking</strong></td><td>Replaces values to hide real data (testing environments)</td><td>Usually no</td></tr>
+          <tr><td><strong>Steganography</strong></td><td>Hides data inside another file (image/audio/video)</td><td>Yes</td></tr>
+          <tr><td><strong>Obfuscation</strong></td><td>Makes code/data hard to read (random variable names)</td><td>Technically yes</td></tr>
+        </table>
+      </div>
+    </div>
+
+  </div><!-- /notes -->
+
+
+  <!-- ===================== QUIZ PAGE ===================== -->
+  <div id="quiz" class="page">
+    <div class="page-header">
+      <h1>Practice Test — June 1, 2026</h1>
+      <p>25 questions · Select an answer to lock it in · Your score shows at the end</p>
+    </div>
+
+    <div id="scoreBar" class="score-bar">
+      <div class="score-num" id="scoreNum">0/25</div>
+      <div class="score-label" id="scoreLabel">Keep going!</div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+      <div class="quiz-controls">
+        <button class="btn btn-secondary" onclick="resetQuiz()">Retake Quiz</button>
+      </div>
+    </div>
+
+    <div id="quizCards"></div>
+  </div><!-- /quiz -->
+
+  <!-- ===================== JUNE 2 NOTES ===================== -->
+  <div id="notes2" class="page">
+    <div class="page-header">
+      <h1>Study Notes — June 2, 2026</h1>
+      <p>Chapter 2 · Click any section to expand. <span style="color:var(--warn);font-weight:700">⚠ ON TEST</span> = exam-priority.</p>
+    </div>
+
+    <!-- THREAT ACTORS -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <h2>🎭 Threat Actors</h2>
+        <span class="badge">⚠ ON TEST</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <p style="margin-bottom:.75rem;font-size:.875rem;color:var(--muted)">Know motivations, sophistication, funding, and whether internal or external.</p>
+        <table>
+          <tr><th>Actor</th><th>Sophistication</th><th>Resources</th><th>Internal/External</th><th>Motivation</th></tr>
+          <tr><td><strong>Nation-State / APT</strong></td><td>High</td><td>High</td><td>External</td><td>Espionage, disruption, war — NOT money</td></tr>
+          <tr><td><strong>Organized Crime</strong></td><td>High</td><td>High</td><td>External</td><td>Money, ransomware-as-a-service</td></tr>
+          <tr><td><strong>Hacktivist</strong></td><td>Moderate</td><td>Moderate</td><td>External</td><td>Political, ethical, philosophical cause</td></tr>
+          <tr><td><strong>Insider Threat</strong></td><td>Moderate</td><td>Low</td><td>Internal</td><td>Revenge, blackmail, disruption</td></tr>
+          <tr><td><strong>Unskilled (Script Kiddie)</strong></td><td>Low</td><td>Low</td><td>External</td><td>Boredom, prestige — uses others' tools</td></tr>
+          <tr><td><strong>Shadow IT</strong></td><td>Low/Moderate</td><td>Low</td><td>Internal</td><td>Convenience (unauthorized software/hardware)</td></tr>
+        </table>
+        <div class="callout warn" style="margin-top:.75rem">
+          <strong>Shadow IT</strong> = any software, hardware, or IT resource used without IT approval (e.g., personal chat apps, unauthorized video conferencing, exporting files to personal storage).
+        </div>
+      </div>
+    </div>
+
+    <!-- ATTACK TYPES -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <h2>📨 Attack Vectors</h2>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <h3>Message-Based Attacks</h3>
+        <ul>
+          <li><strong>Email (Phishing)</strong> — most common; fake emails luring victims into providing info or clicking links</li>
+          <li><strong>SMS / Smishing</strong> — phishing via text message. <em>If you see SMS on the test = Smishing!</em></li>
+          <li><strong>Vishing</strong> — voice phishing; talking someone into doing something over a phone call</li>
+        </ul>
+        <h3>File-Based Attacks</h3>
+        <ul>
+          <li>Embedded macros, malicious PDFs, Office macros, Trojan installers</li>
+          <li><strong>Fileless malware</strong> — no file stays on the system; a downloader pulls malware, runs it, then removes itself</li>
+          <li>Images can be malicious via <strong>steganography</strong> — hidden malware or exfiltrated data inside image files</li>
+        </ul>
+        <h3>Removable Media</h3>
+        <ul>
+          <li>USB drives, SD cards, external HDDs can <strong>exfiltrate data</strong> or <strong>introduce malware</strong></li>
+          <li>Even <strong>air-gapped</strong> systems can be compromised via removable media (e.g., Stuxnet on Iranian nuclear facility)</li>
+        </ul>
+        <div class="callout">For exam: <strong>Disable AutoRun, restrict USB devices, user training</strong></div>
+      </div>
+    </div>
+
+    <!-- SOCIAL ENGINEERING -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <h2>🎣 Social Engineering</h2>
+        <span class="badge">⚠ ON TEST</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <table>
+          <tr><th>Attack</th><th>Description</th><th>Exam Tip</th></tr>
+          <tr><td><strong>Phishing</strong></td><td>Fake digital correspondence (usually email) to steal info</td><td>Most effective / most common</td></tr>
+          <tr><td><strong>Vishing</strong></td><td>Voice phishing — phone calls to trick victims</td><td>Voice + phishing</td></tr>
+          <tr><td><strong>Smishing</strong></td><td>SMS/text message phishing</td><td>See "SMS" on test = Smishing</td></tr>
+          <tr><td><strong>Impersonation</strong></td><td>Attacker pretends to be someone trusted (supervisor, manager)</td><td>Asks for passwords/access</td></tr>
+          <tr><td><strong>Brand Impersonation</strong></td><td>Attacker pretends to represent a company to get clicks on links</td><td>Remains most effective</td></tr>
+          <tr><td><strong>Pretexting</strong></td><td>Attacker creates a fake backstory to gain trust and access</td><td>Example: fake "inspector" calls ahead</td></tr>
+          <tr><td><strong>Watering Hole</strong></td><td>Infects websites a target group trusts/visits — waits for victims to come to them</td><td>Like an alligator waiting at a lake</td></tr>
+          <tr><td><strong>Typosquatting</strong></td><td>Registers a domain similar to a popular site (gooogle.com)</td><td>Also called URL hijacking</td></tr>
+          <tr><td><strong>Misinformation/Disinformation</strong></td><td>False info to sway thinking or trick into action</td><td>"Your computer is at risk! Click here!"</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- VULNERABILITIES -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <h2>🔓 Vulnerabilities</h2>
+        <span class="badge">⚠ ON TEST</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <h3>Key Vulnerability Types</h3>
+        <table>
+          <tr><th>Type</th><th>Description</th><th>Exam Tip</th></tr>
+          <tr><td><strong>Zero-Day</strong></td><td>Vulnerability unknown to creators — zero days to patch; always succeeds when exploited</td><td>No patch available yet</td></tr>
+          <tr><td><strong>Improper Input Handling</strong></td><td>Program fails to validate/sanitize input → SQL injection, XSS</td><td>Root cause of most web attacks</td></tr>
+          <tr><td><strong>Improper Error Handling</strong></td><td>Error reveals too much info to attacker about underlying code</td><td>Graceful errors = good practice</td></tr>
+          <tr><td><strong>Replay Attack</strong></td><td>Attacker intercepts and retransmits valid data (e.g., resends hashed password to authenticate)</td><td>ON TEST</td></tr>
+          <tr><td><strong>VM Sprawl</strong></td><td>Too many unmanaged VMs; performance and security issues</td><td>Fix with provisioning/deprovisioning policy</td></tr>
+          <tr><td><strong>VM Escape</strong></td><td>Attacker escapes VM to access host environment</td><td>Fix: strong hypervisor, keep patches current</td></tr>
+          <tr><td><strong>Misconfiguration</strong></td><td>System configured insecurely (default creds, unnecessary components)</td><td>Most common AND most preventable on exam</td></tr>
+          <tr><td><strong>Supply Chain</strong></td><td>Attacking a less-secure partner/vendor to reach the real target</td><td>Mitigate: vendor risk mgmt, code signing verification</td></tr>
+          <tr><td><strong>Pass the Hash</strong></td><td>Common cryptographic vulnerability — captures and reuses password hash to authenticate</td><td>Mitigate: secure key management</td></tr>
+        </table>
+        <h3>OS Vulnerabilities</h3>
+        <ul>
+          <li><strong>Malicious Libraries</strong> — attackers inject malicious libraries loaded when an app executes</li>
+          <li><strong>Malicious Drivers</strong> — drivers are trusted by the OS, so malicious drivers can monitor or damage at a deep level</li>
+        </ul>
+        <h3>Mobile Vulnerabilities</h3>
+        <ul>
+          <li><strong>Third-party app stores</strong> — less regulated, more likely to contain malware</li>
+          <li><strong>Sideloading</strong> — loading apps onto a device without an app store</li>
+          <li><strong>Rooting / Jailbreaking</strong> — circumvents manufacturer restrictions; gains root access</li>
+        </ul>
+        <div class="callout warn">Exam: Mobile vulnerabilities often stem from <strong>MDM weaknesses</strong> and <strong>lack of encryption on stored data</strong>. Mitigate with strong MDM, strict app vetting, messaging controls.</div>
+      </div>
+    </div>
+
+    <!-- WEB VULNERABILITIES -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <h2>🌐 Web Vulnerabilities</h2>
+        <span class="badge">⚠ ON TEST</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <table>
+          <tr><th>Attack</th><th>Description</th><th>Exam Tip</th></tr>
+          <tr><td><strong>SQL Injection</strong></td><td>Attacker injects SQL into an unsanitized input field, executing against the database</td><td><strong>Only web vulnerability</strong> in some exam sections</td></tr>
+          <tr><td><strong>XSS (Cross-Site Scripting)</strong></td><td>Injects malicious JavaScript into a trusted website; runs when users visit. User does NOT need to be authenticated</td><td><strong>See JavaScript on test = XSS</strong></td></tr>
+          <tr><td><strong>Reflected XSS</strong></td><td>Tells the site to pull code from another website</td><td>Not stored; runs on each visit</td></tr>
+          <tr><td><strong>Stored XSS</strong></td><td>Malicious script stored in the database; executes for all future users who query that data</td><td>Persistent — affects many users</td></tr>
+          <tr><td><strong>CSRF / XSRF</strong></td><td>Forces an authenticated user to submit a malicious request using their own credentials. User IS already authenticated</td><td><strong>Banking / financial = CSRF</strong></td></tr>
+          <tr><td><strong>Directory Traversal</strong></td><td>Attacker reads files outside the web root using <code>../</code> in the URL. May be URL-encoded (%2E%2E) to hide</td><td>Look for <code>../</code> or <code>%2E%2E</code> in URLs</td></tr>
+        </table>
+        <div class="callout warn">
+          <strong>XSS</strong> = user NOT authenticated · <strong>CSRF</strong> = user IS authenticated (financial/banking context)
+        </div>
+      </div>
+    </div>
+
+    <!-- MALWARE -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <h2>🦠 Malware Types</h2>
+        <span class="badge">⚠ ON TEST</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <table>
+          <tr><th>Type</th><th>Description</th><th>Exam Tip</th></tr>
+          <tr><td><strong>Virus</strong></td><td>Attaches to apps/executables; requires user interaction to spread. Can carry a payload</td><td>Needs user action</td></tr>
+          <tr><td><strong>Worm</strong></td><td>Self-replicates with little/no user interaction. Consumes network bandwidth rapidly</td><td>No user action needed</td></tr>
+          <tr><td><strong>Trojan</strong></td><td>Disguised as legitimate software. Does not self-replicate — relies on deception. <strong>Delivery mechanism</strong></td><td>Trojan = delivery · Backdoor = persistence</td></tr>
+          <tr><td><strong>Backdoor</strong></td><td>Surreptitious method to bypass security. Built maliciously or forgotten from dev/testing</td><td>Long-term access / persistence</td></tr>
+          <tr><td><strong>RAT</strong></td><td>Remote Access Trojan — installs a backdoor; gives attacker admin-level control (keystrokes, files, etc.)</td><td>Specific type of Trojan</td></tr>
+          <tr><td><strong>Keylogger</strong></td><td>Hardware or software that covertly records keystrokes (credit cards, passwords)</td><td>Part of spyware</td></tr>
+          <tr><td><strong>Spyware</strong></td><td>Monitors user activity without consent; may take screenshots, use microphone/webcam</td><td>Includes keyloggers</td></tr>
+          <tr><td><strong>Logic Bomb</strong></td><td>Dormant code that executes when a specific condition is met (a date, firing an employee)</td><td><strong>See a DATE on the test = Logic Bomb</strong></td></tr>
+          <tr><td><strong>Fileless Malware</strong></td><td>No persistent file; downloader runs malware in memory then removes itself</td><td>Hard to detect</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- NETWORK ATTACKS -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <h2>📡 Network &amp; Application Attacks</h2>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <table>
+          <tr><th>Attack</th><th>Description</th><th>Exam Tip</th></tr>
+          <tr><td><strong>MITM / On-Path</strong></td><td>Attacker intercepts communications between two targets; can passively spy or actively alter traffic</td><td>Associated with defeating encryption</td></tr>
+          <tr><td><strong>ARP Poisoning</strong></td><td>Sends false ARP records to resolve attacker's MAC to a legitimate IP (local network only)</td><td>Local network attack</td></tr>
+          <tr><td><strong>DNS Poisoning</strong></td><td>Corrupts DNS to redirect requests to malicious servers. Negative domain reputation = hosts malware</td><td>Pharming = DNS poisoning</td></tr>
+          <tr><td><strong>DoS</strong></td><td>Single source attacks to make a resource unavailable</td><td>Most severe = requires more work</td></tr>
+          <tr><td><strong>DDoS</strong></td><td>Multiple compromised computers (botnet) launch a DoS attack together</td><td>Uses a botnet</td></tr>
+          <tr><td><strong>Amplification Attack</strong></td><td>Attacker spoofs lookup requests to DNS; response is larger than request, amplifying bandwidth toward victim</td><td>ON TEST — IP Spoofing + DNS</td></tr>
+          <tr><td><strong>Buffer Overflow</strong></td><td>Program receives more input than expected; overwrites adjacent memory. Attacker writes into executable memory</td><td>Vulnerability = the exploit</td></tr>
+          <tr><td><strong>Privilege Escalation</strong></td><td>Attacker gains higher privileges than allowed. Caused by bugs or weak permissions</td><td>Exam: Weak permissions</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- PASSWORD ATTACKS -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <h2>🔑 Password &amp; Cryptographic Attacks</h2>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <table>
+          <tr><th>Attack</th><th>Description</th><th>Exam Tip</th></tr>
+          <tr><td><strong>Brute Force</strong></td><td>Tries every combination — slow and resource intensive</td><td>Trying EVERYTHING</td></tr>
+          <tr><td><strong>Dictionary Attack</strong></td><td>Tries a list of known/common passwords against one account</td><td>Common passwords list</td></tr>
+          <tr><td><strong>Password Spraying</strong></td><td>Tries one known-good password across MANY accounts — avoids lockout detection</td><td>Few passwords, many accounts</td></tr>
+          <tr><td><strong>Birthday Attack</strong></td><td>Subset of collision attack. Finds two inputs that produce the same hash value. Named after birthday paradox</td><td>Associated with hashing</td></tr>
+          <tr><td><strong>Collision Attack</strong></td><td>Exploits weak hash functions (e.g., MD5) by finding different inputs that produce the same hash</td><td>Weak algorithms = MD5</td></tr>
+          <tr><td><strong>Known Plaintext Attack</strong></td><td>Attacker has both plaintext AND ciphertext; uses both to find encryption weaknesses</td><td>Has both plain + encrypted</td></tr>
+          <tr><td><strong>Rainbow Table</strong></td><td>Precomputed table of hash values used to crack hashed passwords</td><td>Defeated by salting / PBKDF2</td></tr>
+        </table>
+        <div class="callout warn"><strong>Credential Stuffing</strong> = tries stolen credentials on other websites. <strong>Harvesting</strong> = gathering credentials.</div>
+      </div>
+    </div>
+
+    <!-- PHYSICAL ATTACKS -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <h2>🔌 Physical Attacks</h2>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <table>
+          <tr><th>Attack</th><th>Description</th></tr>
+          <tr><td><strong>Malicious USB Cables</strong></td><td>Cables altered to install malware or exfiltrate data via hidden cellular connection</td></tr>
+          <tr><td><strong>Malicious Flash Drive</strong></td><td>Malware-filled USB dropped in a parking lot, relying on victim curiosity to plug it in</td></tr>
+          <tr><td><strong>Card Cloning</strong></td><td>Special hardware copies contents of an electronic access card</td></tr>
+          <tr><td><strong>Skimming</strong></td><td>Hardware appended to ATMs or gas pumps to copy magnetic strip data and steal PIN/card info</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- INDICATORS OF COMPROMISE -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <h2>🚨 Indicators of Compromise (IoC)</h2>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <ul>
+          <li><strong>Account Lockout</strong> — user account got locked out</li>
+          <li><strong>Concurrent Sessions</strong> — same account logged in from multiple places</li>
+          <li><strong>Impossible Travel</strong> — login from New York then Paris 10 minutes later</li>
+          <li><strong>Resource Consumption</strong> — associated with DDoS</li>
+          <li><strong>Inaccessibility</strong> — service disruption (DDoS)</li>
+          <li><strong>Out-of-Cycle Logging</strong> — logs generated at unexpected times; verify timestamps match</li>
+          <li><strong>Missing Logs</strong> — attacker disabled logging to cover tracks</li>
+          <li><strong>Published/Documented</strong> — data exposure or leakage</li>
+          <li><strong>Blocked Content</strong> — content being blocked unexpectedly</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SEGMENTATION & ACCESS CONTROL -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <h2>🗂️ Segmentation &amp; Access Control</h2>
+        <span class="badge">⚠ ON TEST</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <h3>Network Segmentation</h3>
+        <table>
+          <tr><th>Type</th><th>Description</th><th>Key Point</th></tr>
+          <tr><td><strong>Subnetting</strong></td><td>Divides network into smaller IP address blocks</td><td>Logical segmentation</td></tr>
+          <tr><td><strong>VLAN</strong></td><td>Divides network logically using same cabling; packets handled separately by Layer 3 switches</td><td>Still have network connectivity</td></tr>
+          <tr><td><strong>Air Gap</strong></td><td>Not physically connected to any other system — complete physical isolation</td><td>No network connectivity at all</td></tr>
+        </table>
+        <h3>Linux File Permissions (chmod)</h3>
+        <div class="callout">
+          <strong>Read=4, Write=2, Execute=1</strong><br>
+          Format: <code>chmod [owner][group][other]</code><br><br>
+          <code>chmod 777</code> = owner:rwx · group:rwx · other:rwx (all permissions)<br>
+          <code>chmod 644</code> = owner:rw · group:r · other:r<br>
+          <code>chmod 640</code> = owner:rw · group:r · other: none
+        </div>
+        <div class="callout warn" style="margin-top:.75rem">
+          <strong>ACS</strong> = Access Control System · <strong>ACL</strong> = Access Control List · <strong>ACE</strong> = Access Control Entry (ACEs make ACLs)
+        </div>
+        <h3>Least Privilege</h3>
+        <ul>
+          <li>Each entity gets only the <strong>minimum permissions needed</strong> to perform its function</li>
+          <li>Mitigates damage from disgruntled employees and compromised accounts</li>
+        </ul>
+        <h3>Allow Lists vs Block Lists</h3>
+        <table>
+          <tr><th>Type</th><th>How it works</th><th>Exam Tip</th></tr>
+          <tr><td><strong>Allow List (Whitelist)</strong></td><td>Only apps on the list can run; everything else is blocked</td><td>High security — more time consuming to manage</td></tr>
+          <tr><td><strong>Block List (Blacklist)</strong></td><td>Apps on the list are blocked; everything else is allowed</td><td>More flexible but less secure</td></tr>
+        </table>
+        <h3>Isolation vs Containment</h3>
+        <table>
+          <tr><th>Term</th><th>Scope</th><th>Purpose</th></tr>
+          <tr><td><strong>Isolation</strong></td><td>Single system</td><td>Isolate the source of malicious activity for forensics</td></tr>
+          <tr><td><strong>Containment</strong></td><td>Broader network response</td><td>Ensure malicious activity does not spread to other parts of the network</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- HARDENING & ENDPOINT -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <h2>🛡️ Hardening, Patching &amp; Endpoint Protection</h2>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <h3>Hardening</h3>
+        <ul>
+          <li>Securing a system by <strong>reducing its attack surface</strong> — removing unnecessary things from default state</li>
+          <li>Disable unnecessary ports and protocols</li>
+          <li>Change default passwords</li>
+          <li>Remove unnecessary software</li>
+        </ul>
+        <h3>Patching</h3>
+        <ul>
+          <li>Systematic notification, identification, deployment, installation, and verification of updates</li>
+          <li>Updates = patches, hotfixes, service packs</li>
+          <li>Must be kept current to address newly discovered vulnerabilities</li>
+        </ul>
+        <h3>Encryption at Rest &amp; Transit</h3>
+        <table>
+          <tr><th>Type</th><th>Example</th><th>Note</th></tr>
+          <tr><td><strong>FDE (Full Disk Encryption)</strong></td><td>BitLocker (Windows), FileVault (Mac)</td><td>Physical security — protects data on the device</td></tr>
+          <tr><td><strong>SED (Self-Encrypting Drive)</strong></td><td>Hardware FDE — encrypts data as it enters/leaves the drive</td><td>No burden on host OS</td></tr>
+          <tr><td><strong>VPN</strong></td><td>Trusted endpoint encryption over untrusted network</td><td>Data in transit</td></tr>
+          <tr><td><strong>Email Encryption</strong></td><td>PGP, GPG, S/MIME</td><td>Data in transit</td></tr>
+        </table>
+        <h3>HIDS vs HIPS</h3>
+        <table>
+          <tr><th>System</th><th>Action</th><th>Exam Tip</th></tr>
+          <tr><td><strong>HIDS</strong></td><td>Detection ONLY — monitors and alerts, does not stop threats</td><td>"D" = Detect</td></tr>
+          <tr><td><strong>HIPS</strong></td><td>Detection AND Prevention — actively stops threats as they occur</td><td>"P" = Prevent ("Hips don't lie")</td></tr>
+        </table>
+        <h3>Configuration Enforcement</h3>
+        <ul>
+          <li><strong>Secure Baseline</strong> — defined secure initial state; used for monitoring and compliance</li>
+          <li><strong>Secure Configuration Guides</strong> — vendor-specific instructions enforced through policy</li>
+          <li><strong>Configuration Validation</strong> — scripts verify configurations match the approved baseline (think: verification)</li>
+          <li><strong>Decommissioning</strong> — when removing a device, purge all sensitive data
+            <ul>
+              <li>Spinning/magnetic HDD → degauss or shred</li>
+              <li>SSD → cannot be degaussed; securely erase or shred</li>
+              <li>Routers/switches → reset and purge config</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div><!-- /notes2 -->
+
+
+  <!-- ===================== JUNE 2 QUIZ ===================== -->
+  <div id="quiz2" class="page">
+    <div class="page-header">
+      <h1>Practice Test — June 2, 2026</h1>
+      <p>Chapter 2 · 30 questions · Select an answer to lock it in</p>
+    </div>
+
+    <div id="scoreBar2" class="score-bar">
+      <div class="score-num" id="scoreNum2">0/30</div>
+      <div class="score-label" id="scoreLabel2">Keep going!</div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill2" style="width:0%"></div></div>
+      <div class="quiz-controls">
+        <button class="btn btn-secondary" onclick="resetQuiz2()">Retake Quiz</button>
+      </div>
+    </div>
+
+    <div id="quizCards2"></div>
+  </div><!-- /quiz2 -->
+
+</div><!-- /container -->
+
+<script>
+  // ── NAV ──
+  function showPage(id, el) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    el.classList.add('active');
+    return false;
+  }
+
+  // ── ACCORDION ──
+  function toggle(header) {
+    const body = header.nextElementSibling;
+    const isOpen = body.classList.contains('open');
+    body.classList.toggle('open', !isOpen);
+    header.classList.toggle('open', !isOpen);
+  }
+
+  // ── QUIZ DATA ──
+  const questions = [
+    {
+      q: 'What does the "I" in the CIA Triad stand for, and what cryptographic tool ensures it?',
+      options: ['Identification — ensured by Encryption', 'Integrity — ensured by Hashing', 'Integrity — ensured by Encryption', 'Identification — ensured by Hashing'],
+      answer: 1,
+      explain: 'Integrity means data has not been altered. Hashing produces a fixed-length digest that changes if the data changes.'
+    },
+    {
+      q: 'What is the key difference between a Honeyfile and a Honeytoken?',
+      options: [
+        'A honeyfile is a network of honeypots; a honeytoken is a single fake server',
+        'A honeyfile is a fake file; a honeytoken is fake data (like credentials or DB records)',
+        'They are the same thing — just different names',
+        'A honeytoken is a fake file; a honeyfile is fake data'
+      ],
+      answer: 1,
+      explain: 'Honeyfile = fake file. Honeytoken = fake data embedded in systems (fake API key, fake DB record) to detect misuse.'
+    },
+    {
+      q: 'A security team places fake AWS credentials inside a config file to detect unauthorized access. What is this?',
+      options: ['Honeypot', 'Honeyfile', 'Honeytoken', 'Honeynet'],
+      answer: 2,
+      explain: 'Fake credentials are data — not a whole file or environment. This is a honeytoken.'
+    },
+    {
+      q: 'Which security control type DETECTS threats but does NOT fix them?',
+      options: ['Corrective', 'Preventive', 'Detective', 'Compensating'],
+      answer: 2,
+      explain: 'Detective controls (like IDS and audit logs) detect threats but take no corrective action.'
+    },
+    {
+      q: 'You need a backup control because your primary control is unavailable. What type is this?',
+      options: ['Directive', 'Deterrent', 'Corrective', 'Compensating'],
+      answer: 3,
+      explain: 'A compensating control is a backup used when the primary control cannot be implemented.'
+    },
+    {
+      q: 'Symmetric encryption uses _____ key(s). Asymmetric uses _____ key(s).',
+      options: ['2 keys / 1 key', '1 key / 1 key', '1 key (same) / 2 keys (public + private)', '2 keys / 2 keys'],
+      answer: 2,
+      explain: 'Symmetric uses ONE key (the same key encrypts and decrypts). Asymmetric uses TWO keys — a public key and a private key.'
+    },
+    {
+      q: 'Which encryption type is faster?',
+      options: ['Asymmetric', 'Symmetric', 'They are the same speed', 'Depends on key length only'],
+      answer: 1,
+      explain: 'Symmetric is fast. Asymmetric is computationally intense and slower.'
+    },
+    {
+      q: 'Alice encrypts a message using Bob\'s PUBLIC key. Who can decrypt it?',
+      options: ['Alice, using her private key', 'Anyone with Bob\'s public key', 'Only Bob, using his private key', 'A Certificate Authority'],
+      answer: 2,
+      explain: 'Only the private key can decrypt what was encrypted with the matching public key. Only Bob has his private key.'
+    },
+    {
+      q: 'A developer signs code with their PRIVATE key. What does a user need to VERIFY the signature?',
+      options: ["The developer's private key", "The developer's public key", 'A CA certificate', 'An HSM'],
+      answer: 1,
+      explain: 'Only the public key can decrypt/verify data signed with the private key. The public key verifies; it does not decrypt private content.'
+    },
+    {
+      q: 'What does hashing protect — Confidentiality or Integrity?',
+      options: ['Confidentiality', 'Availability', 'Integrity', 'Both Confidentiality and Integrity'],
+      answer: 2,
+      explain: 'Hashing protects Integrity — it verifies that data has not been altered. Encryption protects Confidentiality.'
+    },
+    {
+      q: 'What is the purpose of SALTING a password before hashing?',
+      options: [
+        'To make the hash faster to compute',
+        'To add random data so identical passwords produce different hashes (prevents rainbow table attacks)',
+        'To store the password in a separate location from the database',
+        'To encrypt the hash with a secret key'
+      ],
+      answer: 1,
+      explain: 'Salting adds random data to each password before hashing. This means even identical passwords produce different hashes, defeating precomputed rainbow table attacks.'
+    },
+    {
+      q: 'What is the main difference between SALTING and PEPPERING?',
+      options: [
+        'Salting uses a secret key; peppering uses a random value',
+        'Salting is stored alongside the hash; peppering is stored SEPARATELY (e.g., secrets manager/HSM)',
+        'Peppering is stored in the database; salting is stored in an HSM',
+        'They are functionally identical'
+      ],
+      answer: 1,
+      explain: 'Salt is stored alongside the hash in the database. Pepper is a secret value stored separately — in a secrets manager or HSM — not in the database.'
+    },
+    {
+      q: 'Which THREE hash algorithms were covered in your notes?',
+      options: ['AES, DES, RSA', 'MD5, SHA-256, SHA-512', 'bcrypt, PBKDF2, Argon2', 'RSA, ECC, DH'],
+      answer: 1,
+      explain: 'MD5 (avoid for passwords), SHA-256, and SHA-512 were the three hashing algorithms noted. These are fast but not ideal for password storage.'
+    },
+    {
+      q: 'What hardware module is REQUIRED for Windows BitLocker disk encryption?',
+      options: ['HSM', 'Secure Enclave', 'KMS', 'TPM 2.0'],
+      answer: 3,
+      explain: 'TPM 2.0 (Trusted Platform Module) is required for Windows BitLocker. It is a chip on the motherboard that stores encryption keys.'
+    },
+    {
+      q: 'What is the key difference between a TPM and an HSM?',
+      options: [
+        'TPM is software-based; HSM is hardware-based',
+        'TPM is a single-device motherboard chip; HSM is dedicated enterprise hardware for organizations',
+        'HSM is built into consumer devices; TPM is for servers only',
+        'They serve the same purpose and are interchangeable'
+      ],
+      answer: 1,
+      explain: 'TPM is a chip on a single device\'s motherboard. HSM is dedicated enterprise hardware used by organizations, CAs, and banks to process cryptographic keys at scale.'
+    },
+    {
+      q: 'What does OCSP do, and why did it replace CRL?',
+      options: [
+        'OCSP encrypts certificates; CRL only stored them',
+        'OCSP checks certificate validity in real-time; CRL was a static list that required download',
+        'OCSP creates certificates; CRL revokes them',
+        'They are the same — OCSP is just a newer name'
+      ],
+      answer: 1,
+      explain: 'OCSP (Online Certificate Status Protocol) checks in real time whether a certificate is valid. CRL (Certificate Revocation List) is a static file that must be downloaded periodically — slower and less current.'
+    },
+    {
+      q: 'A certificate is issued for *.example.com. What type of certificate is this?',
+      options: ['SAN Certificate', 'EV Certificate', 'Wildcard Certificate', 'Self-signed Certificate'],
+      answer: 2,
+      explain: 'A wildcard certificate (*.example.com) covers the main domain and all of its subdomains.'
+    },
+    {
+      q: 'What is a Gap Analysis?',
+      options: [
+        'A test that identifies gaps in employee knowledge',
+        'An analysis of the gap between current security posture and required standards, used to plan corrective action',
+        'A scan for open network ports',
+        'A review of firewall rule sets for missing entries'
+      ],
+      answer: 1,
+      explain: 'Gap Analysis examines the variation between an organization\'s current security state and its required standards, then plans corrective action for those deviations.'
+    },
+    {
+      q: 'Change Management equals which THREE components?',
+      options: [
+        'Planning + Testing + Deployment',
+        'Risk Assessment + Patching + Monitoring',
+        'Governance + Documentation + Approval',
+        'Identification + Authentication + Authorization'
+      ],
+      answer: 2,
+      explain: 'Change Management = Governance + Documentation + Approval. Always include a rollback plan.'
+    },
+    {
+      q: 'What is the main difference between In-Band and Out-of-Band key exchange? Which is more secure?',
+      options: [
+        'In-band uses asymmetric keys; out-of-band uses symmetric keys. In-band is more secure.',
+        'Out-of-band uses a separate independent channel (more secure); in-band uses the same data channel and is vulnerable to on-path/MITM attacks.',
+        'In-band uses a separate channel (more secure); out-of-band shares the same channel as the data.',
+        'They are equally secure — the difference is only speed.'
+      ],
+      answer: 1,
+      explain: 'Out-of-band key exchange uses a completely separate channel (e.g., phone call, physical delivery) making interception much harder. In-band exchanges keys on the same channel as data, making it vulnerable to man-in-the-middle (on-path) attacks.'
+    },
+    {
+      q: 'What is Steganography? Which best describes it?',
+      options: [
+        'Encrypting data using a symmetric key',
+        'Hiding data INSIDE another file (image/audio/video) to conceal its existence',
+        'Renaming variable names to random characters to hide code logic',
+        'A method for breaking hashed passwords'
+      ],
+      answer: 1,
+      explain: 'Steganography hides the existence of communication by embedding secret data inside another file. Example: a hidden message inside a JPEG image.'
+    },
+    {
+      q: 'A company hides a sensitive message inside a JPEG image before sending it. What technique is this?',
+      options: ['Encryption', 'Obfuscation', 'Steganography', 'Tokenization'],
+      answer: 2,
+      explain: 'Steganography hides data inside another file. The existence of the communication itself is concealed, not just the content.'
+    },
+    {
+      q: 'What is a Blockchain, and why is it difficult to tamper with?',
+      options: [
+        'A type of symmetric encryption; hard to break because of long key lengths',
+        'A centralized database managed by a single authority; hard to access without credentials',
+        'A decentralized distributed ledger; hard to tamper with because an attacker must control a majority of the network',
+        'A certificate chain used in PKI; hard to forge because each cert is signed by a CA'
+      ],
+      answer: 2,
+      explain: 'Blockchain is a decentralized, distributed public ledger. To falsify data, an attacker would need to control the majority of the network — making attacks extremely difficult.'
+    },
+    {
+      q: 'Your credit card number is replaced with a random stand-in value in a database. What technique is this?',
+      options: ['Data Masking', 'Steganography', 'Hashing', 'Tokenization'],
+      answer: 3,
+      explain: 'Tokenization replaces sensitive data (like credit card numbers) with a stand-in token. It can be reversed if needed (unlike hashing).'
+    },
+    {
+      q: 'What are the FOUR components of the AAA framework, in order?',
+      options: [
+        'Authentication, Authorization, Accounting, Auditing',
+        'Identification, Authentication, Authorization, Accounting',
+        'Identification, Integrity, Authorization, Accounting',
+        'Authentication, Availability, Authorization, Auditing'
+      ],
+      answer: 1,
+      explain: 'AAA = Identification (who are you?) → Authentication (prove it) → Authorization (what can you do?) → Accounting (log what you did).'
+    }
+  ];
+
+  let answered = new Array(questions.length).fill(false);
+  let correct = new Array(questions.length).fill(false);
+
+  function buildQuiz() {
+    const container = document.getElementById('quizCards');
+    container.innerHTML = '';
+    answered = new Array(questions.length).fill(false);
+    correct = new Array(questions.length).fill(false);
+    updateScore();
+
+    questions.forEach((q, qi) => {
+      const card = document.createElement('div');
+      card.className = 'question-card';
+      card.id = `card-${qi}`;
+
+      const top = document.createElement('div');
+      top.className = 'question-top';
+      top.innerHTML = `<span class="q-num">Q${qi + 1}</span><span class="q-text">${q.q}</span>`;
+      card.appendChild(top);
+
+      const opts = document.createElement('div');
+      opts.className = 'options';
+      q.options.forEach((opt, oi) => {
+        const letters = ['A','B','C','D'];
+        const btn = document.createElement('div');
+        btn.className = 'option';
+        btn.innerHTML = `<span class="opt-letter">${letters[oi]}</span><span>${opt}</span>`;
+        btn.onclick = () => selectOption(qi, oi, btn);
+        opts.appendChild(btn);
+      });
+      card.appendChild(opts);
+
+      const exp = document.createElement('div');
+      exp.className = 'explanation';
+      exp.id = `exp-${qi}`;
+      exp.innerHTML = `<strong>Explanation:</strong> ${q.explain}`;
+      card.appendChild(exp);
+
+      container.appendChild(card);
+    });
+  }
+
+  function selectOption(qi, oi, btn) {
+    if (answered[qi]) return;
+    answered[qi] = true;
+
+    const card = document.getElementById(`card-${qi}`);
+    const opts = card.querySelectorAll('.option');
+    opts.forEach(o => o.classList.add('locked'));
+    opts.forEach(o => { o.style.cursor = 'default'; o.onclick = null; });
+
+    const isCorrect = oi === questions[qi].answer;
+    correct[qi] = isCorrect;
+
+    btn.classList.add(isCorrect ? 'correct-ans' : 'wrong-ans');
+    if (!isCorrect) {
+      opts[questions[qi].answer].classList.add('correct-ans');
+    }
+
+    card.classList.add(isCorrect ? 'correct' : 'incorrect');
+    document.getElementById(`exp-${qi}`).classList.add('show');
+    updateScore();
+  }
+
+  function updateScore() {
+    const total = questions.length;
+    const done = answered.filter(Boolean).length;
+    const got = correct.filter(Boolean).length;
+    const pct = done === 0 ? 0 : Math.round((got / done) * 100);
+
+    const bar = document.getElementById('scoreBar');
+    bar.classList.toggle('show', done > 0);
+
+    document.getElementById('scoreNum').textContent = `${got} / ${done}`;
+    document.getElementById('progressFill').style.width = `${(done / total) * 100}%`;
+
+    if (done === total) {
+      const pctAll = Math.round((got / total) * 100);
+      let msg = pctAll >= 90 ? '🏆 Excellent work!' : pctAll >= 75 ? '👍 Good job — review the misses!' : '📖 Keep studying — you got this!';
+      document.getElementById('scoreLabel').textContent = `Final score: ${pctAll}% · ${msg}`;
+    } else {
+      document.getElementById('scoreLabel').textContent = `${done} of ${total} answered · ${pct}% correct so far`;
+    }
+  }
+
+  function resetQuiz() {
+    buildQuiz();
+    window.scrollTo(0, 0);
+  }
+
+  buildQuiz();
+
+  // ═══════════════════════════════════════
+  // CHAPTER 2 QUIZ
+  // ═══════════════════════════════════════
+  const questions2 = [
+    {
+      q: 'Which threat actor is motivated by espionage and national interests — NOT money?',
+      options: ['Organized Crime', 'Hacktivist', 'Nation-State / APT', 'Insider Threat'],
+      answer: 2,
+      explain: 'Nation-State actors (APTs) carry out attacks for the benefit of their country — espionage, disruption, war. Organized crime is motivated by money.'
+    },
+    {
+      q: 'An employee installs unauthorized video conferencing software on their work computer without IT approval. What is this called?',
+      options: ['Insider Threat', 'Shadow IT', 'Supply Chain Attack', 'Sideloading'],
+      answer: 1,
+      explain: 'Shadow IT is any software, hardware, or IT resource used in the environment without IT approval — including unauthorized apps, file exports to personal storage, etc.'
+    },
+    {
+      q: 'A low-skilled attacker motivated by boredom uses tools created by others to launch attacks. What type of threat actor is this?',
+      options: ['Hacktivist', 'Insider Threat', 'Nation-State', 'Script Kiddie (Unskilled Attacker)'],
+      answer: 3,
+      explain: 'Script kiddies (unskilled attackers) are low-sophistication, low-resource, external attackers motivated by boredom or prestige who rely on tools built by others.'
+    },
+    {
+      q: 'You receive a text message claiming your bank account is locked and you must click a link immediately. What attack is this?',
+      options: ['Vishing', 'Phishing', 'Smishing', 'Pretexting'],
+      answer: 2,
+      explain: 'Smishing = SMS + phishing. Any phishing attack conducted over SMS/text message is smishing. On the test: if you see SMS = Smishing.'
+    },
+    {
+      q: 'An attacker calls your front desk pretending to be a building inspector and says they will need access to the data center that afternoon. What technique is this?',
+      options: ['Vishing', 'Watering Hole', 'Pretexting', 'Impersonation'],
+      answer: 2,
+      explain: 'Pretexting involves creating a fake backstory to trick a user into granting access. The attacker fabricated an entire scenario (the inspector cover story) before the attack.'
+    },
+    {
+      q: 'An attacker registers the domain "gooogle.com" hoping to catch users who mistype "google.com." What attack is this?',
+      options: ['Watering Hole', 'Brand Impersonation', 'Pretexting', 'Typosquatting'],
+      answer: 3,
+      explain: 'Typosquatting (also called URL hijacking) involves registering domains similar to popular sites to catch users who mistype a URL.'
+    },
+    {
+      q: 'An attacker infects a website that a specific group of employees regularly visits, then waits for them to come to the site. What attack is this?',
+      options: ['Phishing', 'Watering Hole', 'Typosquatting', 'Smishing'],
+      answer: 1,
+      explain: 'A watering hole attack infects websites that a target group trusts and visits — like an alligator waiting at a watering hole for prey to come to it.'
+    },
+    {
+      q: 'A vulnerability is discovered in software that the vendor is not yet aware of and has no patch for. What type is this?',
+      options: ['Logic Bomb', 'Zero-Day', 'Misconfiguration', 'Replay Attack'],
+      answer: 1,
+      explain: 'A zero-day vulnerability is one that creators are unaware of — zero days to create or apply a patch. If exploited, the attack will always succeed since no one has it patched.'
+    },
+    {
+      q: 'Which vulnerability type is described as the MOST COMMON and MOST PREVENTABLE on the Security+ exam?',
+      options: ['Zero-Day', 'SQL Injection', 'Misconfiguration', 'VM Escape'],
+      answer: 2,
+      explain: 'Misconfigurations (default accounts, improper error handling, unnecessary components) are the most common and most preventable vulnerability on the exam.'
+    },
+    {
+      q: 'An attacker intercepts a user\'s hashed password during authentication and retransmits it to log in as that user. What attack is this?',
+      options: ['Pass the Hash', 'Replay Attack', 'Rainbow Table', 'Birthday Attack'],
+      answer: 1,
+      explain: 'A replay attack intercepts and retransmits valid data with malicious intent. The example given — retransmitting a hashed password to authenticate — is a classic replay attack.'
+    },
+    {
+      q: 'On the Security+ exam, if you see JavaScript mentioned in the context of a web attack — what attack is it most likely referring to?',
+      options: ['SQL Injection', 'CSRF', 'Directory Traversal', 'XSS (Cross-Site Scripting)'],
+      answer: 3,
+      explain: 'XSS injects malicious JavaScript into trusted websites. On the test: if you see JavaScript mentioned = most likely XSS.'
+    },
+    {
+      q: 'An XSS attack where the malicious script is stored in the database and executes for ALL future users who query that data is called:',
+      options: ['Reflected XSS', 'Stored XSS', 'DOM XSS', 'Blind XSS'],
+      answer: 1,
+      explain: 'Stored XSS saves the malicious script in the database. Every future user who queries that data triggers the script — making it persistent and affecting many users.'
+    },
+    {
+      q: 'An attack against a user who is ALREADY AUTHENTICATED to a web application — forcing them to submit a malicious request using their credentials — is called:',
+      options: ['XSS', 'SQL Injection', 'CSRF / XSRF', 'Directory Traversal'],
+      answer: 2,
+      explain: 'CSRF (Cross-Site Request Forgery) targets already-authenticated users. The keyword for the exam is banking/financial institutions. XSS does NOT require authentication; CSRF does.'
+    },
+    {
+      q: 'An attacker uses "../../../etc/passwd" or "%2E%2E/%2E%2E/etc/passwd" in a URL to read files outside the web server root. What attack is this?',
+      options: ['SQL Injection', 'CSRF', 'Directory Traversal', 'XSS'],
+      answer: 2,
+      explain: 'Directory traversal uses ../ sequences in URLs to access files outside the web root. The URL-encoded version (%2E%2E) is used to hide the characters from detection.'
+    },
+    {
+      q: 'Malware that requires USER INTERACTION to spread and attaches itself to applications or executables is called a:',
+      options: ['Worm', 'Virus', 'Trojan', 'Logic Bomb'],
+      answer: 1,
+      explain: 'A virus requires user interaction to spread. It attaches to applications or executables and can carry a payload that executes when activated.'
+    },
+    {
+      q: 'Malware that spreads from computer to computer with LITTLE OR NO user interaction and rapidly consumes network bandwidth is called a:',
+      options: ['Virus', 'Trojan', 'Worm', 'RAT'],
+      answer: 2,
+      explain: 'A worm self-replicates with little or no user interaction. Unlike a virus, it is self-contained and does not need to attach to other files. It rapidly consumes network bandwidth.'
+    },
+    {
+      q: 'On the exam: Trojans are the ________ mechanism. Backdoors provide ________ access.',
+      options: ['Detection / Temporary', 'Delivery / Long-term (persistence)', 'Prevention / Immediate', 'Encryption / Covert'],
+      answer: 1,
+      explain: 'Trojans are disguised as legitimate software and serve as the DELIVERY mechanism. Once installed, a Backdoor provides LONG-TERM persistent access to the attacker.'
+    },
+    {
+      q: 'You see a scenario where code is set to delete all company data on the date an employee is fired. What type of malware is this?',
+      options: ['Worm', 'Spyware', 'Logic Bomb', 'Keylogger'],
+      answer: 2,
+      explain: 'Logic bombs stay dormant until a specific condition is met. On the test: if you see a DATE or a trigger condition — it\'s a Logic Bomb. The "deadman switch" concept is also a logic bomb.'
+    },
+    {
+      q: 'A Remote Access Trojan (RAT) is best described as:',
+      options: [
+        'A virus that spreads through network connections',
+        'A specific type of Trojan that installs a backdoor, giving the attacker admin-level remote control',
+        'Spyware that records only keystrokes',
+        'A worm that targets remote desktop connections'
+      ],
+      answer: 1,
+      explain: 'A RAT is a specific type of Trojan that installs a backdoor. It gives attackers administrative-level control including modifying files, recording keystrokes, and spreading viruses to other machines.'
+    },
+    {
+      q: 'An attacker sends spoofed DNS lookup requests and redirects large DNS responses toward a victim, amplifying their attack bandwidth. What is this?',
+      options: ['DDoS Botnet Attack', 'DNS Poisoning', 'Amplification Attack', 'ARP Poisoning'],
+      answer: 2,
+      explain: 'An amplification attack spoofs lookup requests to DNS servers — the response is much larger than the request, allowing the attacker to amplify the traffic directed at the victim.'
+    },
+    {
+      q: 'An attacker changes ARP records so their MAC address resolves to a legitimate IP address on the local network. What attack is this?',
+      options: ['DNS Poisoning', 'ARP Poisoning', 'MITM via VPN', 'IP Spoofing'],
+      answer: 1,
+      explain: 'ARP poisoning changes ARP records on a local network to resolve the attacker\'s MAC to a legitimate IP address, redirecting traffic through the attacker\'s system.'
+    },
+    {
+      q: 'A password attack tries ONE known-good password across MANY accounts to avoid triggering lockout detection. What is this?',
+      options: ['Brute Force', 'Dictionary Attack', 'Password Spraying', 'Credential Stuffing'],
+      answer: 2,
+      explain: 'Password spraying tries one or a few passwords across many accounts. This avoids account lockouts that would trigger with traditional brute force on a single account.'
+    },
+    {
+      q: 'A collision attack that exploits weak hash functions like MD5 to find two different inputs that produce the same hash is called a:',
+      options: ['Rainbow Table Attack', 'Birthday Attack', 'Known Plaintext Attack', 'Pass the Hash Attack'],
+      answer: 1,
+      explain: 'A birthday attack is a subset of a collision attack. It finds two separate inputs that produce the same hash value. Associated with weak algorithms like MD5. Named after the birthday paradox.'
+    },
+    {
+      q: 'Which log indicator suggests an attacker DISABLED LOGGING to cover their tracks?',
+      options: ['Out-of-cycle logging', 'Account lockout', 'Concurrent sessions', 'Missing logs'],
+      answer: 3,
+      explain: 'Missing logs indicate an attacker disabled the logging system to cover their tracks. Out-of-cycle logging means logs generated at unexpected times — different issue.'
+    },
+    {
+      q: 'What is the difference between Isolation and Containment?',
+      options: [
+        'Isolation affects the whole network; containment targets a single device',
+        'Isolation targets a single source of malicious activity for forensics; containment is the broader strategy to prevent spread across the network',
+        'They are the same thing — just different terms',
+        'Containment removes the system; isolation keeps it running but monitored'
+      ],
+      answer: 1,
+      explain: 'Isolation = single system tactic for forensic investigation. Containment = broader response strategy ensuring malicious activity does not spread to other parts of the network.'
+    },
+    {
+      q: 'On the exam: what does chmod 644 mean in Linux permissions?',
+      options: [
+        'Owner: rwx · Group: rwx · Other: rwx',
+        'Owner: rw · Group: r · Other: r',
+        'Owner: rwx · Group: r · Other: none',
+        'Owner: r · Group: rw · Other: rw'
+      ],
+      answer: 1,
+      explain: 'Read=4, Write=2, Execute=1. chmod 644: Owner=6(r+w), Group=4(r), Other=4(r). So owner can read and write; group and others can only read.'
+    },
+    {
+      q: 'Which system DETECTS threats only (does not stop them)?',
+      options: ['HIPS', 'HIDS', 'Host-based Firewall', 'WAF'],
+      answer: 1,
+      explain: 'HIDS (Host-based Intrusion Detection System) detects and alerts only — "D" for Detect. HIPS (Prevention) can detect AND actively stop threats — "P" for Prevent.'
+    },
+    {
+      q: 'When decommissioning a SOLID-STATE DRIVE (SSD), what is the correct method to ensure data cannot be recovered?',
+      options: ['Degauss it', 'Format and reinstall the OS', 'Securely erase or physically shred it', 'Remove it from the system and store it securely'],
+      answer: 2,
+      explain: 'SSDs cannot be degaussed (that only works on magnetic/spinning drives). SSDs must be securely erased using software designed for the purpose or physically shredded.'
+    },
+    {
+      q: 'A supply chain attack is best described as:',
+      options: [
+        'A DDoS attack launched against a company\'s shipping logistics software',
+        'An attack targeting a less-secure vendor, supplier, or MSP in the supply chain to reach the actual target',
+        'An insider threat from an employee in the purchasing department',
+        'Infecting a company\'s inventory management database with ransomware'
+      ],
+      answer: 1,
+      explain: 'Supply chain attacks target a less-protected system in the supply chain (vendors, suppliers, MSPs) rather than attacking the primary target directly. Mitigate with strong vendor risk management and code signing verification.'
+    },
+    {
+      q: 'A VM escape attack occurs when:',
+      options: [
+        'A virtual machine runs out of resources and crashes',
+        'An attacker migrates malware from one VM to another using shared storage',
+        'An attacker escapes their virtual environment to interact with the host system',
+        'A VM snapshot fails and the system reverts to a previous state'
+      ],
+      answer: 2,
+      explain: 'VM escape allows an attacker inside a virtual machine to break out and access the underlying host environment. Defense: strong hypervisor, good isolation, keep VM software patched.'
+    },
+    {
+      q: 'Which type of allow/block list is described as MORE FLEXIBLE but LESS SECURE on the exam?',
+      options: ['Allow List (Whitelist)', 'Block List (Blacklist)', 'They are equally flexible', 'VLAN Access List'],
+      answer: 1,
+      explain: 'Block lists (blacklists) are more flexible — only listed apps are blocked, everything else runs. Allow lists (whitelists) are more secure but more time-consuming to manage — only listed apps are permitted.'
+    }
+  ];
+
+  let answered2 = new Array(questions2.length).fill(false);
+  let correct2   = new Array(questions2.length).fill(false);
+
+  function buildQuiz2() {
+    const container = document.getElementById('quizCards2');
+    container.innerHTML = '';
+    answered2 = new Array(questions2.length).fill(false);
+    correct2  = new Array(questions2.length).fill(false);
+    updateScore2();
+
+    questions2.forEach((q, qi) => {
+      const card = document.createElement('div');
+      card.className = 'question-card';
+      card.id = `card2-${qi}`;
+
+      const top = document.createElement('div');
+      top.className = 'question-top';
+      top.innerHTML = `<span class="q-num">Q${qi + 1}</span><span class="q-text">${q.q}</span>`;
+      card.appendChild(top);
+
+      const opts = document.createElement('div');
+      opts.className = 'options';
+      q.options.forEach((opt, oi) => {
+        const letters = ['A','B','C','D'];
+        const btn = document.createElement('div');
+        btn.className = 'option';
+        btn.innerHTML = `<span class="opt-letter">${letters[oi]}</span><span>${opt}</span>`;
+        btn.onclick = () => selectOption2(qi, oi, btn);
+        opts.appendChild(btn);
+      });
+      card.appendChild(opts);
+
+      const exp = document.createElement('div');
+      exp.className = 'explanation';
+      exp.id = `exp2-${qi}`;
+      exp.innerHTML = `<strong>Explanation:</strong> ${q.explain}`;
+      card.appendChild(exp);
+
+      container.appendChild(card);
+    });
+  }
+
+  function selectOption2(qi, oi, btn) {
+    if (answered2[qi]) return;
+    answered2[qi] = true;
+
+    const card = document.getElementById(`card2-${qi}`);
+    const opts = card.querySelectorAll('.option');
+    opts.forEach(o => o.classList.add('locked'));
+    opts.forEach(o => { o.style.cursor = 'default'; o.onclick = null; });
+
+    const isCorrect = oi === questions2[qi].answer;
+    correct2[qi] = isCorrect;
+
+    btn.classList.add(isCorrect ? 'correct-ans' : 'wrong-ans');
+    if (!isCorrect) opts[questions2[qi].answer].classList.add('correct-ans');
+
+    card.classList.add(isCorrect ? 'correct' : 'incorrect');
+    document.getElementById(`exp2-${qi}`).classList.add('show');
+    updateScore2();
+  }
+
+  function updateScore2() {
+    const total = questions2.length;
+    const done  = answered2.filter(Boolean).length;
+    const got   = correct2.filter(Boolean).length;
+    const pct   = done === 0 ? 0 : Math.round((got / done) * 100);
+
+    const bar = document.getElementById('scoreBar2');
+    bar.classList.toggle('show', done > 0);
+
+    document.getElementById('scoreNum2').textContent = `${got} / ${done}`;
+    document.getElementById('progressFill2').style.width = `${(done / total) * 100}%`;
+
+    if (done === total) {
+      const pctAll = Math.round((got / total) * 100);
+      const msg = pctAll >= 90 ? '🏆 Excellent work!' : pctAll >= 75 ? '👍 Good job — review the misses!' : '📖 Keep studying — you got this!';
+      document.getElementById('scoreLabel2').textContent = `Final score: ${pctAll}% · ${msg}`;
+    } else {
+      document.getElementById('scoreLabel2').textContent = `${done} of ${total} answered · ${pct}% correct so far`;
+    }
+  }
+
+  function resetQuiz2() {
+    buildQuiz2();
+    window.scrollTo(0, 0);
+  }
+
+  buildQuiz2();
+</script>
+</body>
+</html>
