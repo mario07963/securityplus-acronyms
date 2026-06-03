@@ -1523,6 +1523,88 @@
       </div>
     </div>
 
+    <!-- Asset Management -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span>🏷️ Asset Management</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <div class="callout tip">Asset management is the lifecycle process of tracking, controlling, and eventually retiring organizational assets.</div>
+        <table>
+          <tr><th>Concept</th><th>Definition</th></tr>
+          <tr><td><strong>Asset Tagging</strong></td><td>Assigning a <strong>unique identifier</strong> (barcode, RFID, QR code) to each asset so it can be tracked throughout its entire lifecycle — from acquisition to disposal</td></tr>
+          <tr><td><strong>Asset Assignment</strong></td><td>Formally assigning an asset to a specific user, team, or department — establishes <strong>who is responsible</strong> for the asset</td></tr>
+          <tr><td><strong>Asset Classification</strong></td><td>Categorizing the asset by its <strong>sensitivity level</strong> (e.g., public, internal, confidential, restricted) — drives how it must be handled and protected</td></tr>
+          <tr><td><strong>Asset Ownership</strong></td><td>Identifying the <strong>accountable party</strong> for the asset — the owner is responsible for ensuring proper use, protection, and eventual decommissioning</td></tr>
+        </table>
+        <div class="callout exam">Exam Tip: Asset tagging enables lifecycle tracking. Ownership establishes accountability. Classification drives protection requirements.</div>
+      </div>
+    </div>
+
+    <!-- Asset Tracking & Monitoring -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span>📋 Asset Tracking &amp; Monitoring</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <table>
+          <tr><th>Term</th><th>What It Does</th></tr>
+          <tr><td><strong>Enumeration</strong></td><td>Identifies and lists <strong>networked assets</strong> that are actively communicating on the network — automated scanning process</td></tr>
+          <tr><td><strong>Inventory</strong></td><td>Organizes and documents <strong>all physical assets</strong> owned by the organization — typically a manually maintained or CMDB-backed list</td></tr>
+          <tr><td><strong>Tracking</strong></td><td>Provides <strong>ongoing visibility</strong> into where assets are, who has them, and their current status throughout the lifecycle</td></tr>
+        </table>
+        <h3>Inventory vs. Enumeration</h3>
+        <ul>
+          <li><strong>Inventory</strong> = what the org <em>thinks</em> it owns (physical record)</li>
+          <li><strong>Enumeration</strong> = what is <em>actually</em> on the network (discovered dynamically)</li>
+          <li>If enumeration finds a device <strong>not</strong> in the inventory → <strong>investigate immediately</strong> — could be unauthorized/rogue device</li>
+        </ul>
+        <div class="callout exam">Exam Tip: Enumeration ≠ Inventory. If something shows up in enumeration but NOT in inventory, treat it as a potential security incident.</div>
+      </div>
+    </div>
+
+    <!-- Decommissioning & Data Disposal -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span>🗑️ Decommissioning &amp; Data Disposal</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <h3>Decommissioning by Device Type</h3>
+        <table>
+          <tr><th>Device Type</th><th>Recommended Decommissioning Method</th></tr>
+          <tr><td><strong>Spinning Disk (HDD)</strong></td><td><strong>Degauss</strong> (destroy magnetic field) then <strong>shred</strong> (physical destruction)</td></tr>
+          <tr><td><strong>SSD / Flash Storage</strong></td><td><strong>Secure Erase</strong> (built-in firmware command) then <strong>shred</strong> (physical destruction) — degaussing does NOT work on SSDs</td></tr>
+          <tr><td><strong>Network Appliances</strong></td><td><strong>Reset to factory defaults</strong> and <strong>purge</strong> configuration data before disposal</td></tr>
+          <tr><td><strong>Printers / Scanners</strong></td><td>Follow <strong>manufacturer guidelines</strong> — many store data internally; memory must be wiped per vendor instructions</td></tr>
+        </table>
+        <h3>Data Sanitization Methods</h3>
+        <table>
+          <tr><th>Method</th><th>Description</th></tr>
+          <tr><td><strong>Overwriting / Clearing</strong></td><td>Overwrites data with 1s, 0s, or random patterns — data is logically removed but media is <strong>reusable</strong></td></tr>
+          <tr><td><strong>Purging</strong></td><td>More thorough than clearing — uses techniques like Block Erase or Cryptographic Erase; media may be reusable</td></tr>
+          <tr><td><strong>Crypto-Erase</strong></td><td>Destroys the <strong>encryption key</strong> for encrypted data — data is unrecoverable without the key; fast and effective</td></tr>
+          <tr><td><strong>Degaussing</strong></td><td>Exposes magnetic media to a strong magnetic field — destroys data and typically <strong>destroys the media</strong> too (not usable after)</td></tr>
+        </table>
+        <h3>Destruction Methods</h3>
+        <table>
+          <tr><th>Method</th><th>Description</th></tr>
+          <tr><td><strong>Shredding</strong></td><td>Physically shreds the media into small pieces — cross-cut or micro-cut preferred</td></tr>
+          <tr><td><strong>Pulverizing</strong></td><td>Crushes media into fine particles — higher assurance than shredding</td></tr>
+          <tr><td><strong>Incineration</strong></td><td>Burns media to ash — highest level of physical destruction; requires chain-of-custody documentation</td></tr>
+          <tr><td><strong>Drilling</strong></td><td>Physically drilling through platters/chips — renders media unreadable</td></tr>
+        </table>
+        <h3>Certification &amp; Data Retention</h3>
+        <ul>
+          <li><strong>Certification</strong> — Formal documentation that proves destruction occurred; required for compliance and audit purposes. Issued by the party performing the destruction.</li>
+          <li><strong>Data Retention Policy</strong> — Before disposing of any asset, <strong>verify regulatory requirements</strong> for how long data must be kept. Some regulations (HIPAA, PCI-DSS, GDPR) mandate minimum retention periods before destruction is allowed.</li>
+        </ul>
+        <div class="callout exam">Exam Tip: Degaussing works on HDDs but NOT SSDs. Crypto-erase is fastest for encrypted drives. Always get a certificate of destruction for compliance. Check retention policy BEFORE disposal.</div>
+      </div>
+    </div>
+
   </div><!-- /notes3 -->
 
 
@@ -2559,6 +2641,42 @@
       options: ['Asynchronous Replication', 'Incremental Replication', 'Synchronous Replication', 'Differential Replication'],
       answer: 2,
       explain: 'Synchronous replication copies data simultaneously across two systems — changes are immediately reflected. Zero data loss. Used in high-availability environments. Asynchronous replication copies data to a secondary location with a slight delay — some data loss possible but less resource-intensive.'
+    },
+    {
+      q: 'An organization assigns a unique barcode label to every laptop it purchases so the device can be tracked throughout its lifecycle. This is an example of:',
+      options: ['Asset Classification', 'Asset Assignment', 'Asset Tagging', 'Asset Ownership'],
+      answer: 2,
+      explain: 'Asset tagging assigns a unique identifier (barcode, RFID, QR code) to each asset so it can be tracked from acquisition through disposal. Classification determines sensitivity level. Assignment identifies who is responsible. Ownership establishes the accountable party.'
+    },
+    {
+      q: 'A network scan discovers a device actively communicating on the network that does NOT appear in the organization\'s asset inventory. What is the correct response?',
+      options: ['Add it to inventory automatically', 'Ignore it — enumeration tools often find ghost entries', 'Investigate immediately — it may be an unauthorized device', 'Decommission it without investigation'],
+      answer: 2,
+      explain: 'Enumeration finds what is actually on the network; inventory is what the org thinks it owns. A mismatch means a device exists that was not formally tracked — this could be a rogue or unauthorized device and must be investigated immediately.'
+    },
+    {
+      q: 'Which data sanitization method destroys the encryption key so that encrypted data becomes permanently unrecoverable — without physically destroying the storage media?',
+      options: ['Degaussing', 'Overwriting', 'Crypto-Erase', 'Purging'],
+      answer: 2,
+      explain: 'Crypto-erase destroys the encryption key for an encrypted drive — without the key, the data is unrecoverable. The media can often be reused. This method is fast and effective for encrypted drives. Degaussing physically destroys the magnetic field (and the media). Overwriting replaces data with patterns.'
+    },
+    {
+      q: 'A security analyst needs to decommission a solid-state drive (SSD). Which method is NOT appropriate for SSDs?',
+      options: ['Secure erase using firmware command', 'Physical shredding', 'Crypto-erase', 'Degaussing'],
+      answer: 3,
+      explain: 'Degaussing destroys data on magnetic media by disrupting magnetic fields. SSDs use flash memory — they have no magnetic properties, so degaussing has NO effect on SSDs. Secure erase, crypto-erase, and physical shredding are all valid methods for SSDs.'
+    },
+    {
+      q: 'After physically destroying storage media, what document must be obtained to satisfy compliance and audit requirements?',
+      options: ['Chain of Custody Form', 'Certificate of Destruction', 'Data Classification Report', 'Asset Inventory Log'],
+      answer: 1,
+      explain: 'A Certificate of Destruction is formal documentation proving that media was destroyed according to policy. It is required for compliance (HIPAA, PCI-DSS, GDPR) and audit purposes. It is typically issued by the party that performed the destruction.'
+    },
+    {
+      q: 'Before disposing of old financial records on a hard drive, a compliance officer checks how long those records must be legally retained. This is an example of following:',
+      options: ['Asset Classification Policy', 'Data Retention Policy', 'Enumeration Protocol', 'Failover Procedure'],
+      answer: 1,
+      explain: 'A data retention policy defines how long data must be kept before it can be destroyed — and is often mandated by regulations (HIPAA, PCI-DSS, GDPR). You must verify retention requirements BEFORE disposing of any asset. Disposing of data too early can violate compliance requirements.'
     }
   ];
 
