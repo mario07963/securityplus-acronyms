@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Security+ Acronyms</title>
+<style>
+  :root{--bg:#0f1117;--surface:#1a1d27;--surface2:#22263a;--accent:#4f8ef7;--green:#10b981;--red:#ef4444;--warn:#f59e0b;--text:#e2e8f0;--muted:#94a3b8;--border:#2d3348;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+  nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;gap:1.5rem;position:sticky;top:0;z-index:100;flex-wrap:wrap;}
+  .logo{font-size:1rem;font-weight:700;color:var(--accent);padding:.85rem 0;white-space:nowrap;}
+  nav a{color:var(--muted);text-decoration:none;font-size:.85rem;padding:.85rem 0;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;cursor:pointer;}
+  nav a:hover,nav a.active{color:var(--text);border-bottom-color:var(--accent);}
+  .container{max-width:900px;margin:0 auto;padding:2rem 1.25rem;}
+  .page{display:none;}.page.active{display:block;}
+  h1{font-size:1.5rem;color:var(--accent);margin-bottom:.25rem;}
+  .sub{color:var(--muted);font-size:.875rem;margin-bottom:1.5rem;}
+
+  /* BROWSE */
+  .search-bar{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.65rem 1rem;font-size:.95rem;color:var(--text);width:100%;margin-bottom:1rem;outline:none;}
+  .search-bar:focus{border-color:var(--accent);}
+  .filter-row{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1rem;}
+  .filter-btn{background:var(--surface2);border:1px solid var(--border);color:var(--muted);padding:.3rem .65rem;border-radius:5px;cursor:pointer;font-size:.75rem;transition:all .15s;}
+  .filter-btn:hover,.filter-btn.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+  .acronym-list{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;}
+  @media(max-width:600px){.acronym-list{grid-template-columns:1fr;}}
+  .acronym-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.85rem 1rem;cursor:pointer;transition:border-color .15s;}
+  .acronym-card:hover{border-color:var(--accent);}
+  .ac-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.35rem;}
+  .ac-name{font-size:1rem;font-weight:700;color:var(--accent);}
+  .ac-full{font-size:.8rem;color:var(--warn);font-weight:600;}
+  .ac-desc{font-size:.78rem;color:var(--muted);line-height:1.5;}
+  .count{color:var(--muted);font-size:.8rem;margin-bottom:.75rem;}
+
+  /* FLASHCARDS */
+  .fc-controls{display:flex;gap:.75rem;align-items:center;flex-wrap:wrap;margin-bottom:1.5rem;}
+  .btn{display:inline-flex;align-items:center;gap:.4rem;padding:.55rem 1.2rem;border-radius:7px;font-weight:600;font-size:.875rem;cursor:pointer;border:none;transition:all .15s;}
+  .btn-primary{background:var(--accent);color:#fff;}.btn-primary:hover{background:#3b7de9;}
+  .btn-secondary{background:var(--surface2);color:var(--text);border:1px solid var(--border);}.btn-secondary:hover{background:#2a2f47;}
+  .btn-green{background:var(--green);color:#fff;}.btn-green:hover{background:#059669;}
+  .btn-red{background:var(--red);color:#fff;}.btn-red:hover{background:#dc2626;}
+  .fc-progress{flex:1;min-width:150px;}
+  .prog-track{background:var(--border);border-radius:99px;height:6px;overflow:hidden;margin-top:.3rem;}
+  .prog-fill{height:100%;background:var(--accent);border-radius:99px;transition:width .4s;}
+  .prog-label{font-size:.75rem;color:var(--muted);}
+  .card-wrap{perspective:1000px;height:260px;margin-bottom:1.25rem;cursor:pointer;}
+  .card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .5s;}
+  .card-inner.flipped{transform:rotateY(180deg);}
+  .card-face{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center;}
+  .card-front{background:var(--surface);border:2px solid var(--border);}
+  .card-back{background:var(--surface2);border:2px solid var(--accent);transform:rotateY(180deg);}
+  .card-label{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.75rem;}
+  .card-acronym{font-size:3.5rem;font-weight:800;color:var(--accent);letter-spacing:.05em;}
+  .card-full{font-size:1.1rem;font-weight:700;color:var(--warn);margin-bottom:.5rem;}
+  .card-desc{font-size:.82rem;color:var(--muted);line-height:1.5;max-width:480px;}
+  .fc-hint{text-align:center;color:var(--muted);font-size:.8rem;margin-bottom:1.25rem;}
+  .fc-actions{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;}
+  .fc-stats{display:flex;gap:1.5rem;margin-top:1.25rem;}
+  .stat{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.65rem 1.25rem;text-align:center;flex:1;}
+  .stat-num{font-size:1.5rem;font-weight:800;}
+  .stat-lbl{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;}
+  .mode-toggle{display:flex;background:var(--surface2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:1.5rem;width:fit-content;}
+  .mode-btn{padding:.5rem 1rem;font-size:.8rem;cursor:pointer;color:var(--muted);border:none;background:transparent;transition:all .15s;}
+  .mode-btn.active{background:var(--accent);color:#fff;}
+
+  /* QUIZ */
+  .quiz-header{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.25rem;margin-bottom:1.25rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;}
+  .score-display{font-size:1.5rem;font-weight:800;color:var(--accent);}
+  .score-sub{font-size:.75rem;color:var(--muted);}
+  .q-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  .q-top{padding:1.25rem;border-bottom:1px solid var(--border);}
+  .q-meta{font-size:.75rem;color:var(--muted);margin-bottom:.5rem;}
+  .q-text{font-size:1.05rem;font-weight:600;}
+  .q-text .hl{color:var(--warn);font-size:1.4rem;}
+  .q-opts{padding:1rem 1.25rem;display:grid;grid-template-columns:1fr 1fr;gap:.6rem;}
+  @media(max-width:550px){.q-opts{grid-template-columns:1fr;}}
+  .q-opt{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:.75rem 1rem;cursor:pointer;font-size:.875rem;transition:all .15s;display:flex;gap:.75rem;align-items:flex-start;}
+  .q-opt:hover:not(.locked){border-color:var(--accent);background:#1a2035;}
+  .q-opt .ol{font-weight:700;color:var(--muted);min-width:1.1rem;font-size:.8rem;margin-top:.05rem;}
+  .q-opt.correct{border-color:var(--green);background:#0f1f18;}.q-opt.correct .ol{color:var(--green);}
+  .q-opt.wrong{border-color:var(--red);background:#1f1010;}.q-opt.wrong .ol{color:var(--red);}
+  .q-exp{margin:0 1.25rem 1.25rem;background:var(--surface2);border-radius:7px;padding:.75rem 1rem;font-size:.82rem;color:var(--muted);display:none;}
+  .q-exp.show{display:block;}.q-exp strong{color:var(--green);}
+  .q-nav{padding:1rem 1.25rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem;}
+  .q-counter{font-size:.8rem;color:var(--muted);}
+  .final-screen{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:2.5rem;text-align:center;}
+  .final-score{font-size:4rem;font-weight:800;color:var(--accent);margin:.5rem 0;}
+  .final-pct{font-size:1.25rem;color:var(--muted);}
+  .final-msg{font-size:1rem;margin:1rem 0 1.5rem;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Security+ Acronyms</div>
+  <a class="active" onclick="showPage('browse',this)">Browse All</a>
+  <a onclick="showPage('flash',this)">Flashcards</a>
+  <a onclick="showPage('quiz',this)">Quiz</a>
+</nav>
+
+<div class="container">
+
+  <!-- ========== BROWSE ========== -->
+  <div id="browse" class="page active">
+    <h1>All Security+ Acronyms</h1>
+    <p class="sub">Search or filter by letter. Click any card for details.</p>
+    <input class="search-bar" id="searchBox" placeholder="Search acronym or definition..." oninput="filterCards()"/>
+    <div class="filter-row" id="letterBtns"></div>
+    <div class="count" id="cardCount"></div>
+    <div class="acronym-list" id="acronymList"></div>
+  </div>
+
+  <!-- ========== FLASHCARDS ========== -->
+  <div id="flash" class="page">
+    <h1>Flashcard Mode</h1>
+    <p class="sub">Click the card to flip. Mark each card Known or Study Again.</p>
+    <div class="mode-toggle">
+      <button class="mode-btn active" id="modeAcr" onclick="setFlashMode('acronym')">Acronym → Meaning</button>
+      <button class="mode-btn" id="modeMeaning" onclick="setFlashMode('meaning')">Meaning → Acronym</button>
+    </div>
+    <div class="fc-controls">
+      <button class="btn btn-secondary" onclick="shuffleCards()">🔀 Shuffle</button>
+      <button class="btn btn-secondary" onclick="resetFlash()">↺ Reset</button>
+      <div class="fc-progress">
+        <div class="prog-label" id="fcLabel">Card 1 of 0</div>
+        <div class="prog-track"><div class="prog-fill" id="fcFill" style="width:0%"></div></div>
+      </div>
+    </div>
+    <div class="card-wrap" onclick="flipCard()" id="cardWrap">
+      <div class="card-inner" id="cardInner">
+        <div class="card-face card-front">
+          <div class="card-label" id="frontLabel">ACRONYM</div>
+          <div class="card-acronym" id="frontText">—</div>
+        </div>
+        <div class="card-face card-back">
+          <div class="card-label" id="backLabel">STANDS FOR</div>
+          <div class="card-full" id="backFull"></div>
+          <div class="card-desc" id="backDesc"></div>
+        </div>
+      </div>
+    </div>
+    <p class="fc-hint">Click card to reveal · Then mark it</p>
+    <div class="fc-actions">
+      <button class="btn btn-red" onclick="markCard(false)">✗ Study Again</button>
+      <button class="btn btn-green" onclick="markCard(true)">✓ Known</button>
+    </div>
+    <div class="fc-stats">
+      <div class="stat"><div class="stat-num" id="statKnown" style="color:var(--green)">0</div><div class="stat-lbl">Known</div></div>
+      <div class="stat"><div class="stat-num" id="statStudy" style="color:var(--warn)">0</div><div class="stat-lbl">Study Again</div></div>
+      <div class="stat"><div class="stat-num" id="statLeft" style="color:var(--muted)">0</div><div class="stat-lbl">Remaining</div></div>
+    </div>
+  </div>
+
+  <!-- ========== QUIZ ========== -->
+  <div id="quiz" class="page">
+    <h1>Multiple Choice Quiz</h1>
+    <p class="sub">Select the correct answer. Both directions tested.</p>
+    <div class="quiz-header">
+      <div>
+        <div class="score-display" id="qScore">0 / 0</div>
+        <div class="score-sub">Score</div>
+      </div>
+      <div style="flex:1">
+        <div class="prog-label" id="qLabel">Question 1</div>
+        <div class="prog-track" style="margin-top:.4rem"><div class="prog-fill" id="qFill" style="width:0%"></div></div>
+      </div>
+      <button class="btn btn-secondary" onclick="startQuiz()">↺ New Quiz</button>
+    </div>
+    <div id="quizBody"></div>
+  </div>
+
+</div>
+
+<script>
+const DATA = [
+  {a:"3DES",f:"Triple Digital Encryption Standard",d:"Symmetric block cipher used to encrypt data. Encrypts in 64-bit blocks. Used as a replacement for DES when hardware doesn't support AES."},
+  {a:"802.1x",f:"Port-Based Authentication Protocol",d:"Wireless and wired authentication protocol. WPA2 Enterprise uses an 802.1x (RADIUS) server. PEAP and EAP-TTLS require a cert on the server."},
+  {a:"AAA",f:"Authentication, Authorization, and Accounting",d:"Framework for remote access systems. TACACS+ is an AAA protocol. Authentication verifies identity, Authorization grants access, Accounting logs activity."},
+  {a:"ACE",f:"Access Control Entry",d:"Identifies a user or group granted permission to a resource. ACEs are contained within a DACL in NTFS."},
+  {a:"ACK",f:"Acknowledge",d:"A packet in the TCP 3-way handshake. SYN flood attacks send the SYN but never complete the handshake after receiving SYN/ACK."},
+  {a:"ACL",f:"Access Control List",d:"List of rules used by routers and stateless firewalls to control traffic based on IP addresses, ports, and protocols."},
+  {a:"AES",f:"Advanced Encryption Standard",d:"Symmetric block cipher encrypting data in 128-bit blocks. Uses key sizes of 128, 192, or 256 bits. Fast and highly secure."},
+  {a:"AES-256",f:"Advanced Encryption Standard 256-bit",d:"AES using 256-bit keys. Interestingly, Blowfish is faster than AES-256."},
+  {a:"AH",f:"Authentication Header",d:"IPsec component that provides authentication and integrity using HMAC. Protocol ID number 51."},
+  {a:"ALE",f:"Annual Loss Expectancy",d:"Expected annual loss in quantitative risk assessment. Formula: SLE × ARO = ALE."},
+  {a:"API",f:"Application Programming Interface",d:"A software module that identifies inputs and outputs for an application. Defines how software components interact."},
+  {a:"APT",f:"Advanced Persistent Threat",d:"A group with both the capability and intent to launch sophisticated targeted attacks over an extended period."},
+  {a:"ARO",f:"Annual Rate of Occurrence",d:"How many times a loss is expected per year. Used with ALE and SLE: SLE × ARO = ALE."},
+  {a:"ARP",f:"Address Resolution Protocol",d:"Resolves IPv4 addresses to MAC addresses. ARP poisoning redirects traffic through an attacker's system. NDP replaces ARP in IPv6."},
+  {a:"ASCII",f:"American Standard Code for Information Interchange",d:"Code used to display characters. Used in certificate formats like DER (BASE64 ASCII encoded)."},
+  {a:"AUP",f:"Acceptable Use Policy",d:"Policy defining proper system usage and rules of behavior for employees. Describes purpose of computer systems and user responsibilities."},
+  {a:"BCP",f:"Business Continuity Plan",d:"Plan to predict and manage potential outages of critical services. Includes disaster recovery elements and a BIA."},
+  {a:"BIA",f:"Business Impact Analysis",d:"Identifies systems essential to the organization, maximum downtime limits, and potential losses. Drives decisions for redundancies and identifies RTOs and RPOs."},
+  {a:"BIOS",f:"Basic Input/Output System",d:"Firmware used to manipulate computer settings. UEFI is the designated replacement for BIOS."},
+  {a:"BYOD",f:"Bring Your Own Device",d:"Policy allowing employees to connect personal devices to company networks. Organizations often use VLANs to isolate these devices."},
+  {a:"CA",f:"Certificate Authority",d:"Organization that manages, issues, and signs digital certificates. Part of PKI. Certificates include public keys and details about the certificate owner."},
+  {a:"CAC",f:"Common Access Card",d:"Smart card used by the U.S. Department of Defense. Provides confidentiality, integrity, authentication, and non-repudiation. Similar to PIV."},
+  {a:"CAPTCHA",f:"Completely Automated Public Turing Test to Tell Computers and Humans Apart",d:"Technique used to prevent automated tools from interacting with a website. Users must type text from a distorted image."},
+  {a:"CASB",f:"Cloud Access Security Broker",d:"Software tool or service that enforces cloud-based security requirements. Placed between org resources and the cloud; monitors traffic and enforces policies."},
+  {a:"CBC",f:"Cipher Block Chaining",d:"Mode of operation that converts a block cipher into a stream cipher. Uses an IV for the first block; each subsequent block is combined with the previous."},
+  {a:"CCMP",f:"Counter Mode with Cipher Block Chaining Message Authentication Code Protocol",d:"Encryption protocol based on AES used with WPA2. More secure than TKIP."},
+  {a:"CCTV",f:"Closed-Circuit Television",d:"Detective and physical control providing video surveillance. Provides reliable proof of a person's location and activity."},
+  {a:"CERT",f:"Computer Emergency Response Team",d:"Group of experts who respond to security incidents. Also known as CIRT, SIRT, or IRT."},
+  {a:"CHAP",f:"Challenge Handshake Authentication Protocol",d:"Authentication where a server challenges a client. More secure than PAP. Uses PPP. MS-CHAPv2 adds mutual authentication."},
+  {a:"CIA",f:"Confidentiality, Integrity, Availability",d:"The security triad. Confidentiality prevents unauthorized disclosure, Integrity ensures data hasn't been modified, Availability ensures data/services are accessible."},
+  {a:"CIRT",f:"Computer Incident Response Team",d:"Group of experts who respond to security incidents. Also known as CERT, SIRT, or IRT."},
+  {a:"CRL",f:"Certificate Revocation List",d:"List of certificates that a CA has revoked. Published by the CA. OCSP is the modern real-time alternative."},
+  {a:"CSR",f:"Certificate Signing Request",d:"Method of requesting a certificate from a CA. Created by generating an RSA public/private key pair and including the public key in the request."},
+  {a:"CTM",f:"Counter Mode",d:"Mode of operation for encryption that combines an IV with a counter. The combined result is used to encrypt blocks."},
+  {a:"CVE",f:"Common Vulnerabilities and Exposures",d:"Dictionary of publicly known security vulnerabilities and exposures."},
+  {a:"CYOD",f:"Choose Your Own Device",d:"Employees can connect personally owned devices to the network as long as the device is on a preapproved list."},
+  {a:"DAC",f:"Discretionary Access Control",d:"Access control model where all objects have owners who can modify permissions. Microsoft NTFS uses DAC."},
+  {a:"DACL",f:"Discretionary Access Control List",d:"List of ACEs in Microsoft NTFS. Each ACE includes a Security Identifier (SID) and a permission."},
+  {a:"DDoS",f:"Distributed Denial-of-Service",d:"Attack launched from multiple sources to make a computer's resources or services unavailable. Typically includes sustained, abnormally high network traffic."},
+  {a:"DEP",f:"Data Execution Prevention",d:"Security feature that prevents code from executing in memory regions marked as non-executable. Helps block malware."},
+  {a:"DES",f:"Data Encryption Standard",d:"Legacy symmetric encryption. Block cipher encrypting in 64-bit blocks using 56-bit keys. Considered cracked — use AES instead."},
+  {a:"DH",f:"Diffie-Hellman",d:"Asymmetric algorithm used to securely share symmetric keys between parties."},
+  {a:"DHE",f:"Diffie-Hellman Ephemeral",d:"Alternative to traditional DH that uses ephemeral keys that change for each new session. Also listed as EDH."},
+  {a:"DHCP",f:"Dynamic Host Configuration Protocol",d:"Service that dynamically assigns TCP/IP configuration to clients including IP addresses, subnet masks, default gateways, and DNS server addresses."},
+  {a:"DLL",f:"Dynamic Link Library",d:"Compiled set of code that can be called from other programs. DLL injection attacks inject a DLL into memory and run it."},
+  {a:"DLP",f:"Data Loss Prevention",d:"Examines network traffic to detect if confidential or PII data is being exfiltrated. Endpoint DLP prevents copying or printing sensitive data."},
+  {a:"DMZ",f:"Demilitarized Zone",d:"Buffer zone between the Internet and internal network. Allows external access to hosted services while protecting the internal network."},
+  {a:"DNS",f:"Domain Name System",d:"Resolves host names to IP addresses. Uses UDP port 53 for client queries, TCP port 53 for zone transfers. DNS poisoning attacks corrupt DNS data."},
+  {a:"DNSSEC",f:"Domain Name System Security Extensions",d:"Suite of specifications to protect the integrity of DNS records and prevent DNS poisoning attacks."},
+  {a:"DoS",f:"Denial-of-Service",d:"Attack from a single source that attempts to disrupt services. Compare to DDoS which uses multiple sources."},
+  {a:"DRP",f:"Disaster Recovery Plan",d:"Document to help an organization respond to disasters. Includes a prioritized list of critical systems and steps to restore services after an outage."},
+  {a:"DSA",f:"Digital Signature Algorithm",d:"An encrypted hash of a message. Sender's private key encrypts the hash. Provides authentication, non-repudiation, and integrity."},
+  {a:"EAP",f:"Extensible Authentication Protocol",d:"Authentication framework providing general guidance for authentication methods. Variations include EAP-TLS, EAP-TTLS, LEAP, and PEAP."},
+  {a:"EAP-FAST",f:"EAP-Flexible Authentication via Secure Tunneling",d:"Cisco-designed replacement for LEAP. Supports certificates but they are optional."},
+  {a:"EAP-TLS",f:"EAP-Transport Layer Security",d:"One of the MOST secure EAP standards. Requires certificates on BOTH the 802.1x server AND the clients."},
+  {a:"EAP-TTLS",f:"EAP-Tunneled Transport Layer Security",d:"Allows older authentication methods like PAP within a TLS tunnel. Requires a certificate on the server but NOT on clients."},
+  {a:"ECC",f:"Elliptic Curve Cryptography",d:"Asymmetric encryption algorithm used with smaller wireless devices. Uses smaller key sizes and requires less processing power than RSA."},
+  {a:"ECDHE",f:"Elliptic Curve Diffie-Hellman Ephemeral",d:"Version of Diffie-Hellman using ECC to generate encryption keys. Ephemeral keys are recreated for each session."},
+  {a:"EFS",f:"Encrypting File System",d:"Feature within NTFS on Windows systems that supports encrypting individual files or folders for confidentiality."},
+  {a:"EMI",f:"Electromagnetic Interference",d:"Interference caused by motors, power lines, and fluorescent lights. EMI shielding prevents interference and prevents data from emanating outside the cable."},
+  {a:"ESP",f:"Encapsulating Security Payload",d:"IPsec component providing confidentiality, integrity, and authentication using HMAC and AES or 3DES. Protocol ID number 50."},
+  {a:"FAR",f:"False Acceptance Rate",d:"Rate identifying the percentage of times a biometric system incorrectly indicates a match (accepts an impostor)."},
+  {a:"FCoE",f:"Fibre Channel over Ethernet",d:"Lower-cost alternative to traditional SANs. Supports sending Fibre Channel commands over an IP network."},
+  {a:"FDE",f:"Full Disk Encryption",d:"Method to encrypt an entire disk. TPM 2.0 is required for Windows BitLocker FDE."},
+  {a:"FRR",f:"False Rejection Rate",d:"Rate identifying the percentage of times a biometric system incorrectly rejects a valid user (legitimate user denied)."},
+  {a:"FTP",f:"File Transfer Protocol",d:"Used to upload and download files. Uses TCP ports 20 and 21. SFTP uses TCP port 22 (SSH). FTPS uses SSL/TLS."},
+  {a:"FTPS",f:"File Transfer Protocol Secure",d:"Extension of FTP that uses SSL to encrypt FTP traffic. Some implementations use TCP ports 989 and 990."},
+  {a:"GCM",f:"Galois/Counter Mode",d:"Mode of operation combining Counter (CTM) mode with hashing for data authenticity and confidentiality."},
+  {a:"GPG",f:"GNU Privacy Guard",d:"Free software based on the OpenPGP standard used to encrypt and decrypt files. Similar to PGP but uses open standards."},
+  {a:"GPO",f:"Group Policy Object",d:"Used within Microsoft Windows domains to manage users and computers. Used to create password policies, configure firewalls, and more."},
+  {a:"GRE",f:"Generic Routing Encapsulation",d:"A tunneling protocol developed by Cisco Systems."},
+  {a:"HIDS",f:"Host-Based Intrusion Detection System",d:"IDS installed on an individual system to monitor local resources and detect malicious activity. May detect attacks missed by antivirus."},
+  {a:"HIPS",f:"Host-Based Intrusion Prevention System",d:"Extension of HIDS that can detect and BLOCK attacks in real time on the host system."},
+  {a:"HMAC",f:"Hash-based Message Authentication Code",d:"Hashing algorithm used to verify integrity and authenticity with a shared secret. Combined with MD5 or SHA-1 in TLS and IPsec."},
+  {a:"HOTP",f:"HMAC-based One-Time Password",d:"Open standard for one-time passwords using a secret key and incrementing counter with HMAC. Passwords do not expire until used."},
+  {a:"HSM",f:"Hardware Security Module",d:"Dedicated enterprise hardware that securely stores and processes cryptographic keys. Used by CAs and banks. High-availability clusters can use clustered HSMs."},
+  {a:"HTTP",f:"Hypertext Transfer Protocol",d:"Used for web traffic. Uses TCP port 80. HTTPS encrypts HTTP traffic with TLS on TCP port 443."},
+  {a:"HTTPS",f:"Hypertext Transfer Protocol Secure",d:"Encrypts HTTP traffic with TLS. Uses TCP port 443."},
+  {a:"HVAC",f:"Heating, Ventilation, and Air Conditioning",d:"Increases availability by regulating airflow in data centers. Uses hot/cold aisles, thermostats, and humidity controls."},
+  {a:"IaaS",f:"Infrastructure as a Service",d:"Cloud computing model renting access to hardware. Customers are responsible for keeping the IaaS system up to date."},
+  {a:"ICMP",f:"Internet Control Message Protocol",d:"Used for diagnostics like ping. Many DoS attacks use ICMP. Commonly blocked at firewalls and routers."},
+  {a:"ICS",f:"Industrial Control System",d:"System controlling large infrastructure like power plants or water treatment facilities. Often managed by SCADA."},
+  {a:"IDS",f:"Intrusion Detection System",d:"Detective control that detects attacks after they occur. Monitors a network (NIDS) or host (HIDS). Does not block attacks."},
+  {a:"IKE",f:"Internet Key Exchange",d:"Used with IPsec to create a secure channel over UDP port 500 in a VPN tunnel."},
+  {a:"IMAP4",f:"Internet Message Access Protocol v4",d:"Protocol used to store and manage email on servers. Uses TCP port 143. Secure IMAP4 uses TLS."},
+  {a:"IPS",f:"Intrusion Prevention System",d:"Preventive control placed inline with traffic. Can actively stop attacks in progress. Compare to IDS which only detects."},
+  {a:"IPsec",f:"Internet Protocol Security",d:"Suite of protocols to encrypt data-in-transit. Uses Tunnel mode for VPNs, Transport mode for private networks. Built into IPv6."},
+  {a:"IPv4",f:"Internet Protocol version 4",d:"Identifies hosts using a 32-bit address expressed in dotted decimal format (e.g., 192.168.1.1)."},
+  {a:"IPv6",f:"Internet Protocol version 6",d:"Identifies hosts using a 128-bit address. Much larger address space than IPv4. IPsec is built into IPv6."},
+  {a:"IRC",f:"Internet Relay Chat",d:"Form of real-time internet text messaging. Some botnets have used IRC channels for command-and-control of zombie computers."},
+  {a:"ISA",f:"Interconnection Security Agreement",d:"Specifies technical and security requirements for connections between two or more entities."},
+  {a:"ISP",f:"Internet Service Provider",d:"Company that provides Internet access to customers."},
+  {a:"IV",f:"Initialization Vector",d:"Provides randomization of encryption keys to prevent key reuse. WEP was susceptible to IV attacks due to small IVs."},
+  {a:"KDC",f:"Key Distribution Center",d:"Part of the Kerberos protocol used for network authentication. Issues timestamped tickets that expire. Also called TGT server."},
+  {a:"L2TP",f:"Layer 2 Tunneling Protocol",d:"Tunneling protocol used with VPNs. Commonly paired with IPsec (L2TP/IPsec). Uses UDP port 1701."},
+  {a:"LAN",f:"Local Area Network",d:"Group of hosts connected within a network, typically within a building or campus."},
+  {a:"LDAP",f:"Lightweight Directory Access Protocol",d:"Language to communicate with directories like Microsoft Active Directory. Uses TCP port 389. Secure LDAP uses TCP port 636."},
+  {a:"LDAPS",f:"LDAP Secure",d:"Protocol used to encrypt LDAP traffic with TLS. Uses TCP port 636."},
+  {a:"LEAP",f:"Lightweight Extensible Authentication Protocol",d:"Modified version of CHAP created by Cisco. Does not require a digital certificate. Cisco now recommends stronger alternatives."},
+  {a:"MAC",f:"Mandatory Access Control / Media Access Control / Message Authentication Code",d:"MAC (access): Uses sensitivity labels on objects and subjects, restricts by need-to-know. MAC (address): 48-bit hardware address. MAC (message): Uses secret key to verify integrity."},
+  {a:"MAN",f:"Metropolitan Area Network",d:"Computer network spanning a metropolitan area such as a city or large campus."},
+  {a:"MBR",f:"Master Boot Record",d:"First sector of a hard disk. BIOS looks at MBR during boot. Some malware attempts to hide in the MBR."},
+  {a:"MD5",f:"Message Digest 5",d:"Hashing function creating 128-bit hashes used for integrity. Considered cracked — avoid for security-sensitive applications."},
+  {a:"MDM",f:"Mobile Device Management",d:"Applications/technologies used to manage mobile devices. Ensures devices comply with security policies."},
+  {a:"MITM",f:"Man-in-the-Middle",d:"Attack using active interception where a third party captures traffic between two systems. Kerberos mutual authentication helps prevent MITM attacks."},
+  {a:"MOU",f:"Memorandum of Understanding",d:"Defines responsibilities of each party but is less strict than an SLA or ISA. If handling sensitive data, include an ISA."},
+  {a:"MPLS",f:"Multi-Protocol Label Switching",d:"WAN topology that directs data to nodes using labels rather than IP addresses."},
+  {a:"MS-CHAPv2",f:"Microsoft Challenge Handshake Authentication Protocol v2",d:"Microsoft implementation of CHAP that provides mutual authentication."},
+  {a:"MTBF",f:"Mean Time Between Failures",d:"Measure of system reliability in hours. Higher MTBF = higher reliability."},
+  {a:"MTTF",f:"Mean Time to Failure",d:"Length of time expected before a device fails. Unlike MTBF, MTTF indicates the device cannot be repaired after failure."},
+  {a:"MTTR",f:"Mean Time to Recover",d:"Average time to restore a failed system. Often specified in maintenance contracts."},
+  {a:"NAC",f:"Network Access Control",d:"Inspects clients for health and can restrict network access to unhealthy clients. Clients run agents that report status to a NAC server."},
+  {a:"NAT",f:"Network Address Translation",d:"Translates public IP addresses to private and vice versa. Compare to PAT (single public IP) and DNAT."},
+  {a:"NDA",f:"Non-Disclosure Agreement",d:"Ensures third parties understand their responsibilities regarding sensitive data. Prohibits sharing data unless you are the data owner."},
+  {a:"NFC",f:"Near Field Communication",d:"Group of standards allowing mobile devices to communicate with nearby devices. Used in contactless payments."},
+  {a:"NIDS",f:"Network-Based Intrusion Detection System",d:"Installed on network devices to monitor network traffic. Detects network-based attacks and raises alerts."},
+  {a:"NIPS",f:"Network-Based Intrusion Prevention System",d:"Placed inline (in-band) with traffic to actively monitor data streams and stop attacks in progress."},
+  {a:"NIST",f:"National Institute of Standards and Technology",d:"Part of the U.S. Department of Commerce. Publishes special security publications (SP documents)."},
+  {a:"NTP",f:"Network Time Protocol",d:"Protocol used to synchronize computer times across a network."},
+  {a:"NTFS",f:"NT File System",d:"File system used in Microsoft operating systems that provides security using the DAC model."},
+  {a:"OCSP",f:"Online Certificate Status Protocol",d:"Real-time alternative to CRL. Allows entities to query a CA with a certificate's serial number to check if it is valid, revoked, or unknown."},
+  {a:"OSI",f:"Open Systems Interconnection",d:"Reference model that divides networking requirements into seven separate layers."},
+  {a:"PaaS",f:"Platform as a Service",d:"Cloud computing model providing customers with a preconfigured, fully managed platform. Vendor keeps the platform updated."},
+  {a:"PAP",f:"Password Authentication Protocol",d:"Older authentication protocol where passwords/PINs are sent in cleartext. CHAP is more secure. Uses PPP."},
+  {a:"PAT",f:"Port Address Translation",d:"Form of NAT that uses a SINGLE public IP address. Translates public to private IP addresses."},
+  {a:"PBKDF2",f:"Password-Based Key Derivation Function 2",d:"Key stretching technique that adds additional bits (salt) to a password. Helps prevent brute force and rainbow table attacks. Similar to bcrypt."},
+  {a:"PEAP",f:"Protected Extensible Authentication Protocol",d:"Provides extra protection for EAP. Used with 802.1x. Requires a certificate on the 802.1x server but NOT on clients."},
+  {a:"PGP",f:"Pretty Good Privacy",d:"Used to secure email communications. Provides confidentiality, integrity, authentication, and non-repudiation. Uses both asymmetric and symmetric encryption."},
+  {a:"PII",f:"Personally Identifiable Information",d:"Information that can trace a person's identity (full name, DOB, biometrics, SSN). Organizations must protect PII."},
+  {a:"PIN",f:"Personal Identification Number",d:"Number known by a user and entered for authentication. Often combined with smart cards for dual-factor authentication."},
+  {a:"PIV",f:"Personal Identity Verification",d:"Smart card used by U.S. federal agencies. Provides confidentiality, integrity, authentication, and non-repudiation. Similar to CAC."},
+  {a:"PKI",f:"Public Key Infrastructure",d:"Group of technologies to request, create, manage, store, distribute, and revoke digital certificates. Uses a hierarchical trust model with a root CA."},
+  {a:"POP3",f:"Post Office Protocol v3",d:"Used to transfer email from mail servers to clients. Uses TCP port 110."},
+  {a:"PPP",f:"Point-to-Point Protocol",d:"Used to create remote access connections. Used by PAP and CHAP."},
+  {a:"PPTP",f:"Point-to-Point Tunneling Protocol",d:"Tunneling protocol used with VPNs. Uses TCP port 1723."},
+  {a:"PSK",f:"Pre-Shared Key",d:"Secret shared among different systems. Wireless networks in Personal mode use a PSK. Enterprise mode uses an 802.1x/RADIUS server."},
+  {a:"RADIUS",f:"Remote Authentication Dial-In User Service",d:"Provides central authentication for remote access clients. Uses symmetric encryption for password packets and UDP. Diameter is an improvement over RADIUS."},
+  {a:"RAID",f:"Redundant Array of Inexpensive Disks",d:"Multiple disks for performance or fault tolerance. RAID-1=mirroring, RAID-5=striping+parity(3+ disks), RAID-6=striping+double parity(4+ disks)."},
+  {a:"RAM",f:"Random Access Memory",d:"Volatile memory that holds active processes, data, and applications. Data is lost when the computer is turned off."},
+  {a:"RAT",f:"Remote Access Trojan",d:"Malware that gives an attacker full control over a system from a remote location. Commonly used by APTs."},
+  {a:"RC4",f:"Rivest Cipher 4",d:"Symmetric stream cipher using 40-2048 bits. Considered cracked. Was used (incorrectly) in WEP causing vulnerabilities."},
+  {a:"RDP",f:"Remote Desktop Protocol",d:"Used to connect to remote systems. Uses TCP or UDP port 3389."},
+  {a:"RPO",f:"Recovery Point Objective",d:"Amount of data you can afford to lose. Identifies the point in time where data loss is acceptable."},
+  {a:"RSA",f:"Rivest, Shamir, and Adleman",d:"Asymmetric algorithm used to encrypt data and digitally sign transmissions. Named after its creators. Uses matched public/private key pairs."},
+  {a:"RSTP",f:"Rapid Spanning Tree Protocol",d:"Improvement over STP. Both STP and RSTP protect against switching loops."},
+  {a:"RTO",f:"Recovery Time Objective",d:"Maximum amount of time it should take to restore a system after an outage. Derived from the BIA."},
+  {a:"RTOS",f:"Real-Time Operating System",d:"Operating system that reacts to input within a specific time. Common in embedded systems."},
+  {a:"RTP",f:"Real-Time Transport Protocol",d:"Standard for delivering audio and video over an IP network. SRTP is the secure version."},
+  {a:"SaaS",f:"Software as a Service",d:"Cloud technology providing applications over the Internet. Web mail is an example."},
+  {a:"SAML",f:"Security Assertion Markup Language",d:"XML-based standard to exchange authentication and authorization information. Provides SSO for web-based applications."},
+  {a:"SAN",f:"Storage Area Network",d:"Specialized network of high-speed storage devices."},
+  {a:"SCADA",f:"Supervisory Control and Data Acquisition",d:"Industrial control systems within large facilities (power plants, water treatment). Usually in isolated networks but still require security controls."},
+  {a:"SCAP",f:"Security Content Automation Protocol",d:"Set of security specifications used by vulnerability scanners to check systems for compliance."},
+  {a:"SCEP",f:"Simple Certificate Enrollment Protocol",d:"A method of requesting a certificate from a CA."},
+  {a:"SCP",f:"Secure Copy",d:"Based on SSH. Allows users to copy encrypted files over a network. Uses TCP port 22."},
+  {a:"SDN",f:"Software Defined Network",d:"Uses software and virtualization to replace hardware routers. Separates the data and control planes."},
+  {a:"SFTP",f:"Secure File Transfer Protocol",d:"Extension of SSH that transmits files in encrypted format. Uses TCP port 22."},
+  {a:"SHA",f:"Secure Hash Algorithm",d:"Hashing function used for integrity. SHA-1 = 160 bits, SHA-256 = 256 bits, SHA-512 = 512 bits."},
+  {a:"SIEM",f:"Security Information and Event Management",d:"Security system that collects and analyzes security events from across the organization."},
+  {a:"SIM",f:"Subscriber Identity Module",d:"Small smart card containing programming and information for mobile devices like cell phones."},
+  {a:"SIRT",f:"Security Incident Response Team",d:"Group of experts who respond to security incidents. Also known as CERT, CIRT, or IRT."},
+  {a:"SLA",f:"Service Level Agreement",d:"Agreement between a company and vendor stipulating performance expectations such as minimum uptime and maximum downtime."},
+  {a:"SLE",f:"Single Loss Expectancy",d:"Amount of each individual loss. Used in quantitative risk assessment: SLE × ARO = ALE."},
+  {a:"SMTP",f:"Simple Mail Transfer Protocol",d:"Used to transfer email between clients and servers. Uses TCP port 25."},
+  {a:"SNMP",f:"Simple Network Management Protocol",d:"Used to manage and monitor network devices. Agents report via SNMP traps. Uses UDP ports 161 and 162."},
+  {a:"SPIM",f:"Spam over Internet Messaging",d:"Form of spam using instant messaging. Targets instant messaging users."},
+  {a:"SPOF",f:"Single Point of Failure",d:"Any component whose failure results in the failure of an entire system. RAID, failover clustering, UPS, and generators remove SPOFs."},
+  {a:"SQL",f:"Structured Query Language",d:"Used by SQL databases. Web sites integrated with SQL are vulnerable to SQL injection attacks. Microsoft SQL Server uses TCP port 1433."},
+  {a:"SRTP",f:"Secure Real-Time Transport Protocol",d:"Protocol used to encrypt and authenticate RTP traffic used for audio/video streaming."},
+  {a:"SSH",f:"Secure Shell",d:"Encrypts a wide variety of traffic including SCP, SFTP, and Telnet. Uses TCP port 22. More secure alternative to Telnet."},
+  {a:"SSID",f:"Service Set Identifier",d:"The name of a wireless network. Disabling SSID broadcast hides it from casual users but an attacker can still find it with a wireless sniffer."},
+  {a:"SSL",f:"Secure Sockets Layer",d:"Predecessor to TLS. Encrypts data-in-transit using certificates. Used with HTTPS, SMTP, and LDAP. TLS is the modern replacement."},
+  {a:"SSO",f:"Single Sign-On",d:"Authentication method where users access multiple resources with a single account. Can provide central authentication against a federated database."},
+  {a:"SSTP",f:"Secure Socket Tunneling Protocol",d:"Tunneling protocol that encrypts VPN traffic using SSL over TCP port 443."},
+  {a:"STP",f:"Spanning Tree Protocol",d:"Protocol on most switches that protects against switching loops. RSTP is the improved version."},
+  {a:"TACACS+",f:"Terminal Access Controller Access-Control System+",d:"Provides central authentication for remote access. Uses TCP port 49. Encrypts the ENTIRE authentication process. Uses multiple challenges and responses."},
+  {a:"TCO",f:"Total Cost of Ownership",d:"Identifies the cost of a product or service over its entire lifetime. Considered when purchasing new security controls."},
+  {a:"TCP",f:"Transmission Control Protocol",d:"Provides guaranteed delivery of IP traffic using a three-way handshake (SYN, SYN/ACK, ACK)."},
+  {a:"TFTP",f:"Trivial File Transfer Protocol",d:"Used to transfer small amounts of data. Uses UDP port 69. FTP uses TCP ports 20/21 for larger files."},
+  {a:"TGT",f:"Ticket Granting Ticket",d:"Used with Kerberos. A KDC (TGT server) issues timestamped tickets that expire after a certain period."},
+  {a:"TKIP",f:"Temporal Key Integrity Protocol",d:"Legacy wireless security protocol introduced to fix WEP problems. Used with WPA but now deprecated. WPA2 with CCMP is recommended."},
+  {a:"TLS",f:"Transport Layer Security",d:"Replacement for SSL. Encrypts data in transit using certificates. PEAP-TLS uses TLS to encrypt the authentication process."},
+  {a:"TOTP",f:"Time-Based One-Time Password",d:"Open standard similar to HOTP but uses a timestamp instead of a counter. One-time passwords expire after 30 seconds."},
+  {a:"TPM",f:"Trusted Platform Module",d:"Hardware chip on the motherboard. Stores encryption keys, supports secure boot and BitLocker. TPM 2.0 is required for Windows BitLocker."},
+  {a:"TSIG",f:"Transaction Signature",d:"Method of securely providing authenticated updates to DNS."},
+  {a:"UAT",f:"User Acceptance Testing",d:"One of the last phases of testing an application before its release."},
+  {a:"UDP",f:"User Datagram Protocol",d:"Used instead of TCP when guaranteed delivery is not necessary. Uses best-effort delivery."},
+  {a:"UEFI",f:"Unified Extensible Firmware Interface",d:"Method used to boot some systems. Intended to replace BIOS firmware."},
+  {a:"UPS",f:"Uninterruptible Power Supply",d:"Battery backup providing fault tolerance for power fluctuations. Provides short-term power for graceful shutdown or transfer to generator power."},
+  {a:"URI",f:"Uniform Resource Identifier",d:"Used to identify the name of a resource. Always includes the protocol (e.g., http://example.com)."},
+  {a:"URL",f:"Uniform Resource Locator",d:"A type of URI used to access web resources. Pop-up blockers can include URLs where pop-ups are allowed."},
+  {a:"USB",f:"Universal Serial Bus",d:"Serial connection for peripherals. Data on USB drives can be protected with encryption. Attackers have spread malware via USB Trojans."},
+  {a:"UTM",f:"Unified Threat Management",d:"Security appliance combining multiple security controls: URL filtering, malware inspection, content inspection."},
+  {a:"UTP",f:"Unshielded Twisted-Pair",d:"Cable type for networks without EMI/RFI concerns. Use STP if EMI/RFI is a concern."},
+  {a:"VDI",f:"Virtual Desktop Infrastructure",d:"Virtualization software that reproduces a desktop OS as a virtual machine on a remote server."},
+  {a:"VLAN",f:"Virtual Local Area Network",d:"Logically separates or segments network traffic. Can group computers without regard to physical location. Segments mobile devices, SCADA systems, etc."},
+  {a:"VPN",f:"Virtual Private Network",d:"Provides access to a private network over a public network like the Internet. VPN concentrators are dedicated devices for large groups of users."},
+  {a:"WAF",f:"Web Application Firewall",d:"Firewall specifically designed to protect web applications. Inspects traffic and can detect and block XSS attacks and other malicious content."},
+  {a:"WAP",f:"Wireless Access Point",d:"Provides wireless clients connectivity to a wired network. Increasing power level increases coverage range."},
+  {a:"WEP",f:"Wired Equivalent Privacy",d:"Original wireless security protocol with significant flaws. Used RC4 incorrectly, making it vulnerable to IV attacks. Replaced by WPA and WPA2."},
+  {a:"WIDS",f:"Wireless Intrusion Detection System",d:"IDS specifically for wireless networks. Detects attacks on wireless infrastructure."},
+  {a:"WIPS",f:"Wireless Intrusion Prevention System",d:"IPS specifically for wireless networks. Detects and stops wireless attacks in progress."},
+  {a:"WLAN",f:"Wireless Local Area Network",d:"Network connected wirelessly."},
+  {a:"WPA",f:"Wi-Fi Protected Access",d:"Replaced WEP without replacing hardware. Originally used TKIP with RC4. Later versions support AES. Superseded by WPA2."},
+  {a:"WPA2",f:"Wi-Fi Protected Access II",d:"Current wireless security protocol. Uses CCMP (AES-based) for encryption. Enterprise mode uses 802.1x/RADIUS; Personal mode uses PSK."},
+  {a:"WPS",f:"Wi-Fi Protected Setup",d:"Allows users to easily configure wireless networks using a PIN. Vulnerable to WPS brute force attacks that discover the 8-digit PIN."},
+  {a:"WTLS",f:"Wireless Transport Layer Security",d:"Used to encrypt traffic for smaller wireless devices."},
+  {a:"XML",f:"Extensible Markup Language",d:"Language used by many databases for inputting or exporting data. XML injection attacks can exploit apps that use XML."},
+  {a:"XSRF",f:"Cross-Site Request Forgery",d:"Tricks users into performing actions on websites (like purchases) without their knowledge. Can allow attackers to steal cookies."},
+  {a:"XSS",f:"Cross-Site Scripting",d:"Attackers embed malicious HTML/JavaScript into a web site that executes when a user visits. Input validation blocks <> characters to prevent XSS."},
+  {a:"XTACACS",f:"Extended Terminal Access Controller Access-Control System",d:"Improvement over TACACS developed by Cisco. Proprietary to Cisco. TACACS+ is used more commonly today."}
+];
+
+// ═══════ BROWSE ═══════
+function buildBrowse(){
+  const letters=[...new Set(DATA.map(d=>d.a[0].toUpperCase()))].sort();
+  const lb=document.getElementById('letterBtns');
+  lb.innerHTML='<button class="filter-btn active" onclick="filterByLetter(\'ALL\',this)">All</button>';
+  letters.forEach(l=>{lb.innerHTML+=`<button class="filter-btn" onclick="filterByLetter('${l}',this)">${l}</button>`;});
+  renderCards(DATA);
+}
+let currentLetter='ALL';
+function filterByLetter(l,btn){
+  currentLetter=l;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  filterCards();
+}
+function filterCards(){
+  const q=document.getElementById('searchBox').value.toLowerCase();
+  const filtered=DATA.filter(d=>{
+    const matchLetter=currentLetter==='ALL'||d.a[0].toUpperCase()===currentLetter;
+    const matchSearch=!q||d.a.toLowerCase().includes(q)||d.f.toLowerCase().includes(q)||d.d.toLowerCase().includes(q);
+    return matchLetter&&matchSearch;
+  });
+  renderCards(filtered);
+}
+function renderCards(list){
+  document.getElementById('cardCount').textContent=`Showing ${list.length} of ${DATA.length} acronyms`;
+  document.getElementById('acronymList').innerHTML=list.map(d=>`
+    <div class="acronym-card">
+      <div class="ac-top"><span class="ac-name">${d.a}</span><span class="ac-full">${d.f}</span></div>
+      <div class="ac-desc">${d.d}</div>
+    </div>`).join('');
+}
+
+// ═══════ FLASHCARDS ═══════
+let deck=[...DATA];
+let fcIdx=0;
+let fcMode='acronym'; // 'acronym' or 'meaning'
+let fcKnown=0,fcStudy=0;
+let fcFlipped=false;
+
+function setFlashMode(m){
+  fcMode=m;
+  document.getElementById('modeAcr').classList.toggle('active',m==='acronym');
+  document.getElementById('modeMeaning').classList.toggle('active',m==='meaning');
+  resetFlash();
+}
+function shuffleCards(){
+  for(let i=deck.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[deck[i],deck[j]]=[deck[j],deck[i]];}
+  fcIdx=0;fcKnown=0;fcStudy=0;fcFlipped=false;
+  updateCard();
+}
+function resetFlash(){
+  deck=[...DATA];
+  shuffleCards();
+}
+function updateCard(){
+  if(fcIdx>=deck.length){
+    document.getElementById('frontLabel').textContent='DONE!';
+    document.getElementById('frontText').textContent='🎉';
+    document.getElementById('backFull').textContent='All cards reviewed!';
+    document.getElementById('backDesc').textContent=`Known: ${fcKnown} · Study Again: ${fcStudy}`;
+    document.getElementById('fcLabel').textContent=`Complete — ${deck.length} cards`;
+    document.getElementById('fcFill').style.width='100%';
+    return;
+  }
+  const card=deck[fcIdx];
+  fcFlipped=false;
+  document.getElementById('cardInner').classList.remove('flipped');
+  if(fcMode==='acronym'){
+    document.getElementById('frontLabel').textContent='WHAT DOES THIS STAND FOR?';
+    document.getElementById('frontText').textContent=card.a;
+    document.getElementById('backLabel').textContent='STANDS FOR';
+    document.getElementById('backFull').textContent=card.f;
+    document.getElementById('backDesc').textContent=card.d;
+  } else {
+    document.getElementById('frontLabel').textContent='WHAT IS THE ACRONYM?';
+    document.getElementById('frontText').textContent=card.f;
+    document.getElementById('backLabel').textContent='ACRONYM';
+    document.getElementById('backFull').textContent=card.a;
+    document.getElementById('backDesc').textContent=card.d;
+  }
+  document.getElementById('fcLabel').textContent=`Card ${fcIdx+1} of ${deck.length}`;
+  document.getElementById('fcFill').style.width=`${((fcIdx)/deck.length)*100}%`;
+  document.getElementById('statKnown').textContent=fcKnown;
+  document.getElementById('statStudy').textContent=fcStudy;
+  document.getElementById('statLeft').textContent=deck.length-fcIdx;
+}
+function flipCard(){
+  fcFlipped=!fcFlipped;
+  document.getElementById('cardInner').classList.toggle('flipped',fcFlipped);
+}
+function markCard(known){
+  if(fcIdx>=deck.length)return;
+  if(known)fcKnown++;else fcStudy++;
+  fcIdx++;
+  updateCard();
+}
+
+// ═══════ QUIZ ═══════
+let qList=[];
+let qIdx=0;
+let qScore=0;
+let qAnswered=false;
+
+function startQuiz(){
+  const shuffled=[...DATA].sort(()=>Math.random()-.5).slice(0,30);
+  qList=shuffled.map((item,i)=>{
+    const dir=Math.random()>.5?'a2f':'f2a'; // acronym→fullname or fullname→acronym
+    const pool=DATA.filter(d=>d.a!==item.a).sort(()=>Math.random()-.5).slice(0,3);
+    const correct=dir==='a2f'?item.f:item.a;
+    const wrongs=pool.map(d=>dir==='a2f'?d.f:d.a);
+    const opts=[correct,...wrongs].sort(()=>Math.random()-.5);
+    return {item,dir,correct,opts};
+  });
+  qIdx=0;qScore=0;qAnswered=false;
+  renderQuestion();
+}
+function renderQuestion(){
+  if(qIdx>=qList.length){showFinal();return;}
+  const q=qList[qIdx];
+  const pct=Math.round((qIdx/qList.length)*100);
+  document.getElementById('qLabel').textContent=`Question ${qIdx+1} of ${qList.length}`;
+  document.getElementById('qFill').style.width=pct+'%';
+  document.getElementById('qScore').textContent=`${qScore} / ${qIdx}`;
+  const letters=['A','B','C','D'];
+  const prompt=q.dir==='a2f'
+    ?`What does <span class="hl">${q.item.a}</span> stand for?`
+    :`Which acronym stands for: <span class="hl">${q.item.f}</span>?`;
+  document.getElementById('quizBody').innerHTML=`
+    <div class="q-card">
+      <div class="q-top">
+        <div class="q-meta">Question ${qIdx+1} · ${q.dir==='a2f'?'Acronym → Full Name':'Full Name → Acronym'}</div>
+        <div class="q-text">${prompt}</div>
+      </div>
+      <div class="q-opts">
+        ${q.opts.map((o,i)=>`<div class="q-opt" id="opt${i}" onclick="selectOpt(${i})"><span class="ol">${letters[i]}</span><span>${o}</span></div>`).join('')}
+      </div>
+      <div class="q-exp" id="qExp"><strong>Explanation:</strong> ${q.item.a} = ${q.item.f}. ${q.item.d}</div>
+      <div class="q-nav">
+        <span class="q-counter">${qIdx+1} / ${qList.length}</span>
+        <button class="btn btn-primary" id="nextBtn" onclick="nextQ()" style="display:none">Next →</button>
+      </div>
+    </div>`;
+  qAnswered=false;
+}
+function selectOpt(i){
+  if(qAnswered)return;
+  qAnswered=true;
+  const q=qList[qIdx];
+  const isRight=q.opts[i]===q.correct;
+  if(isRight)qScore++;
+  document.getElementById(`opt${i}`).classList.add(isRight?'correct':'wrong');
+  document.getElementById(`opt${i}`).classList.add('locked');
+  if(!isRight){
+    const ci=q.opts.indexOf(q.correct);
+    document.getElementById(`opt${ci}`).classList.add('correct');
+  }
+  document.querySelectorAll('.q-opt').forEach(o=>{o.classList.add('locked');o.style.cursor='default';o.onclick=null;});
+  document.getElementById('qExp').classList.add('show');
+  document.getElementById('nextBtn').style.display='inline-flex';
+  document.getElementById('qScore').textContent=`${qScore} / ${qIdx+1}`;
+}
+function nextQ(){qIdx++;renderQuestion();}
+function showFinal(){
+  const pct=Math.round((qScore/qList.length)*100);
+  const msg=pct>=90?'Excellent work! 🏆':pct>=75?'Good job! Review the misses 📖':'Keep studying — you\'ve got this! 💪';
+  document.getElementById('quizBody').innerHTML=`
+    <div class="final-screen">
+      <div style="font-size:1.1rem;color:var(--muted)">Final Score</div>
+      <div class="final-score">${qScore}/${qList.length}</div>
+      <div class="final-pct">${pct}%</div>
+      <div class="final-msg">${msg}</div>
+      <button class="btn btn-primary" onclick="startQuiz()">↺ New Quiz</button>
+    </div>`;
+  document.getElementById('qScore').textContent=`${qScore} / ${qList.length}`;
+  document.getElementById('qFill').style.width='100%';
+}
+
+// ═══════ NAV ═══════
+function showPage(id,el){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  el.classList.add('active');
+  if(id==='quiz'&&qList.length===0)startQuiz();
+}
+
+// init
+buildBrowse();
+updateCard();
+</script>
+</body>
+</html>
