@@ -1187,88 +1187,119 @@
       </div>
     </div>
 
-    <!-- RESILIENCE & RECOVERY -->
+    <!-- SOFTWARE-DEFINED NETWORKING -->
     <div class="section">
       <div class="section-header" onclick="toggle(this)">
-        <h2>🔄 Resilience &amp; Recovery</h2>
+        <h2>🔀 Software-Defined Networking (SDN)</h2>
         <span class="badge">⚠ ON TEST</span>
         <span class="chevron">▼</span>
       </div>
       <div class="section-body">
-        <h3>RAID (Redundant Array of Independent Disks)</h3>
+        <div class="callout warn">
+          <strong>Exam one-liner:</strong> SDN = centralized network control. Controls how data moves across networks. Think of it as network-level virtualization.
+        </div>
+        <h3>The 3 Planes of SDN — Must Know!</h3>
         <table>
-          <tr><th>Level</th><th>Method</th><th>Redundancy?</th><th>Capacity Trade-off</th></tr>
-          <tr><td><strong>RAID 0</strong></td><td>Striping — data split across disks for speed</td><td>❌ None — one disk failure = total data loss</td><td>Full capacity; no overhead</td></tr>
-          <tr><td><strong>RAID 1</strong></td><td>Mirroring — exact copy on a second disk</td><td>✅ Survives one disk failure</td><td>50% usable (half wasted)</td></tr>
-          <tr><td><strong>RAID 5</strong></td><td>Striping + distributed parity (3+ disks)</td><td>✅ Survives one disk failure</td><td>1 disk worth of space used for parity</td></tr>
-          <tr><td><strong>RAID 10</strong></td><td>Stripe of mirrors (RAID 1+0) — best of both</td><td>✅ Can survive multiple failures</td><td>50% usable; most expensive</td></tr>
+          <tr><th>Plane</th><th>Role</th><th>Key Point</th></tr>
+          <tr><td><strong>Control Plane</strong></td><td>Makes decisions about how traffic should flow — handled by a central controller that determines routing paths and network policies</td><td>Decides WHERE data goes — does NOT move actual data</td></tr>
+          <tr><td><strong>Data Plane</strong></td><td>Also called the <strong>Forwarding Plane</strong> — actually moves packets from one place to another. Exists on switches/routers that carry out control plane instructions</td><td>Does the actual packet forwarding</td></tr>
+          <tr><td><strong>Management Plane</strong></td><td>Used for configuring, monitoring, and managing network devices</td><td>Admin/monitoring interface for the network</td></tr>
+        </table>
+        <ul>
+          <li>SDN separates the control logic from the physical hardware — traditional hardware (firewalls, switches) is virtualized</li>
+          <li>Provides better visibility and faster security enforcement</li>
+          <li>Containers control how <em>applications</em> run; SDN controls how <em>data moves across networks</em></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- EMBEDDED SYSTEMS & ICS/SCADA -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <h2>⚙️ Embedded Systems, ICS &amp; SCADA</h2>
+        <span class="badge">⚠ ON TEST</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <h3>Embedded Systems</h3>
+        <ul>
+          <li>An OS with a <strong>dedicated, single function</strong> — e.g., a smart thermostat, traffic light, washer/dryer</li>
+          <li>Traditionally built with <strong>low levels of security</strong> — users often unaware of need to change defaults or update</li>
+          <li>Examples of embedded platforms: <strong>Raspberry Pi, Arduino, ESP32</strong></li>
+          <li>Security challenges: patch availability, inability to patch, limited compute/power, high availability requirements</li>
+        </ul>
+        <h3>ICS / SCADA / RTOS</h3>
+        <table>
+          <tr><th>System</th><th>Description</th><th>Exam Tip</th></tr>
+          <tr><td><strong>ICS</strong> (Industrial Control System)</td><td>Broad term for systems that manage and automate industrial processes. Includes PLCs (Programmable Logic Controllers) and DCS (Distributed Control Systems)</td><td>Prioritizes uptime over security — creates risk</td></tr>
+          <tr><td><strong>SCADA</strong> (Supervisory Control and Data Acquisition)</td><td>A type of ICS used for <strong>remote monitoring and control across large geographic areas</strong>. Collects sensor data, sends to centralized controller, operators issue commands. Examples: power grids, water systems</td><td>SCADA = remote + large geographic area + critical infrastructure</td></tr>
+          <tr><td><strong>RTOS</strong> (Real-Time Operating System)</td><td>OS that processes data and responds within a <strong>strict time constraint</strong>. Designed for predictable, immediate responses. Used in aircraft autopilot, medical equipment, automotive systems</td><td>Priority = availability + timing. Security controls must NOT interfere with responsiveness</td></tr>
         </table>
         <div class="callout warn">
-          RAID 0 = speed, NO redundancy · RAID 1 = simple mirror · RAID 5 = balance · RAID 10 = best performance + redundancy (most expensive)
+          <strong>Why ICS/SCADA are vulnerable:</strong> Many were designed without security in mind. Often run on legacy systems. Common risks: weak authentication, outdated software, lack of encryption, internet exposure.
         </div>
-        <h3>Backup Types</h3>
-        <table>
-          <tr><th>Type</th><th>What Is Backed Up</th><th>Backup Speed</th><th>Restore Speed</th><th>Restore Needs</th></tr>
-          <tr><td><strong>Full</strong></td><td>Everything — all data every time</td><td>Slowest</td><td>Fastest</td><td>Full backup only</td></tr>
-          <tr><td><strong>Incremental</strong></td><td>Changes since the <strong>last backup</strong> (any type)</td><td>Fastest</td><td>Slowest</td><td>Full + every incremental in sequence</td></tr>
-          <tr><td><strong>Differential</strong></td><td>Changes since the <strong>last full backup</strong></td><td>Medium</td><td>Medium</td><td>Full + most recent differential only</td></tr>
-        </table>
         <div class="callout">
-          <strong>3-2-1 Backup Rule:</strong> Keep <strong>3</strong> copies of data · on <strong>2</strong> different media types · with <strong>1</strong> copy stored offsite
+          <strong>Exam focus for ICS/SCADA:</strong> Network segmentation · Strict access control · Air gap critical systems from external networks · Monitoring
         </div>
-        <h3>RPO vs RTO</h3>
-        <table>
-          <tr><th>Term</th><th>Full Name</th><th>Definition</th><th>Memory Trick</th></tr>
-          <tr><td><strong>RPO</strong></td><td>Recovery Point Objective</td><td>Maximum acceptable data loss — how old can restored data be?</td><td><strong>P = Point</strong> in time — how far BACK can you go?</td></tr>
-          <tr><td><strong>RTO</strong></td><td>Recovery Time Objective</td><td>Maximum acceptable downtime — how fast must service be restored?</td><td><strong>T = Time</strong> to restore — how fast to come BACK online?</td></tr>
-        </table>
-        <h3>Disaster Recovery Site Types</h3>
-        <table>
-          <tr><th>Site</th><th>Description</th><th>Cost</th><th>Recovery Time</th></tr>
-          <tr><td><strong>Hot Site</strong></td><td>Fully operational duplicate — real-time data sync, can failover immediately</td><td>Most expensive</td><td>Minutes</td></tr>
-          <tr><td><strong>Warm Site</strong></td><td>Has hardware but needs data restoration and some setup before going live</td><td>Moderate</td><td>Hours to days</td></tr>
-          <tr><td><strong>Cold Site</strong></td><td>Empty space with power and network only — nothing pre-configured</td><td>Cheapest</td><td>Days to weeks</td></tr>
-        </table>
-        <div class="callout warn">
-          <strong>Exam tip:</strong> "Failover immediately" = <strong>Hot Site</strong>. Cheapest = Cold. Middle ground = Warm.
+        <h3>Special Purpose Systems</h3>
+        <ul>
+          <li>Medical devices, vehicles, smart meters, UAVs (drones) — built for one job</li>
+          <li>Like any device, their firmware/OS can be compromised — and the data sensitivity involved can be disastrous</li>
+          <li>Exam emphasis: hardening, segmentation, and strict access control to protect them</li>
+        </ul>
+        <h3>Embedded Architecture Considerations (exam list)</h3>
+        <div class="two-col">
+          <ul>
+            <li>Patch availability vs inability to patch</li>
+            <li>Power and compute constraints</li>
+            <li>Availability and resilience requirements</li>
+          </ul>
+          <ul>
+            <li>Cost limitations</li>
+            <li>Responsiveness (real-time requirements)</li>
+            <li>Scalability and ease of deployment/recovery</li>
+          </ul>
         </div>
       </div>
     </div>
 
-    <!-- DATA CLASSIFICATION -->
+    <!-- FAIL OPEN vs FAIL CLOSED -->
     <div class="section">
       <div class="section-header" onclick="toggle(this)">
-        <h2>🗂️ Data Classification &amp; Protection</h2>
+        <h2>🚪 Fail Open vs Fail Closed</h2>
         <span class="badge">⚠ ON TEST</span>
         <span class="chevron">▼</span>
       </div>
       <div class="section-body">
-        <h3>Private Sector Classifications (Low → High)</h3>
         <table>
-          <tr><th>Level</th><th>Description</th><th>Example</th></tr>
-          <tr><td><strong>Public</strong></td><td>No restrictions — anyone can see it</td><td>Company website, press releases</td></tr>
-          <tr><td><strong>Internal / Private</strong></td><td>For employees only — not for outside distribution</td><td>Internal memos, org charts</td></tr>
-          <tr><td><strong>Confidential</strong></td><td>Sensitive business data — limited internal access</td><td>Financial reports, customer data</td></tr>
-          <tr><td><strong>Restricted / Critical</strong></td><td>Highest sensitivity — strictly need-to-know</td><td>Trade secrets, merger plans</td></tr>
-        </table>
-        <h3>Government Classifications (Low → High)</h3>
-        <table>
-          <tr><th>Level</th><th>Description</th></tr>
-          <tr><td><strong>Unclassified</strong></td><td>Not sensitive — public knowledge</td></tr>
-          <tr><td><strong>Sensitive But Unclassified (SBU)</strong></td><td>Not officially classified but not for public release</td></tr>
-          <tr><td><strong>Confidential</strong></td><td>Could damage national security if disclosed</td></tr>
-          <tr><td><strong>Secret</strong></td><td>Serious damage to national security if disclosed</td></tr>
-          <tr><td><strong>Top Secret</strong></td><td>Grave damage to national security — highest classification</td></tr>
-        </table>
-        <h3>Special Data Types</h3>
-        <table>
-          <tr><th>Type</th><th>Definition</th><th>Regulation</th></tr>
-          <tr><td><strong>PII</strong></td><td>Personally Identifiable Information — data that can identify a specific individual (name, SSN, address, email)</td><td>Various state/federal laws</td></tr>
-          <tr><td><strong>PHI</strong></td><td>Protected Health Information — health-related PII</td><td>HIPAA</td></tr>
-          <tr><td><strong>Financial Data</strong></td><td>Credit card data, payment info</td><td>PCI-DSS</td></tr>
+          <tr><th></th><th>Fail Closed</th><th>Fail Open</th></tr>
+          <tr><td><strong>What happens on failure</strong></td><td>Denies all access — defaults to a secure, blocked state</td><td>Allows all access — system continues to pass traffic</td></tr>
+          <tr><td><strong>Security</strong></td><td>More secure — prevents unauthorized access during failure</td><td>Less secure — unauthorized access may be allowed during failure</td></tr>
+          <tr><td><strong>Availability</strong></td><td>Lower — legitimate users may also be locked out</td><td>Higher — traffic keeps flowing</td></tr>
+          <tr><td><strong>Why orgs prefer it</strong></td><td>High-security environments (military, healthcare)</td><td>Business prefers it — money stops flowing when traffic stops; compensating controls should cover the gap</td></tr>
         </table>
         <div class="callout warn">
-          <strong>DLP (Data Loss Prevention)</strong> — Tools and policies that detect and prevent unauthorized data exfiltration. Monitors data at rest, in use, and in transit.
+          <strong>Exam tip:</strong> Fail Closed = more secure, blocks everything. Fail Open = more available, allows everything. If the question says the priority is <em>traffic must always flow</em> — choose <strong>Fail Open</strong>, even if it feels wrong. Organizations justify it by having other compensating controls in place.
+        </div>
+      </div>
+    </div>
+
+    <!-- PASSIVE vs INLINE DETECTION -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <h2>📡 Passive vs Inline Detection &amp; Security</h2>
+        <span class="badge">⚠ ON TEST</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <table>
+          <tr><th>Mode</th><th>How It Works</th><th>Can Block?</th><th>Performance Impact</th></tr>
+          <tr><td><strong>Passive Detection</strong></td><td>Monitors traffic without interfering — receives a copy (mirror/tap). Detects and alerts only. Does not affect network performance.</td><td>❌ No — detect and alert only</td><td>None</td></tr>
+          <tr><td><strong>Inline Detection</strong></td><td>Device sits directly in the path of traffic — all data flows through it. Can detect and is <em>positioned</em> to act if configured.</td><td>⚠️ Positioned to act</td><td>Some — can become a bottleneck</td></tr>
+          <tr><td><strong>Inline Security</strong></td><td>Device sits inline AND actively blocks/prevents threats in real time. Associated with IPS and NGFW.</td><td>✅ Yes — block and prevent</td><td>Higher — all traffic inspected</td></tr>
+        </table>
+        <div class="callout warn">
+          <strong>Simple exam rule:</strong> Passive = observe only · Inline Detection = observe + positioned to act · Inline Security = block and prevent. This ties directly to IDS (passive/inline detection) vs IPS (inline security).
         </div>
       </div>
     </div>
@@ -2109,48 +2140,89 @@
       explain: 'IaC benefits include consistency, speed, and auditability. The key risk: a misconfiguration in the template is automatically replicated at scale — potentially misconfiguring dozens or hundreds of systems instantly.'
     },
     {
-      q: 'RAID 0 stripes data across two disks for speed. What happens if one disk fails?',
-      options: [
-        'The other disk contains a full mirror — no data is lost',
-        'Parity data is used to reconstruct the lost data',
-        'All data is lost — RAID 0 has no redundancy',
-        'The array degrades but remains functional with reduced performance'
-      ],
+      q: 'Which SDN plane is responsible for actually MOVING packets from one place to another?',
+      options: ['Control Plane', 'Management Plane', 'Data Plane (Forwarding Plane)', 'Security Plane'],
       answer: 2,
-      explain: 'RAID 0 has NO redundancy. It only improves performance by splitting data across disks. One disk failure = total data loss. Remember: RAID 0 = zero redundancy.'
+      explain: 'The Data Plane (also called the Forwarding Plane) does the actual packet forwarding. It exists on switches and routers that carry out instructions from the Control Plane. The Control Plane decides WHERE data goes; the Data Plane moves it.'
     },
     {
-      q: 'You need a backup strategy that allows the FASTEST restore time. Which backup type should you use?',
-      options: [
-        'Incremental — it backs up the fewest changes each time',
-        'Differential — it only needs the full + one differential to restore',
-        'Full — a single backup set contains all data needed for restore',
-        'Snapshot — it captures the entire disk state'
-      ],
-      answer: 2,
-      explain: 'Full backup restores fastest because everything is in one backup set. Incremental is slowest to restore (needs full + every incremental in sequence). Differential is medium (needs full + most recent differential only).'
+      q: 'In SDN, which plane makes decisions about how traffic should flow — determining routing paths and network policies?',
+      options: ['Data Plane', 'Management Plane', 'Forwarding Plane', 'Control Plane'],
+      answer: 3,
+      explain: 'The Control Plane is the brain of SDN — handled by a central controller that determines routing paths and network policies. It does NOT move actual data. Exam one-liner: SDN = centralized network control.'
     },
     {
-      q: 'An organization can lose no more than 4 hours of data in a disaster. Which metric defines this requirement?',
+      q: 'A private cloud is shared among multiple organizations with similar needs (e.g., government agencies). What deployment model is this?',
+      options: ['Hybrid Cloud', 'Public Cloud', 'Community Cloud', 'Multi-Cloud'],
+      answer: 2,
+      explain: 'A Community Cloud is a private cloud shared with multiple organizations. For the exam: Community = Shared. Private = Most control. Public = Least control. Hybrid = Mixture.'
+    },
+    {
+      q: 'SCADA systems are used primarily for:',
       options: [
-        'RTO (Recovery Time Objective)',
-        'RPO (Recovery Point Objective)',
-        'MTD (Maximum Tolerable Downtime)',
-        'SLA (Service Level Agreement)'
+        'Running virtual machines in a data center',
+        'Remote monitoring and control of industrial systems across large geographic areas (power grids, water systems)',
+        'Managing encryption keys for an organization',
+        'Centralizing network control using software-defined policies'
       ],
       answer: 1,
-      explain: 'RPO (Recovery Point Objective) defines the maximum acceptable data loss — measured in time. "No more than 4 hours of data lost" = RPO of 4 hours. RTO defines how fast the service must be restored, not how much data can be lost.'
+      explain: 'SCADA (Supervisory Control and Data Acquisition) is a type of ICS used for remote monitoring and control across large geographic areas. Examples: power grids, water distribution, heating systems. It collects sensor data, sends it to a centralized controller, and allows operators to issue commands.'
     },
     {
-      q: 'A company requires that systems be back online within 30 minutes of a disaster. Which DR site type best satisfies this requirement?',
+      q: 'ICS and SCADA systems are frequently vulnerable because:',
       options: [
-        'Cold Site — cheapest option',
-        'Warm Site — moderate recovery time',
-        'Hot Site — fully operational with real-time data sync; failover in minutes',
-        'Any site type can achieve 30-minute recovery with proper planning'
+        'They are always connected to the public internet by design',
+        'They are built with the latest security frameworks and are over-patched',
+        'Many were designed without security in mind, run on legacy systems, and prioritize uptime over security',
+        'They use proprietary encryption that is too complex to manage'
       ],
       answer: 2,
-      explain: 'A Hot Site is a fully operational duplicate of your environment with real-time data synchronization. It can failover in minutes. Cold sites take days to weeks. Warm sites take hours to days. When the exam says "failover immediately" or a very short RTO — Hot Site is the answer.'
+      explain: 'ICS/SCADA systems prioritize uptime and real-time operation over security. Many run on legacy systems with weak authentication, outdated software, no encryption, and internet exposure. Exam focus: protect via network segmentation, strict access control, and air gapping critical systems.'
+    },
+    {
+      q: 'A real-time operating system (RTOS) is best characterized by:',
+      options: [
+        'High security controls that prioritize data protection over speed',
+        'Processing data and responding within a strict time constraint — availability and timing take priority over security',
+        'Only running on enterprise servers in data centers',
+        'Requiring frequent reboots to maintain system integrity'
+      ],
+      answer: 1,
+      explain: 'An RTOS must process and respond within a strict time constraint — making it predictable and immediate. Used in aircraft autopilot, medical equipment, and automotive systems. The priority is availability and timing — security controls must NOT interfere with responsiveness.'
+    },
+    {
+      q: 'A security device fails and the system defaults to blocking ALL traffic — including legitimate users. What behavior is this?',
+      options: ['Fail Open', 'Fail Secure', 'Fail Closed', 'Fail Safe Bypass'],
+      answer: 2,
+      explain: 'Fail Closed (also called Fail Secure) defaults to denying all access when a failure occurs. It is more secure but reduces availability. Fail Open does the opposite — allows all traffic during failure to maintain uptime.'
+    },
+    {
+      q: 'An organization says: "If our firewall fails, traffic must continue flowing — other security controls will compensate." What failure mode are they choosing?',
+      options: [
+        'Fail Closed — more secure, blocks everything',
+        'Fail Open — more available, allows everything; relies on compensating controls',
+        'Fail Secure — isolates all traffic',
+        'Fail Safe — routes traffic to a backup appliance'
+      ],
+      answer: 1,
+      explain: 'Fail Open allows traffic when a failure occurs, maintaining availability. Organizations justify this by having other compensating controls in place. Exam tip: if the question says traffic must always flow — choose Fail Open, even if it feels wrong security-wise.'
+    },
+    {
+      q: 'A security device monitors a COPY of network traffic and sends alerts — it does NOT block or interfere with live traffic. What mode is this?',
+      options: ['Inline Security', 'Inline Detection', 'Passive Detection', 'Active Monitoring'],
+      answer: 2,
+      explain: 'Passive Detection monitors traffic via a mirror/tap without interfering. It detects and alerts only — no performance impact, no blocking. This is the mode used by NIDS (Network Intrusion Detection Systems).'
+    },
+    {
+      q: 'A device sits directly in the path of ALL network traffic and actively blocks threats in real time. What mode is this, and what devices use it?',
+      options: [
+        'Passive Detection — used by NIDS',
+        'Inline Detection — used by HIDS',
+        'Inline Security — used by IPS and NGFW',
+        'Active Monitoring — used by SIEM'
+      ],
+      answer: 2,
+      explain: 'Inline Security places the device directly in the traffic path and actively blocks/prevents threats in real time. Associated with IPS (Intrusion Prevention Systems) and NGFW (Next-Generation Firewalls). All traffic must flow through it — this can impact performance if it becomes a bottleneck.'
     }
   ];
 
