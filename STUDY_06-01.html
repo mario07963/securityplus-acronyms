@@ -307,6 +307,58 @@
     .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     @media(max-width:640px) { .two-col { grid-template-columns: 1fr; } nav { gap: 1rem; } }
 
+    /* THEME TOGGLE BUTTON */
+    .theme-btn {
+      margin-left: auto;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: .35rem .85rem;
+      border-radius: 99px;
+      font-size: .8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .2s;
+      white-space: nowrap;
+    }
+    .theme-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+    /* LIGHT MODE */
+    body.light {
+      --bg: #f0f4fb;
+      --surface: #ffffff;
+      --surface2: #e4eaf5;
+      --accent: #2563eb;
+      --accent2: #7c3aed;
+      --warn: #b45309;
+      --green: #047857;
+      --red: #b91c1c;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #c8d3e8;
+    }
+    body.light .callout            { background: #dbeafe; }
+    body.light .callout.warn       { background: #fef3c7; }
+    body.light .callout.green      { background: #d1fae5; }
+    body.light tr:hover td         { background: #f1f5f9; }
+    body.light .section-header:hover { background: #d8e2f5; }
+    body.light td strong           { color: #6d28d9; }
+    body.light li strong           { color: #1d4ed8; }
+    body.light .q-text code        { background: #e4eaf5; color: #1d4ed8; }
+    body.light .option:hover:not(.locked)      { background: #dbeafe; }
+    body.light .sim-choice:hover:not(.locked)  { background: #dbeafe; }
+    body.light .correct-ans        { border-color: var(--green) !important; background: #d1fae5 !important; }
+    body.light .wrong-ans          { border-color: var(--red)   !important; background: #fee2e2 !important; }
+    body.light .sim-correct        { border-color: var(--green) !important; background: #d1fae5 !important; }
+    body.light .sim-wrong          { border-color: var(--red)   !important; background: #fee2e2 !important; }
+    body.light .sim-feedback.fb-correct { background: #d1fae5; color: #065f46; }
+    body.light .sim-feedback.fb-wrong   { background: #fee2e2; color: #991b1b; }
+    body.light .sim-feedback            { background: #dbeafe; }
+    body.light .explanation        { background: #f8fafc; color: #334155; border-top: 1px solid var(--border); }
+    body.light .sim-result.tunnel-up   { background: #d1fae5; }
+    body.light .sim-result.tunnel-fail { background: #fee2e2; }
+    body.light .progress-track     { background: #c8d3e8; }
+
     /* SIMULATION LAB */
     .sim-diagram {
       background: var(--surface2); border: 1px solid var(--border); border-radius: 10px;
@@ -391,6 +443,7 @@
   <a href="#" onclick="showPage('quiz3',this)">Ch.3 Test</a>
   <a href="#" onclick="showPage('sim3',this)">🔬 VPN Lab</a>
   <a href="#" onclick="showPage('linux3',this)">🐧 Linux Lab</a>
+  <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">☀️ Light</button>
 </nav>
 
 <div class="container">
@@ -2090,6 +2143,22 @@
 </div><!-- /container -->
 
 <script>
+  // ── THEME ──
+  function toggleTheme() {
+    const isLight = document.body.classList.toggle('light');
+    document.getElementById('themeBtn').textContent = isLight ? '🌙 Dark' : '☀️ Light';
+    localStorage.setItem('secplus_theme', isLight ? 'light' : 'dark');
+  }
+  (function applyTheme() {
+    if (localStorage.getItem('secplus_theme') === 'light') {
+      document.body.classList.add('light');
+      document.addEventListener('DOMContentLoaded', () => {
+        const btn = document.getElementById('themeBtn');
+        if (btn) btn.textContent = '🌙 Dark';
+      });
+    }
+  })();
+
   // ── NAV ──
   function showPage(id, el) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
