@@ -1108,6 +1108,126 @@
     </div>
   </div>
 
+  <!-- RISK APPETITE / TOLERANCE / THRESHOLD -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#127919; Risk Appetite vs Tolerance vs Threshold <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <div class="callout warn">Three distinct terms — the exam will try to swap them. Know the difference.</div>
+      <table>
+        <tr><th>Term</th><th>Definition</th><th>Scope</th><th>Set by</th></tr>
+        <tr><td><strong>Risk Appetite</strong></td><td>The <em>overall level</em> of risk an organization is willing to accept in pursuit of its goals. "How much risk are we comfortable taking?"</td><td>Entire organization — strategic level</td><td>Executives / leadership</td></tr>
+        <tr><td><strong>Risk Tolerance</strong></td><td>The <em>acceptable range of variation</em> for specific systems or processes — expressed in measurable terms (e.g., max downtime, acceptable vuln count)</td><td>Per system or process — operational level</td><td>System/process owners</td></tr>
+        <tr><td><strong>Risk Threshold</strong></td><td>The <em>precise trigger point</em> where risk becomes unacceptable and action <strong>must</strong> be taken immediately — no more waiting</td><td>Hard line — when crossed, intervention required</td><td>Policy / security team</td></tr>
+      </table>
+      <div class="callout green">
+        <strong>Memory ladder:</strong><br/>
+        Appetite = "we're OK with some risk" (big picture, exec level)<br/>
+        Tolerance = "here's exactly how much on this system" (measurable range)<br/>
+        Threshold = "this line gets crossed — act NOW" (hard trigger)
+      </div>
+    </div>
+  </div>
+
+  <!-- VULNERABILITY RESPONSE OPTIONS -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#9881;&#65039; Vulnerability Response Options <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <table>
+        <tr><th>Response</th><th>What you do</th><th>When to use it</th></tr>
+        <tr><td><strong>Remediation</strong></td><td>Fully fix / eliminate the vulnerability — typically by patching</td><td>Highest priority vulnerabilities where a fix exists</td></tr>
+        <tr><td><strong>Mitigation</strong></td><td>Reduce the risk through compensating controls (firewall rules, config changes, segmentation) — doesn't eliminate the vuln</td><td>When you can't patch immediately</td></tr>
+        <tr><td><strong>Acceptance</strong></td><td>Acknowledge the risk and take no action — it falls within tolerance</td><td>Low severity, cost of fix outweighs benefit</td></tr>
+        <tr><td><strong>Transference</strong></td><td>Shift financial risk to a 3rd party — cyber insurance</td><td>Residual risk that can't be fully mitigated</td></tr>
+      </table>
+      <div class="callout red" style="font-size:1rem;">
+        <strong>&#128161; EXAM SHORTCUT — Memorize this:</strong><br/><br/>
+        When you see the word <strong>INSURANCE</strong> anywhere in the question — stop reading the rest, find <strong>Risk Transference</strong> in the answers. That is your answer.
+      </div>
+      <p style="font-size:.875rem;color:var(--muted);margin-top:.75rem;">Response choice depends on: risk severity · business impact · cost of fix · organizational risk threshold · available resources. Responses are managed through a formal change management process.</p>
+    </div>
+  </div>
+
+  <!-- CYBER INSURANCE = RISK TRANSFERENCE -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#128176; Cyber Insurance = Risk Transference <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <table>
+        <tr><th>Property</th><th>Detail</th></tr>
+        <tr><td><strong>What it does</strong></td><td>Shifts the <em>financial impact</em> of a security incident to a 3rd party (the insurer)</td></tr>
+        <tr><td><strong>What it does NOT do</strong></td><td>Does <strong>NOT</strong> reduce the likelihood of an attack — only reduces the financial burden if one occurs</td></tr>
+        <tr><td><strong>Covers</strong></td><td>Data breach costs, ransomware recovery, legal fees, regulatory fines, recovery efforts</td></tr>
+        <tr><td><strong>Qualification</strong></td><td>Organizations must demonstrate proper security controls and risk management practices to qualify — just having insurance doesn't mean you skip controls</td></tr>
+      </table>
+      <div class="callout warn"><strong>Insurance ≠ security.</strong> You still must implement controls to qualify for coverage. Think of it like home insurance — the inspector checks your house before they'll cover it.</div>
+    </div>
+  </div>
+
+  <!-- PATCHING -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>&#128268; Patching — Proactive Remediation</h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body">
+      <p>Patching = applying updates, fixes, or improvements to software, OS, or firmware to address known vulnerabilities. One of the most common forms of remediation — directly eliminates the underlying flaw.</p>
+      <h3>Patch Management Process</h3>
+      <table>
+        <tr><th>Step</th><th>Action</th></tr>
+        <tr><td>1. Identify</td><td>Find missing patches via vulnerability scanning</td></tr>
+        <tr><td>2. Test</td><td>Test patches in a controlled environment — avoid breaking production systems</td></tr>
+        <tr><td>3. Deploy</td><td>Apply through the change management process</td></tr>
+        <tr><td>4. Verify</td><td>Confirm the vulnerability has been resolved</td></tr>
+      </table>
+      <div class="callout red"><strong>Poor or delayed patching is a leading cause of security breaches.</strong> Effective patch management reduces attack surface and prevents malware infections and unauthorized access.</div>
+    </div>
+  </div>
+
+  <!-- SEGMENTATION -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>&#127760; Network Segmentation — Mitigation Strategy</h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body">
+      <p>Segmentation divides a network into smaller isolated sections (subnets/zones) to limit the spread of attacks and control access between systems.</p>
+      <table>
+        <tr><th>Property</th><th>Detail</th></tr>
+        <tr><td><strong>Purpose</strong></td><td>If one segment is compromised, the attacker <em>cannot easily move laterally</em> to other areas</td></tr>
+        <tr><td><strong>Tools used</strong></td><td>Firewalls, VLANs, access controls, network policies</td></tr>
+        <tr><td><strong>Response type</strong></td><td><strong>Mitigation</strong> — reduces exposure and impact, does NOT eliminate the vulnerability itself</td></tr>
+        <tr><td><strong>Protects</strong></td><td>High-value assets and sensitive data from general user networks</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- COMPENSATING CONTROLS -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#128101; Compensating Controls <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <p>Compensating controls are <strong>alternative security measures</strong> put in place when the primary control cannot be implemented — due to cost, technical limitations, or operational constraints.</p>
+      <table>
+        <tr><th>Property</th><th>Detail</th></tr>
+        <tr><td><strong>Purpose</strong></td><td>Reduce risk when you can't fully eliminate the vulnerability — provides a different layer of protection that achieves a similar objective</td></tr>
+        <tr><td><strong>When used</strong></td><td>Legacy systems · uptime requirements · business constraints that prevent immediate patching</td></tr>
+        <tr><td><strong>Examples</strong></td><td>Can't patch immediately → add firewall rules + network segmentation + increased monitoring until the patch can be applied</td></tr>
+        <tr><td><strong>Role in compliance</strong></td><td>Especially important for maintaining compliance and security posture within acceptable risk thresholds</td></tr>
+      </table>
+      <div class="callout green">Compensating controls = <strong>temporary mitigations</strong> that buy time until the real fix (remediation/patching) can be applied — common in environments with legacy systems or strict uptime requirements.</div>
+    </div>
+  </div>
+
   <!-- 7 IMPACT TYPES -->
   <div class="section">
     <div class="section-header open" onclick="toggle(this)">
@@ -1329,6 +1449,38 @@ const ptQs = [
     opts:["Financial","Reputational","Legal / Regulatory","Organizational"],
     ans:2,
     exp:"Legal / Regulatory Impact = consequences of non-compliance: fines, penalties, lawsuits, and regulatory sanctions. Note: the $500,000 fine could also be viewed as Financial, but the CAUSE is regulatory non-compliance, so the primary classification is Legal/Regulatory." },
+  { q:"An organization's leadership defines the overall amount of risk the company is willing to accept across all operations in pursuit of business goals. What is this called?",
+    opts:["Risk Threshold","Risk Tolerance","Risk Appetite","Risk Acceptance"],
+    ans:2,
+    exp:"Risk Appetite = the overall level of risk an organization is willing to accept in pursuit of its goals. It is set at the strategic level by executives and applies across the entire organization. Risk Tolerance is the measurable range for specific systems; Risk Threshold is the hard trigger line where action must happen." },
+  { q:"A system's SLA states it can have no more than 4 hours of downtime per month. This measurable limit on acceptable variation is an example of:",
+    opts:["Risk Appetite","Risk Threshold","Risk Tolerance","Risk Transference"],
+    ans:2,
+    exp:"Risk Tolerance = the acceptable range of variation expressed in measurable terms (e.g., max downtime, acceptable vulnerability count). It refines Risk Appetite for specific systems and processes. The 4-hour limit is a specific, measurable tolerance level." },
+  { q:"A CVSS 9.8 vulnerability is detected. Security policy states that any CVSS score above 9.0 requires immediate emergency patching. The 9.0 line represents what?",
+    opts:["Risk Appetite","Risk Tolerance","Risk Threshold","Risk Acceptance"],
+    ans:2,
+    exp:"Risk Threshold = the precise trigger point where risk becomes unacceptable and action MUST be taken immediately. Crossing the threshold triggers intervention — in this case, emergency change management for immediate patching." },
+  { q:"A question on the exam mentions that an organization purchased cyber liability insurance to cover data breach costs. What risk response strategy is this?",
+    opts:["Risk Mitigation","Risk Acceptance","Risk Avoidance","Risk Transference"],
+    ans:3,
+    exp:"EXAM SHORTCUT: When you see the word INSURANCE — the answer is Risk Transference. Insurance shifts the financial impact of an incident to a 3rd party. It does NOT reduce the likelihood of an attack — only the financial burden if one occurs." },
+  { q:"Cyber insurance reduces which aspect of risk?",
+    opts:["The likelihood of an attack occurring","The financial impact if an attack occurs","The CVSS score of exploited vulnerabilities","The number of vulnerabilities in the environment"],
+    ans:1,
+    exp:"Cyber insurance is Risk Transference — it shifts FINANCIAL impact to the insurer. It does NOT reduce the probability/likelihood of an attack. The organization still needs proper security controls — they're required to even qualify for coverage." },
+  { q:"A legacy medical device cannot be patched due to FDA approval constraints. The security team adds firewall rules and enhanced monitoring around it instead. What type of control is this?",
+    opts:["Preventive control","Compensating control","Detective control","Corrective control"],
+    ans:1,
+    exp:"Compensating controls are alternative security measures used when the primary control (patching) cannot be implemented — due to cost, technical limitations, or operational/regulatory constraints. Firewall rules + monitoring around an unpatched legacy system = classic compensating control." },
+  { q:"After a breach, an attacker who gained access to a workstation was unable to reach the database server because it was on a separate network zone. What mitigation strategy prevented lateral movement?",
+    opts:["Patch management","Risk Transference","Network Segmentation","Compensating controls"],
+    ans:2,
+    exp:"Network Segmentation divides the network into isolated zones so that if one segment is compromised, the attacker cannot easily move laterally to other areas. It is a mitigation strategy — it reduces exposure and impact but does not eliminate the underlying vulnerability." },
+  { q:"What is the CORRECT order of the patch management process?",
+    opts:["Deploy → Test → Identify → Verify","Identify → Deploy → Test → Verify","Identify → Test → Deploy → Verify","Test → Identify → Verify → Deploy"],
+    ans:2,
+    exp:"Correct patch management order: 1) IDENTIFY missing patches via vulnerability scanning, 2) TEST patches in a controlled environment, 3) DEPLOY through change management, 4) VERIFY the vulnerability is resolved. Never skip testing — deploying untested patches can break production systems." },
   { q:"A vulnerability scanner reports a CVSS 9.1 vulnerability on a web server. What should you do NEXT to confirm it is actually exploitable?",
     opts:["Immediately patch the server","Run a penetration test","Increase the firewall rules","Ignore it — CVSS scores can be wrong"],
     ans:1,
