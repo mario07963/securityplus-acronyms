@@ -800,6 +800,67 @@
     </div>
   </div>
 
+  <!-- FINE-TUNE A SCANNER -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#9881;&#65039; Fine-Tuning a Scanner <span class="tag-test">TRICK QUESTION ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <p>This shows up as a scenario question. A scanner (email scanner, vulnerability scanner, etc.) is <strong>missing things for a specific group of people</strong> — false negatives, filtering gaps, or certain content getting through.</p>
+      <div class="callout red">
+        <strong>The trap:</strong> Most answer choices say things like "tell each individual to do this" or "have each user adjust their settings." <br/><br/>
+        <strong>The correct answer:</strong> Go into the scanner itself and <strong>fine-tune it</strong> — adjust the scanner's configuration/rules at the admin level. <br/><br/>
+        Individual-level fixes are band-aids. The scalable, correct solution is to fix the scanner configuration centrally.
+      </div>
+      <table>
+        <tr><th>Wrong answers (distractors)</th><th>Correct answer</th></tr>
+        <tr><td>"Tell each individual to configure their settings"</td><td rowspan="3" style="color:var(--green);font-weight:700;vertical-align:middle;">Fine-tune / adjust the scanner configuration at the admin/system level</td></tr>
+        <tr><td>"Have each user whitelist the missed items"</td></tr>
+        <tr><td>"Ask each person to manually review what was missed"</td></tr>
+      </table>
+      <div class="callout"><strong>Memory rule:</strong> If the question involves a scanner missing something for a GROUP of people — the answer is always to <strong>go into the scanner and fine-tune it</strong>, not to tell individuals to work around it.</div>
+    </div>
+  </div>
+
+  <!-- RISK FORMULA -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#9878; Risk = Likelihood &times; Impact <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <div class="callout warn" style="font-size:1.05rem;text-align:center;">
+        <strong>Risk = Likelihood &times; Impact</strong>
+      </div>
+      <table>
+        <tr><th>Term</th><th>Meaning</th></tr>
+        <tr><td><strong>Risk</strong></td><td>The overall threat level to your organization — your livelihood</td></tr>
+        <tr><td><strong>Likelihood</strong></td><td>How probable it is that a threat will actually occur (also called probability)</td></tr>
+        <tr><td><strong>Impact</strong></td><td>How much damage it would cause if it did occur (financial, operational, reputational)</td></tr>
+      </table>
+      <div class="two-col" style="margin-top:.75rem;">
+        <div class="callout green">
+          <strong>High Likelihood + High Impact</strong><br/>
+          = Highest Risk — address FIRST
+        </div>
+        <div class="callout">
+          <strong>Low Likelihood + Low Impact</strong><br/>
+          = Lowest Risk — accept or monitor
+        </div>
+      </div>
+      <h3>Risk Response Strategies (also on test)</h3>
+      <table>
+        <tr><th>Strategy</th><th>What you do</th></tr>
+        <tr><td><strong>Avoid</strong></td><td>Stop the activity that creates the risk entirely</td></tr>
+        <tr><td><strong>Mitigate</strong></td><td>Reduce the likelihood or impact (patches, controls, training)</td></tr>
+        <tr><td><strong>Transfer</strong></td><td>Shift the risk to a 3rd party (cyber insurance, outsourcing)</td></tr>
+        <tr><td><strong>Accept</strong></td><td>Acknowledge the risk and do nothing — residual risk is tolerable</td></tr>
+      </table>
+      <div class="callout"><strong>CVSS ties directly to Risk:</strong> A CVSS score reflects both likelihood of exploitation and potential impact — that's why you remediate the highest CVSS scores first.</div>
+    </div>
+  </div>
+
   <!-- PROACTIVE vs REACTIVE -->
   <div class="section">
     <div class="section-header" onclick="toggle(this)">
@@ -1010,6 +1071,22 @@ const ptQs = [
     opts:["A company that passes a system audit automatically passes a process audit","System audits are always performed by 3rd parties only","A company can pass a system audit but fail a process audit","Process audits only apply to HR departments"],
     ans:2,
     exp:"A company can pass a system audit (everything technically configured correctly) but fail a process audit if employees aren't following security procedures. This is why both types of audits are necessary together." },
+  { q:"An email scanner is letting certain phishing messages through for a specific group of users. Multiple users in the department are affected. What is the BEST solution?",
+    opts:["Tell each individual user to mark future emails as spam","Have each user create their own email filter rules","Fine-tune the scanner's configuration at the admin level to close the filtering gap","Remove the email scanner and replace it with a firewall"],
+    ans:2,
+    exp:"When a scanner misses something for a GROUP of people, the correct answer is always to fine-tune the scanner centrally — not to tell individuals to work around it. Individual fixes are band-aids; the scalable solution is adjusting the scanner's configuration." },
+  { q:"Risk is calculated as:",
+    opts:["Threat × Vulnerability","Likelihood + Impact","Likelihood × Impact","Asset Value ÷ Threat"],
+    ans:2,
+    exp:"Risk = Likelihood × Impact. Likelihood = how probable the threat is. Impact = how much damage it would cause. High likelihood × high impact = highest risk — address first." },
+  { q:"An organization identifies a vulnerability with a high likelihood of exploitation but very low impact if exploited. How should they prioritize it?",
+    opts:["Treat it as the highest priority immediately","Treat it as moderate — high likelihood raises risk even with low impact","Ignore it completely — low impact means no risk","Transfer the risk immediately to cyber insurance"],
+    ans:1,
+    exp:"Risk = Likelihood × Impact. High likelihood but low impact results in moderate risk. It's not the highest priority (which would be high × high), but it shouldn't be ignored. Context and the full Risk calculation matter." },
+  { q:"A company buys cyber insurance to cover the financial losses from a potential data breach. Which risk response strategy is this?",
+    opts:["Avoid","Mitigate","Accept","Transfer"],
+    ans:3,
+    exp:"Transfer = shifting risk to a 3rd party. Cyber insurance is the classic example — you transfer financial risk to the insurer. Outsourcing a high-risk function is another form of risk transfer." },
   { q:"Which of the following represents a PROACTIVE security measure? (Select the BEST answer)",
     opts:["Restoring systems from backup after a ransomware attack","Issuing a breach notification to affected customers","Conducting regular penetration tests and vulnerability scans before an attack occurs","Resetting all passwords after a credential leak is discovered"],
     ans:2,
