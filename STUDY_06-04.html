@@ -1228,6 +1228,73 @@
     </div>
   </div>
 
+  <!-- EXCEPTION vs EXEMPTION -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#128203; Exception vs Exemption <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <div class="callout warn">These two look similar — the exam will swap them. Key difference: <strong>Exception = temporary. Exemption = permanent (or long-term).</strong></div>
+      <table>
+        <tr><th></th><th>Exception</th><th>Exemption</th></tr>
+        <tr><td><strong>Duration</strong></td><td>Short-term / temporary — has a defined <strong>expiration date</strong></td><td>Long-term or <strong>permanent</strong></td></tr>
+        <tr><td><strong>When granted</strong></td><td>Control <em>cannot be implemented right now</em> — operational constraint, delayed patching</td><td>Requirement <em>can never reasonably be met</em> — legacy system that cannot support modern controls</td></tr>
+        <tr><td><strong>Requirements</strong></td><td>Formal approval + documentation + <strong>compensating controls</strong> + risk acceptance</td><td>Formal approval + documentation + risk acceptance by leadership</td></tr>
+        <tr><td><strong>Review</strong></td><td>Periodically reviewed — expires and must be renewed or resolved</td><td>Periodically reviewed — must remain justified over time</td></tr>
+      </table>
+      <div class="callout green">Both must align with the organization's <strong>risk tolerance</strong> and ensure leadership is aware of and formally accepts the associated risk. Neither is a free pass — both require documentation.</div>
+    </div>
+  </div>
+
+  <!-- VALIDATION -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#10003; Validation — Confirming the Fix Worked <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <p>Validation = confirming that a vulnerability has been <strong>properly remediated or mitigated</strong> after a response action. Ensures the fix was successful and no longer presents a risk — and didn't introduce new problems.</p>
+      <table>
+        <tr><th>Validation Method</th><th>How it works</th></tr>
+        <tr><td><strong>Rescan</strong></td><td>Run the vulnerability scanner again — confirm the CVE no longer shows up</td></tr>
+        <tr><td><strong>Testing</strong></td><td>Actively test the system to confirm the exploit path is closed</td></tr>
+        <tr><td><strong>Configuration review</strong></td><td>Review system configs to verify the patch or control was applied correctly</td></tr>
+      </table>
+      <div class="callout green"><strong>Validation is the final step in the vulnerability management lifecycle:</strong> Identify → Evaluate → Prioritize → Remediate/Mitigate → <strong>Validate</strong></div>
+      <div class="callout warn">You must validate after applying compensating controls too — not just patches. Confirm the control reduces risk as intended.</div>
+    </div>
+  </div>
+
+  <!-- SECURITY MONITORING -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#128249; Security Monitoring <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <p>Security monitoring = the <strong>continuous process</strong> of observing systems, networks, and applications to detect unusual activity, potential threats, or security incidents in <strong>real time</strong>.</p>
+      <div class="callout red"><strong>"You can't fix what you don't know you have."</strong> — Monitoring gives you visibility. No monitoring = blind to threats already inside your environment.</div>
+      <table>
+        <tr><th>Property</th><th>Detail</th></tr>
+        <tr><td><strong>Data sources</strong></td><td>Logs · network traffic · intrusion detection systems (IDS) · <strong>SIEM platforms</strong></td></tr>
+        <tr><td><strong>Detects</strong></td><td>Indicators of Compromise (IoCs) · policy violations · active attacks as they occur</td></tr>
+        <tr><td><strong>Why it matters</strong></td><td>Provides visibility · enables rapid detection and response · maintains compliance · validates security controls</td></tr>
+        <tr><td><strong>Scope</strong></td><td>Everything — systems, applications, infrastructure, network, cloud</td></tr>
+      </table>
+      <div class="callout green">On the test: SIEM (Security Information and Event Management) is the platform most associated with security monitoring — it collects and correlates logs from across the environment.</div>
+
+      <h3>Monitoring Layers — 3 Levels</h3>
+      <table>
+        <tr><th>Level</th><th>What's monitored</th><th>Examples</th></tr>
+        <tr><td><strong>System</strong></td><td>Host-based activity</td><td>CPU usage, memory, system performance, system logs — signs of compromise or performance issues</td></tr>
+        <tr><td><strong>Application</strong></td><td>How applications behave</td><td>Antivirus logs, DLP (Data Loss Prevention) logs, cloud monitors — identify security gaps in software and data handling</td></tr>
+        <tr><td><strong>Infrastructure</strong></td><td>Broader environment</td><td>Network traffic, servers, cloud resources — communication flows, configurations, resource usage</td></tr>
+      </table>
+      <div class="callout">Together, the three monitoring layers provide <strong>layered visibility</strong> for early threat detection, effective incident response, and overall security posture management.</div>
+    </div>
+  </div>
+
   <!-- 7 IMPACT TYPES -->
   <div class="section">
     <div class="section-header open" onclick="toggle(this)">
@@ -1449,6 +1516,38 @@ const ptQs = [
     opts:["Financial","Reputational","Legal / Regulatory","Organizational"],
     ans:2,
     exp:"Legal / Regulatory Impact = consequences of non-compliance: fines, penalties, lawsuits, and regulatory sanctions. Note: the $500,000 fine could also be viewed as Financial, but the CAUSE is regulatory non-compliance, so the primary classification is Legal/Regulatory." },
+  { q:"A legacy system cannot support modern encryption standards. The security team formally documents this with leadership approval and no expiration date. What is this called?",
+    opts:["Exception","Exemption","Compensating control","Risk acceptance"],
+    ans:1,
+    exp:"Exemption = long-term or permanent allowance when a requirement CANNOT reasonably be met — typically legacy systems that cannot support modern controls. It requires formal approval, documentation, and leadership risk acceptance. Exception is temporary and has an expiration date." },
+  { q:"A patch cannot be applied to a critical server until a maintenance window in 30 days. The team documents this with a temporary workaround and a defined expiration date. What is this called?",
+    opts:["Exemption","Risk Transference","Exception","Risk Acceptance"],
+    ans:2,
+    exp:"Exception = short-term allowance when a control cannot be implemented immediately, with a DEFINED EXPIRATION DATE and compensating controls in place. Exemption is longer-term or permanent. The 30-day defined end date makes this an Exception." },
+  { q:"After applying a patch for a critical vulnerability, what should the security team do to confirm the fix was successful?",
+    opts:["Archive the CVE record and close the ticket","Perform validation — rescan, test, or review configurations to confirm the vulnerability is resolved","Immediately run another penetration test","Increase the CVSS score threshold"],
+    ans:1,
+    exp:"Validation is the final step in the vulnerability management lifecycle — confirming the remediation or mitigation worked. Methods include rescanning (CVE should no longer appear), testing the exploit path, and reviewing system configurations. It also ensures the fix didn't introduce new problems." },
+  { q:"A security team rescans a server after applying a patch and confirms the CVE no longer appears. What step of the vulnerability management lifecycle is this?",
+    opts:["Identification","Prioritization","Remediation","Validation"],
+    ans:3,
+    exp:"Validation = confirming the fix worked. Rescanning after a patch and confirming the CVE is gone is the classic validation method. The full lifecycle order is: Identify → Evaluate → Prioritize → Remediate/Mitigate → Validate." },
+  { q:"What is the PRIMARY purpose of security monitoring?",
+    opts:["To replace penetration testing","To continuously observe systems and detect threats, IoCs, and policy violations in real time","To generate CVSS scores for new vulnerabilities","To automate patch deployment"],
+    ans:1,
+    exp:"Security monitoring = continuous real-time observation of systems, networks, and applications to detect unusual activity, threats, IoCs, and policy violations. It provides visibility — 'you can't fix what you don't know you have.' SIEM platforms are the primary tool for this." },
+  { q:"An organization uses a platform that collects and correlates logs from firewalls, servers, and endpoint agents to detect threats in real time. What type of tool is this?",
+    opts:["Vulnerability scanner","Penetration testing framework","SIEM (Security Information and Event Management)","IDS only"],
+    ans:2,
+    exp:"SIEM = Security Information and Event Management. It aggregates logs and data from across the environment and correlates them to detect threats in real time. It is the core tool for security monitoring and is heavily associated with this topic on the Security+ exam." },
+  { q:"CPU usage spikes, memory anomalies, and host-based system logs are monitored at which layer of security monitoring?",
+    opts:["Infrastructure layer","Application layer","System (host) layer","Network layer"],
+    ans:2,
+    exp:"System-level monitoring focuses on host-based activity — CPU usage, memory, system performance, and system logs. This layer identifies performance problems and early signs of compromise at the individual device level." },
+  { q:"DLP logs, antivirus logs, and cloud application monitors belong to which security monitoring layer?",
+    opts:["System layer","Application layer","Infrastructure layer","Physical layer"],
+    ans:1,
+    exp:"Application-level monitoring tracks how applications behave — including antivirus logs, DLP (Data Loss Prevention) logs, and cloud monitors. This layer identifies security gaps in software behavior and data handling." },
   { q:"An organization's leadership defines the overall amount of risk the company is willing to accept across all operations in pursuit of business goals. What is this called?",
     opts:["Risk Threshold","Risk Tolerance","Risk Appetite","Risk Acceptance"],
     ans:2,
