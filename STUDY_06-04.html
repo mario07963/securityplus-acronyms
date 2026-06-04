@@ -1906,6 +1906,119 @@
     </div>
   </div>
 
+  <!-- IDENTITY PROOFING & FEDERATION -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#128269; Identity Proofing &amp; Federation <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <table>
+        <tr><th>Concept</th><th>What it is</th><th>Why it matters</th></tr>
+        <tr>
+          <td><strong>Identity Proofing</strong></td>
+          <td>The <strong>initial step</strong> in identity lifecycle management — verifying a user's real-world identity <em>before</em> their account is created</td>
+          <td>Ensures the access control system starts with a trusted, validated identity. Garbage in = garbage out — if the identity isn't verified at creation, every access decision built on it is compromised.</td>
+        </tr>
+        <tr>
+          <td><strong>Federation</strong></td>
+          <td>Establishing trust between different organizations or systems to allow <strong>shared authentication through a single identity</strong></td>
+          <td>Enables SSO across different domains and organizations. Reduces credential management complexity while maintaining secure access control. Example: logging into a partner company's portal with your own corporate credentials.</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- SAML / OAUTH / OIDC / LDAP -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#128273; SAML · OAuth 2.0 · OpenID Connect · LDAP <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <table>
+        <tr><th>Protocol</th><th>Purpose</th><th>Key detail</th></tr>
+        <tr>
+          <td><strong>SAML</strong></td>
+          <td>Security Assertion Markup Language — XML-based standard for exchanging authentication and authorization data between an identity provider and a service provider</td>
+          <td>Used for SSO across web applications and federated identity. Common in enterprise SSO environments.</td>
+        </tr>
+        <tr>
+          <td><strong>OAuth 2.0</strong></td>
+          <td>Open Authorization — provides <strong>delegated access using tokens</strong> without exposing user credentials</td>
+          <td>Authorizes a third-party app to access resources on a user's behalf. The user's password is never shared — a token is issued instead. Example: "Sign in with Google" giving an app access to your calendar.</td>
+        </tr>
+        <tr>
+          <td><strong>OpenID Connect (OIDC)</strong></td>
+          <td>Extends OAuth 2.0 by adding <strong>identity verification</strong> through ID tokens</td>
+          <td>OAuth 2.0 handles authorization (what you can do); OpenID Connect adds authentication (who you are). OIDC adds an ID token that contains user identity claims.</td>
+        </tr>
+        <tr>
+          <td><strong>LDAP</strong></td>
+          <td>Lightweight Directory Access Protocol — standardized protocol to access and manage central directory information for authentication and authorization</td>
+          <td>Associate with <strong>Active Directory</strong>. Secure implementation uses <strong>LDAPS</strong> (LDAP over SSL/TLS) to ensure confidentiality and integrity of transmitted data. Plain LDAP = unencrypted.</td>
+        </tr>
+      </table>
+      <div class="callout warn">
+        <strong>OAuth 2.0 vs OpenID Connect:</strong> OAuth = authorization (access tokens, what you can do). OIDC = authentication + authorization (ID tokens + access tokens, who you are AND what you can do). OIDC builds on top of OAuth 2.0.
+      </div>
+    </div>
+  </div>
+
+  <!-- ATTESTATION -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>&#128196; Attestation &amp; TPM <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body">
+      <p>Attestation is the process of providing <strong>proof that a system, device, or user meets specific security requirements</strong> before being granted access. Commonly used in NAC and trusted computing environments.</p>
+      <table>
+        <tr><th>Feature</th><th>Detail</th></tr>
+        <tr><td><strong>What the device reports</strong></td><td>OS version, patch level, antivirus status, configuration settings — the security posture</td></tr>
+        <tr><td><strong>Verified against</strong></td><td>Organizational security policies</td></tr>
+        <tr><td><strong>Technology used</strong></td><td><strong>TPM (Trusted Platform Module)</strong> — a hardware chip that validates system integrity and ensures it has not been tampered with. Also done via security agents.</td></tr>
+        <tr><td><strong>Pass</strong></td><td>Device is considered trustworthy → access granted</td></tr>
+        <tr><td><strong>Fail</strong></td><td>Device denied access or placed in a restricted/quarantine network</td></tr>
+        <tr><td><strong>Real-world example</strong></td><td>A corporate laptop connecting to a VPN must prove it has up-to-date patches and active antivirus before access is granted — that validation process is attestation</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- PRIVILEGED ACCESS & PAM -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#128274; Privileged Access &amp; PAM <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <p><strong>Privileged access</strong> refers to elevated permissions that allow a user or account to perform high-level actions — modifying configurations, installing software, accessing sensitive data, and managing other user accounts. Privileged users include system admins, network engineers, DBAs, and service accounts.</p>
+      <div class="callout red"><strong>Privileged accounts = high-value attack targets.</strong> If compromised, an attacker gains extensive control over the entire environment. They must be tightly controlled and continuously monitored.</div>
+
+      <h3>PAM — Privileged Access Management</h3>
+      <p>PAM is the overarching framework that controls, monitors, and audits privileged accounts and activities. It integrates three key controls:</p>
+      <table>
+        <tr><th>Control</th><th>What it does</th><th>Why it matters</th></tr>
+        <tr>
+          <td><strong>Temporal Accounts</strong></td>
+          <td>Accounts that exist only for a <strong>limited time</strong> — automatically disabled or removed after a defined period</td>
+          <td>Ensures elevated access does not persist beyond what is necessary for the task. No lingering accounts = smaller attack surface.</td>
+        </tr>
+        <tr>
+          <td><strong>Password Vaulting</strong></td>
+          <td>Privileged credentials stored in a <strong>secure encrypted vault</strong> — users never directly know or handle the passwords. They request access and the system grants it.</td>
+          <td>System controls, rotates, and audits credential use. Prevents credential reuse and exposure. Admins can't share or leak passwords they never see.</td>
+        </tr>
+        <tr>
+          <td><strong>JIT — Just-in-Time Permissions</strong></td>
+          <td>Elevated access is <strong>dynamically granted only when needed</strong> and only for a short duration, then <strong>automatically revoked</strong></td>
+          <td>Aligns with least privilege — accounts are unprivileged by default and elevated only at the moment of need. Significantly reduces the <strong>attack window</strong>.</td>
+        </tr>
+      </table>
+      <div class="callout green"><strong>Memory rule — PAM = Vault + Temp + JIT.</strong> Password vaulting (secrets secured), Temporal accounts (time-limited), Just-in-Time permissions (on-demand elevation). Together they enforce least privilege for the most dangerous accounts in the environment.</div>
+    </div>
+  </div>
+
   <!-- QUIZ -->
   <div style="margin-top:2rem;">
     <div class="quiz-intro">
@@ -2407,7 +2520,39 @@ const ptQs = [
   { q:"A firewall rule states: 'Deny all inbound traffic after 11 PM regardless of user identity.' Which access control model does this represent?",
     opts:["RBAC — a role named 'after-hours' is denied","ABAC — time is an attribute","Rule-Based Access Control — static system rules apply universally","MAC — the classification level blocks after-hours traffic"],
     ans:2,
-    exp:"Rule-Based Access Control enforces static, system-defined rules that apply uniformly to all users regardless of identity or role. Firewall ACL rules, time-based access restrictions, and router rules are classic examples. Unlike ABAC, rule-based controls are not tied to user attributes — the rule applies to everyone equally." }
+    exp:"Rule-Based Access Control enforces static, system-defined rules that apply uniformly to all users regardless of identity or role. Firewall ACL rules, time-based access restrictions, and router rules are classic examples. Unlike ABAC, rule-based controls are not tied to user attributes — the rule applies to everyone equally." },
+  { q:"Before creating an account for a new contractor, the IT team requires the contractor to present a government-issued ID and have a manager verify their identity. What step in the identity lifecycle is this?",
+    opts:["Account provisioning","Authorization assignment","Identity proofing","Attestation"],
+    ans:2,
+    exp:"Identity proofing is the initial step in identity lifecycle management — verifying a user's real-world identity BEFORE their account is created. It ensures the access control system begins with a trusted, validated identity. Skipping identity proofing means all subsequent access decisions are built on an unverified foundation." },
+  { q:"A company wants to allow employees to access a partner organization's portal using their own corporate credentials, without creating separate accounts. What IAM concept enables this?",
+    opts:["Account provisioning","Identity proofing","LDAP directory sync","Federation with SSO"],
+    ans:3,
+    exp:"Federation establishes trust between different organizations or systems to allow shared authentication through a single identity. It enables SSO across organizational boundaries — employees use their own corporate credentials to access partner systems without managing separate accounts. SAML is commonly used to implement federation." },
+  { q:"An application wants to access a user's Google Calendar on their behalf without ever seeing the user's Google password. Which protocol enables this token-based delegated access?",
+    opts:["LDAP","SAML","OAuth 2.0","Kerberos"],
+    ans:2,
+    exp:"OAuth 2.0 provides delegated access using tokens without exposing user credentials. The user authorizes the app, Google issues an access token, and the app uses that token — never seeing the password. This is the 'Sign in with Google/Facebook' pattern used across the web." },
+  { q:"What does OpenID Connect add on top of OAuth 2.0?",
+    opts:["Encrypted password storage","Network segmentation policies","Identity verification via ID tokens — confirming WHO the user is","Time-based access restrictions"],
+    ans:2,
+    exp:"OAuth 2.0 handles authorization (what the app can access). OpenID Connect (OIDC) extends it by adding authentication — it issues an ID token that contains claims about the user's identity (who they are). OIDC = OAuth 2.0 + identity. Together they handle both 'who are you' and 'what can you do.'" },
+  { q:"An organization uses Active Directory for centralized user management. What protocol do systems use to query Active Directory for authentication and authorization information, and what is its secure version?",
+    opts:["RADIUS over UDP; secure version is TACACS+","SAML over HTTPS; secure version is OAuth","LDAP; secure version is LDAPS (LDAP over SSL/TLS)","Kerberos; secure version is Kerberos v5"],
+    ans:2,
+    exp:"LDAP (Lightweight Directory Access Protocol) is the standardized protocol used to access and manage directory information — associate it with Active Directory on the exam. Plain LDAP transmits data unencrypted. LDAPS (LDAP over SSL/TLS) adds encryption to ensure confidentiality and integrity of directory queries." },
+  { q:"A laptop must prove it has current patches and active antivirus before the VPN grants it access. The proof is validated using a hardware chip on the device. What is this process called, and what hardware is involved?",
+    opts:["Authorization via RADIUS","Network Access Control posture check using a RADIUS server","Attestation validated by a TPM (Trusted Platform Module)","Federation using SAML assertions"],
+    ans:2,
+    exp:"Attestation = providing proof that a device meets security requirements before access is granted. The device reports its security posture (OS version, patch level, AV status) which is verified against policy. A TPM (Trusted Platform Module) is the hardware chip that validates system integrity and ensures the device hasn't been tampered with." },
+  { q:"An admin account is elevated to Domain Admin only for the 30 minutes needed to complete a server migration, then automatically returns to standard user permissions. What PAM control is this?",
+    opts:["Password vaulting","Temporal account","Just-in-Time (JIT) permissions","Separation of duties"],
+    ans:2,
+    exp:"JIT (Just-in-Time) permissions dynamically grant elevated access only when needed, for only as long as needed, then automatically revoke it. This aligns with least privilege — accounts are unprivileged by default and elevated on-demand. It significantly reduces the attack window by ensuring privilege doesn't linger." },
+  { q:"A PAM system stores all administrator passwords in an encrypted repository. Admins never see or know the actual passwords — they request access and the system grants a session. What PAM control is this?",
+    opts:["Just-in-Time permissions","Temporal accounts","Password vaulting","Attestation"],
+    ans:2,
+    exp:"Password vaulting stores privileged credentials in a secure encrypted vault. Admins request access rather than handling passwords directly — the system grants the session, then rotates the password afterward. This prevents credential sharing, reuse, and exposure. Even if an admin is compromised, they cannot leak a password they never knew." }
 ];
 
 let ptAnswered = {};
