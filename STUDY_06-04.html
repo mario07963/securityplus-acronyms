@@ -1016,6 +1016,58 @@
     </div>
   </div>
 
+  <!-- QUANTITATIVE RISK: SLE / ALE / ARO / EF -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#128178; Quantitative Risk: AV · EF · SLE · ARO · ALE <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <div class="callout warn" style="text-align:center;font-size:1rem;line-height:2;">
+        <strong>SLE = AV &times; EF</strong><br/>
+        <strong>ALE = SLE &times; ARO</strong><br/>
+        <span style="color:var(--muted);font-size:.85rem;">Full chain: &nbsp; ALE = AV &times; EF &times; ARO</span>
+      </div>
+
+      <h3>The Five Terms</h3>
+      <table>
+        <tr><th>Acronym</th><th>Full Name</th><th>What It Means</th></tr>
+        <tr><td><strong>AV</strong></td><td>Asset Value</td><td>Total dollar value of the asset (system, data, equipment). Example: database worth <strong>$100,000</strong></td></tr>
+        <tr><td><strong>EF</strong></td><td>Exposure Factor</td><td>Percentage of the asset <em>lost</em> in a single incident — expressed as a decimal. 50% loss = <strong>0.5</strong></td></tr>
+        <tr><td><strong>SLE</strong></td><td>Single Loss Expectancy</td><td>Cost of <strong>one incident</strong>. Formula: <strong>SLE = AV × EF</strong></td></tr>
+        <tr><td><strong>ARO</strong></td><td>Annual Rate of Occurrence</td><td>How many times the event is <em>expected to happen per year</em>. See trap below.</td></tr>
+        <tr><td><strong>ALE</strong></td><td>Annual Loss Expectancy</td><td>Total <strong>yearly</strong> expected loss. Formula: <strong>ALE = SLE × ARO</strong></td></tr>
+      </table>
+
+      <h3>Worked Example (from your notes)</h3>
+      <table>
+        <tr><th>Step</th><th>Calculation</th><th>Result</th></tr>
+        <tr><td>Asset Value (AV)</td><td>Given</td><td><strong>$100,000</strong></td></tr>
+        <tr><td>Exposure Factor (EF)</td><td>Given: 50% loss per incident</td><td><strong>0.5</strong></td></tr>
+        <tr><td>SLE = AV × EF</td><td>$100,000 × 0.5</td><td><strong>$50,000</strong> per incident</td></tr>
+        <tr><td>ARO</td><td>Given: 2 times per year</td><td><strong>2</strong></td></tr>
+        <tr><td>ALE = SLE × ARO</td><td>$50,000 × 2</td><td><strong>$100,000 per year</strong></td></tr>
+      </table>
+
+      <div class="callout red">
+        <strong>THE ARO TRAP — This is where they get you on the exam:</strong><br/><br/>
+        <table style="margin:.5rem 0;">
+          <tr><th>Scenario</th><th>ARO value</th></tr>
+          <tr><td>Happens <strong>once per year</strong></td><td><strong>1</strong></td></tr>
+          <tr><td>Happens <strong>twice per year</strong></td><td><strong>2</strong></td></tr>
+          <tr><td>Happens <strong>once every 2 years</strong></td><td><strong>0.5</strong></td></tr>
+          <tr><td>Happens <strong>once every 5 years</strong></td><td><strong>0.2</strong> &nbsp;← exam trap!</td></tr>
+          <tr><td>Happens <strong>once every 10 years</strong></td><td><strong>0.1</strong></td></tr>
+        </table>
+        Rule: <strong>ARO = 1 ÷ number of years</strong>. "Once every 5 years" = 1/5 = <strong>0.2</strong>, NOT 5.
+      </div>
+
+      <h3>Why This Matters for Security Decisions</h3>
+      <p>Quantitative risk analysis uses AV and EF to get SLE, then multiplies by ARO to get ALE. ALE lets organizations estimate <strong>annual financial risk</strong> and decide whether the cost of a security control is justified — if the control costs less than the ALE, it's worth implementing.</p>
+      <div class="callout green"><strong>Security control justification:</strong> If ALE = $100,000/year and a control costs $20,000/year — implement the control. If the control costs $150,000/year — the math says accept the risk.</div>
+    </div>
+  </div>
+
   <!-- PROACTIVE vs REACTIVE -->
   <div class="section">
     <div class="section-header" onclick="toggle(this)">
@@ -1206,6 +1258,26 @@ const ptQs = [
     opts:["A list of all CVEs on the network","Written authorization from the organization","The CVSS scores of all vulnerabilities","Network diagrams"],
     ans:1,
     exp:"ALWAYS get written authorization before pen testing. Testing without explicit written permission is illegal — even if you are an employee of the company. Rules of engagement must be documented." },
+  { q:"A database is valued at $200,000. In a ransomware attack, the organization expects to lose 40% of its value. What is the Single Loss Expectancy (SLE)?",
+    opts:["$200,000","$40,000","$80,000","$120,000"],
+    ans:2,
+    exp:"SLE = AV × EF. AV = $200,000. EF = 40% = 0.4. SLE = $200,000 × 0.4 = $80,000. SLE is the cost of ONE incident — not yearly, that's ALE." },
+  { q:"An asset has an SLE of $50,000. The threat is expected to occur once every 5 years. What is the Annual Loss Expectancy (ALE)?",
+    opts:["$250,000","$50,000","$10,000","$25,000"],
+    ans:2,
+    exp:"ALE = SLE × ARO. ARO = 1 ÷ 5 = 0.2 (once every 5 years). ALE = $50,000 × 0.2 = $10,000 per year. The ARO trap: 'once every 5 years' = 0.2, NOT 5." },
+  { q:"A threat is expected to occur once every 5 years. What is the Annual Rate of Occurrence (ARO)?",
+    opts:["5","0.5","0.2","1"],
+    ans:2,
+    exp:"ARO = 1 ÷ number of years between occurrences. Once every 5 years = 1/5 = 0.2. This is the most-tested ARO trap. Do NOT use 5 — that would mean 5 times per year." },
+  { q:"An asset is worth $500,000. A flood is expected to destroy 20% of it, and occurs once every 10 years. What is the ALE?",
+    opts:["$100,000","$10,000","$50,000","$1,000"],
+    ans:1,
+    exp:"Step 1: SLE = AV × EF = $500,000 × 0.2 = $100,000. Step 2: ARO = 1 ÷ 10 = 0.1. Step 3: ALE = SLE × ARO = $100,000 × 0.1 = $10,000 per year." },
+  { q:"An organization's ALE for a server breach is $60,000 per year. A security vendor offers a control that costs $45,000 per year. Should the organization implement it?",
+    opts:["No — the control costs too much relative to the risk","Yes — the control cost ($45,000) is less than the ALE ($60,000), so it is financially justified","No — ALE calculations don't apply to purchasing decisions","Yes — all security controls must always be implemented regardless of cost"],
+    ans:1,
+    exp:"If control cost < ALE, implement the control. $45,000 < $60,000 — the organization saves $15,000/year by implementing it. If the control cost MORE than the ALE, it would be cheaper to accept the risk." },
   { q:"An organization posts a program on HackerOne offering cash rewards for finding and responsibly reporting security vulnerabilities. What is this called?",
     opts:["Penetration test","Vulnerability scan","Bug bounty program","Red team exercise"],
     ans:2,
