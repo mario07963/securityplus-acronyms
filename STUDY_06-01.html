@@ -390,6 +390,7 @@
   <a href="#" onclick="showPage('notes3',this)">Ch.3 Notes</a>
   <a href="#" onclick="showPage('quiz3',this)">Ch.3 Test</a>
   <a href="#" onclick="showPage('sim3',this)">🔬 VPN Lab</a>
+  <a href="#" onclick="showPage('linux3',this)">🐧 Linux Lab</a>
 </nav>
 
 <div class="container">
@@ -2022,6 +2023,70 @@
   </div><!-- /sim3 -->
 
 
+  <!-- ===================== LINUX LAB ===================== -->
+  <div id="linux3" class="page">
+    <div class="page-header">
+      <h1>🐧 PBQ Simulation — Linux Permissions &amp; SSH</h1>
+      <p>Chapter 2 · Interactive Lab · chmod calculator (6 scenarios) + SSH passwordless setup (4 steps)</p>
+    </div>
+
+    <div class="section">
+      <div class="section-header open" onclick="toggle(this)">
+        <span>📋 Scenario Brief</span><span class="chevron">▼</span>
+      </div>
+      <div class="section-body open">
+        <p>Linux file permissions and SSH key authentication are directly tested on the Security+ exam as PBQ simulations. You will be shown a scenario and asked to select the correct <code>chmod</code> value — or to configure passwordless SSH step by step.</p>
+        <div class="callout warn">⚠ ON TEST — Instructor flagged: Linux simulation will appear on the test. You will see chmod 644, chmod 640, chmod 777, chmod 600. Know the rwx → number mapping cold. Also know the exact steps for passwordless SSH authentication.</div>
+        <div class="callout exam">Exam Tip: Read = 4, Write = 2, Execute = 1. Add the values for each user class (owner / group / others) to get the three-digit chmod number. Owner is always the first digit.</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span>📊 Permission Reference Card — click to expand</span><span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <table>
+          <thead><tr><th>Symbol</th><th>Value</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><td><strong>r</strong></td><td>4</td><td>Read</td></tr>
+            <tr><td><strong>w</strong></td><td>2</td><td>Write</td></tr>
+            <tr><td><strong>x</strong></td><td>1</td><td>Execute</td></tr>
+            <tr><td><strong>-</strong></td><td>0</td><td>No permission</td></tr>
+          </tbody>
+        </table>
+        <table style="margin-top:1rem;">
+          <thead><tr><th>chmod</th><th>Owner</th><th>Group</th><th>Others</th><th>Common Use</th></tr></thead>
+          <tbody>
+            <tr><td><strong>600</strong></td><td>rw- (6)</td><td>--- (0)</td><td>--- (0)</td><td>SSH private keys — owner only</td></tr>
+            <tr><td><strong>640</strong></td><td>rw- (6)</td><td>r-- (4)</td><td>--- (0)</td><td>Sensitive config files</td></tr>
+            <tr><td><strong>644</strong></td><td>rw- (6)</td><td>r-- (4)</td><td>r-- (4)</td><td>Web/public files, public config</td></tr>
+            <tr><td><strong>750</strong></td><td>rwx (7)</td><td>r-x (5)</td><td>--- (0)</td><td>Scripts — group can execute</td></tr>
+            <tr><td><strong>755</strong></td><td>rwx (7)</td><td>r-x (5)</td><td>r-x (5)</td><td>Executable scripts, public dirs</td></tr>
+            <tr><td><strong>777</strong></td><td>rwx (7)</td><td>rwx (7)</td><td>rwx (7)</td><td>Full access all — insecure, avoid</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Part 1 header -->
+    <div style="margin:1.5rem 0 .75rem;">
+      <h2 style="color:var(--accent);font-size:1.1rem;">Part 1 — chmod Scenarios &nbsp;<span style="color:var(--muted);font-size:.8rem;font-weight:400;">6 questions</span></h2>
+      <p style="color:var(--muted);font-size:.85rem;">Read each scenario and select the correct chmod value.</p>
+    </div>
+    <div id="linuxSteps"></div>
+
+    <!-- Part 2 header -->
+    <div style="margin:1.5rem 0 .75rem;">
+      <h2 style="color:var(--accent);font-size:1.1rem;">Part 2 — SSH Passwordless Authentication &nbsp;<span style="color:var(--muted);font-size:.8rem;font-weight:400;">4 steps</span></h2>
+      <p style="color:var(--muted);font-size:.85rem;">Complete each step of the SSH passwordless setup in order.</p>
+    </div>
+    <div id="sshSteps"></div>
+
+    <div id="linuxResult" class="sim-result"></div>
+  </div><!-- /linux3 -->
+
+
 </div><!-- /container -->
 
 <script>
@@ -3466,6 +3531,242 @@
   function resetSim3() { buildSim3(); window.scrollTo(0,0); }
 
   buildSim3();
+
+
+  // ── LINUX PERMISSIONS + SSH LAB ──
+  const linuxChmod = [
+    {
+      title: 'Scenario 1 — Web Server File',
+      q: 'A web server file must be readable and writable by the owner, but readable only (no write or execute) by the group and all others. What chmod value is correct?',
+      choices: [
+        { text: 'chmod 777', desc: 'Grants full rwx to owner, group, AND others — insecure for any production file.' },
+        { text: 'chmod 755', desc: 'Owner gets rwx — but execute is not needed here, and this does not match the requirement.' },
+        { text: 'chmod 644', desc: 'Owner: rw- (6) | Group: r-- (4) | Others: r-- (4) — read/write for owner, read-only for all others.' },
+        { text: 'chmod 600', desc: 'Owner rw only — group and others get nothing, but the scenario requires others can read.' }
+      ],
+      correct: 2,
+      okMsg: '✅ Correct! chmod 644 = Owner: rw- (6) | Group: r-- (4) | Others: r-- (4). Standard for web files and public configs. The owner can modify it; everyone else can only read it.',
+      noMsg: ['chmod 777 gives full access to everyone — a major security risk for any file.', 'chmod 755 adds execute permission for everyone — unnecessary and not what was asked.', '', 'chmod 600 blocks group and others completely — the scenario requires others to be able to read it.']
+    },
+    {
+      title: 'Scenario 2 — SSH Private Key',
+      q: 'You generated an SSH key pair. The PRIVATE key must be secured so ONLY the owner can read and write it. SSH will refuse to connect if the permissions are too open. What chmod value is required?',
+      choices: [
+        { text: 'chmod 600', desc: 'Owner: rw- (6) | Group: --- (0) | Others: --- (0). Owner read/write only — maximum restriction.' },
+        { text: 'chmod 644', desc: 'Owner rw, group and others can read — SSH will reject this key as too permissive.' },
+        { text: 'chmod 755', desc: 'Owner rwx, group and others r-x — way too open for a private key.' },
+        { text: 'chmod 777', desc: 'Everyone has full access — SSH prints "UNPROTECTED PRIVATE KEY FILE" and refuses to connect.' }
+      ],
+      correct: 0,
+      okMsg: '✅ Correct! chmod 600 = Owner: rw- (6) | Group: --- (0) | Others: --- (0). SSH clients enforce strict permission checks — if group or others can read the private key, SSH refuses to use it with an "UNPROTECTED PRIVATE KEY FILE" error.',
+      noMsg: ['', 'chmod 644 allows group and others to READ the private key — SSH will refuse to use it.', 'chmod 755 gives group and others execute permission — SSH will reject this key immediately.', 'chmod 777 is the worst possible choice — SSH will immediately refuse to connect.']
+    },
+    {
+      title: 'Scenario 3 — Executable Admin Script',
+      q: 'An admin script must be readable, writable, and executable by the owner. The group can read and execute it. Others have NO access at all.',
+      choices: [
+        { text: 'chmod 755', desc: 'Owner rwx (7), Group r-x (5), Others r-x (5) — others can still read and execute.' },
+        { text: 'chmod 750', desc: 'Owner: rwx (7) | Group: r-x (5) | Others: --- (0) — others have zero access.' },
+        { text: 'chmod 644', desc: 'No execute permission for anyone — the script cannot be run.' },
+        { text: 'chmod 777', desc: 'Full access for everyone — others should have NO access here.' }
+      ],
+      correct: 1,
+      okMsg: '✅ Correct! chmod 750 = Owner: rwx (7) | Group: r-x (5) | Others: --- (0). The owner can read/write/execute; the group can read and execute; others have zero access. Used for admin scripts restricted by group membership.',
+      noMsg: ['chmod 755 gives others read and execute access — the scenario requires others to have NO access.', '', 'chmod 644 has no execute bit — the script cannot run.', 'chmod 777 gives others full access — the opposite of what was required.']
+    },
+    {
+      title: 'Scenario 4 — Sensitive Config File',
+      q: 'A config file should be readable and writable by the owner, readable (not writable) by the group, and completely inaccessible to all others.',
+      choices: [
+        { text: 'chmod 644', desc: 'Owner rw, group r, others r — others can also read it, which is not allowed here.' },
+        { text: 'chmod 660', desc: 'Owner rw, group rw, others --- — group gets write access too, not just read.' },
+        { text: 'chmod 600', desc: 'Owner rw, group --- — group has no access, but the scenario requires group read access.' },
+        { text: 'chmod 640', desc: 'Owner: rw- (6) | Group: r-- (4) | Others: --- (0) — owner writes, group reads, others blocked.' }
+      ],
+      correct: 3,
+      okMsg: '✅ Correct! chmod 640 = Owner: rw- (6) | Group: r-- (4) | Others: --- (0). The owner can modify it; the group can read it; others have zero access. Standard for sensitive config files that a service group needs to read.',
+      noMsg: ['chmod 644 allows ALL others to read the file — others must be completely blocked here.', 'chmod 660 gives the group write access — only read access is required for the group.', 'chmod 600 blocks the group entirely — the scenario requires group read access.', '']
+    },
+    {
+      title: 'Scenario 5 — Decode chmod 777',
+      q: 'A directory is set to chmod 777. What exact permissions does EACH user class receive?',
+      choices: [
+        { text: 'Owner: rw- | Group: rw- | Others: rw- — read and write for everyone, no execute', desc: 'rw- = 4+2 = 6, not 7.' },
+        { text: 'Owner: rwx | Group: r-- | Others: r-- — only owner gets full access', desc: 'This would be chmod 744.' },
+        { text: 'Owner: rwx | Group: r-x | Others: r-x — others cannot write', desc: 'This would be chmod 755.' },
+        { text: 'Owner: rwx | Group: rwx | Others: rwx — full read, write, execute for everyone', desc: '7 = 4+2+1 = rwx for all three classes.' }
+      ],
+      correct: 3,
+      okMsg: '✅ Correct! chmod 777 = rwx for EVERYONE. 7 = 4(read) + 2(write) + 1(execute) = rwx. Applied to all three classes: Owner rwx | Group rwx | Others rwx. This is considered dangerously insecure — every user on the system has full control.',
+      noMsg: ['rw- = 4+2 = 6. chmod 666 would give everyone read/write with no execute — not 777.', 'chmod 744 = Owner rwx (7), Group r-- (4), Others r-- (4). That is not 777.', 'chmod 755 = Owner rwx (7), Group r-x (5), Others r-x (5). That is not 777.', '']
+    },
+    {
+      title: 'Scenario 6 — Symbols to Numbers',
+      q: 'A file shows these permissions in ls -l output: &nbsp;<code>-rw-r-----</code>&nbsp; What is the numeric chmod value?',
+      choices: [
+        { text: 'chmod 644', desc: 'chmod 644 = -rw-r--r-- — others also get read permission.' },
+        { text: 'chmod 660', desc: 'chmod 660 = -rw-rw---- — group also gets write permission.' },
+        { text: 'chmod 640', desc: 'Owner: rw- = 6 | Group: r-- = 4 | Others: --- = 0 → 640.' },
+        { text: 'chmod 600', desc: 'chmod 600 = -rw------- — group has no permissions at all.' }
+      ],
+      correct: 2,
+      okMsg: '✅ Correct! -rw-r----- = chmod 640. Break it down: rw- = 4+2+0 = 6 (owner) | r-- = 4+0+0 = 4 (group) | --- = 0+0+0 = 0 (others). Combine: 640.',
+      noMsg: ['chmod 644 = -rw-r--r-- — this gives others read access, but the symbols show --- for others.', 'chmod 660 = -rw-rw---- — this gives the group write access, but the symbols show r-- (read only) for group.', '', 'chmod 600 = -rw------- — the group has no permissions, but the symbols show r-- for the group.']
+    }
+  ];
+
+  const linuxSSH = [
+    {
+      title: 'SSH Step 1 — Generate Key Pair',
+      q: 'You are setting up passwordless SSH authentication to a remote server. What is the FIRST step?',
+      choices: [
+        { text: 'ssh-copy-id user@server', desc: 'Copies your public key to the server — you must generate a key first.' },
+        { text: 'chmod 600 ~/.ssh/id_rsa', desc: 'Sets permissions on the private key — must generate it before you can secure it.' },
+        { text: 'ssh-keygen', desc: 'Generates a new SSH key pair (private + public key). Always the first step.' },
+        { text: 'ssh user@server', desc: 'Tests the SSH connection — this is the final step, after all setup is done.' }
+      ],
+      correct: 2,
+      okMsg: '✅ Correct! ssh-keygen is always first — it creates ~/.ssh/id_rsa (private key) and ~/.ssh/id_rsa.pub (public key). Without a key pair, there is nothing to configure or copy.',
+      noMsg: ['ssh-copy-id requires a key to already exist — generate it first.', 'chmod 600 sets permissions on the private key — you must generate the key before you can secure it.', '', 'ssh user@server is the final test step — run it only after all setup is complete.']
+    },
+    {
+      title: 'SSH Step 2 — Secure the Private Key',
+      q: 'The key pair has been generated. SSH will refuse to use the private key (~/.ssh/id_rsa) if its permissions are too open. What command is required?',
+      choices: [
+        { text: 'chmod 777 ~/.ssh/id_rsa', desc: 'Full access for everyone — SSH will print "UNPROTECTED PRIVATE KEY FILE" and refuse to connect.' },
+        { text: 'chmod 644 ~/.ssh/id_rsa', desc: 'Group and others can read it — SSH rejects keys that are group or world readable.' },
+        { text: 'chmod 600 ~/.ssh/id_rsa', desc: 'Owner read/write only (rw-------) — group and others have zero access. SSH requires this.' },
+        { text: 'chmod 755 ~/.ssh/id_rsa', desc: 'Group and others can read and execute — SSH will reject this.' }
+      ],
+      correct: 2,
+      okMsg: '✅ Correct! chmod 600 sets the private key to owner read/write only (rw-------). SSH enforces this strictly — if group or others can read the key, SSH refuses to connect and warns "UNPROTECTED PRIVATE KEY FILE."',
+      noMsg: ['chmod 777 is the worst possible choice — SSH will immediately refuse to use this key.', 'chmod 644 allows group and others to read the private key — SSH will reject it.', '', 'chmod 755 gives group and others read and execute — SSH will refuse to use this key.']
+    },
+    {
+      title: 'SSH Step 3 — Copy Public Key to Server',
+      q: 'The private key is secured. Now the PUBLIC key must be installed on the remote server. What is the correct command?',
+      choices: [
+        { text: 'scp ~/.ssh/id_rsa root@server:~/', desc: 'This copies the PRIVATE key to the server — never send your private key anywhere.' },
+        { text: 'ssh-keygen -t rsa user@server', desc: 'Generates a new key pair — it does not copy an existing key to a remote server.' },
+        { text: 'cp ~/.ssh/id_rsa.pub /etc/ssh/', desc: 'Copies the file locally on YOUR machine — does not transfer to the remote server.' },
+        { text: 'ssh-copy-id user@server', desc: 'Appends your public key to ~/.ssh/authorized_keys on the remote server automatically.' }
+      ],
+      correct: 3,
+      okMsg: '✅ Correct! ssh-copy-id user@server copies your public key (~/.ssh/id_rsa.pub) to the remote server and appends it to ~/.ssh/authorized_keys — the authorized list of keys allowed to log in without a password.',
+      noMsg: ['NEVER copy your private key (id_rsa) to a server — the private key stays on your local machine only, always.', 'ssh-keygen generates a new key pair — it does not transfer an existing key to a remote server.', 'This only copies the file within your local machine — nothing goes to the remote server.', '']
+    },
+    {
+      title: 'SSH Step 4 — Where is the Key Stored on the Server?',
+      q: 'After ssh-copy-id completes, in which file on the REMOTE server is your public key stored?',
+      choices: [
+        { text: '/etc/ssh/sshd_config', desc: 'SSH daemon configuration file — contains server settings, not user keys.' },
+        { text: '~/.ssh/known_hosts', desc: 'Stores server fingerprints on YOUR machine — used to detect MITM attacks, not incoming keys.' },
+        { text: '~/.ssh/authorized_keys', desc: 'Lists all public keys authorized to log into this account without a password.' },
+        { text: '~/.ssh/id_rsa.pub', desc: 'Your local public key file on YOUR machine — the server receives a copy in authorized_keys.' }
+      ],
+      correct: 2,
+      okMsg: '✅ Correct! ~/.ssh/authorized_keys on the remote server stores all public keys authorized to log in without a password. When you connect, SSH compares your private key against this list — if there is a match, you are in with no password required.',
+      noMsg: ['/etc/ssh/sshd_config contains server-wide settings (port, auth methods) — not user public keys.', '~/.ssh/known_hosts stores server fingerprints on YOUR local machine to detect MITM attacks — not incoming public keys.', '', '~/.ssh/id_rsa.pub is your local copy of the public key — the server stores its copy in authorized_keys.']
+    }
+  ];
+
+  const linuxAll = [...linuxChmod, ...linuxSSH];
+  let linuxAnswered = [];
+  let linuxResults  = [];
+
+  function buildLinux3() {
+    linuxAnswered = new Array(linuxAll.length).fill(false);
+    linuxResults  = new Array(linuxAll.length).fill(null);
+
+    const result = document.getElementById('linuxResult');
+    result.className = 'sim-result';
+    result.innerHTML = '';
+
+    ['linuxSteps', 'sshSteps'].forEach(id => document.getElementById(id).innerHTML = '');
+
+    linuxAll.forEach((step, si) => {
+      const containerId = si < linuxChmod.length ? 'linuxSteps' : 'sshSteps';
+      const container   = document.getElementById(containerId);
+      const letters     = ['A','B','C','D'];
+
+      const div = document.createElement('div');
+      div.className = 'sim-step';
+      div.id = `linux3-step-${si}`;
+
+      const choicesHtml = step.choices.map((c, ci) =>
+        `<div class="sim-choice" id="linux3-c-${si}-${ci}" onclick="linux3Select(${si},${ci},this)">
+           <span class="opt-letter">${letters[ci]}</span>
+           <span><strong>${c.text}</strong> <span style="color:var(--muted);">— ${c.desc}</span></span>
+         </div>`
+      ).join('');
+
+      const label = si < linuxChmod.length
+        ? `<span class="sim-step-num">chmod ${si + 1}/6</span>`
+        : `<span class="sim-step-num">SSH ${si - linuxChmod.length + 1}/4</span>`;
+
+      div.innerHTML = `
+        <div class="sim-step-header">
+          ${label}
+          <span class="sim-step-title">${step.title}</span>
+          <span id="linux3-icon-${si}" style="font-size:1.1rem;"></span>
+        </div>
+        <div class="sim-choices">
+          <p style="color:var(--muted);font-size:.85rem;margin-bottom:.6rem;">${step.q}</p>
+          ${choicesHtml}
+        </div>
+        <div class="sim-feedback" id="linux3-fb-${si}"></div>`;
+
+      container.appendChild(div);
+    });
+  }
+
+  function linux3Select(si, ci, btn) {
+    if (linuxAnswered[si]) return;
+    linuxAnswered[si] = true;
+
+    const step    = linuxAll[si];
+    const isRight = ci === step.correct;
+    linuxResults[si] = isRight;
+
+    const stepDiv = document.getElementById(`linux3-step-${si}`);
+    stepDiv.querySelectorAll('.sim-choice').forEach(c => { c.classList.add('locked'); c.onclick = null; });
+
+    btn.classList.add(isRight ? 'sim-correct' : 'sim-wrong');
+    if (!isRight) document.getElementById(`linux3-c-${si}-${step.correct}`).classList.add('sim-correct');
+
+    stepDiv.classList.add(isRight ? 'step-correct' : 'step-wrong');
+    document.getElementById(`linux3-icon-${si}`).textContent = isRight ? '✅' : '❌';
+
+    const fb = document.getElementById(`linux3-fb-${si}`);
+    fb.className = `sim-feedback show ${isRight ? 'fb-correct' : 'fb-wrong'}`;
+    fb.innerHTML = isRight ? step.okMsg : `❌ Incorrect. ${step.noMsg[ci]} The correct answer is highlighted above.`;
+
+    if (linuxAnswered.every(Boolean)) showLinuxResult();
+  }
+
+  function showLinuxResult() {
+    const correct  = linuxResults.filter(Boolean).length;
+    const total    = linuxAll.length;
+    const allRight = correct === total;
+    const result   = document.getElementById('linuxResult');
+
+    result.className = `sim-result show ${allRight ? 'tunnel-up' : 'tunnel-fail'}`;
+    result.innerHTML = allRight
+      ? `<h2>✅ Perfect Score — Linux Lab Complete</h2>
+         <div class="sim-score-badge">${correct}/${total}</div>
+         <p style="color:var(--green);font-size:.95rem;">You nailed every chmod scenario and the full SSH passwordless setup flow!</p>
+         <p style="color:var(--muted);font-size:.825rem;margin-top:.4rem;">Key values: 600=private key · 640=sensitive config · 644=web file · 750=group script · 777=insecure</p>
+         <button class="btn btn-secondary" style="margin-top:1rem;" onclick="resetLinux3()">🔄 Reset Lab</button>`
+      : `<h2>📖 Lab Complete — Review Flagged Steps</h2>
+         <div class="sim-score-badge">${correct}/${total}</div>
+         <p style="color:var(--warn);font-size:.95rem;">${correct} of ${total} correct. Review the ❌ steps above — those are your gaps.</p>
+         <p style="color:var(--muted);font-size:.825rem;margin-top:.4rem;">Key values: 600=private key · 640=sensitive config · 644=web file · 750=group script · 777=insecure</p>
+         <button class="btn btn-secondary" style="margin-top:1rem;" onclick="resetLinux3()">🔄 Reset Lab</button>`;
+  }
+
+  function resetLinux3() { buildLinux3(); window.scrollTo(0,0); }
+
+  buildLinux3();
 </script>
 </body>
 </html>
