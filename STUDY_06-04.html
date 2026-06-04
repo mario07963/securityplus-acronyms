@@ -148,6 +148,7 @@
   <a href="#" onclick="showPage('nvdlab',this)">&#128269; NVD Lab</a>
   <a href="#" onclick="showPage('quiz4',this)">Ch.4 Quiz</a>
   <a href="#" onclick="showPage('stix',this)">&#127981; STIX &amp; TAXII</a>
+  <a href="#" onclick="showPage('pentest',this)">&#128270; Pen Test &amp; Audits</a>
   <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">&#9728;&#65039; Light</button>
 </nav>
 
@@ -703,6 +704,147 @@
 </div>
 <!-- END STIX & TAXII -->
 
+
+<!-- =================== PEN TEST & AUDITS PAGE =================== -->
+<div id="pentest" class="page">
+  <div class="page-header">
+    <h1>&#128270; Penetration Testing, Bug Bounties &amp; Audits <span class="tag-test">ON TEST</span></h1>
+    <p>Active security testing — what comes AFTER the vulnerability scanner.</p>
+  </div>
+
+  <!-- WORKFLOW CALLOUT -->
+  <div class="callout warn" style="margin-bottom:1.5rem;font-size:.95rem;">
+    <strong>The Testing Workflow (exam order):</strong>
+    Run Vulnerability Scanner &#8594; Get CVSS Score &#8594; Match to CVE &#8594; Run Pen Test to confirm exploitability &#8594; Remediate
+  </div>
+
+  <!-- PENETRATION TESTING -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#128299; Penetration Testing <span class="tag-test">TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <p>A penetration test actively attempts to exploit vulnerabilities found by a vulnerability scanner to confirm whether they are truly exploitable in your environment.</p>
+      <table>
+        <tr><th>Property</th><th>Detail</th></tr>
+        <tr><td><strong>Type</strong></td><td><span style="color:var(--red);font-weight:700">100% ACTIVE</span> — nothing passive about it</td></tr>
+        <tr><td><strong>Purpose</strong></td><td>Confirm a vulnerability is exploitable — not just theoretical</td></tr>
+        <tr><td><strong>When to run</strong></td><td>After vulnerability scan → CVSS score → CVE identified</td></tr>
+        <tr><td><strong>Frequency</strong></td><td>NOT weekly — disruptive by design; scheduled carefully</td></tr>
+        <tr><td><strong>Risk trade-off</strong></td><td>It WILL cause controlled problems — better you find exploits than an outside attacker</td></tr>
+      </table>
+      <div class="callout red"><strong>Vuln scan ≠ pen test.</strong> Vuln scan = theoretical weaknesses. Pen test = confirmed exploitable vulnerabilities. The exam will test this distinction.</div>
+
+      <h3>Pen Test Types — Know These</h3>
+      <table>
+        <tr><th>Type</th><th>What the tester knows</th></tr>
+        <tr><td><strong>Black Box</strong></td><td>No prior knowledge of the system — simulates an external attacker</td></tr>
+        <tr><td><strong>White Box</strong></td><td>Full knowledge (architecture, source code, credentials) — most thorough</td></tr>
+        <tr><td><strong>Gray Box</strong></td><td>Partial knowledge — simulates an insider or privileged attacker</td></tr>
+      </table>
+
+      <h3>Pen Test Phases</h3>
+      <table>
+        <tr><th>Phase</th><th>Action</th></tr>
+        <tr><td>1. Planning &amp; Scoping</td><td>Define rules of engagement, scope, and authorization (get written permission!)</td></tr>
+        <tr><td>2. Reconnaissance</td><td>Gather info (passive: OSINT; active: scanning)</td></tr>
+        <tr><td>3. Scanning &amp; Enumeration</td><td>Identify live hosts, open ports, services (Nmap, Nessus)</td></tr>
+        <tr><td>4. Exploitation</td><td>Attempt to exploit identified vulnerabilities</td></tr>
+        <tr><td>5. Post-Exploitation</td><td>Determine extent of access, lateral movement, data exfiltration test</td></tr>
+        <tr><td>6. Reporting</td><td>Document findings, severity, and remediation recommendations</td></tr>
+      </table>
+      <div class="callout"><strong>Always get written authorization before pen testing.</strong> Testing without permission = illegal, even if you work there.</div>
+    </div>
+  </div>
+
+  <!-- BUG BOUNTIES -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#128176; Bug Bounties <span class="tag-test">TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <p>Bug bounty programs allow organizations to pay ethical hackers and security researchers to find and responsibly report vulnerabilities before malicious attackers exploit them.</p>
+      <table>
+        <tr><th>Feature</th><th>Detail</th></tr>
+        <tr><td><strong>What it is</strong></td><td>Crowdsourced security testing — thousands of researchers vs. internal team alone</td></tr>
+        <tr><td><strong>Platforms</strong></td><td><strong>HackerOne</strong>, <strong>BugCrowd</strong> — most commonly tested names</td></tr>
+        <tr><td><strong>Scope</strong></td><td>Organizations define which systems are in-scope, what vulnerability types qualify, and payout tiers by severity (tied to CVSS)</td></tr>
+        <tr><td><strong>Researcher responsibility</strong></td><td>Test legally and responsibly, submit a detailed report if a valid vulnerability is found</td></tr>
+        <tr><td><strong>Rewards</strong></td><td>Money, recognition, swag — or all three. Higher CVSS = higher payout.</td></tr>
+        <tr><td><strong>Why organizations use it</strong></td><td>Proactive defense — find hidden/complex vulnerabilities before attackers; shifts mindset from reactive to proactive</td></tr>
+      </table>
+      <div class="callout green"><strong>Proactive &gt; Reactive.</strong> Bug bounties, pen tests, and audits are all proactive measures — patches and updates are too. The exam wants you to recognize proactive vs reactive security posture.</div>
+    </div>
+  </div>
+
+  <!-- SYSTEM vs PROCESS AUDIT -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#128203; System Audit vs Process Audit <span class="tag-test">TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <div class="callout warn"><strong>Key rule from your notes:</strong> System audit = more TECHNICAL. Process audit = PROCEDURE-focused. Both can be done in-house or by a 3rd party.</div>
+      <table>
+        <tr><th></th><th>System Audit</th><th>Process Audit</th></tr>
+        <tr><td><strong>Focus</strong></td><td>Technical — the actual IT systems</td><td>Procedural — how things are done by people</td></tr>
+        <tr><td><strong>Reviews</strong></td><td>System configurations, access controls &amp; permissions, patch levels, security baselines</td><td>Security policies &amp; procedures, incident response processes, change management workflows, onboarding/offboarding practices</td></tr>
+        <tr><td><strong>Goal</strong></td><td>Confirm systems are secure, properly configured, and protected against vulnerabilities</td><td>Ensure people and workflows follow established security policies consistently</td></tr>
+        <tr><td><strong>Who conducts</strong></td><td>Internal team or 3rd party</td><td>Internal team or 3rd party</td></tr>
+      </table>
+      <div class="callout red">
+        <strong>Trick question alert:</strong> A company can <strong>PASS a system audit but FAIL a process audit</strong> if employees aren't following security procedures — even if everything is technically configured correctly. <strong>Both are necessary together.</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROACTIVE vs REACTIVE -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>&#9889; Proactive vs Reactive Security</h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body">
+      <table>
+        <tr><th>Proactive (do BEFORE an attack)</th><th>Reactive (response AFTER an event)</th></tr>
+        <tr><td>Vulnerability scanning</td><td>Incident response</td></tr>
+        <tr><td>Penetration testing</td><td>Forensic investigation</td></tr>
+        <tr><td>Bug bounty programs</td><td>Patching after a breach</td></tr>
+        <tr><td>Patch management &amp; updates</td><td>Restoring from backup</td></tr>
+        <tr><td>System &amp; process audits</td><td>Legal/regulatory notification</td></tr>
+        <tr><td>Dark web monitoring</td><td>Password resets after credential leak</td></tr>
+      </table>
+      <div class="callout green">The exam favors proactive posture. When a question asks "what should the organization do to prevent future attacks," the answer is almost always a proactive measure.</div>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div style="margin-top:2rem;">
+    <div class="quiz-intro">
+      <h2>Pen Test, Bug Bounties &amp; Audits — Practice Quiz</h2>
+      <p>12 exam-focused questions with full explanations</p>
+      <button class="btn btn-primary" id="ptStartBtn" onclick="startPtQuiz()">Start Quiz</button>
+    </div>
+
+    <div id="ptScoreBar" class="score-bar">
+      <div class="score-num" id="ptScoreNum">0/12</div>
+      <div class="score-label" id="ptScoreLabel"></div>
+      <div class="progress-track"><div class="progress-fill" id="ptScoreFill" style="width:0%"></div></div>
+      <div class="quiz-controls">
+        <button class="btn btn-secondary" onclick="resetPtQuiz()">&#8635; Try Again</button>
+      </div>
+    </div>
+
+    <div id="ptQuestions" style="display:none">
+      <button class="btn btn-green" style="margin-bottom:1.5rem" onclick="submitPtQuiz()">&#10003; Submit Answers</button>
+    </div>
+  </div>
+</div>
+<!-- END PEN TEST & AUDITS -->
+
+
 </div><!-- /container -->
 
 <script>
@@ -820,6 +962,130 @@ function resetStixQuiz() {
   document.getElementById('stixStartBtn').style.display = 'inline-flex';
   document.getElementById('stixQuestions').style.display = 'none';
   document.getElementById('stixQuestions').innerHTML = '';
+}
+
+/* PEN TEST & AUDITS QUIZ */
+const ptQs = [
+  { q:"A vulnerability scanner reports a CVSS 9.1 vulnerability on a web server. What should you do NEXT to confirm it is actually exploitable?",
+    opts:["Immediately patch the server","Run a penetration test","Increase the firewall rules","Ignore it — CVSS scores can be wrong"],
+    ans:1,
+    exp:"The workflow is: vulnerability scan → CVSS score → CVE → THEN run a pen test to confirm exploitability. A high CVSS score means prioritize, but a pen test CONFIRMS the vulnerability can actually be exploited in your environment." },
+  { q:"Which of the following BEST describes a penetration test?",
+    opts:["A passive scan that identifies potential weaknesses","A 100% active test that attempts to exploit vulnerabilities","An automated tool that patches vulnerabilities","A log review process"],
+    ans:1,
+    exp:"A pen test is 100% ACTIVE — nothing passive about it. It actively attempts to exploit vulnerabilities. It will cause controlled problems intentionally — that's the point." },
+  { q:"How does a penetration test differ from a vulnerability scan?",
+    opts:["They are the same thing","A vulnerability scan actively exploits; a pen test passively lists weaknesses","A vulnerability scan finds theoretical weaknesses; a pen test confirms actual exploitability","Pen tests are automated; vulnerability scans require a human"],
+    ans:2,
+    exp:"Vulnerability scan = finds theoretical weaknesses that MAY exist. Pen test = actively tries to exploit those weaknesses to CONFIRM they are real and exploitable. This distinction is heavily tested." },
+  { q:"A pen tester is given full knowledge of the network architecture, source code, and credentials before testing. What type of pen test is this?",
+    opts:["Black Box","Gray Box","White Box","Blue Box"],
+    ans:2,
+    exp:"White Box pen test = full knowledge given to the tester. Black Box = no prior knowledge (simulates external attacker). Gray Box = partial knowledge (simulates insider/privileged user)." },
+  { q:"A pen tester receives no information about the target environment and must discover everything from scratch. This simulates which threat actor scenario?",
+    opts:["Malicious insider","Privileged user","External attacker with no prior access","A rogue administrator"],
+    ans:2,
+    exp:"Black Box pen testing gives the tester no prior information — they discover everything themselves. This most closely simulates an external attacker who has no insider knowledge of the organization." },
+  { q:"Before starting a penetration test, what is the MOST important thing a tester must obtain?",
+    opts:["A list of all CVEs on the network","Written authorization from the organization","The CVSS scores of all vulnerabilities","Network diagrams"],
+    ans:1,
+    exp:"ALWAYS get written authorization before pen testing. Testing without explicit written permission is illegal — even if you are an employee of the company. Rules of engagement must be documented." },
+  { q:"An organization posts a program on HackerOne offering cash rewards for finding and responsibly reporting security vulnerabilities. What is this called?",
+    opts:["Penetration test","Vulnerability scan","Bug bounty program","Red team exercise"],
+    ans:2,
+    exp:"Bug bounty programs use platforms like HackerOne and BugCrowd to crowdsource vulnerability discovery. Organizations define scope, eligible vuln types, and payout tiers based on CVSS severity." },
+  { q:"What is the PRIMARY advantage of a bug bounty program over an internal security team alone?",
+    opts:["It is cheaper than buying a firewall","It replaces the need for penetration testing entirely","It gives thousands of skilled external researchers access to find complex hidden vulnerabilities","It is fully automated"],
+    ans:2,
+    exp:"Bug bounties provide crowdsourced security testing — thousands of skilled researchers looking for issues instead of just your internal team. This dramatically increases the chances of finding complex or hidden vulnerabilities." },
+  { q:"An organization reviews its server patch levels, access control configurations, and system hardening baselines. What type of audit is this?",
+    opts:["Process audit","Financial audit","System audit","Compliance audit"],
+    ans:2,
+    exp:"System audit = TECHNICAL focus. It reviews IT systems including configurations, access controls, permissions, and patch levels. Process audit = procedural focus on how people follow policies." },
+  { q:"An organization discovers that employees are not following the documented incident response procedures, even though all technical controls are properly configured. What type of audit would have caught this?",
+    opts:["System audit","Vulnerability scan","Process audit","Network audit"],
+    ans:2,
+    exp:"Process audit = PROCEDURE-focused. It evaluates whether people and workflows follow security policies. A company can PASS a system audit (technical config correct) but FAIL a process audit (employees not following procedures). Both are needed." },
+  { q:"Which statement about system audits and process audits is TRUE?",
+    opts:["A company that passes a system audit automatically passes a process audit","System audits are always performed by 3rd parties only","A company can pass a system audit but fail a process audit","Process audits only apply to HR departments"],
+    ans:2,
+    exp:"A company can pass a system audit (everything technically configured correctly) but fail a process audit if employees aren't following security procedures. This is why both types of audits are necessary together." },
+  { q:"Which of the following represents a PROACTIVE security measure? (Select the BEST answer)",
+    opts:["Restoring systems from backup after a ransomware attack","Issuing a breach notification to affected customers","Conducting regular penetration tests and vulnerability scans before an attack occurs","Resetting all passwords after a credential leak is discovered"],
+    ans:2,
+    exp:"Proactive = done BEFORE an attack. Vulnerability scans, pen tests, bug bounties, audits, patching, and dark web monitoring are all proactive. The other options are reactive — they happen AFTER a security event." }
+];
+
+let ptAnswered = {};
+
+function startPtQuiz() {
+  document.getElementById('ptStartBtn').style.display = 'none';
+  const container = document.getElementById('ptQuestions');
+  container.style.display = 'block';
+  container.innerHTML = '<button class="btn btn-green" style="margin-bottom:1.5rem" onclick="submitPtQuiz()">&#10003; Submit Answers</button>';
+  ptQs.forEach((q, i) => {
+    const card = document.createElement('div');
+    card.className = 'question-card';
+    card.id = 'pt' + i;
+    card.innerHTML = `
+      <div class="question-top">
+        <span class="q-num">Q${i+1}</span>
+        <span class="q-text">${q.q}</span>
+      </div>
+      <div class="options" id="ptopts${i}">
+        ${q.opts.map((o,j) => `<div class="option" onclick="ptpick(${i},${j})" id="ptopt${i}_${j}">
+          <span class="opt-letter">${'ABCD'[j]}</span>${o}</div>`).join('')}
+      </div>
+      <div class="explanation" id="ptexp${i}">${q.exp}</div>`;
+    container.appendChild(card);
+  });
+  container.innerHTML += '<button class="btn btn-green" style="margin-top:.5rem" onclick="submitPtQuiz()">&#10003; Submit Answers</button>';
+}
+
+function ptpick(qi, oi) {
+  if (ptAnswered[qi] !== undefined) return;
+  document.querySelectorAll(`#ptopts${qi} .option`).forEach(o => o.classList.remove('selected'));
+  document.getElementById(`ptopt${qi}_${oi}`).classList.add('selected');
+  ptAnswered[qi] = oi;
+}
+
+function submitPtQuiz() {
+  let score = 0;
+  ptQs.forEach((q, i) => {
+    const chosen = ptAnswered[i];
+    const opts = document.querySelectorAll(`#ptopts${i} .option`);
+    opts.forEach(o => o.classList.add('locked'));
+    opts[q.ans].classList.add('correct-ans');
+    if (chosen !== undefined && chosen !== q.ans) {
+      opts[chosen].classList.add('wrong-ans');
+      document.getElementById('pt'+i).classList.add('incorrect');
+    } else if (chosen === q.ans) {
+      score++;
+      document.getElementById('pt'+i).classList.add('correct');
+    } else {
+      document.getElementById('pt'+i).classList.add('incorrect');
+    }
+    document.getElementById('ptexp'+i).classList.add('show');
+  });
+  const pct = Math.round(score / ptQs.length * 100);
+  const bar = document.getElementById('ptScoreBar');
+  bar.classList.add('show');
+  document.getElementById('ptScoreNum').textContent = score + '/' + ptQs.length;
+  document.getElementById('ptScoreFill').style.width = pct + '%';
+  let msg = pct >= 90 ? '🏆 Excellent — exam ready on this material!' :
+            pct >= 75 ? '✅ Good — review any missed questions.' :
+                        '📖 Go back through the notes and retry.';
+  document.getElementById('ptScoreLabel').textContent = pct + '% — ' + msg;
+  bar.scrollIntoView({ behavior: 'smooth' });
+  document.querySelectorAll('#ptQuestions .btn-green').forEach(b => b.style.display = 'none');
+}
+
+function resetPtQuiz() {
+  ptAnswered = {};
+  document.getElementById('ptScoreBar').classList.remove('show');
+  document.getElementById('ptStartBtn').style.display = 'inline-flex';
+  document.getElementById('ptQuestions').style.display = 'none';
+  document.getElementById('ptQuestions').innerHTML = '';
 }
 </script>
 
