@@ -1788,6 +1788,53 @@
     </div>
   </div>
 
+  <!-- IAM -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#128100; IAM — Identity and Access Management <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <p>IAM is a framework of policies, technologies, and processes that ensures only authorized users and devices can access specific resources within an organization's environment. It manages digital identities — users, systems, devices — and controls what those identities are allowed to do.</p>
+      <div class="callout warn" style="text-align:center;font-size:1rem;">
+        <strong>IAM enforces AAA — Authentication · Authorization · Accounting</strong><br/>
+        <span style="color:var(--muted);font-size:.875rem;">Also called IAAA — Identification · Authentication · Authorization · Accounting</span>
+      </div>
+      <table>
+        <tr><th>Pillar</th><th>Question it answers</th><th>Example</th></tr>
+        <tr><td><strong>Identification</strong></td><td>Who are you claiming to be?</td><td>Username entered at login</td></tr>
+        <tr><td><strong>Authentication</strong></td><td>Can you prove it?</td><td>Password, MFA, certificate</td></tr>
+        <tr><td><strong>Authorization</strong></td><td>What are you allowed to do?</td><td>Role-based permissions, ACLs</td></tr>
+        <tr><td><strong>Accounting</strong></td><td>What did you do and when?</td><td>Audit logs, session records</td></tr>
+      </table>
+
+      <h3>Jump Box (Jump Server) <span class="tag-test">TEST</span></h3>
+      <table>
+        <tr><th>Feature</th><th>Detail</th></tr>
+        <tr><td><strong>What it is</strong></td><td>A hardened server placed in a secure network zone that acts as the <strong>single entry point</strong> for administrators accessing internal systems</td></tr>
+        <tr><td><strong>Why it matters</strong></td><td>Administrators never connect directly to internal systems — all admin traffic routes through the jump box, creating a controlled, auditable chokepoint</td></tr>
+        <tr><td><strong>Combined with</strong></td><td>SSO — admins authenticate once with corporate identity through the jump box, then reach internal systems without re-authenticating</td></tr>
+      </table>
+
+      <h3>SSO — Single Sign-On</h3>
+      <p>Centralized authentication — a user logs in <strong>once</strong> with their corporate identity and gains access to all authorized systems without re-entering credentials. Reduces password fatigue and centralizes access control.</p>
+
+      <h3>Account Provisioning — User Creation + Assigning Permissions <span class="tag-test">TEST</span></h3>
+      <div class="callout red">
+        <strong>Two separate steps — both matter on the exam:</strong><br/><br/>
+        <strong>Creating a user</strong> = establishes an identity within the system<br/>
+        <strong>Assigning permissions</strong> = determines what that identity is allowed to do (access levels and capabilities)<br/><br/>
+        Both must follow <strong>least privilege</strong> and <strong>separation of duties</strong> from the start.
+      </div>
+      <table>
+        <tr><th>Concept</th><th>What it means</th></tr>
+        <tr><td><strong>Account Provisioning</strong></td><td>The full process of creating a user account and assigning appropriate access — ensures only authorized individuals get access to organizational resources</td></tr>
+        <tr><td><strong>Least Privilege</strong></td><td>Users get only the minimum access needed to do their job — nothing more</td></tr>
+        <tr><td><strong>Separation of Duties</strong></td><td>No single person has enough access to complete a sensitive task alone — upholds least privilege by distributing critical capabilities across multiple people</td></tr>
+      </table>
+    </div>
+  </div>
+
   <!-- QUIZ -->
   <div style="margin-top:2rem;">
     <div class="quiz-intro">
@@ -2249,7 +2296,27 @@ const ptQs = [
   { q:"UBA is especially effective against which type of threat that often bypasses traditional perimeter defenses?",
     opts:["Zero-day software vulnerabilities","DDoS attacks","Insider threats and compromised legitimate accounts","SQL injection attacks"],
     ans:2,
-    exp:"UBA is designed specifically for insider threats and compromised accounts — attackers who have valid credentials and bypass perimeter controls like firewalls and IDS. Traditional security tools look for malicious traffic patterns; UBA detects anomalous BEHAVIOR even when the credentials being used are legitimate. It's also effective against APTs that move slowly and blend in." }
+    exp:"UBA is designed specifically for insider threats and compromised accounts — attackers who have valid credentials and bypass perimeter controls like firewalls and IDS. Traditional security tools look for malicious traffic patterns; UBA detects anomalous BEHAVIOR even when the credentials being used are legitimate. It's also effective against APTs that move slowly and blend in." },
+  { q:"What does IAM stand for, and what is its primary purpose?",
+    opts:["Integrated Access Module — encrypts user credentials","Identity and Access Management — ensures only authorized users and devices access the right resources at the right time","Internet Authentication Mechanism — manages firewall rules","Internal Audit Management — tracks compliance violations"],
+    ans:1,
+    exp:"IAM = Identity and Access Management. It is a framework of policies, technologies, and processes ensuring that only authorized users and devices can access specific organizational resources. It manages digital identities and controls what those identities are permitted to do — enforcing Authentication, Authorization, and Accounting (AAA/IAAA)." },
+  { q:"An administrator must access a critical internal server. Instead of connecting directly, they first authenticate to a hardened server in a secure zone, then reach the internal system from there. What is this hardened server called?",
+    opts:["Honeypot","Bastion host / Jump box","Proxy server","DMZ web server"],
+    ans:1,
+    exp:"A Jump Box (also called a jump server or bastion host) is a hardened server in a secure network zone that acts as the single controlled entry point for administrative access to internal systems. All admin traffic is routed through it, creating an auditable chokepoint. It is commonly combined with SSO so admins authenticate once with corporate identity." },
+  { q:"Which AAA component answers the question 'What did the user do and when?'",
+    opts:["Authentication","Authorization","Accounting","Identification"],
+    ans:2,
+    exp:"Accounting = the AAA component that tracks and logs user activity — what resources were accessed, what actions were taken, and when. This produces the audit trail used for forensic investigations, compliance reporting, and detecting policy violations. Authentication = proving identity. Authorization = defining what is permitted." },
+  { q:"A new employee is created in Active Directory and given access only to the files needed for their specific job role. What process is this, and which principle does it follow?",
+    opts:["Authentication following separation of duties","Account provisioning following least privilege","Authorization following need-to-know only","Identity federation following zero trust"],
+    ans:1,
+    exp:"Account provisioning = creating the user account AND assigning appropriate permissions. The principle of least privilege requires that users receive only the minimum access needed to do their job — nothing more. Both steps (creating the user and assigning permissions) must apply least privilege from the start." },
+  { q:"A financial system requires that the person who initiates a wire transfer cannot also be the person who approves it. What security principle is this?",
+    opts:["Least privilege","Mandatory access control","Separation of duties","Account provisioning"],
+    ans:2,
+    exp:"Separation of duties = no single person has enough access to complete a sensitive or high-risk task alone. It distributes critical capabilities across multiple people to prevent fraud, errors, and abuse of privilege. It upholds least privilege by ensuring no one individual accumulates excessive access." }
 ];
 
 let ptAnswered = {};
