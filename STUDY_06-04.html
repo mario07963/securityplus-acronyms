@@ -398,6 +398,150 @@
     </div>
   </div>
 
+  <!-- CVE ID FORMAT -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#127991; CVE ID Format — What the Number Means <span class="tag-test">TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <div class="callout warn" style="text-align:center;font-size:1.05rem;">
+        <strong>CVE - YYYY - NNNNN</strong><br/>
+        <span style="color:var(--muted);font-size:.85rem;">CVE &nbsp;—&nbsp; Year Discovered &nbsp;—&nbsp; Arbitrary Number</span>
+      </div>
+      <table>
+        <tr><th>Part</th><th>Meaning</th><th>Example</th></tr>
+        <tr><td><strong>CVE</strong></td><td>Common Vulnerabilities and Exposures (prefix, always the same)</td><td>CVE-</td></tr>
+        <tr><td><strong>YYYY</strong></td><td>The <strong>year the vulnerability was discovered/published</strong></td><td>2021-</td></tr>
+        <tr><td><strong>NNNNN</strong></td><td><strong>Arbitrary number</strong> assigned by Mitre — NOT sequential, NOT meaningful, just a unique ID</td><td>44228</td></tr>
+      </table>
+      <div class="callout green">Full example: <strong>CVE-2021-44228</strong> = Log4Shell, discovered in 2021, assigned ID 44228 by Mitre. The number itself means nothing — it's just a unique tag.</div>
+      <div class="callout"><strong>Maintained by:</strong> Mitre Corporation &nbsp;|&nbsp; <strong>Hosted with scores at:</strong> nvd.nist.gov (NIST)</div>
+    </div>
+  </div>
+
+  <!-- CVSS KEYWORD TRIGGER -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#128161; CVSS Keyword Trigger — Exam Shortcut <span class="tag-test">TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <div class="callout red" style="font-size:.95rem;">
+        <strong>Your instructor's exact rule:</strong><br/><br/>
+        When you see the word <strong>"prioritize"</strong> in a question about <strong>vulnerabilities</strong> → answer is <strong>CVSS</strong>.<br/><br/>
+        When you see <strong>"prioritize"</strong> in a question about <strong>change management</strong> → answer is <strong>classification</strong>.
+      </div>
+      <table>
+        <tr><th>Question context</th><th>Keyword trigger</th><th>Answer</th></tr>
+        <tr><td>"Which framework helps you <strong>prioritize</strong> which vulnerabilities to fix first?"</td><td>prioritize + vulnerability</td><td><strong>CVSS</strong></td></tr>
+        <tr><td>"In a change management workflow, how do you <strong>prioritize</strong> fixes?"</td><td>prioritize + change management</td><td><strong>Classification</strong></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- INTERNET-FACING TRIAGE TRICK -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#127760; Internet-Facing Triage — The CVSS Trap <span class="tag-test">TRICK QUESTION</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <div class="callout red">
+        <strong>The trap:</strong> A question shows two servers — one with CVSS <strong>9.8</strong> and one with CVSS <strong>8.x</strong>. You instantly want to pick 9.8.<br/><br/>
+        <strong>The trick:</strong> Check the IP address. If the 9.8 server has a <strong>private IP</strong> (internal, not internet-facing), it is <em>less accessible</em> to outside attackers.<br/><br/>
+        The <strong>8.x server with a public/internet-facing IP gets priority</strong> — it is exposed to the entire internet and therefore carries greater immediate risk.
+      </div>
+      <table>
+        <tr><th>Factor</th><th>Why it matters for triage</th></tr>
+        <tr><td><strong>CVSS Score</strong></td><td>Severity of the vulnerability itself — higher = more dangerous in isolation</td></tr>
+        <tr><td><strong>Internet-facing (public IP)</strong></td><td>Exposed to external attackers — massively increases real-world exploitability</td></tr>
+        <tr><td><strong>Internal (private IP)</strong></td><td>Attacker must already be inside your network — lower immediate exposure</td></tr>
+        <tr><td><strong>Asset value</strong></td><td>High-value system (DB server, domain controller) elevates priority even with lower CVSS</td></tr>
+      </table>
+      <div class="callout green"><strong>Private IP ranges (internal only):</strong> 10.x.x.x &nbsp;|&nbsp; 172.16–31.x.x &nbsp;|&nbsp; 192.168.x.x &nbsp;— anything else is public/internet-facing.</div>
+      <div class="callout warn"><strong>Exam rule:</strong> CVSS score is your starting point, but <strong>internet-facing + lower CVSS beats internal + higher CVSS</strong> when determining what to remediate first.</div>
+    </div>
+  </div>
+
+  <!-- TRUE / FALSE POSITIVE / NEGATIVE -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#9989; True/False Positives &amp; Negatives <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <div class="callout warn"><strong>Master rule:</strong> TRUE = scanner working correctly. &nbsp; FALSE = scanner NOT working correctly.</div>
+      <table>
+        <tr><th>Result</th><th>Reality</th><th>Scanner says</th><th>Scanner status</th><th>Danger level</th></tr>
+        <tr><td><strong>True Positive</strong></td><td>Real threat EXISTS</td><td>Threat detected ✓</td><td style="color:var(--green)">Working correctly</td><td>N/A — caught it</td></tr>
+        <tr><td><strong>True Negative</strong></td><td>No threat</td><td>Nothing reported ✓</td><td style="color:var(--green)">Working correctly</td><td>N/A — all clear</td></tr>
+        <tr><td><strong>False Positive</strong></td><td>No real threat</td><td>Reports a threat ✗</td><td style="color:var(--red)">Scanner failed</td><td>Wastes time chasing ghosts</td></tr>
+        <tr><td><strong>False Negative</strong></td><td>Real threat EXISTS</td><td>Reports nothing ✗</td><td style="color:var(--red)">Scanner failed</td><td style="color:var(--red);font-weight:700">MOST DANGEROUS</td></tr>
+      </table>
+      <div class="callout red"><strong>False Negative = worst outcome.</strong> A real threat is present but the scanner misses it entirely — you have no idea you're compromised.</div>
+      <h3>Why False Negatives Happen</h3>
+      <ul>
+        <li><strong>Scanner not updated</strong> — most common cause; signatures are outdated</li>
+        <li><strong>Zero-days</strong> — new/unknown vulnerabilities not yet in the tool's database</li>
+        <li><strong>Incomplete scans</strong> — unauthenticated scan misses vulnerabilities that require credentials to detect</li>
+      </ul>
+      <div class="callout green"><strong>Solution for incomplete scans → use Credentialed Scans.</strong> The scanner logs in with valid credentials and can see deeper into the system, dramatically reducing false negatives.</div>
+      <h3>Why False Positives Happen</h3>
+      <ul>
+        <li>Generic/overly broad detection rules</li>
+        <li>Misconfigured scanner baselines</li>
+        <li>Outdated baselines that don't account for new custom applications</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- OSINT vs PROPRIETARY -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#128269; OSINT vs Proprietary Intelligence <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <table>
+        <tr><th></th><th>OSINT</th><th>Proprietary</th></tr>
+        <tr><td><strong>Full name</strong></td><td>Open Source Intelligence</td><td>Proprietary / Closed Intelligence</td></tr>
+        <tr><td><strong>Cost</strong></td><td>Free — openly available on the internet</td><td>Paid — behind a paywall</td></tr>
+        <tr><td><strong>Access</strong></td><td>Anyone can access it</td><td>Password-protected or licensed</td></tr>
+        <tr><td><strong>Paywall definition</strong></td><td colspan="2">Anything password-protected = a paywall. Not just credit card — login required = paywall.</td></tr>
+        <tr><td><strong>Examples</strong></td><td>NVD (nvd.nist.gov), CVE list, MITRE ATT&amp;CK, Shodan (free tier), public threat feeds</td><td>Commercial threat intel feeds, paid rainbow tables, subscription vulnerability databases</td></tr>
+        <tr><td><strong>Use in vuln mgmt</strong></td><td>Pull threat intelligence to help identify and mitigate vulnerabilities</td><td>More detailed/curated intel — organizations pay for richer data</td></tr>
+      </table>
+      <div class="callout"><strong>NVD is OSINT</strong> — it's free and publicly available. You use OSINT as part of vulnerability management to understand the threat landscape without cost.</div>
+    </div>
+  </div>
+
+  <!-- VULNERABILITY ANALYSIS -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>&#128202; Vulnerability Analysis &amp; Change Management Prioritization</h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body">
+      <p>After a vulnerability scanner finds issues, vulnerability analysis examines them to determine severity, impact, and priority order for remediation.</p>
+      <table>
+        <tr><th>Analysis Factor</th><th>What to evaluate</th></tr>
+        <tr><td><strong>CVSS Score</strong></td><td>Overall severity — your primary starting point</td></tr>
+        <tr><td><strong>Asset value</strong></td><td>How important is the affected system? Domain controller &gt; test server</td></tr>
+        <tr><td><strong>Exploit availability</strong></td><td>Are attackers actively using this exploit in the wild?</td></tr>
+        <tr><td><strong>Environmental context</strong></td><td>Internet-facing vs internal — external exposure multiplies risk</td></tr>
+      </table>
+      <h3>Classification → Prioritization in Change Management</h3>
+      <table>
+        <tr><th>CVSS Severity</th><th>Change Management Response</th></tr>
+        <tr><td><span class="cvss-crit">CRITICAL / HIGH</span></td><td>Emergency change request — expedited approval, immediate action</td></tr>
+        <tr><td><span class="cvss-med">MEDIUM</span></td><td>Scheduled into regular patch cycle</td></tr>
+        <tr><td><span class="cvss-low">LOW</span></td><td>Deferred to next cycle or accepted as residual risk</td></tr>
+      </table>
+      <div class="callout">Every fix is a controlled change — you cannot patch everything at once. Classification severity <strong>directly determines</strong> the speed of response, type of change request, and approval level required.</div>
+    </div>
+  </div>
+
   <div class="section">
     <div class="section-header" onclick="toggle(this)">
       <h2>⚖️ Vulnerability Scan vs Penetration Test</h2>
@@ -574,21 +718,32 @@
     <p>How organizations describe, share, and act on cyber threat intelligence (CTI).</p>
   </div>
 
-  <!-- NEW FROM DOCX: Dark Web -->
+  <!-- SURFACE / DEEP / DARK WEB -->
   <div class="section">
     <div class="section-header open" onclick="toggle(this)">
-      <h2>&#127760; Dark Web &amp; Threat Intelligence Monitoring <span class="tag-new">NEW FROM NOTES</span></h2>
+      <h2>&#127760; Surface Web vs Deep Web vs Dark Web <span class="tag-test">ON TEST</span></h2>
       <span class="chevron">▼</span>
     </div>
     <div class="section-body open">
-      <p>The dark web exists in a semi-trusted zone (similar to a DMZ concept). Security teams monitor it for threat intelligence — not as part of normal IT work, but to stay ahead of attackers.</p>
       <table>
-        <tr><th>What orgs monitor the dark web for</th><th>Why it matters</th></tr>
-        <tr><td>Stolen usernames &amp; passwords from your org</td><td>Early warning of credential compromise before attackers use them</td></tr>
-        <tr><td>Leaked company data</td><td>Detect data breaches that haven't been discovered internally yet</td></tr>
-        <tr><td>Malware exploit kits targeting your systems</td><td>Proactive defense — know what's being built against you</td></tr>
+        <tr><th></th><th>Surface Web</th><th>Deep Web</th><th>Dark Web</th></tr>
+        <tr><td><strong>What it is</strong></td><td>Regular public websites indexed by Google, Bing, etc.</td><td>Password-protected / private content — not indexed</td><td>Intentionally hidden — not indexed, requires special software</td></tr>
+        <tr><td><strong>Examples</strong></td><td>Google.com, news sites, public pages</td><td>Your Gmail, bank portal, private databases, company intranets</td><td>Hidden .onion sites, anonymous marketplaces</td></tr>
+        <tr><td><strong>Access method</strong></td><td>Any browser</td><td>Login credentials / password</td><td><strong>Tor (The Onion Router)</strong> — required</td></tr>
+        <tr><td><strong>Illegal?</strong></td><td>No</td><td>No</td><td><strong>Not inherently illegal</strong> — also used by journalists, activists, privacy-seekers</td></tr>
       </table>
-      <div class="callout warn"><strong>Individual users do NOT browse the dark web.</strong> This is handled by specialized tools and security teams only. You understand it exists and how attackers use it — you don't participate in it.</div>
+      <div class="callout warn"><strong>Stop calling the dark web "illegal."</strong> The dark web itself is not illegal — it's the <em>activity</em> that may be illegal. It's just not indexed and requires Tor.</div>
+      <div class="callout red"><strong>Dark web IS associated with:</strong> sale of stolen credentials, malware/exploit kits, data from breaches, cybercrime marketplaces. Law enforcement and security teams actively monitor it.</div>
+
+      <h3>Dark Web in Vulnerability Management</h3>
+      <table>
+        <tr><th>What orgs monitor for</th><th>Why it matters</th></tr>
+        <tr><td>Stolen org usernames &amp; passwords</td><td>Early warning before attackers use them</td></tr>
+        <tr><td>Leaked company data</td><td>Detect breaches not yet discovered internally</td></tr>
+        <tr><td>Malware/exploit kits targeting your systems</td><td>Proactive defense — know what's being built against you</td></tr>
+      </table>
+      <div class="callout green">Organizations attach vulnerability scans to dark web threat intelligence feeds — monitored from a <strong>sandboxed / DMZ environment</strong>, not by individual users.</div>
+      <div class="callout warn"><strong>Individual users do NOT browse the dark web</strong> as part of IT/security work. Handled by specialized tools and security teams only. The government also monitors dark web activity.</div>
     </div>
   </div>
 
@@ -1265,6 +1420,46 @@ const questions = [
   { q:"What website is the National Vulnerability Database?",
     opts:["cve.org","nvd.nist.gov","vulnerabilities.gov","nist.gov/cve"], ans:1,
     exp:"The NVD is at nvd.nist.gov — maintained by NIST. It lists CVEs along with CVSS scores, affected products, and remediation references." },
+  { q:"A CVE is listed as CVE-2021-44228. What does the '2021' represent in this identifier?",
+    opts:["The number of systems affected","The year the vulnerability was discovered/published","The CVSS score rounded to the nearest year","The arbitrary sequence number assigned by NIST"],
+    ans:1,
+    exp:"CVE format = CVE-YYYY-NNNNN. The YYYY is the year the vulnerability was discovered or published. The NNNNN is an arbitrary number assigned by Mitre — it has no sequential meaning. CVE-2021-44228 = Log4Shell, found in 2021." },
+  { q:"The NNNNN portion of a CVE identifier (e.g., CVE-2021-44228) represents what?",
+    opts:["The CVSS severity score","The number of exploits in the wild","An arbitrary unique number assigned by Mitre — not sequential or meaningful","The patch priority level"],
+    ans:2,
+    exp:"The number after the year in a CVE ID is just an arbitrary unique identifier assigned by Mitre Corporation. It is NOT sequential, NOT the CVSS score, and has no inherent meaning — it simply makes the CVE unique." },
+  { q:"A vulnerability scanner reports a threat on a system, but no actual threat exists. What is this called?",
+    opts:["True Positive","True Negative","False Positive","False Negative"],
+    ans:2,
+    exp:"False Positive = no real threat exists, but the scanner incorrectly reports one. TRUE = scanner is working correctly. FALSE = scanner is NOT working correctly. False positives waste time chasing non-existent threats." },
+  { q:"A vulnerability scanner fails to detect a real threat that exists on a system. What is this called, and why is it the most dangerous result?",
+    opts:["True Negative — dangerous because it creates false confidence","False Positive — dangerous because it wastes resources","False Negative — most dangerous because the real threat goes undetected","True Positive — most dangerous because it triggers unnecessary remediation"],
+    ans:2,
+    exp:"False Negative = a real threat exists but the scanner misses it entirely. This is the MOST DANGEROUS outcome because you have no idea you're compromised. Common causes: outdated scanner, zero-days not in the database, incomplete/unauthenticated scans." },
+  { q:"What is the BEST solution to reduce false negatives caused by incomplete vulnerability scans?",
+    opts:["Run the scan more frequently","Use credentialed (authenticated) scans so the scanner can log in and see deeper","Increase the CVSS threshold","Switch from a host-based to a network-based scanner"],
+    ans:1,
+    exp:"Credentialed scans = the scanner authenticates with valid credentials before scanning. This allows it to access deeper system information it can't see from outside, dramatically reducing false negatives caused by incomplete unauthenticated scans." },
+  { q:"A question asks: 'Which framework should you use to PRIORITIZE which vulnerabilities to fix first?' What is the answer?",
+    opts:["CVE","TAXII","CVSS","Change Management Classification"],
+    ans:2,
+    exp:"Keyword trigger: 'prioritize' + vulnerability context → CVSS. The Common Vulnerability Scoring System gives each vulnerability a 0–10 score that directly tells you priority order. If the question had said 'prioritize in a change management workflow,' the answer would be classification." },
+  { q:"A question asks: 'In a change management workflow, how do you decide which fixes get emergency approval vs. scheduled patch cycles?' What concept drives this?",
+    opts:["CVSS score alone","Vulnerability classification (severity level)","The CVE publication year","TAXII transport priority"],
+    ans:1,
+    exp:"In change management context, the answer is CLASSIFICATION. You classify vulnerabilities by severity, and that classification drives the response speed: Critical/High = emergency change request, Medium = regular patch cycle, Low = deferred/accepted." },
+  { q:"A penetration tester sees two vulnerable servers: Server A has a CVSS score of 9.8 with IP 192.168.10.5. Server B has CVSS 8.2 with a public IP. Which server should be remediated FIRST?",
+    opts:["Server A — CVSS 9.8 is higher, always fix the higher score first","Server B — internet-facing systems have greater real-world exposure regardless of slightly lower CVSS","They are equal priority","Server A — private IPs are always more critical"],
+    ans:1,
+    exp:"Internet-facing context changes the priority. 192.168.x.x is a private (internal) IP — an attacker must already be inside your network to reach it. Server B with a public IP is exposed to the entire internet, making it immediately accessible to external attackers. An 8.2 on an internet-facing server beats a 9.8 on an internal server in real-world risk." },
+  { q:"Which of the following is an example of OSINT (Open Source Intelligence)?",
+    opts:["A paid threat intelligence feed behind a subscription paywall","The National Vulnerability Database at nvd.nist.gov","A proprietary rainbow table purchased from a security vendor","A company's internal vulnerability scan results"],
+    ans:1,
+    exp:"OSINT = freely available on the internet, no cost. NVD (nvd.nist.gov) is public and free — classic OSINT. Paid feeds and proprietary data behind a paywall (password = paywall) are proprietary intelligence." },
+  { q:"Which statement BEST describes the dark web?",
+    opts:["It is an illegal network used only by criminals","It is the same as the deep web — just password-protected content","It is a part of the internet not indexed by search engines, requiring Tor to access, and used for both legitimate and illegal purposes","It is a government-run network for classified information"],
+    ans:2,
+    exp:"The dark web is NOT inherently illegal. It's simply not indexed by traditional search engines and requires Tor (The Onion Router) to access. It's used by journalists, activists, and privacy-seekers — as well as cybercriminals. Security teams monitor it from sandboxed/DMZ environments for threat intelligence." },
   { q:"A vulnerability has a CVSS score of 9.3. What severity is this and what should you do?",
     opts:["HIGH — schedule for next patch cycle","MEDIUM — monitor it","CRITICAL — remediate immediately","LOW — deprioritize"], ans:0,
     exp:"CVSS 9.0–10.0 = CRITICAL. This requires immediate remediation — emergency patching. Highest CVSS score = fix first.",
