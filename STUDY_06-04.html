@@ -1570,11 +1570,148 @@
     </div>
   </div>
 
+  <!-- ACL TYPES -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>&#128195; ACL Types — Standard vs Extended <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body">
+      <table>
+        <tr><th>Type</th><th>Filters on</th><th>Use case</th></tr>
+        <tr><td><strong>Standard ACL</strong></td><td>Source IP address only</td><td>Basic permit/deny based on where traffic comes from</td></tr>
+        <tr><td><strong>Extended ACL</strong></td><td>Source IP, destination IP, ports, and protocols</td><td>Granular control — allow only HTTPS from specific subnet to specific server</td></tr>
+      </table>
+      <div class="callout red"><strong>Implicit denial ends every ACL.</strong> Any traffic not explicitly permitted by a rule is automatically blocked. This applies to both ACLs and firewalls — if no rule matches, the traffic is denied.</div>
+      <p>ACL rules are processed <strong>top-down</strong> — the first matching rule wins and processing stops. Rule order is critical.</p>
+    </div>
+  </div>
+
+  <!-- DMZ / SCREEN SUBNET -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#127981; Screen Subnet / DMZ <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <p>A <strong>screen subnet</strong> (also called a <strong>DMZ — Demilitarized Zone</strong>) is a network segment that sits between the internal trusted network and the untrusted external network (internet). It provides an additional security layer by isolating publicly accessible systems from the internal network.</p>
+      <table>
+        <tr><th>Feature</th><th>Detail</th></tr>
+        <tr><td><strong>Purpose</strong></td><td>Host public-facing services (web servers, email servers, DNS servers) without exposing the internal network</td></tr>
+        <tr><td><strong>Configuration</strong></td><td><strong>Back-to-back firewall</strong> — one firewall between internet ↔ DMZ; a second firewall between DMZ ↔ internal network</td></tr>
+        <tr><td><strong>If DMZ is compromised</strong></td><td>Attacker is <strong>contained within the DMZ</strong> — cannot easily move laterally into the internal network</td></tr>
+        <tr><td><strong>Supports</strong></td><td>Network segmentation + defense in depth</td></tr>
+      </table>
+      <div class="callout warn"><strong>Back-to-back firewall = screen subnet = DMZ</strong> — the exam uses all three terms. Know that two firewalls create this architecture: internet → [FW1] → DMZ → [FW2] → internal.</div>
+    </div>
+  </div>
+
+  <!-- IDS vs IPS -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#128270; IDS vs IPS <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <div class="callout red" style="text-align:center;font-size:1rem;">
+        <strong>IDS = Passive (detects &amp; alerts) &nbsp;|&nbsp; IPS = Active (detects &amp; BLOCKS)</strong>
+      </div>
+      <table>
+        <tr><th></th><th>IDS</th><th>IPS</th></tr>
+        <tr><td><strong>Action</strong></td><td>Detects and alerts — does NOT stop the threat</td><td>Detects and automatically blocks/drops malicious traffic in real time</td></tr>
+        <tr><td><strong>Placement</strong></td><td>Out-of-band — monitors a copy of traffic</td><td><strong>Inline</strong> with traffic — all packets pass through it</td></tr>
+        <tr><td><strong>Response</strong></td><td>Notifies admins or SIEM</td><td>Drops packets, resets connections, blocks IP addresses</td></tr>
+        <tr><td><strong>Risk</strong></td><td>Misses real-time blocking</td><td>Must be carefully tuned — misconfiguration can block legitimate traffic</td></tr>
+      </table>
+      <h3>Detection Methods (both IDS and IPS use these)</h3>
+      <table>
+        <tr><th>Method</th><th>How it works</th></tr>
+        <tr><td><strong>Signature-based</strong></td><td>Matches traffic against known attack patterns — fast but misses new/unknown attacks</td></tr>
+        <tr><td><strong>Anomaly-based</strong></td><td>Compares to a baseline of normal behavior — detects deviations — can catch zero-days but produces more false positives</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- WEB FILTERING & DNS FILTERING -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#127760; Web Filtering &amp; DNS Filtering <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <table>
+        <tr><th></th><th>Web Filtering</th><th>DNS Filtering</th></tr>
+        <tr><td><strong>Where it operates</strong></td><td>Inspects web traffic content — full payload analysis</td><td>Operates at DNS resolution stage — before connection is ever established</td></tr>
+        <tr><td><strong>How it blocks</strong></td><td>Inspects URLs, page content, and traffic patterns</td><td>Denies DNS resolution for blocked domains — connection never starts</td></tr>
+        <tr><td><strong>Visibility</strong></td><td>High — sees full content</td><td>Lower — sees domain names only, not payload</td></tr>
+        <tr><td><strong>Speed</strong></td><td>Slower — full inspection overhead</td><td>Faster and lightweight</td></tr>
+        <tr><td><strong>Stops</strong></td><td>Phishing, drive-by downloads, C2 communication, inappropriate content</td><td>Phishing domains, malware distribution, C2 communication</td></tr>
+        <tr><td><strong>Implementation</strong></td><td>Firewalls, secure web gateways, endpoint tools</td><td>DNS security services, secured DNS servers</td></tr>
+      </table>
+      <div class="callout green"><strong>Together = layered protection.</strong> DNS filtering stops the connection before it begins; web filtering inspects what gets through. Use both.</div>
+      <div class="callout"><strong>Web filtering also enforces acceptable use policies (AUP)</strong> — blocking categories like social media, gambling, or adult content. Integrates with threat intelligence feeds to stay current on new malicious sites.</div>
+    </div>
+  </div>
+
+  <!-- SELINUX vs GROUP POLICY -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>&#128274; SELinux vs Group Policy — OS Security <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body">
+      <table>
+        <tr><th></th><th>SELinux</th><th>Group Policy</th></tr>
+        <tr><td><strong>Platform</strong></td><td>Linux</td><td>Windows (Active Directory)</td></tr>
+        <tr><td><strong>Type</strong></td><td>Mandatory Access Control (MAC)</td><td>Centralized configuration management</td></tr>
+        <tr><td><strong>How it works</strong></td><td>Enforces strict policies on how processes and users interact with files and system resources — <strong>cannot be overridden even by admins</strong></td><td>Centrally manage and push security settings, passwords, software installs, firewall settings, and user permissions across all systems in the domain</td></tr>
+        <tr><td><strong>Key feature</strong></td><td>Policy-based restrictions that override user ownership (unlike DAC which relies on user ownership)</td><td>Ensures consistency and compliance across the organization from one central point</td></tr>
+        <tr><td><strong>Use case</strong></td><td>High-security Linux environments — enforces least privilege at OS level</td><td>Enterprise Windows environments — configuration management and access control</td></tr>
+      </table>
+      <div class="callout warn"><strong>Memory rule:</strong> SELinux = Linux + MAC (mandatory, can't be overridden) | Group Policy = Windows + AD (centralized management)</div>
+    </div>
+  </div>
+
+  <!-- SPF / DKIM / DMARC + MAIL GATEWAY -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#128140; SPF, DKIM, DMARC &amp; Mail Gateway <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <div class="callout red" style="text-align:center;">
+        <strong>Email is the #1 attack vector — phishing and ransomware campaigns start here.</strong>
+      </div>
+      <h3>The Email Security Triad</h3>
+      <table>
+        <tr><th>Protocol</th><th>Full Name</th><th>What it does</th></tr>
+        <tr><td><strong>SPF</strong></td><td>Sender Policy Framework</td><td>Domain owner specifies which mail servers are authorized to send email on behalf of that domain — receiving server checks if email came from an authorized source</td></tr>
+        <tr><td><strong>DKIM</strong></td><td>DomainKeys Identified Mail</td><td>Attaches a <strong>digital signature</strong> to outgoing email — receiving server verifies the message was not altered in transit and truly came from the claimed domain</td></tr>
+        <tr><td><strong>DMARC</strong></td><td>Domain-based Message Authentication, Reporting and Conformance</td><td>Builds on SPF + DKIM — tells receiving servers <strong>what to do when auth fails</strong> (reject, quarantine, or allow); also generates reports so organizations can monitor spoofing attempts</td></tr>
+      </table>
+      <div class="callout">
+        <strong>Together:</strong> SPF = verifies <em>who is sending</em> | DKIM = verifies <em>message wasn't tampered</em> | DMARC = enforces <em>policy + visibility</em>
+      </div>
+
+      <h3>Mail Gateway <span class="tag-test">IMPORTANT</span></h3>
+      <p>A mail gateway is a security device or service that filters and monitors all inbound and outbound email traffic — acting as a checkpoint between the internet and the internal email system.</p>
+      <table>
+        <tr><th>Feature</th><th>Detail</th></tr>
+        <tr><td><strong>Uses</strong></td><td>SPF, DKIM, DMARC to verify sender authenticity</td></tr>
+        <tr><td><strong>Also does</strong></td><td>Content filtering, spam filtering, malware scanning, encryption enforcement, DLP (prevent data leakage)</td></tr>
+        <tr><td><strong>On risky messages</strong></td><td>Block, quarantine, or flag for review</td></tr>
+        <tr><td><strong>Deployment</strong></td><td>Physical device, virtual appliance, or cloud-based service — many modern implementations are cloud-based and integrate with SIEM</td></tr>
+        <tr><td><strong>Key point</strong></td><td>Mail Gateway does NOT replace SPF/DKIM/DMARC — it <strong>uses them</strong> as part of its layered defense</td></tr>
+      </table>
+      <div class="callout green"><strong>Spam filters alone are NOT enough</strong> — attackers easily bypass them by changing the display name in the From field. Use a Mail Gateway that enforces SPF + DKIM + DMARC + content filtering together.</div>
+    </div>
+  </div>
+
   <!-- QUIZ -->
   <div style="margin-top:2rem;">
     <div class="quiz-intro">
       <h2>Pen Test, Audits &amp; Security Monitoring — Practice Quiz</h2>
-      <p>Exam-focused questions with full explanations — covers pen testing, firewalls, SIEM, SCAP, risk, vuln mgmt, and more</p>
+      <p>Exam-focused questions with full explanations — covers pen testing, firewalls, IDS/IPS, email security, SIEM, SCAP, risk, and more</p>
       <button class="btn btn-primary" id="ptStartBtn" onclick="startPtQuiz()">Start Quiz</button>
     </div>
 
@@ -1959,7 +2096,51 @@ const ptQs = [
   { q:"What security concept does a layered approach using firewalls + IPS + SIEM + endpoint protection represent?",
     opts:["Zero Trust","Least Privilege","Defense in Depth","Implicit Denial"],
     ans:2,
-    exp:"Defense in Depth = layered security strategy. No single technology provides complete protection — multiple overlapping controls ensure that if one layer fails, others remain. Firewalls + IDS/IPS + SIEM + endpoint protection + DLP + network segmentation working together is the textbook example." }
+    exp:"Defense in Depth = layered security strategy. No single technology provides complete protection — multiple overlapping controls ensure that if one layer fails, others remain. Firewalls + IDS/IPS + SIEM + endpoint protection + DLP + network segmentation working together is the textbook example." },
+  { q:"An ACL has rules permitting specific traffic. A packet arrives that matches none of the rules. What happens?",
+    opts:["The packet is forwarded to the next router for evaluation","The packet is allowed — unmatched traffic is permitted by default","The packet is denied — an implicit denial blocks all unmatched traffic at the end of every ACL","The packet is logged and held in a queue for admin review"],
+    ans:2,
+    exp:"Implicit denial ends every ACL. Any traffic not explicitly permitted by a rule is automatically blocked. This applies to both ACLs and firewalls. The exam will test whether you know that the default behavior is deny — not allow — when no rule matches." },
+  { q:"A Standard ACL differs from an Extended ACL in that a Standard ACL filters traffic based only on:",
+    opts:["Destination IP address","Source IP address only","Port numbers and protocols","Application data"],
+    ans:1,
+    exp:"Standard ACL = source IP address only. Extended ACL = source IP + destination IP + port numbers + protocols. Extended ACLs provide granular control (e.g., allow only HTTPS from a specific subnet to a specific server). Standard ACLs are simpler but less precise." },
+  { q:"A company places its web server, email server, and DNS server in a separate network zone that is accessible from the internet but isolated from the internal corporate network. What is this zone called?",
+    opts:["VLAN","Intranet","DMZ (Demilitarized Zone) / Screen Subnet","Honeypot"],
+    ans:2,
+    exp:"DMZ (Demilitarized Zone) = screen subnet = a network segment between the untrusted internet and the trusted internal network. It hosts public-facing services so external users can access them without reaching the internal network. If a DMZ system is compromised, the attacker is contained within that isolated segment." },
+  { q:"An organization uses two firewalls to create a DMZ: one between the internet and the DMZ, and another between the DMZ and the internal network. What is this architecture called?",
+    opts:["Dual-homed firewall","Transparent firewall","Back-to-back firewall","Bastion host"],
+    ans:2,
+    exp:"Back-to-back firewall = two firewalls creating a DMZ. Architecture: Internet → [Firewall 1] → DMZ → [Firewall 2] → Internal Network. The DMZ hosts public services; even if an attacker breaches the first firewall and compromises a DMZ server, the second firewall prevents them from reaching the internal network." },
+  { q:"A security system detects a SQL injection attempt and immediately drops the malicious packets without notifying an admin first. Which technology is this?",
+    opts:["IDS — Intrusion Detection System","Firewall with packet filtering","IPS — Intrusion Prevention System","SIEM correlation rule"],
+    ans:2,
+    exp:"IPS = Intrusion Prevention System — ACTIVE. It sits inline with network traffic and automatically blocks/drops threats in real time without waiting for admin input. IDS is passive — it only detects and alerts, but does NOT take action to stop the threat. IPS acts; IDS notifies." },
+  { q:"An IDS flags unusual outbound traffic that doesn't match any known malware signature, but the volume and timing are abnormal compared to the baseline. Which detection method identified this?",
+    opts:["Signature-based detection","Heuristic scanning","Anomaly-based detection","Log correlation"],
+    ans:2,
+    exp:"Anomaly-based detection compares current traffic/behavior to a baseline of 'normal' — deviations trigger alerts. It can catch zero-day attacks and unknown threats that have no signature yet. Signature-based detection matches against a database of known attack patterns and misses new, unknown attacks." },
+  { q:"A user types a website URL into their browser. Before any connection is established, the request is checked against a list of blocked domains and access is denied. What technology prevented this?",
+    opts:["Web application firewall","Full content inspection","DNS filtering","NGFW deep packet inspection"],
+    ans:2,
+    exp:"DNS filtering operates at the DNS resolution stage — before a connection is ever established. It checks the requested domain against an allow/block list based on reputation, category, or policy. If the domain is blocked, DNS resolution is denied, so the connection never starts. This is faster than full content inspection but provides less visibility (domain name only, not payload)." },
+  { q:"Which email security protocol attaches a digital signature to outgoing messages so the receiving server can verify the message was not altered and truly came from the claimed domain?",
+    opts:["SPF — Sender Policy Framework","DMARC — Domain-based Message Authentication","DKIM — DomainKeys Identified Mail","S/MIME"],
+    ans:2,
+    exp:"DKIM (DomainKeys Identified Mail) attaches a cryptographic digital signature to outgoing email. The receiving server uses the public key published in the sender's DNS to verify: (1) the message wasn't altered in transit, and (2) it genuinely came from the claimed domain. This provides message integrity and authentication." },
+  { q:"A domain owner wants to tell receiving mail servers to REJECT emails that fail SPF and DKIM checks, and also receive weekly reports on failed authentication attempts. Which protocol provides this capability?",
+    opts:["SPF","DKIM","DMARC","TLS"],
+    ans:2,
+    exp:"DMARC (Domain-based Message Authentication, Reporting and Conformance) builds on SPF and DKIM. It defines the policy for what receiving servers should do when authentication fails (none, quarantine, or reject) AND generates reports that let domain owners see authentication results and detect spoofing attempts." },
+  { q:"An organization's spam filter is being bypassed by attackers who simply change the display name in the From field. What is the BEST solution?",
+    opts:["Configure a stricter spam filter keyword list","Implement a mail gateway that enforces SPF, DKIM, and DMARC validation","Train users to manually verify every email sender","Block all external email"],
+    ans:1,
+    exp:"Spam filters alone are easily bypassed by spoofing the display name. A Mail Gateway uses SPF (verifies authorized sending server), DKIM (verifies message integrity and authenticity), and DMARC (enforces policy on failures) together — combined with content filtering, malware scanning, and DLP. Mail Gateway does NOT replace SPF/DKIM/DMARC — it uses them." },
+  { q:"SELinux and Group Policy both enforce security controls. SELinux differs from Group Policy primarily because SELinux:",
+    opts:["Only works on Windows servers","Enforces mandatory access control that cannot be overridden even by administrators","Manages Active Directory user accounts","Provides cloud-based policy enforcement"],
+    ans:1,
+    exp:"SELinux = Linux-based Mandatory Access Control (MAC). It enforces strict policies on how processes and users interact with files and system resources — and these policies CANNOT be overridden even by users with administrator privileges. Group Policy is Windows-based centralized configuration management via Active Directory — it manages settings but relies on administrator-level permissions." }
 ];
 
 let ptAnswered = {};
