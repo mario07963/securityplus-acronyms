@@ -420,6 +420,46 @@
     </div>
   </div>
 
+  <!-- CVSS 3 METRICS -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#128200; CVSS — 3 Scoring Metrics <span class="tag-test">ANSWER CHOICES ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <div class="callout red"><strong>Your instructor flagged these as exam answer choices</strong> — most people don't know them. The test will list all three and ask you to identify one.</div>
+      <table>
+        <tr><th>Metric</th><th>What it measures</th><th>Key question</th><th>Changes?</th></tr>
+        <tr><td><strong>Base</strong></td><td>Intrinsic characteristics of the vulnerability itself</td><td>"How bad is this vulnerability <em>in general</em>?"</td><td>Never — always present, <strong>most important</strong></td></tr>
+        <tr><td><strong>Temporal</strong></td><td>Factors that change over time (e.g. public exploit released, patch available)</td><td>"What is the current threat level <em>right now</em>?"</td><td>Yes — changes as exploits/patches emerge</td></tr>
+        <tr><td><strong>Environmental</strong></td><td>Adjusted for your specific org/environment (public-facing vs. isolated)</td><td>"How much does this matter <em>to us specifically</em>?"</td><td>Yes — differs per organization</td></tr>
+      </table>
+      <div class="two-col">
+        <div class="callout green"><strong>Base = always present, most important.</strong> It is the foundation every CVSS score is built on.</div>
+        <div class="callout"><strong>Environmental example:</strong> Same vulnerability — higher score for a public-facing server than an isolated internal one. Each org gets a different Environmental score.</div>
+      </div>
+      <div class="callout warn"><strong>Temporal example:</strong> A vulnerability becomes more dangerous the moment a public exploit is released — the Temporal score goes up even though the underlying vulnerability (Base) didn't change.</div>
+    </div>
+  </div>
+
+  <!-- WHY CVE EXISTS -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>&#128196; Why CVE Exists — The Common Name Problem</h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body">
+      <p>Without CVE, different security vendors, tools, and professionals would name the same vulnerability differently — creating confusion and communication failures.</p>
+      <div class="callout green"><strong>CVE solves this:</strong> Every publicly known vulnerability gets one unique identifier (CVE-YYYY-NNNNN) so all tools, vendors, and professionals worldwide refer to the <em>exact same issue</em> using the same name — no confusion, no duplication.</div>
+      <table>
+        <tr><th>Without CVE</th><th>With CVE</th></tr>
+        <tr><td>Vendor A calls it "Apache RCE Bug #4"</td><td>Everyone calls it CVE-2021-41773</td></tr>
+        <tr><td>Vendor B calls it "Log4j Remote Exploit"</td><td>Everyone calls it CVE-2021-44228</td></tr>
+        <tr><td>Confusion, missed patches, tool mismatches</td><td>Universal standard — patch management and scanning align globally</td></tr>
+      </table>
+    </div>
+  </div>
+
   <!-- CVSS KEYWORD TRIGGER -->
   <div class="section">
     <div class="section-header open" onclick="toggle(this)">
@@ -1068,6 +1108,29 @@
     </div>
   </div>
 
+  <!-- 7 IMPACT TYPES -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#128262; Impact Types — 7 Categories <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <p>Impact = the damage or consequences if a vulnerability is exploited. Focuses on <strong>how bad the outcome is</strong>, not how likely it is to happen.</p>
+      <table>
+        <tr><th>#</th><th>Impact Type</th><th>What it covers</th><th>Examples</th></tr>
+        <tr><td>1</td><td><strong>Financial</strong></td><td>Direct monetary loss</td><td>Theft, fraud, recovery costs, lost revenue</td></tr>
+        <tr><td>2</td><td><strong>Reputational</strong></td><td>Damage to public image</td><td>Loss of customer trust, brand damage, customer aversion</td></tr>
+        <tr><td>3</td><td><strong>Operational</strong></td><td>Disruption to business operations</td><td>System downtime, service outages, reduced productivity</td></tr>
+        <tr><td>4</td><td><strong>Legal / Regulatory</strong></td><td>Compliance consequences</td><td>Fines, penalties, lawsuits, regulatory sanctions</td></tr>
+        <tr><td>5</td><td><strong>Business / Partnership</strong></td><td>Loss of external relationships</td><td>Damaged relationships with vendors, partners, and clients</td></tr>
+        <tr><td>6</td><td><strong>Organizational</strong></td><td>Internal harm to the company</td><td>Loss of intellectual property, internal system compromise, security control failures</td></tr>
+        <tr><td>7</td><td><strong>Industry</strong></td><td>Broader effect beyond the org</td><td>Industry-wide trust issues, supply chain disruption, cascading/wider attacks</td></tr>
+      </table>
+      <div class="callout warn"><strong>Impact ≠ Likelihood.</strong> A vulnerability with HIGH impact but LOW likelihood still demands attention — impact drives how bad the outcome is if it happens. Both factors feed into Risk = Likelihood × Impact.</div>
+      <div class="callout"><strong>Memory trick — F-R-O-L-B-O-I:</strong> Financial · Reputational · Operational · Legal · Business · Organizational · Industry</div>
+    </div>
+  </div>
+
   <!-- PROACTIVE vs REACTIVE -->
   <div class="section">
     <div class="section-header" onclick="toggle(this)">
@@ -1234,6 +1297,38 @@ function resetStixQuiz() {
 
 /* PEN TEST & AUDITS QUIZ */
 const ptQs = [
+  { q:"CVSS scoring uses three metric groups. Which metric group measures the intrinsic characteristics of a vulnerability that do NOT change over time or environment?",
+    opts:["Temporal Metrics","Environmental Metrics","Base Metrics","Organizational Metrics"],
+    ans:2,
+    exp:"Base Metrics measure the intrinsic characteristics of the vulnerability itself — they never change regardless of time or environment. Base is always present and is the most important of the three. It answers: 'How bad is this vulnerability in general?'" },
+  { q:"A security researcher publishes a working exploit for a known vulnerability. Which CVSS metric group would change as a result?",
+    opts:["Base Metrics — because the vulnerability severity changed","Environmental Metrics — because the organization's exposure changed","Temporal Metrics — because the current threat level changed over time","None — CVSS scores never change once assigned"],
+    ans:2,
+    exp:"Temporal Metrics measure factors that change over time — including whether a public exploit is available, whether a patch exists, etc. A public exploit being released raises the Temporal score. The Base score stays the same because the underlying vulnerability didn't change." },
+  { q:"Two organizations have the exact same vulnerability. Organization A runs it on a public-facing web server; Organization B runs it on an air-gapped internal lab machine. Which CVSS metric accounts for this difference in risk?",
+    opts:["Base Metrics","Temporal Metrics","Environmental Metrics","Exposure Factor"],
+    ans:2,
+    exp:"Environmental Metrics adjust the CVSS score based on your specific organization and environment. The same vulnerability can have very different Environmental scores depending on asset importance, system exposure, and existing controls. This is why the same CVE can be Critical to one org and Low to another." },
+  { q:"Which CVSS metric group is ALWAYS present and considered the most important?",
+    opts:["Temporal","Environmental","Organizational","Base"],
+    ans:3,
+    exp:"Base Metrics are always present — every CVSS score has a Base score. Temporal and Environmental are optional modifiers. Base answers 'how bad is this in general?' and is the foundation of every CVSS score." },
+  { q:"Why was the CVE system created?",
+    opts:["To assign CVSS severity scores to vulnerabilities","To give organizations a database of remediation steps","To provide a common unique identifier so all vendors and tools refer to the same vulnerability without confusion","To replace the NVD database"],
+    ans:2,
+    exp:"Without CVE, Vendor A might call it 'Apache Bug #4' while Vendor B calls it 'RCE Flaw 2021' — chaos. CVE gives every publicly known vulnerability one universal unique ID (CVE-YYYY-NNNNN) so every security tool, vendor, and professional worldwide references the exact same issue." },
+  { q:"After a data breach, the organization faces customer churn and negative press coverage. Which impact type is this?",
+    opts:["Financial","Operational","Reputational","Legal"],
+    ans:2,
+    exp:"Reputational Impact = damage to an organization's public image, leading to loss of customer trust, brand damage, and customer aversion. This is distinct from Financial impact (direct monetary loss) even though reputation damage can eventually cause financial loss." },
+  { q:"A ransomware attack takes all company systems offline for three days. Which impact type BEST describes the disruption to daily business operations?",
+    opts:["Financial","Reputational","Legal / Regulatory","Operational"],
+    ans:3,
+    exp:"Operational Impact = disruption to normal business operations — system downtime, service outages, and reduced productivity. The financial cost of the ransom and recovery is Financial impact; the fact that operations stopped is Operational impact." },
+  { q:"A company is fined $500,000 by a regulatory agency after a data breach exposed customer PII. Which impact type is this?",
+    opts:["Financial","Reputational","Legal / Regulatory","Organizational"],
+    ans:2,
+    exp:"Legal / Regulatory Impact = consequences of non-compliance: fines, penalties, lawsuits, and regulatory sanctions. Note: the $500,000 fine could also be viewed as Financial, but the CAUSE is regulatory non-compliance, so the primary classification is Legal/Regulatory." },
   { q:"A vulnerability scanner reports a CVSS 9.1 vulnerability on a web server. What should you do NEXT to confirm it is actually exploitable?",
     opts:["Immediately patch the server","Run a penetration test","Increase the firewall rules","Ignore it — CVSS scores can be wrong"],
     ans:1,
