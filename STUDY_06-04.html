@@ -2019,6 +2019,69 @@
     </div>
   </div>
 
+  <!-- PASSWORDLESS AUTH & PASSWORD MANAGER -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#128273; Passwordless Authentication &amp; Password Managers <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <h3>Passwordless Authentication</h3>
+      <p>Replaces the <strong>something you know</strong> factor (password) with alternatives that are harder to steal or phish:</p>
+      <table>
+        <tr><th>Factor used instead</th><th>Examples</th></tr>
+        <tr><td><strong>Something you have</strong></td><td>Trusted device (push notification approval), hardware security key (FIDO/YubiKey)</td></tr>
+        <tr><td><strong>Something you are</strong></td><td>Biometrics — fingerprint, face ID, retina scan</td></tr>
+      </table>
+      <div class="callout green">
+        <strong>No shared secret = no shared secret to steal.</strong> Passwordless authentication does not transmit or store a password in a way attackers can exploit — making it highly resistant to brute force, credential stuffing, phishing, and credential theft.
+      </div>
+      <div class="callout"><strong>FIDO (Fast Identity Online)</strong> — an open standard for passwordless authentication using hardware security keys and platform authenticators. Know the name for the exam.</div>
+
+      <h3>Password Manager</h3>
+      <table>
+        <tr><th>Feature</th><th>Detail</th></tr>
+        <tr><td><strong>What it does</strong></td><td>Enables long, complex, unique passwords for every account while the user only remembers one strong master password</td></tr>
+        <tr><td><strong>Eliminates</strong></td><td>Weak passwords, password reuse, human error in credential management</td></tr>
+        <tr><td><strong>Often integrates with</strong></td><td>MFA, biometrics, hardware security keys for additional protection</td></tr>
+        <tr><td><strong>Works alongside</strong></td><td>SSO and PAM as part of a complete IAM strategy</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- AUTOMATION vs ORCHESTRATION -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#9881;&#65039; Automation vs Orchestration &amp; Workforce Multiplier <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <div class="callout warn" style="text-align:center;">
+        <strong>Automation = individual tasks &nbsp;|&nbsp; Orchestration = coordinating multiple automated tasks into a complete workflow</strong>
+      </div>
+      <table>
+        <tr><th></th><th>Automation</th><th>Orchestration</th></tr>
+        <tr><td><strong>Scope</strong></td><td>Single task executed without manual effort</td><td>Multiple tasks coordinated into an end-to-end workflow</td></tr>
+        <tr><td><strong>Example</strong></td><td>Auto-block an IP after 5 failed login attempts; scheduled vulnerability scan</td><td>Detect threat → isolate affected system → alert admins → generate report — all as one integrated process</td></tr>
+        <tr><td><strong>Key tool</strong></td><td>Scripts, scheduled tasks, single-tool rules</td><td><strong>SOAR</strong> — ties together SIEM + firewalls + endpoint tools to auto-respond to incidents</td></tr>
+      </table>
+
+      <h3>Workforce Multiplier <span class="tag-test">ON TEST</span></h3>
+      <div class="callout red">
+        <strong>Automation allows a small security team to accomplish the work of a much larger one.</strong><br/><br/>
+        By handling repetitive, time-consuming tasks automatically, automation frees security personnel to focus on higher-level analysis and decision-making. Organizations get better security coverage with fewer people — that's the workforce multiplier effect.
+      </div>
+
+      <h3>Benefits of Automation</h3>
+      <table>
+        <tr><th>Benefit</th><th>What it means</th></tr>
+        <tr><td><strong>Shorter reaction time</strong></td><td>Automated systems detect and respond instantly — no waiting for a human to notice and act. Critical during active attacks like malware infections or unauthorized access attempts where every second counts.</td></tr>
+        <tr><td><strong>Consistency</strong></td><td>Tasks are performed the same way every time — eliminates human error and enforces standardized security procedures (patching, policy enforcement, incident response).</td></tr>
+        <tr><td><strong>Scalability</strong></td><td>Automation scales to handle large volumes of events that no human team could review manually.</td></tr>
+      </table>
+    </div>
+  </div>
+
   <!-- QUIZ -->
   <div style="margin-top:2rem;">
     <div class="quiz-intro">
@@ -2552,7 +2615,27 @@ const ptQs = [
   { q:"A PAM system stores all administrator passwords in an encrypted repository. Admins never see or know the actual passwords — they request access and the system grants a session. What PAM control is this?",
     opts:["Just-in-Time permissions","Temporal accounts","Password vaulting","Attestation"],
     ans:2,
-    exp:"Password vaulting stores privileged credentials in a secure encrypted vault. Admins request access rather than handling passwords directly — the system grants the session, then rotates the password afterward. This prevents credential sharing, reuse, and exposure. Even if an admin is compromised, they cannot leak a password they never knew." }
+    exp:"Password vaulting stores privileged credentials in a secure encrypted vault. Admins request access rather than handling passwords directly — the system grants the session, then rotates the password afterward. This prevents credential sharing, reuse, and exposure. Even if an admin is compromised, they cannot leak a password they never knew." },
+  { q:"A user logs into their laptop by pressing their finger on a sensor — no password is entered at any point. What type of authentication is this, and which factor does it use?",
+    opts:["Multi-factor authentication using something you know","Single-factor password authentication","Passwordless authentication using something you are (biometrics)","Federation using SAML assertions"],
+    ans:2,
+    exp:"Passwordless authentication replaces the 'something you know' factor (password) with alternatives. Biometrics (fingerprint, face ID) = 'something you are.' No password is transmitted or stored in a way attackers can exploit — making it resistant to brute force, credential stuffing, phishing, and credential theft." },
+  { q:"Which open standard for passwordless authentication uses hardware security keys and platform authenticators, and is commonly associated with YubiKeys?",
+    opts:["SAML","OAuth 2.0","FIDO (Fast Identity Online)","LDAPS"],
+    ans:2,
+    exp:"FIDO (Fast Identity Online) is an open industry standard for passwordless authentication. It uses hardware security keys and platform authenticators (like Windows Hello or Touch ID) that never transmit a shared secret. Know the FIDO name for the Security+ exam." },
+  { q:"A security team configures their tools to automatically block any IP address that fails authentication 10 times in a row. What is this an example of?",
+    opts:["Orchestration — multiple tools coordinated into a workflow","Automation — a single task executed without manual effort","SOAR responding to a full incident","Workforce multiplication"],
+    ans:1,
+    exp:"Automation = a single task executed automatically without manual effort. Auto-blocking an IP after failed logins is one discrete action triggered by a rule. Orchestration goes further by coordinating MULTIPLE automated tasks across different systems into a complete end-to-end workflow (detect → isolate → alert → report)." },
+  { q:"When a threat is detected, the security platform automatically isolates the infected endpoint, sends an alert to the SOC, opens a ticket, and generates a forensic report — all without human intervention. What is this an example of?",
+    opts:["Automation — a single task automated","Orchestration — multiple tasks coordinated into a complete incident response workflow","Workforce multiplier — fewer staff needed","Password vaulting — credentials secured automatically"],
+    ans:1,
+    exp:"Orchestration coordinates multiple automated tasks into a complete end-to-end workflow. Detect threat → isolate system → alert SOC → generate report = one integrated process across multiple tools. SOAR (Security Orchestration, Automation and Response) is the platform that makes this possible, tying together SIEM, firewalls, and endpoint tools." },
+  { q:"A CISO presents a business case: by implementing security automation, a 5-person security team can monitor and respond to threats at the scale previously requiring a 25-person team. What concept describes this benefit?",
+    opts:["Just-in-Time provisioning","Workforce multiplier","Separation of duties","Temporal access scaling"],
+    ans:1,
+    exp:"Workforce multiplier = automation allows a small security team to accomplish the work of a much larger one. By handling repetitive and time-consuming tasks automatically, automation frees security personnel to focus on higher-level analysis and decision-making. This is a key justification for investing in automation and SOAR platforms." }
 ];
 
 let ptAnswered = {};
