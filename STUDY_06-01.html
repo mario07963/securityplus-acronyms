@@ -657,6 +657,119 @@
       </div>
     </div>
 
+    <!-- Risk Management (PPTX + SEC Aug) -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span>📊 Risk Management &amp; Governance</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <div class="callout tip" style="font-size:0.85em">📂 <strong>Sources:</strong> Condensed Security Plus (PPTX) · SEC Notes August 2025</div>
+        <h3>Risk Management Process</h3>
+        <table>
+          <tr><th>Step</th><th>Definition</th></tr>
+          <tr><td><strong>1. Risk Identification</strong></td><td>FIRST step — identify potential threats, assets, and vulnerabilities</td></tr>
+          <tr><td><strong>2. Risk Assessment</strong></td><td>Evaluate likelihood and impact of each risk</td></tr>
+          <tr><td><strong>3. Risk Treatment</strong></td><td>Determine how to handle each identified risk</td></tr>
+          <tr><td><strong>4. Risk Monitoring &amp; Review</strong></td><td>Ongoing evaluation of risk controls</td></tr>
+        </table>
+        <h3>Risk Analysis Types</h3>
+        <table>
+          <tr><th>Type</th><th>Method</th><th>Output</th></tr>
+          <tr><td><strong>Qualitative</strong></td><td>Expert judgment, descriptive categories (Low/Medium/High)</td><td>Risk matrix, heat maps</td></tr>
+          <tr><td><strong>Quantitative</strong></td><td>Numerical metrics: MTTR, MTBF, RTO, RPO, ALE, ARO</td><td>Dollar values, formulas</td></tr>
+        </table>
+        <h3>Key Quantitative Risk Metrics</h3>
+        <table>
+          <tr><th>Metric</th><th>Stands For</th><th>What It Measures</th></tr>
+          <tr><td><strong>ALE</strong></td><td>Annual Loss Expectancy</td><td>= ARO × SLE — total expected annual financial loss from a specific threat</td></tr>
+          <tr><td><strong>ARO</strong></td><td>Annual Rate of Occurrence</td><td>How many times a threat is expected per year</td></tr>
+          <tr><td><strong>SLE</strong></td><td>Single Loss Expectancy</td><td>Dollar value lost in a single event</td></tr>
+          <tr><td><strong>MTTR</strong></td><td>Mean Time to Repair</td><td>Average time to repair a system after failure</td></tr>
+          <tr><td><strong>MTBF</strong></td><td>Mean Time Between Failures</td><td>Average time between system failures</td></tr>
+        </table>
+        <h3>Risk Treatment Strategies</h3>
+        <table>
+          <tr><th>Strategy</th><th>Definition</th><th>Example</th></tr>
+          <tr><td><strong>Accept</strong></td><td>Acknowledge and accept the consequences — no action taken</td><td>Low-risk item with high mitigation cost</td></tr>
+          <tr><td><strong>Transfer</strong></td><td>Shift the risk to a third party</td><td><strong>Cyber insurance</strong> — transferring financial risk to insurer</td></tr>
+          <tr><td><strong>Mitigate</strong></td><td>Reduce likelihood or impact with controls</td><td>Installing firewall, patching systems</td></tr>
+          <tr><td><strong>Avoid</strong></td><td>Eliminate the risk by changing scope/design</td><td>Not collecting unnecessary PII data</td></tr>
+        </table>
+        <div class="callout exam">Exam Tip: Risk IDENTIFICATION is always the FIRST step. Purchasing cyber insurance = risk TRANSFER. ALE = ARO × SLE.</div>
+      </div>
+    </div>
+
+    <!-- Incident Response & Governance (SEC Aug) -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span>🚨 Incident Response Lifecycle &amp; Governance</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <div class="callout tip" style="font-size:0.85em">📂 <strong>Source:</strong> SEC Notes August 2025</div>
+        <h3>Incident Response Phases (CompTIA Order)</h3>
+        <table>
+          <tr><th>Phase</th><th>Key Action</th></tr>
+          <tr><td><strong>1. Preparation</strong></td><td>Build the IR plan, train teams, set up tools</td></tr>
+          <tr><td><strong>2. Detection</strong></td><td><strong>FIRST active phase</strong> — identify and confirm an incident has occurred</td></tr>
+          <tr><td><strong>3. Containment</strong></td><td>Limit the spread of the incident</td></tr>
+          <tr><td><strong>4. Eradication</strong></td><td>Remove the root cause (malware, attacker access)</td></tr>
+          <tr><td><strong>5. Recovery</strong></td><td>Restore systems to normal operation</td></tr>
+          <tr><td><strong>6. Lessons Learned</strong></td><td><strong>FINAL phase</strong> — review what happened, improve the plan</td></tr>
+        </table>
+        <h3>Governance &amp; Audit Types</h3>
+        <table>
+          <tr><th>Type</th><th>Purpose</th></tr>
+          <tr><td><strong>Internal Audit</strong></td><td>Assesses internal controls and compliance with organizational policies</td></tr>
+          <tr><td><strong>External Examination</strong></td><td>Third-party assessment — BEST for comparing company security to external regulatory requirements (HIPAA, PCI-DSS, etc.)</td></tr>
+          <tr><td><strong>Penetration Test</strong></td><td>Identifies vulnerabilities — not focused on regulatory compliance</td></tr>
+          <tr><td><strong>Attestation</strong></td><td>Formal declaration — does not involve actual evaluation of compliance</td></tr>
+        </table>
+        <h3>Security Team Roles</h3>
+        <table>
+          <tr><th>Team/Role</th><th>Function</th></tr>
+          <tr><td><strong>Red Team</strong></td><td>Offensive — simulates real-world attacks; performs penetration testing and social engineering</td></tr>
+          <tr><td><strong>Blue Team</strong></td><td>Defensive — monitors, detects, and responds to attacks</td></tr>
+          <tr><td><strong>Purple Team</strong></td><td>Combines red + blue — shares findings to improve defenses</td></tr>
+          <tr><td><strong>Bug Bounty Program</strong></td><td>Pays ethical hackers to find and report vulnerabilities before malicious actors do</td></tr>
+        </table>
+        <h3>BCP vs DRP</h3>
+        <table>
+          <tr><th>Plan</th><th>Focus</th></tr>
+          <tr><td><strong>Business Continuity Plan (BCP)</strong></td><td>Keeps the <em>business</em> operating during and after a disaster — broad scope</td></tr>
+          <tr><td><strong>Disaster Recovery Plan (DRP)</strong></td><td>Restores <em>IT systems and operations</em> after a major IT disruption — subset of BCP</td></tr>
+        </table>
+        <h3>Security Program Controls</h3>
+        <table>
+          <tr><th>Control</th><th>Purpose</th></tr>
+          <tr><td><strong>Job Rotation</strong></td><td>Moves employees through different roles regularly — prevents single-person dependency and reduces insider threat</td></tr>
+          <tr><td><strong>SDLC Policy</strong></td><td>Outlines responsibilities and standards for developing, deploying, and maintaining secure software</td></tr>
+          <tr><td><strong>RBAC</strong></td><td>Role-Based Access Control — restricts access based on user roles; simplifies least privilege management</td></tr>
+          <tr><td><strong>Peer Review</strong></td><td>Code reviewed by other developers before deployment — detects malicious code or vulnerabilities</td></tr>
+        </table>
+        <div class="callout exam">Exam Tip: Detection = FIRST active IR phase. Lessons Learned = LAST. External examination = best for regulatory compliance comparison. Job rotation prevents single points of failure and insider threats.</div>
+      </div>
+    </div>
+
+    <!-- GDPR & Compliance (PPTX) -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span>⚖️ Regulatory Compliance &amp; Legal Frameworks</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <div class="callout tip" style="font-size:0.85em">📂 <strong>Source:</strong> Condensed Security Plus (PPTX)</div>
+        <table>
+          <tr><th>Regulation / Concept</th><th>Key Requirement</th></tr>
+          <tr><td><strong>GDPR</strong></td><td>Organizations must manage personal data responsibly — non-compliance results in heavy fines</td></tr>
+          <tr><td><strong>Right-to-be-Forgotten</strong></td><td>Organizations MUST delete an individual's personal data upon their request — mandated by GDPR</td></tr>
+          <tr><td><strong>Employee Training</strong></td><td>Training programs educate employees on privacy laws and compliance to prevent misuse of sensitive data</td></tr>
+        </table>
+        <div class="callout exam">Exam Tip: GDPR Right-to-be-Forgotten = organization must delete personal data on request. Failure = legal penalty.</div>
+      </div>
+    </div>
+
   </div><!-- /notes -->
 
 
@@ -1016,6 +1129,74 @@
             </ul>
           </li>
         </ul>
+      </div>
+    </div>
+
+    <!-- Advanced Attack Techniques (Snippets + SEC Aug + PPTX) -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span>🔑 Advanced Attack Techniques &amp; Credential Attacks</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <div class="callout tip" style="font-size:0.85em">📂 <strong>Sources:</strong> Few Snippets &amp; Codes · SEC Notes August 2025 · Security+ Cliff Notes Sept</div>
+        <table>
+          <tr><th>Attack</th><th>How It Works</th><th>Key Identifier</th></tr>
+          <tr><td><strong>Password Spraying</strong></td><td>Tries a <strong>small set of common passwords</strong> against a <strong>large number of accounts</strong>. Avoids lockout because it doesn't hammer one account.</td><td>Failed logins across MANY accounts from same IP; same password attempted each time</td></tr>
+          <tr><td><strong>Brute Force</strong></td><td>Tries ALL possible combinations on a single account. Triggers account lockout policies.</td><td>High volume of failed attempts on ONE account</td></tr>
+          <tr><td><strong>Pass-the-Hash</strong></td><td>Attacker captures an <strong>NTLM hash</strong> from memory on a compromised system and uses it to authenticate to other systems — WITHOUT cracking it.</td><td>No plaintext password needed; used for lateral movement</td></tr>
+          <tr><td><strong>Credential Harvesting</strong></td><td>Collecting credentials through social engineering — phishing, vishing, smishing</td><td>Deceptive communication requesting login info</td></tr>
+        </table>
+        <h3>Password Spraying vs Brute Force — Quick Comparison</h3>
+        <table>
+          <tr><th>Factor</th><th>Password Spraying</th><th>Brute Force</th></tr>
+          <tr><td>Accounts targeted</td><td>Many (hundreds/thousands)</td><td>One (or few)</td></tr>
+          <tr><td>Passwords tried</td><td>Few (common ones: Password1!, Summer2024!)</td><td>All combinations</td></tr>
+          <tr><td>Lockout risk</td><td>Low — avoids lockout threshold</td><td>High — triggers lockout</td></tr>
+          <tr><td>Log signature</td><td>Same password from same IP to many accounts</td><td>Many passwords to same account</td></tr>
+        </table>
+        <div class="callout exam">Exam Tip: Pass-the-hash = steals the HASH, not the plaintext password. Lateral movement without cracking. Password spraying = 1 password, many accounts. Brute force = many passwords, 1 account.</div>
+      </div>
+    </div>
+
+    <!-- Network Evasion & Access Attacks (Snippets + SEC Aug) -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span>🌐 Network Evasion &amp; Unauthorized Access Attacks</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <div class="callout tip" style="font-size:0.85em">📂 <strong>Sources:</strong> Few Snippets &amp; Codes · SEC Notes August 2025 · Security+ Cliff Notes Sept</div>
+        <table>
+          <tr><th>Attack</th><th>How It Works</th><th>Defense</th></tr>
+          <tr><td><strong>MAC Cloning</strong></td><td>A personal device <strong>copies the MAC address</strong> of an authorized device to bypass 802.1X access control</td><td>IEEE 802.1X with dynamic MAC enforcement; NAC policies</td></tr>
+          <tr><td><strong>Rogue Access Point</strong></td><td>Unauthorized WAP that creates a backdoor, allowing users to <strong>bypass security controls</strong> like content filtering</td><td>Wireless scanning; port security; NAC</td></tr>
+          <tr><td><strong>Directory Traversal</strong></td><td>Uses <code>../../</code> path sequences to access files OUTSIDE the web root (e.g., <code>/../../../etc/passwd</code>)</td><td>Input validation; path canonicalization</td></tr>
+          <tr><td><strong>Memory Injection</strong></td><td>Injects malicious code into running processes; effective against RTOS and legacy systems</td><td>DEP (Data Execution Prevention); ASLR</td></tr>
+          <tr><td><strong>Buffer Overflow</strong></td><td>Writes more data to a buffer than it can hold; overwrites adjacent memory (including instruction pointer/register) to execute shellcode</td><td>Input validation; DEP; stack canaries; ASLR</td></tr>
+        </table>
+        <div class="callout exam">Exam Tip: MAC cloning bypasses 802.1X. Directory traversal uses ../../ pattern. Buffer overflow overwrites the instruction pointer/register to redirect execution flow.</div>
+      </div>
+    </div>
+
+    <!-- Additional Web Threats (PPTX + SEC Aug) -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span>🕸️ Additional Web &amp; Social Engineering Threats</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <div class="callout tip" style="font-size:0.85em">📂 <strong>Sources:</strong> Condensed Security Plus (PPTX) · SEC Notes August 2025</div>
+        <table>
+          <tr><th>Attack</th><th>Definition</th><th>Key Detail</th></tr>
+          <tr><td><strong>Watering Hole</strong></td><td>Infects websites <strong>commonly visited by the target</strong> to deliver malware when they browse</td><td>Targeted, patient — attacker waits for victim to come to them</td></tr>
+          <tr><td><strong>Smishing</strong></td><td>Phishing via <strong>SMS/text messages</strong> — often combined with pretexting (impersonating executives)</td><td>Example: text claiming to be CEO asking employee to buy gift cards</td></tr>
+          <tr><td><strong>Vishing</strong></td><td>Phishing via <strong>phone calls</strong> or voicemail</td><td>Attacker verbally manipulates victim</td></tr>
+          <tr><td><strong>Honeytoken</strong></td><td>A <strong>decoy file</strong> placed in a sensitive location (e.g., /docs/salaries) — triggers alert when accessed by an insider attacker</td><td>Detects insider threats through access monitoring</td></tr>
+          <tr><td><strong>Shadow IT</strong></td><td>Employees using <strong>unauthorized software or services</strong> without IT approval — introduces unmonitored security risks</td><td>Not a threat actor — it's an internal risk category</td></tr>
+          <tr><td><strong>Rootkit</strong></td><td>Malware that <strong>modifies or replaces system files</strong> to hide its presence — changes file hashes to evade detection; hardest to remove</td><td>Persists through reboots; may survive OS reinstallation</td></tr>
+        </table>
+        <div class="callout exam">Exam Tip: Watering hole = attack the WEBSITE, wait for victims. Smishing = SMS phishing. Honeytoken = decoy that detects internal attackers. Rootkit = hides by modifying system files; hardest to detect/remove.</div>
       </div>
     </div>
 
@@ -1523,6 +1704,68 @@
       </div>
     </div>
 
+    <!-- VM Escape, Multicloud, Containers (PPTX) -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span>🛡️ Virtualization Security Threats &amp; Advanced Cloud</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <div class="callout tip" style="font-size:0.85em">📂 <strong>Sources:</strong> Condensed Security Plus (PPTX) · SEC Notes August 2025 · Security+ Cliff Notes Sept</div>
+        <table>
+          <tr><th>Concept</th><th>Definition</th><th>Security Implication</th></tr>
+          <tr><td><strong>VM Escape</strong></td><td>An attacker breaks out of a virtual machine and gains access to the <strong>host system or other VMs</strong></td><td>Compromises hypervisor isolation — most severe virtualization attack; patch hypervisors immediately</td></tr>
+          <tr><td><strong>Multicloud Architecture</strong></td><td>Using multiple IaaS providers simultaneously</td><td>Improves resilience and avoids single-vendor dependency (platform diversity)</td></tr>
+          <tr><td><strong>Container Hardening</strong></td><td>Removing vulnerable defaults and disabling insecure services (e.g., Telnet) from containers</td><td>Reduces attack surface; containers share host OS kernel — hardening is critical</td></tr>
+          <tr><td><strong>Serverless Architecture</strong></td><td>Deploy code without managing underlying servers — cloud provider handles scaling, maintenance, infrastructure</td><td>Reduces infrastructure attack surface; pay-per-execution; no server patching by customer</td></tr>
+          <tr><td><strong>Platform Diversity</strong></td><td>Using multiple different cloud solutions or vendors to store/process data</td><td>Reduces single-vendor failure risk; improves resilience</td></tr>
+        </table>
+        <div class="callout exam">Exam Tip: VM escape = breaks isolation, accesses HOST. Multicloud = multiple IaaS providers = resilience + platform diversity. Serverless = no server management by customer.</div>
+      </div>
+    </div>
+
+    <!-- Data Protection Advanced (PPTX + SEC Aug) -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span>🔐 Advanced Data Protection Strategies</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <div class="callout tip" style="font-size:0.85em">📂 <strong>Sources:</strong> Condensed Security Plus (PPTX) · SEC Notes August 2025</div>
+        <table>
+          <tr><th>Strategy</th><th>How It Works</th><th>Use Case</th></tr>
+          <tr><td><strong>Encryption in Transit</strong></td><td>TLS, HTTPS, VPNs encrypt data during transmission</td><td>Protects data moving across networks from interception</td></tr>
+          <tr><td><strong>AES-256 at Rest</strong></td><td>AES-256 is the industry standard for strong encryption of stored data</td><td>Full disk encryption, file encryption, database encryption</td></tr>
+          <tr><td><strong>Data Masking in Testing</strong></td><td>Replaces sensitive data with realistic but fictitious values for use in test environments</td><td>Developers work with realistic-looking but non-sensitive data</td></tr>
+          <tr><td><strong>Air-Gapped Networks</strong></td><td>Systems are <strong>physically isolated</strong> from external/unsecured networks — no electronic connection</td><td>Highest security environments: nuclear, ICS, military; strongest exfiltration prevention</td></tr>
+          <tr><td><strong>FIM (File Integrity Monitoring)</strong></td><td>Detects changes to files using checksums/hashes; alerts on unauthorized modification</td><td>Protecting PII files, system binaries, configuration files from tampering</td></tr>
+          <tr><td><strong>Homomorphic Encryption</strong></td><td>Allows data to be <strong>processed while still encrypted</strong> — no need to decrypt before computation</td><td>Secure cloud computation; financial institution storing data in cloud while maintaining privacy</td></tr>
+          <tr><td><strong>Geographic Dispersion</strong></td><td>Distributing servers/data centers across <strong>different geographic locations</strong></td><td>Mitigates regional disasters (fire, flood, tornado); supports business continuity</td></tr>
+        </table>
+        <div class="callout exam">Exam Tip: Data masking = test environments. FIM = detects unauthorized file changes. Air gap = STRONGEST physical isolation. Homomorphic encryption = compute on encrypted data without decrypting.</div>
+      </div>
+    </div>
+
+    <!-- Anomaly Detection & Endpoint (SEC Aug) -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span>🔭 Anomaly Detection, EOL Devices &amp; Endpoint Visibility</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <div class="callout tip" style="font-size:0.85em">📂 <strong>Source:</strong> SEC Notes August 2025</div>
+        <table>
+          <tr><th>Concept</th><th>Definition</th></tr>
+          <tr><td><strong>Anomaly Detection Baseline</strong></td><td>The <strong>first step</strong> in creating an anomaly detection process is building a <strong>baseline of normal behavior</strong>. Deviations from baseline trigger alerts.</td></tr>
+          <tr><td><strong>EOL (End-of-Life) Device</strong></td><td>A device no longer receiving updates, patches, or technical support from the manufacturer. EOL devices should be isolated, replaced, or placed in a <strong>segmented VLAN</strong> to limit exposure.</td></tr>
+          <tr><td><strong>Endpoint Management Software</strong></td><td>Centrally monitors and controls endpoint configurations, enforces policies, and detects unauthorized software changes — best tool for fleet-wide compliance enforcement.</td></tr>
+          <tr><td><strong>Dynamic Analysis</strong></td><td>Analyzes software <strong>during execution</strong> — identifies vulnerabilities based on real runtime behavior. Captures issues that only appear when the app is actually running.</td></tr>
+          <tr><td><strong>SIEM Tuning</strong></td><td>Adjusting SIEM rules to <strong>reduce false positives</strong> — configuring the system to ignore known-benign activity. Tuning ≠ quarantine ≠ aggregation.</td></tr>
+        </table>
+        <div class="callout exam">Exam Tip: Anomaly detection starts with a BASELINE. EOL devices should be ISOLATED (VLAN), not just ignored. Dynamic analysis = runtime analysis.</div>
+      </div>
+    </div>
+
     <!-- Asset Management -->
     <div class="section">
       <div class="section-header" onclick="toggle(this)">
@@ -1853,6 +2096,42 @@
       ],
       answer: 1,
       explain: 'AAA = Identification (who are you?) → Authentication (prove it) → Authorization (what can you do?) → Accounting (log what you did).'
+    },
+    {
+      q: '[Source: SEC Notes August 2025] What is the FIRST step in the risk management process?',
+      options: ['Risk Treatment', 'Risk Monitoring', 'Risk Identification', 'Risk Mitigation'],
+      answer: 2,
+      explain: 'Risk Identification is the first step — potential threats, assets, and vulnerabilities must be identified before they can be assessed or treated. Risk mitigation, treatment, and monitoring all follow identification.'
+    },
+    {
+      q: '[Source: SEC Notes August 2025] A company purchases cyber insurance to cover financial losses from a ransomware attack. Which risk strategy does this represent?',
+      options: ['Risk Acceptance', 'Risk Transfer', 'Risk Mitigation', 'Risk Avoidance'],
+      answer: 1,
+      explain: 'Purchasing cyber insurance transfers the financial risk to the insurance company — if an attack occurs, the insurer covers the costs. Transfer = shifting risk to a third party. Mitigation = reducing likelihood/impact. Acceptance = doing nothing. Avoidance = eliminating the activity.'
+    },
+    {
+      q: '[Source: SEC Notes August 2025] A CISO needs to understand how the company\'s security policies compare to EXTERNAL regulatory requirements. Which assessment method is best?',
+      options: ['Penetration Test', 'Internal Audit', 'External Examination', 'Attestation'],
+      answer: 2,
+      explain: 'An external examination is conducted by a third-party entity that evaluates an organization\'s compliance against laws, regulations, and industry standards. Penetration tests focus on vulnerabilities, not regulatory compliance. Internal audits are not impartial. Attestation is a formal declaration, not an evaluation.'
+    },
+    {
+      q: '[Source: SEC Notes August 2025] What is the FINAL step in the incident response lifecycle?',
+      options: ['Recovery', 'Eradication', 'Containment', 'Lessons Learned'],
+      answer: 3,
+      explain: 'Lessons Learned is the final phase — the team reviews what happened, how it was handled, and what can be improved. The order is: Detection → Containment → Eradication → Recovery → Lessons Learned. This step improves future incident response.'
+    },
+    {
+      q: '[Source: Condensed Security Plus PPTX] ALE (Annual Loss Expectancy) is calculated as:',
+      options: ['MTBF × MTTR', 'ARO × SLE', 'SLE ÷ ARO', 'MTTR × ARO'],
+      answer: 1,
+      explain: 'ALE = ARO (Annual Rate of Occurrence) × SLE (Single Loss Expectancy). ARO = how often the threat is expected per year. SLE = dollar loss per single event. Together they calculate total expected annual financial loss from a specific risk.'
+    },
+    {
+      q: '[Source: Security+ Cliff Notes Sept] Which disaster recovery site type provides the LOWEST RTO and RPO?',
+      options: ['Warm Site', 'Cold Site', 'Off-site Backup', 'Hot Site'],
+      answer: 3,
+      explain: 'A Hot Site is a fully operational duplicate of the primary site — all systems are running and data is current. It provides the lowest RTO (near-zero downtime) and RPO (minimal data loss). Cold sites require setup time. Warm sites have hardware but need configuration. Off-site backups require significant restoration time.'
     }
   ];
 
@@ -2162,6 +2441,42 @@
       options: ['Allow List (Whitelist)', 'Block List (Blacklist)', 'They are equally flexible', 'VLAN Access List'],
       answer: 1,
       explain: 'Block lists (blacklists) are more flexible — only listed apps are blocked, everything else runs. Allow lists (whitelists) are more secure but more time-consuming to manage — only listed apps are permitted.'
+    },
+    {
+      q: '[Source: Few Snippets & Codes] Log entries show the same password "password123" attempted against accounts "admin", "user1", "user2" from the same IP address. What attack is this?',
+      options: ['Brute Force', 'Password Spraying', 'Pass-the-Hash', 'Credential Stuffing'],
+      answer: 1,
+      explain: 'Password spraying uses ONE common password against MANY different accounts. The same password across multiple accounts from one IP is the signature. Brute force would use many passwords against one account. Pass-the-hash uses stolen hashes. Credential stuffing uses breach-dumped username/password pairs.'
+    },
+    {
+      q: '[Source: Few Snippets & Codes] An attacker captures an NTLM hash from a compromised system\'s memory and uses it to authenticate to a file server — WITHOUT cracking the hash. This attack is called:',
+      options: ['Credential Stuffing', 'Password Spraying', 'Pass-the-Hash', 'Brute Force'],
+      answer: 2,
+      explain: 'Pass-the-hash captures the NTLM hash from memory (e.g., using Mimikatz) and replays it to authenticate to other systems. The plaintext password is never needed. This enables lateral movement. It is a common attack in environments with weak security or outdated protocols like NTLM.'
+    },
+    {
+      q: '[Source: Few Snippets & Codes] An audit report shows a personal device on the network with the same MAC address as an authorized corporate laptop. What attack technique was used to bypass 802.1X?',
+      options: ['ARP Spoofing', 'MAC Flooding', 'MAC Cloning', 'VLAN Hopping'],
+      answer: 2,
+      explain: 'MAC cloning (MAC spoofing) copies the MAC address of an authorized device to bypass 802.1X network access control, which uses hardware addresses to permit network access. The matching MAC addresses in the audit report are the key indicator. Defense: combine 802.1X with certificate-based authentication.'
+    },
+    {
+      q: '[Source: Condensed Security Plus PPTX] An attacker compromises a popular industry news website frequently visited by engineers at a defense contractor, then waits for those engineers to visit and get infected. This is called:',
+      options: ['Phishing', 'Watering Hole Attack', 'Drive-by Download', 'Business Email Compromise'],
+      answer: 1,
+      explain: 'A watering hole attack infects a website frequented by the target group, then waits for the targets to visit. The attacker attacks the WEBSITE, not the victim directly. It is highly targeted and patient. Named after predators that wait near watering holes for prey.'
+    },
+    {
+      q: '[Source: SEC Notes August 2025] An employee receives a text message claiming to be from the CEO asking them to urgently purchase gift cards. This is an example of:',
+      options: ['Vishing', 'Spear Phishing', 'Smishing', 'Business Email Compromise'],
+      answer: 2,
+      explain: 'Smishing = SMS-based phishing. The attack uses a text message (SMS) combined with pretexting (impersonating the CEO). Vishing uses phone calls. Spear phishing uses targeted email. BEC involves compromising or spoofing email accounts of executives. The text message channel is the key indicator of smishing.'
+    },
+    {
+      q: '[Source: SEC Notes August 2025] A security team places a fake salary file named "salaries_2026.xlsx" in the /docs/confidential/ share. When someone opens it, an alert fires. This technique is called:',
+      options: ['Honeypot', 'Honeytoken', 'Canary Token', 'Tarpit'],
+      answer: 1,
+      explain: 'A honeytoken is a decoy data artifact (file, record, credential) placed in a sensitive location to detect unauthorized access. When accessed, it triggers an alert revealing the insider attacker. A honeypot is a decoy system, not a file. Canary tokens are a specific type of honeytoken. Tarpits slow down network connections.'
     }
   ];
 
@@ -2677,6 +2992,42 @@
       options: ['Asset Classification Policy', 'Data Retention Policy', 'Enumeration Protocol', 'Failover Procedure'],
       answer: 1,
       explain: 'A data retention policy defines how long data must be kept before it can be destroyed — and is often mandated by regulations (HIPAA, PCI-DSS, GDPR). You must verify retention requirements BEFORE disposing of any asset. Disposing of data too early can violate compliance requirements.'
+    },
+    {
+      q: '[Source: Security+ Cliff Notes Sept / PPTX] An attacker inside a virtual machine breaks out of the VM and gains access to the underlying host operating system. This attack is called:',
+      options: ['Container Escape', 'VM Escape', 'Hypervisor Injection', 'Sandbox Bypass'],
+      answer: 1,
+      explain: 'VM escape compromises hypervisor isolation by allowing an attacker inside a VM to break out and access the host system or other VMs. It is one of the most severe virtualization attacks. Defense: patch hypervisors promptly, enforce strong isolation, minimize hypervisor attack surface.'
+    },
+    {
+      q: '[Source: Condensed Security Plus PPTX] Which data protection technique replaces sensitive data with realistic but fictitious values — specifically for use in test/development environments?',
+      options: ['Tokenization', 'Encryption', 'Data Masking', 'Obfuscation'],
+      answer: 2,
+      explain: 'Data masking replaces real sensitive data with realistic-looking but non-sensitive substitutes for use in test environments. Tokenization replaces data with tokens that can be reversed. Encryption transforms data and requires a key. Obfuscation makes code hard to read. Data masking is specifically used so developers can work with production-like data without exposing real PII.'
+    },
+    {
+      q: '[Source: SEC Notes August 2025] A company distributes its data center operations across facilities in three different states to protect against regional natural disasters. This strategy is called:',
+      options: ['Load Balancing', 'Clustering', 'Geographic Dispersion', 'Off-Site Backup'],
+      answer: 2,
+      explain: 'Geographic dispersion distributes servers/data centers across different geographic locations to mitigate the risk of regional disasters (fire, flood, tornado). Off-site backups protect data but do not maintain active operations. Load balancing distributes traffic. Clustering groups servers but does not address geographic threats.'
+    },
+    {
+      q: '[Source: SEC Notes August 2025] A cloud deployment model where developers write code and the cloud provider manages all underlying servers, scaling, and infrastructure is called:',
+      options: ['Platform as a Service', 'Infrastructure as a Service', 'Serverless Architecture', 'Microservices'],
+      answer: 2,
+      explain: 'Serverless architecture allows companies to deploy code without managing any underlying infrastructure. The cloud provider handles all servers, scaling, and maintenance. Billing is pay-per-execution. PaaS provides a development platform but customers still manage their apps. IaaS provides infrastructure that customers manage.'
+    },
+    {
+      q: '[Source: SEC Notes August 2025] What is the FIRST step when building an anomaly detection system for a network?',
+      options: ['Deploy IDS sensors', 'Establish a baseline of normal behavior', 'Configure SIEM alerts', 'Perform a vulnerability scan'],
+      answer: 1,
+      explain: 'The first step in anomaly detection is building a baseline of normal behavior. This baseline serves as the reference point — deviations trigger alerts. Without a baseline, there is no way to distinguish normal from abnormal activity. All other steps (sensors, SIEM, scans) follow after the baseline is defined.'
+    },
+    {
+      q: '[Source: Security+ Cliff Notes Sept] Which architecture is described as a new security model that combines network security and wide-area networking capabilities into a cloud-delivered service?',
+      options: ['Zero Trust', 'SDN', 'SASE', 'SSE'],
+      answer: 2,
+      explain: 'SASE (Secure Access Service Edge) is a new security architecture that combines network security functions (firewall, CASB, SWG, ZTNA) with WAN capabilities — all delivered as a cloud service. It is designed to protect users, devices, and applications regardless of location. SSE is a subset of SASE without the WAN component.'
     }
   ];
 
