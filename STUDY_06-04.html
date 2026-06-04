@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Security+ Chapter 4 — Wireless & Vulnerability Management</title>
+  <style>
+    :root {
+      --bg:#1a2332;--surface:#252d3a;--surface2:#363d4d;
+      --accent:#4f8ef7;--accent2:#7c3aed;--warn:#f59e0b;
+      --green:#22c55e;--red:#ef4444;--text:#e2e8f0;
+      --muted:#8fa3b8;--border:#424e62;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:15px;}
+    nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;gap:1.5rem;position:sticky;top:0;z-index:100;flex-wrap:wrap;}
+    nav .logo{font-size:1.1rem;font-weight:700;color:var(--accent);padding:1rem 0;white-space:nowrap;}
+    nav a{color:var(--muted);text-decoration:none;font-size:.875rem;padding:1rem 0;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;}
+    nav a:hover,nav a.active{color:var(--text);border-bottom-color:var(--accent);}
+    nav .date-sep{color:var(--border);font-size:.8rem;padding:1rem 0;}
+    .theme-btn{margin-left:auto;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:.35rem .85rem;border-radius:99px;font-size:.8rem;font-weight:600;cursor:pointer;transition:all .2s;}
+    .theme-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
+    .tag-warn{display:inline-block;background:var(--warn);color:#000;font-size:.65rem;font-weight:700;padding:.15rem .45rem;border-radius:4px;margin-left:.4rem;vertical-align:middle;}
+    .tag-test{display:inline-block;background:var(--red);color:#fff;font-size:.65rem;font-weight:700;padding:.15rem .45rem;border-radius:4px;margin-left:.4rem;vertical-align:middle;}
+    .tag-new{display:inline-block;background:var(--green);color:#000;font-size:.65rem;font-weight:700;padding:.15rem .45rem;border-radius:4px;margin-left:.4rem;vertical-align:middle;}
+
+    .container{max-width:1050px;margin:0 auto;padding:2rem 1.5rem;}
+    .page{display:none;}.page.active{display:block;}
+    .page-header{margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid var(--border);}
+    .page-header h1{font-size:1.75rem;color:#fff;font-weight:300;}
+    .page-header p{color:var(--muted);margin-top:.25rem;font-size:.9rem;}
+
+    .section{background:var(--surface);border:1px solid var(--border);border-radius:10px;margin-bottom:1.5rem;overflow:hidden;}
+    .section-header{padding:.85rem 1.25rem;display:flex;align-items:center;gap:.75rem;cursor:pointer;user-select:none;background:var(--surface2);}
+    .section-header:hover{background:#3e4a5e;}
+    .section-header h2{font-size:1rem;font-weight:600;flex:1;}
+    .section-header .chevron{color:var(--muted);font-size:.8rem;transition:transform .2s;}
+    .section-header.open .chevron{transform:rotate(180deg);}
+    .section-body{padding:1.25rem;display:none;}
+    .section-body.open{display:block;}
+
+    table{width:100%;border-collapse:collapse;margin:.75rem 0;font-size:.875rem;}
+    th{background:var(--surface2);color:var(--accent);text-align:left;padding:.6rem .85rem;font-weight:600;border-bottom:1px solid var(--border);}
+    td{padding:.55rem .85rem;border-bottom:1px solid var(--border);vertical-align:top;}
+    tr:last-child td{border-bottom:none;}
+    tr:hover td{background:#1e2d3d;}
+    td strong{color:#a78bfa;}
+
+    .callout{border-left:3px solid var(--accent);background:#1a2c3e;padding:.75rem 1rem;border-radius:0 6px 6px 0;margin:.75rem 0;font-size:.875rem;}
+    .callout.warn{border-color:var(--warn);background:#231c0e;}
+    .callout.green{border-color:var(--green);background:#0d2018;}
+    .callout.red{border-color:var(--red);background:#1a0a0a;}
+    ul,ol{padding-left:1.4rem;margin:.5rem 0;}
+    li{margin-bottom:.3rem;}
+    li strong{color:#7eb8f7;}
+    h3{margin:1rem 0 .5rem;font-size:.95rem;color:var(--accent);}
+    p{margin-bottom:.5rem;}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+    @media(max-width:640px){.two-col{grid-template-columns:1fr;}}
+
+    /* CVSS SEVERITY BADGES */
+    .cvss-none{display:inline-block;background:#4b5563;color:#fff;padding:.15rem .55rem;border-radius:4px;font-size:.75rem;font-weight:700;}
+    .cvss-low{display:inline-block;background:#1d4ed8;color:#fff;padding:.15rem .55rem;border-radius:4px;font-size:.75rem;font-weight:700;}
+    .cvss-med{display:inline-block;background:#d97706;color:#000;padding:.15rem .55rem;border-radius:4px;font-size:.75rem;font-weight:700;}
+    .cvss-high{display:inline-block;background:#dc2626;color:#fff;padding:.15rem .55rem;border-radius:4px;font-size:.75rem;font-weight:700;}
+    .cvss-crit{display:inline-block;background:#7f1d1d;color:#fca5a5;padding:.15rem .55rem;border-radius:4px;font-size:.75rem;font-weight:700;letter-spacing:.03em;}
+
+    /* NVD LAB TOOL */
+    .lab-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;}
+    .lab-card h2{font-size:1.15rem;font-weight:700;margin-bottom:.25rem;color:#fff;}
+    .lab-card p{color:var(--muted);font-size:.875rem;margin-bottom:1rem;}
+    .search-row{display:flex;gap:.75rem;flex-wrap:wrap;}
+    .search-input{flex:1;min-width:220px;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:.65rem 1rem;border-radius:8px;font-size:.9rem;outline:none;transition:border-color .2s;}
+    .search-input:focus{border-color:var(--accent);}
+    .btn{display:inline-flex;align-items:center;gap:.4rem;padding:.65rem 1.25rem;border-radius:7px;font-weight:600;font-size:.875rem;cursor:pointer;border:none;transition:all .2s;text-decoration:none;}
+    .btn-primary{background:var(--accent);color:#fff;}
+    .btn-primary:hover{background:#3b7de9;}
+    .btn-secondary{background:var(--surface2);color:var(--text);border:1px solid var(--border);}
+    .btn-secondary:hover{background:#2d3e56;}
+    .btn-green{background:var(--green);color:#000;}
+    .btn-green:hover{background:#16a34a;}
+    .btn-warn{background:var(--warn);color:#000;}
+    .btn-warn:hover{background:#d97706;}
+    .quick-cve-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:.75rem;margin-top:.75rem;}
+    .cve-card{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:.85rem 1rem;cursor:pointer;transition:all .2s;text-decoration:none;display:block;}
+    .cve-card:hover{border-color:var(--accent);background:#2a3a52;}
+    .cve-id{font-family:'Consolas',monospace;font-size:.8rem;color:var(--accent);font-weight:700;}
+    .cve-desc{font-size:.8rem;color:var(--muted);margin-top:.25rem;}
+    .cve-score{font-size:.75rem;margin-top:.4rem;}
+    .cvss-meter{height:8px;border-radius:99px;background:var(--border);margin:.5rem 0;overflow:hidden;}
+    .cvss-meter-fill{height:100%;border-radius:99px;transition:width .6s ease;}
+
+    /* QUIZ */
+    .quiz-intro{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.5rem;margin-bottom:1.5rem;text-align:center;}
+    .quiz-intro h2{font-size:1.4rem;margin-bottom:.5rem;}
+    .quiz-intro p{color:var(--muted);margin-bottom:1rem;}
+    .question-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;margin-bottom:1rem;overflow:hidden;transition:border-color .2s;}
+    .question-card.correct{border-color:var(--green);}
+    .question-card.incorrect{border-color:var(--red);}
+    .question-top{padding:1rem 1.25rem;display:flex;gap:1rem;align-items:flex-start;}
+    .q-num{background:var(--surface2);color:var(--accent);font-weight:700;font-size:.8rem;padding:.25rem .6rem;border-radius:5px;white-space:nowrap;margin-top:.1rem;}
+    .q-text{font-size:.95rem;flex:1;}
+    .options{padding:0 1.25rem 1rem;display:flex;flex-direction:column;gap:.5rem;}
+    .option{padding:.65rem 1rem;border-radius:8px;border:1.5px solid var(--border);background:var(--surface2);cursor:pointer;font-size:.875rem;transition:all .15s;display:flex;align-items:center;gap:.75rem;}
+    .option:hover:not(.locked){border-color:var(--accent);background:#3e4a5e;}
+    .option .opt-letter{font-weight:700;color:var(--muted);min-width:1.25rem;font-size:.8rem;}
+    .option.selected{border-color:var(--accent);background:#2a3a52;}
+    .option.correct-ans{border-color:var(--green);background:#0d2018;}
+    .option.correct-ans .opt-letter{color:var(--green);}
+    .option.wrong-ans{border-color:var(--red);background:#220f0f;}
+    .option.wrong-ans .opt-letter{color:var(--red);}
+    .explanation{margin:0 1.25rem 1rem;background:var(--surface2);border-radius:7px;padding:.75rem 1rem;font-size:.85rem;color:var(--muted);display:none;}
+    .explanation.show{display:block;}
+    .explanation strong{color:var(--green);}
+    .score-bar{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.5rem;text-align:center;margin-bottom:1.5rem;display:none;}
+    .score-bar.show{display:block;}
+    .score-num{font-size:3rem;font-weight:800;color:var(--accent);}
+    .score-label{color:var(--muted);font-size:.9rem;margin-top:.25rem;}
+    .progress-track{background:var(--border);border-radius:99px;height:8px;margin:1rem 0 .5rem;overflow:hidden;}
+    .progress-fill{height:100%;border-radius:99px;background:var(--accent);transition:width .6s ease;}
+    .quiz-controls{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-top:1rem;}
+
+    /* LIGHT MODE */
+    body.light{--bg:#f0f4fb;--surface:#ffffff;--surface2:#e4eaf5;--accent:#2563eb;--warn:#b45309;--green:#047857;--red:#b91c1c;--text:#1e293b;--muted:#64748b;--border:#c8d3e8;}
+    body.light .callout{background:#dbeafe;}body.light .callout.warn{background:#fef3c7;}body.light .callout.green{background:#d1fae5;}body.light .callout.red{background:#fee2e2;}
+    body.light tr:hover td{background:#f1f5f9;}body.light td strong{color:#6d28d9;}body.light li strong{color:#1d4ed8;}
+    body.light .option:hover:not(.locked){background:#dbeafe;}
+    body.light .correct-ans{border-color:var(--green)!important;background:#d1fae5!important;}
+    body.light .wrong-ans{border-color:var(--red)!important;background:#fee2e2!important;}
+    body.light .explanation{background:#f8fafc;color:#334155;}
+    body.light nav{background:#1e293b;border-bottom-color:#334155;}
+    body.light nav .logo{color:#60a5fa;}
+    body.light nav a{color:#94a3b8;}
+    body.light nav a:hover,body.light nav a.active{color:#fff;border-bottom-color:#60a5fa;}
+    body.light .theme-btn{background:#2d3f58;border-color:#4a5568;color:#e2e8f0;}
+    body.light .cve-card{background:#e4eaf5;}body.light .cve-card:hover{background:#dbeafe;}
+    body.light .search-input{background:#e4eaf5;border-color:#c8d3e8;color:#1e293b;}
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Security+</div>
+  <a href="STUDY_06-01.html">&#8592; Back to Ch.1–3</a>
+  <span class="date-sep">Jun 4</span>
+  <a href="#" class="active" onclick="showPage('wireless',this)">Ch.4 Wireless</a>
+  <a href="#" onclick="showPage('vulnmgmt',this)">Ch.4 Vuln Mgmt</a>
+  <a href="#" onclick="showPage('nvdlab',this)">&#128269; NVD Lab</a>
+  <a href="#" onclick="showPage('quiz4',this)">Ch.4 Quiz</a>
+  <a href="#" onclick="showPage('stix',this)">&#127981; STIX &amp; TAXII</a>
+  <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">&#9728;&#65039; Light</button>
+</nav>
+
+<div class="container">
+
+<!-- =================== WIRELESS NOTES =================== -->
+<div id="wireless" class="page active">
+  <div class="page-header">
+    <h1>Chapter 4 — Wireless Security</h1>
+    <p>Click any section to expand. <span style="color:var(--red);font-weight:700">RED = ON TEST</span></p>
+  </div>
+
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>📡 Wireless Protocol Comparison <span class="tag-test">TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body">
+      <table>
+        <tr><th>Protocol</th><th>Status</th><th>Key Feature</th></tr>
+        <tr><td><strong>WEP</strong></td><td><span style="color:var(--red)">❌ Deprecated</span></td><td>Weak encryption — cracked quickly. Do NOT use.</td></tr>
+        <tr><td><strong>WPA</strong></td><td><span style="color:var(--warn)">⚠ Insecure</span></td><td>Improved over WEP but still vulnerable. Avoid.</td></tr>
+        <tr><td><strong>WPA2</strong></td><td><span style="color:var(--warn)">⚠ Widely used</span></td><td>AES encryption, still acceptable but not ideal.</td></tr>
+        <tr><td><strong>WPA3</strong></td><td><span style="color:var(--green)">✅ Most Secure</span></td><td>SAE replaces PSK handshake — prevents offline dictionary attacks.</td></tr>
+      </table>
+      <div class="callout red"><strong>WPA3 = most secure standard on the exam. WEP = deprecated due to weak encryption.</strong></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>🔑 WPA3 Features <span class="tag-test">TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body">
+      <table>
+        <tr><th>Feature</th><th>What it does</th></tr>
+        <tr><td><strong>SAE</strong> (Simultaneous Authentication of Equals)</td><td>Replaces WPA2 PSK handshake. Prevents offline dictionary attacks — attacker must interact with device directly to guess passwords.</td></tr>
+        <tr><td><strong>128-bit encryption</strong></td><td>Personal networks (home use)</td></tr>
+        <tr><td><strong>192-bit encryption</strong></td><td>High-security / enterprise / government environments</td></tr>
+        <tr><td><strong>PFS</strong> (Perfect Forward Secrecy)</td><td>Compromised password cannot decrypt past traffic. Uses <strong>ephemeral (short-lived) keys</strong>.</td></tr>
+        <tr><td><strong>Diffie-Hellman (DH)</strong></td><td>The only algorithm that produces ephemeral keys — what makes PFS work.</td></tr>
+        <tr><td><strong>PMF</strong> (Protected Management Frames)</td><td>Protects against de-authentication and dis-association attacks.</td></tr>
+        <tr><td><strong>DPP / Easy Connect</strong></td><td>Dev Provisioning Protocol — securely connects IoT devices without screens using QR codes.</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>🔐 Port Security: Switchport, 802.1X, EAPoL <span class="tag-test">TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body">
+      <div class="callout warn"><strong>Remember these 3 port security types:</strong> Switchport Security → 802.1X → EAPoL</div>
+      <table>
+        <tr><th>Type</th><th>Scope</th><th>What it does</th></tr>
+        <tr><td><strong>Switchport Security</strong></td><td>Physical LAN (switch ports)</td><td>Locks a switch port to specific MAC addresses</td></tr>
+        <tr><td><strong>802.1X</strong></td><td>Wired AND wireless</td><td>Network Access Control — authenticates users/devices via RADIUS before granting network access</td></tr>
+        <tr><td><strong>EAPoL</strong> (EAP over LAN)</td><td>Strictly wireless</td><td>Carries EAP authentication messages between client (supplicant) and access point (authenticator) at the data link layer</td></tr>
+      </table>
+
+      <h3>802.1X — Three Components</h3>
+      <table>
+        <tr><th>Component</th><th>Role</th></tr>
+        <tr><td><strong>Supplicant</strong></td><td>The client device trying to connect</td></tr>
+        <tr><td><strong>Authenticator</strong></td><td>The network device controlling access (access point or switch)</td></tr>
+        <tr><td><strong>Authentication Server</strong></td><td>RADIUS server — the AAA server that verifies credentials</td></tr>
+      </table>
+      <div class="callout green">802.1X common in WPA2 Enterprise and WPA3 Enterprise — requires a RADIUS server.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>📦 RADIUS vs TACACS+ <span class="tag-test">TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body">
+      <table>
+        <tr><th>Feature</th><th>RADIUS</th><th>TACACS+</th></tr>
+        <tr><td>Full Name</td><td>Remote Authentication Dial In User Service</td><td>Terminal Access Controller Access Control System Plus</td></tr>
+        <tr><td>Transport Protocol</td><td><strong>UDP</strong> (unreliable)</td><td><strong>TCP port 49</strong> (reliable)</td></tr>
+        <tr><td>AAA Functions</td><td>All 3 bundled together (Auto AAA)</td><td>Can use independently — Auth only, Authz only, or Accounting only</td></tr>
+        <tr><td>Use Case</td><td>Wi-Fi authentication, general enterprise</td><td>Cisco proprietary, device administration</td></tr>
+      </table>
+      <div class="callout warn">RADIUS = UDP (unreliable) | TACACS+ = TCP port 49 (reliable) — this distinction is tested!</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>🔏 EAP Methods <span class="tag-test">TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body">
+      <table>
+        <tr><th>Method</th><th>Notes</th></tr>
+        <tr><td><strong>EAP-TLS</strong></td><td>MOST SECURE — uses BOTH client AND server certificates for mutual authentication. Only EAP method to authenticate via two certs.</td></tr>
+        <tr><td><strong>PEAP</strong></td><td>Protected EAP — uses server certificate only; client uses credentials inside a TLS tunnel</td></tr>
+        <tr><td><strong>EAP-FAST</strong></td><td>Cisco proprietary — do NOT use (not widely accepted)</td></tr>
+      </table>
+      <div class="callout green"><strong>EAP-TLS is the strongest</strong> — two T's doesn't matter — it's the dual-cert requirement that makes it the most secure.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>📶 Wireless Attacks <span class="tag-test">TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body">
+      <table>
+        <tr><th>Attack</th><th>Description</th></tr>
+        <tr><td><strong>Evil Twin</strong></td><td>Rogue access point mimics a legitimate AP to trick users into connecting</td></tr>
+        <tr><td><strong>De-authentication Attack</strong></td><td>Forces clients to disconnect from AP (WPA3 PMF protects against this)</td></tr>
+        <tr><td><strong>Dis-association Attack</strong></td><td>Severs connection between client and AP using forged management frames</td></tr>
+        <tr><td><strong>Eavesdropping</strong></td><td>Capturing wireless data packets from the air</td></tr>
+        <tr><td><strong>On-path / MITM</strong></td><td>Intercepts and modifies traffic between client and AP</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>🗺️ Site Surveys &amp; Heat Maps</h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body">
+      <ul>
+        <li>A <strong>site survey</strong> physically maps wireless coverage — walk the space to check signal strength at different points</li>
+        <li>A <strong>heat map</strong> uses color to visualize signal strength — <span style="color:#ef4444">RED = hotspot (strongest)</span>, blue/green = cold (weakest)</li>
+        <li>Heat map color scales vary — always read the legend for that specific tool</li>
+        <li>Wi-Fi scans can be run without physically moving if needed, but walking the area gives better accuracy</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>🛡️ Wireless Hardening Best Practices</h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body">
+      <ul>
+        <li>Use <strong>WPA3</strong> if available; WPA2 is acceptable</li>
+        <li>Use a <strong>complex password / passphrase</strong></li>
+        <li><strong>Disable WPS</strong> (Wi-Fi Protected Setup) — it is insecure</li>
+        <li>Change <strong>default router credentials</strong></li>
+        <li>Keep <strong>firmware updated</strong></li>
+        <li>Consider hiding or changing your <strong>SSID</strong></li>
+        <li>Enable a <strong>firewall</strong> on the router</li>
+        <li>Use a <strong>guest network</strong> for visitors (network segmentation)</li>
+      </ul>
+      <div class="callout warn"><strong>WPS = insecure, disable it.</strong> Default credentials = risk. Guest network = segmentation for security.</div>
+    </div>
+  </div>
+</div>
+<!-- END WIRELESS NOTES -->
+
+
+<!-- =================== VULN MGMT NOTES =================== -->
+<div id="vulnmgmt" class="page">
+  <div class="page-header">
+    <h1>Chapter 4 — Vulnerability Management <span class="tag-test">BIG ON TEST</span></h1>
+    <p>Continuously identifying, evaluating, prioritizing, and remediating security weaknesses.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>🔍 What Is Vulnerability Management? <span class="tag-test">TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <p>Vulnerability management is the <strong>continuous process</strong> of identifying, evaluating, prioritizing, and remediating security weaknesses in systems, networks, and applications to reduce the risk of exploitation.</p>
+      <div class="callout warn"><strong>Continuous — not a one-time activity.</strong> New vulnerabilities are discovered constantly.</div>
+      <table>
+        <tr><th>Step</th><th>Action</th></tr>
+        <tr><td>1. Identify</td><td>Run vulnerability scanners to find weaknesses</td></tr>
+        <tr><td>2. Evaluate</td><td>Check CVE list and CVSS score</td></tr>
+        <tr><td>3. Prioritize</td><td>Highest CVSS score = fix first</td></tr>
+        <tr><td>4. Remediate</td><td>Patches, config changes, or compensating controls</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>🖥️ Vulnerability Scanners <span class="tag-test">TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <p>A vulnerability scanner automatically scans systems, networks, or applications for known security weaknesses by comparing the environment against databases of known vulnerabilities (CVE list).</p>
+      <table>
+        <tr><th>Scanner</th><th>Notes</th></tr>
+        <tr><td><strong>Nmap</strong></td><td>The "most famous" — maps your entire network, finds active devices, identifies unknown/unauthorized devices (unknown device = vulnerability)</td></tr>
+        <tr><td><strong>Nessus</strong></td><td>Commercial vulnerability scanner — widely used in enterprise</td></tr>
+        <tr><td><strong>OpenVAS</strong></td><td>Open-source vulnerability scanner</td></tr>
+        <tr><td><strong>Qualys</strong></td><td>Cloud-based vulnerability management platform</td></tr>
+      </table>
+      <h3>Types of Scans</h3>
+      <table>
+        <tr><th>Type</th><th>Focus</th></tr>
+        <tr><td><strong>Network-based</strong></td><td>Scans an entire network segment</td></tr>
+        <tr><td><strong>Host-based</strong></td><td>Focused on a single system / endpoint</td></tr>
+        <tr><td><strong>Application-based</strong></td><td>Targets web apps and services</td></tr>
+      </table>
+      <div class="callout">Vulnerability scan output includes <strong>vulnerability severity ratings</strong> — helps you prioritize what to fix first.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>📋 CVE — Common Vulnerabilities and Exposures <span class="tag-test">TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <table>
+        <tr><th>Term</th><th>Meaning</th></tr>
+        <tr><td><strong>CVE</strong></td><td>Common Vulnerabilities and Exposures — a unique ID assigned to each known vulnerability (e.g., CVE-2024-12345)</td></tr>
+        <tr><td><strong>Maintained by</strong></td><td><strong>Mitre Corporation</strong></td></tr>
+        <tr><td><strong>Format</strong></td><td>CVE-[YEAR]-[ARBITRARY NUMBER] — year it was found + unique identifier</td></tr>
+        <tr><td><strong>NVD</strong></td><td>National Vulnerability Database — hosts CVE details with CVSS scores. URL: <strong>nvd.nist.gov</strong></td></tr>
+        <tr><td><strong>Maintained by (NVD)</strong></td><td><strong>NIST</strong> (National Institute of Standards and Technology)</td></tr>
+      </table>
+      <div class="callout green">CVE list → maintained by <strong>Mitre</strong>. NVD (which shows CVEs with scores) → maintained by <strong>NIST</strong> at nvd.nist.gov.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>📊 CVSS — Common Vulnerability Scoring System <span class="tag-test">TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <p>CVSS assigns a numeric score (0–10) to a vulnerability reflecting its severity. Use it to prioritize remediation — <strong>highest score first.</strong></p>
+      <table>
+        <tr><th>Score</th><th>Severity</th><th>Action</th></tr>
+        <tr><td>0.0</td><td><span class="cvss-none">NONE</span></td><td>Informational only</td></tr>
+        <tr><td>0.1 – 3.9</td><td><span class="cvss-low">LOW</span></td><td>Patch in next scheduled cycle</td></tr>
+        <tr><td>4.0 – 6.9</td><td><span class="cvss-med">MEDIUM</span></td><td>Prioritize and schedule remediation</td></tr>
+        <tr><td>7.0 – 8.9</td><td><span class="cvss-high">HIGH</span></td><td>Remediate quickly</td></tr>
+        <tr><td>9.0 – 10.0</td><td><span class="cvss-crit">CRITICAL</span></td><td>Remediate IMMEDIATELY</td></tr>
+      </table>
+      <div class="callout warn"><strong>High CVSS score = fix first.</strong> Example: CVSS 8.7 = HIGH severity for SSH vulnerability (TP-Link, CVE-2026 example from notes).</div>
+      <div class="callout"><strong>How to check:</strong> Go to <a href="https://nvd.nist.gov" target="_blank" style="color:var(--accent)">nvd.nist.gov</a> → search the vulnerability → look at the CVSS score → prioritize by score.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>⚖️ Vulnerability Scan vs Penetration Test</h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body">
+      <table>
+        <tr><th>Tool</th><th>Purpose</th><th>Result</th></tr>
+        <tr><td><strong>Vulnerability Scanner</strong></td><td>Finds theoretical weaknesses in a network</td><td>List of possible vulnerabilities with severity — does NOT confirm exploitability</td></tr>
+        <tr><td><strong>Penetration Test</strong></td><td>Actively tries to exploit vulnerabilities</td><td>Confirms whether a vulnerability is actually exploitable in your environment</td></tr>
+      </table>
+      <div class="callout green">Scanner = "you <em>might</em> have a problem." Pen test = "you <em>definitely</em> have a problem — here's the proof."</div>
+    </div>
+  </div>
+</div>
+<!-- END VULN MGMT -->
+
+
+<!-- =================== NVD LAB TOOL =================== -->
+<div id="nvdlab" class="page">
+  <div class="page-header">
+    <h1>&#128269; NVD Vulnerability Lab Tool</h1>
+    <p>Search the National Vulnerability Database in real time. Look up CVEs, check CVSS scores, and prioritize fixes.</p>
+  </div>
+
+  <!-- SEARCH TOOL -->
+  <div class="lab-card">
+    <h2>&#128270; Search by Keyword</h2>
+    <p>Type a technology, product, or vulnerability name (e.g. "OpenSSH", "Windows 11", "Log4j", "Apache")</p>
+    <div class="search-row">
+      <input type="text" id="kwSearch" class="search-input" placeholder="e.g. SSH, Apache, Windows..." onkeydown="if(event.key==='Enter')searchNVD()"/>
+      <button class="btn btn-primary" onclick="searchNVD()">&#128269; Search NVD</button>
+    </div>
+  </div>
+
+  <div class="lab-card">
+    <h2>&#127991; Search by CVE ID</h2>
+    <p>Enter a specific CVE number to jump directly to its full NVD detail page with CVSS score, description, and remediation info.</p>
+    <div class="search-row">
+      <input type="text" id="cveSearch" class="search-input" placeholder="CVE-2024-12345" onkeydown="if(event.key==='Enter')lookupCVE()"/>
+      <button class="btn btn-warn" onclick="lookupCVE()">&#128196; Go to CVE</button>
+    </div>
+    <p style="margin-top:.75rem;font-size:.8rem;color:var(--muted)">Format: <code style="background:var(--surface2);padding:.1rem .4rem;border-radius:4px;">CVE-YEAR-NUMBER</code> &nbsp;|&nbsp; Example: <code style="background:var(--surface2);padding:.1rem .4rem;border-radius:4px;">CVE-2021-44228</code></p>
+  </div>
+
+  <!-- QUICK LINKS -->
+  <div class="lab-card">
+    <h2>&#9889; Quick CVE Lookup — Common Exam &amp; Lab Examples</h2>
+    <p>Click any card to open that CVE directly on nvd.nist.gov</p>
+    <div class="quick-cve-grid">
+
+      <a class="cve-card" href="https://nvd.nist.gov/vuln/detail/CVE-2021-44228" target="_blank">
+        <div class="cve-id">CVE-2021-44228</div>
+        <div class="cve-desc">Log4Shell — Apache Log4j Remote Code Execution</div>
+        <div class="cve-score"><span class="cvss-crit">CRITICAL 10.0</span></div>
+        <div class="cvss-meter"><div class="cvss-meter-fill" style="width:100%;background:#7f1d1d;"></div></div>
+      </a>
+
+      <a class="cve-card" href="https://nvd.nist.gov/vuln/detail/CVE-2017-0144" target="_blank">
+        <div class="cve-id">CVE-2017-0144</div>
+        <div class="cve-desc">EternalBlue — SMB exploit used by WannaCry ransomware</div>
+        <div class="cve-score"><span class="cvss-crit">CRITICAL 9.8</span></div>
+        <div class="cvss-meter"><div class="cvss-meter-fill" style="width:98%;background:#7f1d1d;"></div></div>
+      </a>
+
+      <a class="cve-card" href="https://nvd.nist.gov/vuln/detail/CVE-2014-0160" target="_blank">
+        <div class="cve-id">CVE-2014-0160</div>
+        <div class="cve-desc">Heartbleed — OpenSSL memory disclosure vulnerability</div>
+        <div class="cve-score"><span class="cvss-high">HIGH 7.5</span></div>
+        <div class="cvss-meter"><div class="cvss-meter-fill" style="width:75%;background:#dc2626;"></div></div>
+      </a>
+
+      <a class="cve-card" href="https://nvd.nist.gov/vuln/detail/CVE-2014-6271" target="_blank">
+        <div class="cve-id">CVE-2014-6271</div>
+        <div class="cve-desc">Shellshock — Bash remote code execution via env variables</div>
+        <div class="cve-score"><span class="cvss-crit">CRITICAL 9.8</span></div>
+        <div class="cvss-meter"><div class="cvss-meter-fill" style="width:98%;background:#7f1d1d;"></div></div>
+      </a>
+
+      <a class="cve-card" href="https://nvd.nist.gov/vuln/detail/CVE-2020-1472" target="_blank">
+        <div class="cve-id">CVE-2020-1472</div>
+        <div class="cve-desc">Zerologon — Windows Netlogon privilege escalation</div>
+        <div class="cve-score"><span class="cvss-crit">CRITICAL 10.0</span></div>
+        <div class="cvss-meter"><div class="cvss-meter-fill" style="width:100%;background:#7f1d1d;"></div></div>
+      </a>
+
+      <a class="cve-card" href="https://nvd.nist.gov/vuln/detail/CVE-2022-30190" target="_blank">
+        <div class="cve-id">CVE-2022-30190</div>
+        <div class="cve-desc">Follina — Microsoft MSDT remote code execution</div>
+        <div class="cve-score"><span class="cvss-high">HIGH 7.8</span></div>
+        <div class="cvss-meter"><div class="cvss-meter-fill" style="width:78%;background:#dc2626;"></div></div>
+      </a>
+
+    </div>
+    <div style="margin-top:1rem;">
+      <a class="btn btn-secondary" href="https://nvd.nist.gov/vuln/search" target="_blank">&#127760; Open NVD Full Search</a>
+      &nbsp;
+      <a class="btn btn-secondary" href="https://nvd.nist.gov" target="_blank">&#127968; NVD Home</a>
+    </div>
+  </div>
+
+  <!-- CVSS REFERENCE -->
+  <div class="lab-card">
+    <h2>&#128200; CVSS Score Reference — Exam Cheat Sheet</h2>
+    <p>When you pull up a CVE on NVD, this is how to read the score and decide what to do first.</p>
+    <table>
+      <tr><th>CVSS Score</th><th>Severity</th><th>Exam Priority</th><th>Action</th></tr>
+      <tr><td>0.0</td><td><span class="cvss-none">NONE</span></td><td>Lowest</td><td>Informational — monitor only</td></tr>
+      <tr><td>0.1 – 3.9</td><td><span class="cvss-low">LOW</span></td><td>Low</td><td>Schedule for next patch cycle</td></tr>
+      <tr><td>4.0 – 6.9</td><td><span class="cvss-med">MEDIUM</span></td><td>Medium</td><td>Prioritize and remediate soon</td></tr>
+      <tr><td>7.0 – 8.9</td><td><span class="cvss-high">HIGH</span></td><td>High</td><td>Remediate quickly — high risk</td></tr>
+      <tr><td>9.0 – 10.0</td><td><span class="cvss-crit">CRITICAL</span></td><td><strong>FIX FIRST</strong></td><td>Emergency patch — stop everything</td></tr>
+    </table>
+    <div class="callout warn"><strong>TEST TIP:</strong> "What should you remediate first?" → Always the <strong>highest CVSS score</strong>. Critical (9–10) before High, High before Medium, etc.</div>
+
+    <h3 style="margin-top:1.25rem;">CVSS Visual Meter — Try it</h3>
+    <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-top:.5rem;">
+      <input type="range" id="cvssSlider" min="0" max="10" step="0.1" value="7.5"
+        oninput="updateMeter(this.value)" style="flex:1;min-width:150px;accent-color:var(--accent);"/>
+      <span id="cvssDisplay" style="font-size:1.5rem;font-weight:800;color:var(--accent);min-width:3rem;">7.5</span>
+      <span id="cvssBadge" class="cvss-high">HIGH</span>
+    </div>
+    <div class="cvss-meter" style="height:16px;margin-top:.5rem;">
+      <div class="cvss-meter-fill" id="cvssMeterBar" style="width:75%;background:#dc2626;"></div>
+    </div>
+  </div>
+
+  <!-- HOW TO USE NVD -->
+  <div class="lab-card">
+    <h2>&#128218; How to Read an NVD Entry — Step by Step</h2>
+    <p>When you look up a CVE on nvd.nist.gov, here's what to look for:</p>
+    <table>
+      <tr><th>Field</th><th>What It Means</th></tr>
+      <tr><td><strong>CVE ID</strong></td><td>Unique identifier — CVE-YEAR-NUMBER. Year found, arbitrary number assigned by Mitre.</td></tr>
+      <tr><td><strong>CVSS Score</strong></td><td>The severity rating (0–10). Tells you how dangerous it is. Higher = fix first.</td></tr>
+      <tr><td><strong>Description</strong></td><td>What the vulnerability is and what software/version is affected</td></tr>
+      <tr><td><strong>References</strong></td><td>Vendor advisories, patches, and fixes — your remediation roadmap</td></tr>
+      <tr><td><strong>CWE</strong></td><td>Common Weakness Enumeration — the category/type of vulnerability (buffer overflow, injection, etc.)</td></tr>
+      <tr><td><strong>CPE</strong></td><td>Common Platform Enumeration — the specific product/version that is vulnerable</td></tr>
+    </table>
+  </div>
+</div>
+<!-- END NVD LAB -->
+
+
+<!-- =================== QUIZ =================== -->
+<div id="quiz4" class="page">
+  <div class="quiz-intro">
+    <h2>Chapter 4 Practice Quiz</h2>
+    <p>Wireless Security + Vulnerability Management — 20 questions</p>
+    <button class="btn btn-primary" id="startBtn" onclick="startQuiz()">Start Quiz</button>
+  </div>
+
+  <div id="scoreBar" class="score-bar">
+    <div class="score-num" id="scoreNum">0/20</div>
+    <div class="score-label" id="scoreLabel"></div>
+    <div class="progress-track"><div class="progress-fill" id="scoreFill" style="width:0%"></div></div>
+    <div class="quiz-controls">
+      <button class="btn btn-secondary" onclick="resetQuiz()">&#8635; Try Again</button>
+    </div>
+  </div>
+
+  <div id="quizQuestions" style="display:none">
+    <button class="btn btn-green" style="margin-bottom:1.5rem" onclick="submitQuiz()">&#10003; Submit All Answers</button>
+  </div>
+</div>
+<!-- END QUIZ -->
+
+
+<!-- =================== STIX & TAXII PAGE =================== -->
+<div id="stix" class="page">
+  <div class="page-header">
+    <h1>&#127981; STIX &amp; TAXII — Threat Intelligence Sharing <span class="tag-test">ON TEST</span></h1>
+    <p>How organizations describe, share, and act on cyber threat intelligence (CTI).</p>
+  </div>
+
+  <!-- NEW FROM DOCX: Dark Web -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#127760; Dark Web &amp; Threat Intelligence Monitoring <span class="tag-new">NEW FROM NOTES</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <p>The dark web exists in a semi-trusted zone (similar to a DMZ concept). Security teams monitor it for threat intelligence — not as part of normal IT work, but to stay ahead of attackers.</p>
+      <table>
+        <tr><th>What orgs monitor the dark web for</th><th>Why it matters</th></tr>
+        <tr><td>Stolen usernames &amp; passwords from your org</td><td>Early warning of credential compromise before attackers use them</td></tr>
+        <tr><td>Leaked company data</td><td>Detect data breaches that haven't been discovered internally yet</td></tr>
+        <tr><td>Malware exploit kits targeting your systems</td><td>Proactive defense — know what's being built against you</td></tr>
+      </table>
+      <div class="callout warn"><strong>Individual users do NOT browse the dark web.</strong> This is handled by specialized tools and security teams only. You understand it exists and how attackers use it — you don't participate in it.</div>
+    </div>
+  </div>
+
+  <!-- STIX -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#128196; STIX — Structured Threat Information eXpression <span class="tag-test">TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <p>STIX is a <strong>standardized language / format</strong> for describing cyber threat intelligence (CTI). Think of it as the <em>vocabulary</em> — a common way for organizations to write down and share what they know about threats.</p>
+      <div class="callout green"><strong>STIX = the FORMAT / LANGUAGE.</strong> It defines WHAT you're saying about a threat.</div>
+      <table>
+        <tr><th>STIX Describes</th><th>Examples</th></tr>
+        <tr><td><strong>Threat Actors</strong></td><td>Who is attacking (nation-state, criminal group, insider)</td></tr>
+        <tr><td><strong>Attack Patterns</strong></td><td>TTPs — Tactics, Techniques, and Procedures (linked to MITRE ATT&amp;CK)</td></tr>
+        <tr><td><strong>Malware</strong></td><td>Malware families, behavior, capabilities</td></tr>
+        <tr><td><strong>Indicators (IOCs)</strong></td><td>IP addresses, file hashes, domain names that indicate compromise</td></tr>
+        <tr><td><strong>Vulnerabilities</strong></td><td>CVEs and weaknesses being exploited</td></tr>
+        <tr><td><strong>Courses of Action</strong></td><td>Recommended mitigations or responses</td></tr>
+        <tr><td><strong>Campaigns</strong></td><td>A group of related attacker activity over time</td></tr>
+      </table>
+      <h3>STIX Technical Facts</h3>
+      <ul>
+        <li>Format: <strong>JSON-based</strong></li>
+        <li>Maintained by: <strong>OASIS</strong> (open standards organization)</li>
+        <li>Current version: <strong>STIX 2.x</strong></li>
+        <li>Two object types: <strong>SDOs</strong> (STIX Domain Objects — the "things") and <strong>SROs</strong> (STIX Relationship Objects — how things connect)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- TAXII -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#128338; TAXII — Trusted Automated eXchange of Intelligence Information <span class="tag-test">TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <p>TAXII is the <strong>transport protocol / delivery mechanism</strong> for sharing STIX data. Think of it as the <em>postal system</em> — STIX is the letter, TAXII is how it gets delivered.</p>
+      <div class="callout green"><strong>TAXII = the TRANSPORT / HOW you share it.</strong> STIX data travels over TAXII.</div>
+      <table>
+        <tr><th>Feature</th><th>Detail</th></tr>
+        <tr><td><strong>Transport</strong></td><td>Uses <strong>HTTPS</strong> — secure, encrypted delivery</td></tr>
+        <tr><td><strong>Collection model</strong></td><td>Request/response — clients query a TAXII server for available threat data</td></tr>
+        <tr><td><strong>Channel model</strong></td><td>Publish/subscribe — producers push updates to subscribers automatically</td></tr>
+        <tr><td><strong>What it carries</strong></td><td>Primarily STIX objects (but technically transport-agnostic for other CTI formats)</td></tr>
+        <tr><td><strong>Who uses it</strong></td><td>ISACs (Information Sharing and Analysis Centers), government agencies, security vendors, enterprises</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- STIX vs TAXII COMPARISON -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#9878; STIX vs TAXII — Side-by-Side Exam Comparison <span class="tag-test">TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <div class="callout warn"><strong>Most tested concept:</strong> STIX = language/format. TAXII = transport/mechanism. They work TOGETHER.</div>
+      <table>
+        <tr><th></th><th>STIX</th><th>TAXII</th></tr>
+        <tr><td><strong>Stands for</strong></td><td>Structured Threat Information eXpression</td><td>Trusted Automated eXchange of Intelligence Information</td></tr>
+        <tr><td><strong>Role</strong></td><td>The FORMAT — defines what threat data looks like</td><td>The TRANSPORT — defines how threat data is shared</td></tr>
+        <tr><td><strong>Analogy</strong></td><td>The letter / the language</td><td>The postal service / the delivery truck</td></tr>
+        <tr><td><strong>Protocol / Format</strong></td><td>JSON</td><td>HTTPS</td></tr>
+        <tr><td><strong>Question cue</strong></td><td>"describes," "expresses," "format for," "language for"</td><td>"shares," "transports," "exchanges," "delivers," "mechanism for"</td></tr>
+      </table>
+      <div class="callout"><strong>Memory trick:</strong> STIX = the STICK that <em>writes</em> (describes). TAXII = the TAXI that <em>drives</em> (transports).</div>
+    </div>
+  </div>
+
+  <!-- THREAT INTEL ECOSYSTEM -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>&#127758; Threat Intelligence Ecosystem</h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body">
+      <table>
+        <tr><th>Term</th><th>Meaning</th></tr>
+        <tr><td><strong>CTI</strong></td><td>Cyber Threat Intelligence — knowledge about threats used to defend against them</td></tr>
+        <tr><td><strong>IOC</strong></td><td>Indicator of Compromise — evidence that a breach occurred (IP, hash, domain)</td></tr>
+        <tr><td><strong>TTP</strong></td><td>Tactics, Techniques, and Procedures — how attackers operate (described in STIX, mapped in MITRE ATT&amp;CK)</td></tr>
+        <tr><td><strong>ISAC</strong></td><td>Information Sharing and Analysis Center — industry groups that share threat intel using STIX/TAXII</td></tr>
+        <tr><td><strong>MITRE ATT&amp;CK</strong></td><td>Framework cataloging real-world adversary TTPs — STIX is used to represent ATT&amp;CK data</td></tr>
+        <tr><td><strong>OpenIOC</strong></td><td>An older IOC format — STIX is the modern replacement</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- STIX/TAXII QUIZ -->
+  <div style="margin-top:2rem;">
+    <div class="quiz-intro">
+      <h2>STIX &amp; TAXII Practice Questions</h2>
+      <p>10 targeted exam questions — answers + explanations included</p>
+      <button class="btn btn-primary" id="stixStartBtn" onclick="startStixQuiz()">Start Quiz</button>
+    </div>
+
+    <div id="stixScoreBar" class="score-bar">
+      <div class="score-num" id="stixScoreNum">0/10</div>
+      <div class="score-label" id="stixScoreLabel"></div>
+      <div class="progress-track"><div class="progress-fill" id="stixScoreFill" style="width:0%"></div></div>
+      <div class="quiz-controls">
+        <button class="btn btn-secondary" onclick="resetStixQuiz()">&#8635; Try Again</button>
+      </div>
+    </div>
+
+    <div id="stixQuestions" style="display:none">
+      <button class="btn btn-green" style="margin-bottom:1.5rem" onclick="submitStixQuiz()">&#10003; Submit Answers</button>
+    </div>
+  </div>
+</div>
+<!-- END STIX & TAXII -->
+
+</div><!-- /container -->
+
+<script>
+/* STIX/TAXII QUIZ DATA */
+const stixQs = [
+  { q:"STIX stands for:",
+    opts:["Security Threat Intelligence eXchange","Structured Threat Information eXpression","Standard Threat Indicator eXchange","Secure Transmission of Intelligence eXpressions"],
+    ans:1,
+    exp:"STIX = Structured Threat Information eXpression. It is the standardized language/format for describing cyber threat intelligence." },
+  { q:"TAXII stands for:",
+    opts:["Threat Analysis and eXchange of Indicators Information","Trusted Automated eXchange of Intelligence Information","Tactical Automated eXchange of Internet Intelligence","Trusted Analysis of eXternal Internet Indicators"],
+    ans:1,
+    exp:"TAXII = Trusted Automated eXchange of Intelligence Information. It is the transport protocol used to share STIX data between organizations." },
+  { q:"What is the primary role of STIX in threat intelligence?",
+    opts:["Transport mechanism for delivering threat data","A firewall rule format","A standardized language/format for describing cyber threats","A vulnerability scoring system"],
+    ans:2,
+    exp:"STIX is the FORMAT — it defines what threat intelligence looks like. It describes threat actors, attack patterns, malware, IOCs, and more. TAXII is the transport." },
+  { q:"What is the primary role of TAXII in threat intelligence?",
+    opts:["The language used to describe threats","A database of known vulnerabilities","The transport mechanism that delivers STIX data between organizations","A scoring system for threat severity"],
+    ans:2,
+    exp:"TAXII is the TRANSPORT — it defines HOW threat data is shared. It uses HTTPS. Think: STIX = the letter, TAXII = the postal service delivering it." },
+  { q:"What protocol does TAXII use for secure transport?",
+    opts:["FTP","SMTP","HTTPS","SSH"],
+    ans:2,
+    exp:"TAXII uses HTTPS for secure, encrypted delivery of threat intelligence data between organizations." },
+  { q:"STIX uses which data format?",
+    opts:["XML","CSV","JSON","YAML"],
+    ans:2,
+    exp:"STIX 2.x is JSON-based. STIX objects are represented as JSON documents, making them easy to parse and share programmatically." },
+  { q:"An organization wants to share indicators of compromise (IOCs) with a partner using a standardized language. Which technology describes the format of that data?",
+    opts:["TAXII","OpenIOC","STIX","CVSS"],
+    ans:2,
+    exp:"STIX is the standardized language/format for describing IOCs and other threat intelligence. TAXII would be the mechanism to deliver it, but the question asks about the format/description." },
+  { q:"An organization receives threat intelligence automatically from a central hub. The data is delivered via HTTPS in a publish-subscribe model. Which technology is handling the DELIVERY of this data?",
+    opts:["STIX","CVSS","CVE","TAXII"],
+    ans:3,
+    exp:"TAXII handles the DELIVERY/TRANSPORT of threat intelligence. The publish-subscribe (channel) model described here is one of TAXII's two sharing models. STIX is the format of the data being delivered." },
+  { q:"STIX and TAXII work together. What is the best analogy for their relationship?",
+    opts:["STIX is the database, TAXII is the password","STIX is the letter (language), TAXII is the postal service (delivery)","STIX is the firewall, TAXII is the IDS","STIX is the transport, TAXII is the format"],
+    ans:1,
+    exp:"STIX = the letter/language (describes the threat). TAXII = the postal service/delivery truck (transports the data). They work together: STIX data is shared via TAXII." },
+  { q:"Which of the following is CORRECTLY matched?",
+    opts:["STIX = transport over HTTPS | TAXII = JSON threat format","STIX = JSON format describing threats | TAXII = HTTPS transport mechanism","STIX = vulnerability scoring | TAXII = threat intelligence format","STIX = firewall rules | TAXII = IDS signatures"],
+    ans:1,
+    exp:"STIX = JSON-based format that DESCRIBES threats. TAXII = transport mechanism using HTTPS to SHARE threat data. This is the tested pairing on Security+." }
+];
+
+let stixAnswered = {};
+
+function startStixQuiz() {
+  document.getElementById('stixStartBtn').style.display = 'none';
+  const container = document.getElementById('stixQuestions');
+  container.style.display = 'block';
+  container.innerHTML = '<button class="btn btn-green" style="margin-bottom:1.5rem" onclick="submitStixQuiz()">&#10003; Submit Answers</button>';
+  stixQs.forEach((q, i) => {
+    const card = document.createElement('div');
+    card.className = 'question-card';
+    card.id = 'sq' + i;
+    card.innerHTML = `
+      <div class="question-top">
+        <span class="q-num">Q${i+1}</span>
+        <span class="q-text">${q.q}</span>
+      </div>
+      <div class="options" id="sopts${i}">
+        ${q.opts.map((o,j) => `<div class="option" onclick="spick(${i},${j})" id="sopt${i}_${j}">
+          <span class="opt-letter">${'ABCD'[j]}</span>${o}</div>`).join('')}
+      </div>
+      <div class="explanation" id="sexp${i}">${q.exp}</div>`;
+    container.appendChild(card);
+  });
+  container.innerHTML += '<button class="btn btn-green" style="margin-top:.5rem" onclick="submitStixQuiz()">&#10003; Submit Answers</button>';
+}
+
+function spick(qi, oi) {
+  if (stixAnswered[qi] !== undefined) return;
+  document.querySelectorAll(`#sopts${qi} .option`).forEach(o => o.classList.remove('selected'));
+  document.getElementById(`sopt${qi}_${oi}`).classList.add('selected');
+  stixAnswered[qi] = oi;
+}
+
+function submitStixQuiz() {
+  let score = 0;
+  stixQs.forEach((q, i) => {
+    const chosen = stixAnswered[i];
+    const opts = document.querySelectorAll(`#sopts${i} .option`);
+    opts.forEach(o => o.classList.add('locked'));
+    opts[q.ans].classList.add('correct-ans');
+    if (chosen !== undefined && chosen !== q.ans) {
+      opts[chosen].classList.add('wrong-ans');
+      document.getElementById('sq'+i).classList.add('incorrect');
+    } else if (chosen === q.ans) {
+      score++;
+      document.getElementById('sq'+i).classList.add('correct');
+    } else {
+      document.getElementById('sq'+i).classList.add('incorrect');
+    }
+    document.getElementById('sexp'+i).classList.add('show');
+  });
+  const pct = Math.round(score / stixQs.length * 100);
+  const bar = document.getElementById('stixScoreBar');
+  bar.classList.add('show');
+  document.getElementById('stixScoreNum').textContent = score + '/' + stixQs.length;
+  document.getElementById('stixScoreFill').style.width = pct + '%';
+  let msg = pct >= 90 ? '🏆 Perfect — STIX/TAXII locked in!' :
+            pct >= 70 ? '✅ Good — review any missed questions.' :
+                        '📖 Review the notes above and retry.';
+  document.getElementById('stixScoreLabel').textContent = pct + '% — ' + msg;
+  bar.scrollIntoView({ behavior: 'smooth' });
+  document.querySelectorAll('#stixQuestions .btn-green').forEach(b => b.style.display = 'none');
+}
+
+function resetStixQuiz() {
+  stixAnswered = {};
+  document.getElementById('stixScoreBar').classList.remove('show');
+  document.getElementById('stixStartBtn').style.display = 'inline-flex';
+  document.getElementById('stixQuestions').style.display = 'none';
+  document.getElementById('stixQuestions').innerHTML = '';
+}
+</script>
+
+<script>
+/* NAV */
+function showPage(id, el) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+  if (el) el.classList.add('active');
+}
+
+/* SECTIONS */
+function toggle(hdr) {
+  hdr.classList.toggle('open');
+  hdr.nextElementSibling.classList.toggle('open');
+}
+
+/* THEME */
+function toggleTheme() {
+  document.body.classList.toggle('light');
+  document.getElementById('themeBtn').textContent = document.body.classList.contains('light') ? '🌙 Dark' : '☀️ Light';
+}
+
+/* NVD SEARCH */
+function searchNVD() {
+  const q = document.getElementById('kwSearch').value.trim();
+  if (!q) return;
+  window.open('https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=' + encodeURIComponent(q) + '&search_type=all', '_blank');
+}
+
+function lookupCVE() {
+  let q = document.getElementById('cveSearch').value.trim().toUpperCase();
+  if (!q) return;
+  if (!q.startsWith('CVE-')) q = 'CVE-' + q;
+  window.open('https://nvd.nist.gov/vuln/detail/' + encodeURIComponent(q), '_blank');
+}
+
+/* CVSS METER */
+function updateMeter(val) {
+  val = parseFloat(val);
+  document.getElementById('cvssDisplay').textContent = val.toFixed(1);
+  const bar = document.getElementById('cvssMeterBar');
+  const badge = document.getElementById('cvssBadge');
+  const pct = (val / 10 * 100).toFixed(1);
+  bar.style.width = pct + '%';
+  let cls, color, label;
+  if (val === 0)            { cls='cvss-none'; color='#4b5563'; label='NONE'; }
+  else if (val <= 3.9)      { cls='cvss-low';  color='#1d4ed8'; label='LOW'; }
+  else if (val <= 6.9)      { cls='cvss-med';  color='#d97706'; label='MEDIUM'; }
+  else if (val <= 8.9)      { cls='cvss-high'; color='#dc2626'; label='HIGH'; }
+  else                      { cls='cvss-crit'; color='#7f1d1d'; label='CRITICAL'; }
+  bar.style.background = color;
+  badge.className = cls;
+  badge.textContent = label;
+  document.getElementById('cvssDisplay').style.color = color;
+}
+
+/* QUIZ */
+const questions = [
+  { q:"What is the most secure wireless standard?",
+    opts:["WEP","WPA","WPA2","WPA3"], ans:3,
+    exp:"WPA3 is the most current and secure standard. WEP and WPA are deprecated/insecure. WPA2 is still acceptable but WPA3 is preferred." },
+  { q:"What does SAE stand for in WPA3?",
+    opts:["Secure Access Entry","Simultaneous Authentication of Equals","Symmetric Algorithm Encryption","Server Authentication Exchange"], ans:1,
+    exp:"SAE = Simultaneous Authentication of Equals. It replaces the WPA2 PSK handshake and prevents offline dictionary attacks." },
+  { q:"What is WPA3 SAE designed to prevent?",
+    opts:["Eavesdropping","Evil twin attacks","Offline dictionary attacks","Rogue access points"], ans:2,
+    exp:"SAE prevents offline dictionary attacks because the attacker must interact directly with the device to guess passwords — they cannot capture handshake data and crack it offline." },
+  { q:"WPA3 uses what encryption strengths for personal vs high-security environments?",
+    opts:["64-bit personal / 128-bit enterprise","128-bit personal / 192-bit enterprise","256-bit both","128-bit both"], ans:1,
+    exp:"WPA3 uses 128-bit encryption for personal networks and 192-bit for high-security/enterprise/government environments." },
+  { q:"What does PFS (Perfect Forward Secrecy) protect against?",
+    opts:["Evil twin attacks","Using a compromised password to decrypt past captured traffic","De-authentication floods","Rogue RADIUS servers"], ans:1,
+    exp:"PFS ensures that even if a password is compromised LATER, previously captured traffic cannot be decrypted. It uses ephemeral keys." },
+  { q:"Which algorithm produces ephemeral (short-lived) keys for PFS?",
+    opts:["AES","RSA","Diffie-Hellman (DH)","ECC"], ans:2,
+    exp:"Diffie-Hellman (DH) is the only algorithm that produces ephemeral keys — this is the mechanism behind Perfect Forward Secrecy." },
+  { q:"Which of these are the three port security methods from Chapter 4?",
+    opts:["WPA2 / WPA3 / WEP","Switchport Security / 802.1X / EAPoL","RADIUS / TACACS+ / Kerberos","AES / DES / 3DES"], ans:1,
+    exp:"The three port security types are: Switchport Security (physical LAN), 802.1X (wired AND wireless), and EAPoL (strictly wireless)." },
+  { q:"What are the three components of 802.1X?",
+    opts:["Client / Server / Router","Supplicant / Authenticator / Authentication Server","User / Admin / Guest","AP / Switch / Firewall"], ans:1,
+    exp:"802.1X uses: Supplicant (client device), Authenticator (access point or switch), and Authentication Server (RADIUS server)." },
+  { q:"What transport protocol does RADIUS use, and what does TACACS+ use?",
+    opts:["RADIUS: TCP | TACACS+: UDP","RADIUS: UDP (unreliable) | TACACS+: TCP port 49 (reliable)","Both TCP","Both UDP"], ans:1,
+    exp:"RADIUS uses UDP (unreliable). TACACS+ uses TCP port 49 (reliable). This is a tested distinction — TCP = reliable, UDP = unreliable." },
+  { q:"What makes EAP-TLS the most secure EAP method?",
+    opts:["It uses a longer password","Server certificate only","Both client AND server certificates","It is Cisco proprietary"], ans:2,
+    exp:"EAP-TLS is the only EAP method that authenticates using BOTH a client certificate AND a server certificate. That dual-certificate requirement makes it the most secure." },
+  { q:"CVSS stands for:",
+    opts:["Cyber Vulnerability Severity Score","Common Vulnerability Scoring System","Critical Virus Security Standard","Common Virus Scanning System"], ans:1,
+    exp:"CVSS = Common Vulnerability Scoring System. It provides a numeric score (0–10) reflecting the severity of a vulnerability." },
+  { q:"CVE stands for:",
+    opts:["Critical Vulnerability Evaluation","Cyber Vulnerability Exposure","Common Vulnerabilities and Exposures","Common Virus Encryption"], ans:2,
+    exp:"CVE = Common Vulnerabilities and Exposures. Each known vulnerability gets a unique CVE-YEAR-NUMBER identifier." },
+  { q:"Who maintains the CVE list?",
+    opts:["NIST","NSA","Mitre Corporation","FBI"], ans:2,
+    exp:"The CVE list is maintained by Mitre Corporation. The NVD (which hosts CVEs with CVSS scores) is maintained by NIST at nvd.nist.gov." },
+  { q:"What website is the National Vulnerability Database?",
+    opts:["cve.org","nvd.nist.gov","vulnerabilities.gov","nist.gov/cve"], ans:1,
+    exp:"The NVD is at nvd.nist.gov — maintained by NIST. It lists CVEs along with CVSS scores, affected products, and remediation references." },
+  { q:"A vulnerability has a CVSS score of 9.3. What severity is this and what should you do?",
+    opts:["HIGH — schedule for next patch cycle","MEDIUM — monitor it","CRITICAL — remediate immediately","LOW — deprioritize"], ans:0,
+    exp:"CVSS 9.0–10.0 = CRITICAL. This requires immediate remediation — emergency patching. Highest CVSS score = fix first.",
+    ansOverride: 0,
+    actualOpts:["CRITICAL — remediate immediately","HIGH — schedule for next patch cycle","MEDIUM — monitor it","LOW — deprioritize"],
+    actualAns: 0
+  },
+  { q:"What is the key difference between a vulnerability scan and a penetration test?",
+    opts:["They are the same thing","Vulnerability scan confirms exploitability; pen test just lists weaknesses","Vulnerability scan finds theoretical weaknesses; pen test confirms they are actually exploitable","Pen tests are automated; vulnerability scans are manual"], ans:2,
+    exp:"Vulnerability scanner = finds theoretical weaknesses that MAY exist. Pen test = actively exploits to CONFIRM whether a vulnerability is real and exploitable in your environment." },
+  { q:"Which tool is described as the 'most famous' network scanner that also identifies unknown devices (which are themselves a vulnerability)?",
+    opts:["Nessus","OpenVAS","Nmap","Qualys"], ans:2,
+    exp:"Nmap is the most famous tool — it maps your entire network and shows devices that are present, including unknown/unauthorized ones. An unknown device = a vulnerability." },
+  { q:"When setting up a wireless network, what should you DISABLE to reduce attack surface?",
+    opts:["WPA3","DHCP","WPS (Wi-Fi Protected Setup)","SSID broadcast only"], ans:2,
+    exp:"WPS (Wi-Fi Protected Setup) is insecure and should be disabled. It was designed for convenience but has known vulnerabilities that allow bypassing the WPA password." },
+  { q:"In the context of wireless security, a de-authentication attack sends forged frames to kick clients off the network. Which WPA3 feature defends against this?",
+    opts:["SAE","DPP","PMF (Protected Management Frames)","EAP-TLS"], ans:2,
+    exp:"PMF = Protected Management Frames. WPA3 incorporates PMF to protect against de-authentication and dis-association attacks." },
+  { q:"You run a vulnerability scan and find CVE-2021-44228 (Log4Shell) on a server with a CVSS score of 10.0. What action should you take FIRST?",
+    opts:["Schedule it for next quarter's patch cycle","Document it and monitor","Remediate IMMEDIATELY — CVSS 10.0 is Critical","Run another scan to confirm"], ans:2,
+    exp:"CVSS 10.0 = CRITICAL. Log4Shell is one of the most severe vulnerabilities ever found (remote code execution). Remediate immediately — this is why CVSS scoring exists: to prioritize the most dangerous vulnerabilities first." }
+];
+
+let answered = {};
+
+function startQuiz() {
+  document.getElementById('startBtn').style.display = 'none';
+  const container = document.getElementById('quizQuestions');
+  container.style.display = 'block';
+  container.innerHTML = '<button class="btn btn-green" style="margin-bottom:1.5rem" onclick="submitQuiz()">&#10003; Submit All Answers</button>';
+  questions.forEach((q, i) => {
+    const opts = q.actualOpts || q.opts;
+    const card = document.createElement('div');
+    card.className = 'question-card';
+    card.id = 'q' + i;
+    card.innerHTML = `
+      <div class="question-top">
+        <span class="q-num">Q${i+1}</span>
+        <span class="q-text">${q.q}</span>
+      </div>
+      <div class="options" id="opts${i}">
+        ${opts.map((o,j) => `<div class="option" onclick="pick(${i},${j})" id="opt${i}_${j}">
+          <span class="opt-letter">${'ABCD'[j]}</span>${o}</div>`).join('')}
+      </div>
+      <div class="explanation" id="exp${i}">${q.exp}</div>`;
+    container.appendChild(card);
+  });
+  container.innerHTML += '<button class="btn btn-green" style="margin-top:.5rem" onclick="submitQuiz()">&#10003; Submit All Answers</button>';
+}
+
+function pick(qi, oi) {
+  if (answered[qi] !== undefined) return;
+  document.querySelectorAll(`#opts${qi} .option`).forEach(o => o.classList.remove('selected'));
+  document.getElementById(`opt${qi}_${oi}`).classList.add('selected');
+  answered[qi] = oi;
+}
+
+function submitQuiz() {
+  let score = 0;
+  questions.forEach((q, i) => {
+    const correct = q.actualAns !== undefined ? q.actualAns : q.ans;
+    const chosen = answered[i];
+    const opts = document.querySelectorAll(`#opts${i} .option`);
+    opts.forEach(o => o.classList.add('locked'));
+    opts[correct].classList.add('correct-ans');
+    if (chosen !== undefined && chosen !== correct) {
+      opts[chosen].classList.add('wrong-ans');
+      document.getElementById('q'+i).classList.add('incorrect');
+    } else if (chosen === correct) {
+      score++;
+      document.getElementById('q'+i).classList.add('correct');
+    } else {
+      document.getElementById('q'+i).classList.add('incorrect');
+    }
+    document.getElementById('exp'+i).classList.add('show');
+  });
+  const pct = Math.round(score/questions.length*100);
+  const bar = document.getElementById('scoreBar');
+  bar.classList.add('show');
+  document.getElementById('scoreNum').textContent = score + '/' + questions.length;
+  document.getElementById('scoreFill').style.width = pct + '%';
+  let msg = pct >= 90 ? '🏆 Excellent! Exam-ready on this material.' :
+            pct >= 75 ? '✅ Good job! Review any missed questions.' :
+            pct >= 60 ? '📖 Review the notes and try again.' :
+                        '🔁 Go back through the Chapter 4 notes and retry.';
+  document.getElementById('scoreLabel').textContent = pct + '% — ' + msg;
+  bar.scrollIntoView({behavior:'smooth'});
+  document.querySelectorAll('#quizQuestions .btn-green').forEach(b => b.style.display='none');
+}
+
+function resetQuiz() {
+  answered = {};
+  document.getElementById('scoreBar').classList.remove('show');
+  document.getElementById('startBtn').style.display = 'inline-flex';
+  document.getElementById('quizQuestions').style.display = 'none';
+  document.getElementById('quizQuestions').innerHTML = '';
+}
+</script>
+</body>
+</html>
