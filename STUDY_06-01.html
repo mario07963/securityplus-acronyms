@@ -1699,8 +1699,36 @@
         <table>
           <tr><th>Term</th><th>Definition</th></tr>
           <tr><td><strong>Failover</strong></td><td>The capability to switch over automatically to a redundant system (alternate processing site) upon failure of the regularly active system. Used to prevent loss of service.</td></tr>
-          <tr><td><strong>Tabletop Exercise</strong></td><td>Discussion-based exercise where personnel go through disaster recovery roles and responsibilities in a classroom setting — WITHOUT actually simulating a disaster. Familiarizes staff with recovery procedures.</td></tr>
+          <tr><td><strong>Tabletop Exercise</strong></td><td>Discussion-based exercise where personnel go through disaster recovery roles and responsibilities in a classroom setting — WITHOUT actually simulating a disaster. Familiarizes staff with recovery procedures. Critical for maintaining availability and resilience by proactively identifying weaknesses BEFORE an incident occurs.</td></tr>
         </table>
+        <h3>🔥 Hot / Warm / Cold Sites — ALL 3 ON THE TEST</h3>
+        <div class="callout warn">⚠ ON TEST — Instructor flagged: "All 3 of these will be on the test."</div>
+        <table>
+          <tr><th>Site Type</th><th>What It Is</th><th>RTO</th><th>Cost</th></tr>
+          <tr><td><strong>Hot Site</strong></td><td>Fully operational backup location — all hardware, software, and <strong>up-to-date data</strong> ready to go. Systems often running in near real-time with data synchronization from primary site.</td><td>Fastest (minimal downtime)</td><td>Most expensive</td></tr>
+          <tr><td><strong>Warm Site</strong></td><td>Partial infrastructure in place — hardware exists but requires <strong>some setup and configuration</strong> before use. Most organizations settle on warm sites.</td><td>Middle ground</td><td>Middle ground</td></tr>
+          <tr><td><strong>Cold Site</strong></td><td>Empty facility with power and connectivity only — <strong>no hardware, no data</strong>. Requires full setup before it can be used.</td><td>Slowest</td><td>Cheapest</td></tr>
+        </table>
+        <div class="callout exam">Exam Tip: Hot = fastest + most expensive. Cold = slowest + cheapest. Warm = middle ground. Hot site has the LOWEST RTO and RPO. If a question asks "lowest RTO/RPO" → Hot Site.</div>
+      </div>
+    </div>
+
+    <!-- SAST / DAST / IAST -->
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span>🔬 Code Analysis — SAST, DAST &amp; IAST</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <div class="callout warn">⚠ ON TEST — Instructor flagged: "This code analysis is going to be written on a test as static code analysis or dynamic code analysis."</div>
+        <p>Code analysis reviews application source code or compiled code to identify security vulnerabilities, coding errors, and weaknesses before they are exploited.</p>
+        <table>
+          <tr><th>Type</th><th>Acronym</th><th>When It Runs</th><th>What It Finds</th></tr>
+          <tr><td><strong>Static Analysis</strong></td><td><strong>SAST</strong> — Static Application Security Testing</td><td>Code is examined <strong>without executing it</strong> — before deployment</td><td>Insecure functions, improper input handling, hard-coded credentials, injection flaws</td></tr>
+          <tr><td><strong>Dynamic Analysis</strong></td><td><strong>DAST</strong> — Dynamic Application Security Testing</td><td>Application is tested <strong>while running</strong> — in real time</td><td>Memory leaks, runtime vulnerabilities, behavior-based issues that only appear during execution</td></tr>
+          <tr><td><strong>Interactive Analysis</strong></td><td><strong>IAST</strong> — Interactive Application Security Testing</td><td>Combines static + dynamic — runs <strong>during testing phase</strong> with agents inside the app</td><td>Broader coverage than either SAST or DAST alone</td></tr>
+        </table>
+        <div class="callout exam">Exam Tip: SAST = code NOT running (static). DAST = code IS running (dynamic). IAST = hybrid of both. If you see "static code analysis" on the test = SAST. If you see "dynamic code analysis" = DAST.</div>
       </div>
     </div>
 
@@ -1855,11 +1883,11 @@
   <div id="quiz3" class="page">
     <div class="page-header">
       <h1>Practice Test — June 3, 2026</h1>
-      <p>Chapter 3 · 52 questions · Select an answer to lock it in</p>
+      <p>Chapter 3 · 54 questions · Select an answer to lock it in</p>
     </div>
 
     <div id="scoreBar3" class="score-bar">
-      <div class="score-num" id="scoreNum3">0/52</div>
+      <div class="score-num" id="scoreNum3">0/54</div>
       <div class="score-label" id="scoreLabel3">Keep going!</div>
       <div class="progress-track"><div class="progress-fill" id="progressFill3" style="width:0%"></div></div>
       <div class="quiz-controls">
@@ -2575,34 +2603,6 @@
   // ═══════════════════════════════════════
   const questions3 = [
     {
-      q: 'In the IaaS cloud model, which components are YOU (the customer) responsible for managing?',
-      options: [
-        'Hardware, networking, and storage only',
-        'Nothing — the cloud provider manages everything',
-        'OS, applications, and data',
-        'Applications and data only — the provider manages OS'
-      ],
-      answer: 2,
-      explain: 'IaaS (Infrastructure as a Service) — the cloud provider manages hardware, networking, and storage. YOU manage the OS, applications, and data. Think: you rent the land and build your own house.'
-    },
-    {
-      q: 'In which cloud model are you responsible for ONLY your data?',
-      options: ['IaaS', 'PaaS', 'SaaS', 'On-Premises'],
-      answer: 2,
-      explain: 'In SaaS (Software as a Service), the provider manages hardware, OS, runtime, AND the application. You are only responsible for your own data. Examples: Gmail, Office 365, Salesforce.'
-    },
-    {
-      q: 'Under the Shared Responsibility Model, what is the customer ALWAYS responsible for — regardless of cloud model?',
-      options: [
-        'The physical hardware and data center',
-        'The operating system and runtime environment',
-        'Their own data',
-        'Network infrastructure and load balancers'
-      ],
-      answer: 2,
-      explain: 'Regardless of whether you use IaaS, PaaS, or SaaS — you are always responsible for your own data. The cloud provider may manage everything else, but data ownership and responsibility stays with the customer.'
-    },
-    {
       q: 'A company runs workloads on both their own data center and AWS simultaneously. What deployment model is this?',
       options: ['Multi-Cloud', 'Private Cloud', 'Hybrid Cloud', 'Edge Computing'],
       answer: 2,
@@ -3010,6 +3010,36 @@
       options: ['Zero Trust', 'SDN', 'SASE', 'SSE'],
       answer: 2,
       explain: 'SASE (Secure Access Service Edge) is a new security architecture that combines network security functions (firewall, CASB, SWG, ZTNA) with WAN capabilities — all delivered as a cloud service. It is designed to protect users, devices, and applications regardless of location. SSE is a subset of SASE without the WAN component.'
+    },
+    {
+      q: '[DOCX — ON TEST] A disaster recovery site that is fully operational with all hardware, software, and up-to-date synchronized data — ready to take over immediately — is called a:',
+      options: ['Cold Site', 'Warm Site', 'Hot Site', 'Off-site Backup'],
+      answer: 2,
+      explain: 'A Hot Site is a fully operational backup location with all necessary hardware, software, and up-to-date data ready to go. Systems run in near real-time sync with the primary site. It provides the LOWEST RTO and RPO but is the MOST EXPENSIVE. Instructor note: "All 3 of these will be on the test."'
+    },
+    {
+      q: '[DOCX — ON TEST] Which disaster recovery site has partial infrastructure in place but requires some setup before it can be used — and is what MOST organizations choose?',
+      options: ['Hot Site', 'Cold Site', 'Warm Site', 'Failover Cluster'],
+      answer: 2,
+      explain: 'A Warm Site has partial infrastructure already in place (hardware exists) but requires some setup and configuration before it is operational. It is the middle ground — faster than cold, cheaper than hot. Most organizations settle on warm sites as the balanced option.'
+    },
+    {
+      q: '[DOCX — ON TEST] A disaster recovery site that is just an empty facility with power and connectivity — NO hardware or data — and requires full setup from scratch is called a:',
+      options: ['Hot Site', 'Warm Site', 'Cold Site', 'Community Site'],
+      answer: 2,
+      explain: 'A Cold Site is the cheapest disaster recovery option — it provides only the physical space, power, and connectivity. No hardware, no software, no data. It has the HIGHEST RTO because everything must be set up before recovery can begin. Cheapest but slowest.'
+    },
+    {
+      q: '[DOCX — ON TEST] A developer scans source code for hard-coded credentials and injection flaws BEFORE the application is deployed — without running the code. This is called:',
+      options: ['DAST — Dynamic Application Security Testing', 'IAST — Interactive Application Security Testing', 'SAST — Static Application Security Testing', 'Peer Code Review'],
+      answer: 2,
+      explain: 'SAST (Static Application Security Testing) examines code WITHOUT executing it — before deployment. It finds insecure functions, improper input handling, hard-coded credentials, and injection flaws. On the test, "static code analysis" = SAST. Instructor: "This will be written on the test as static code analysis or dynamic code analysis."'
+    },
+    {
+      q: '[DOCX — ON TEST] A security tool tests an application WHILE IT IS RUNNING to detect memory leaks, runtime vulnerabilities, and behavioral issues. This is called:',
+      options: ['SAST — Static Application Security Testing', 'DAST — Dynamic Application Security Testing', 'IAST — Interactive Application Security Testing', 'Fuzzing'],
+      answer: 1,
+      explain: 'DAST (Dynamic Application Security Testing) tests the application while it is running — in real time. It identifies issues like memory leaks, runtime vulnerabilities, and behavior-based problems that only appear during execution. On the test, "dynamic code analysis" = DAST.'
     }
   ];
 
