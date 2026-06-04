@@ -1338,11 +1338,164 @@
     </div>
   </div>
 
+  <!-- LOG MANAGEMENT LIFECYCLE -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>&#128203; Log Management Lifecycle <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body">
+      <p>Log management is a continuous cycle that enables organizations to detect threats, respond effectively, and maintain security oversight.</p>
+      <table>
+        <tr><th>Phase</th><th>What Happens</th></tr>
+        <tr><td><strong>1. Aggregation</strong></td><td>Collect logs from multiple sources (systems, apps, network devices) into a centralized location — typically a SIEM</td></tr>
+        <tr><td><strong>2. Scanning / Analysis</strong></td><td>Analyze collected data to identify known threats, suspicious patterns, or abnormal behavior using predefined rules or signatures</td></tr>
+        <tr><td><strong>3. Alerting</strong></td><td>When suspicious activity is detected, notify security personnel so they can investigate and respond quickly</td></tr>
+        <tr><td><strong>4. Reporting</strong></td><td>Summarized views of events, trends, and incidents to support decision-making and compliance</td></tr>
+        <tr><td><strong>5. Archiving</strong></td><td>Securely store logs for long-term retention — critical for audits, forensic investigation, and compliance</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- SIEM -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#128421;&#65039; SIEM — Security Information and Event Management <span class="tag-test">TEST — 2 KEY THINGS</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <div class="callout red" style="font-size:1.05rem;text-align:center;">
+        <strong>SIEM does 2 things on the exam:<br/>1. AGGREGATES &nbsp;&nbsp;&nbsp; 2. CORRELATES</strong>
+      </div>
+      <table>
+        <tr><th>Function</th><th>What it means</th></tr>
+        <tr><td><strong>Aggregation</strong></td><td>Collects logs from all devices and systems into ONE centralized <strong>dashboard</strong> — keyword on the exam: <em>dashboard</em></td></tr>
+        <tr><td><strong>Correlation</strong></td><td>Sifts through all logs looking for <strong>Indicators of Compromise (IoC)</strong> — combines events from different systems to detect attacks not obvious individually</td></tr>
+      </table>
+      <h3>SIEM Key Details</h3>
+      <table>
+        <tr><th>Detail</th><th>Value</th></tr>
+        <tr><td><strong>Log storage drive</strong></td><td><strong>WORM drive</strong> — Write Once, Read Many. Logs cannot be modified after writing — protects integrity</td></tr>
+        <tr><td><strong>Time synchronization</strong></td><td><strong>NTP</strong> (Network Time Protocol) — must be accurate so logs from all sources align for correlation</td></tr>
+        <tr><td><strong>Deduplication</strong></td><td>SIEM hashes logs; if the same hash exists it skips re-storing — saves space on the WORM drive</td></tr>
+        <tr><td><strong>Does SIEM stop attacks?</strong></td><td><span style="color:var(--red);font-weight:700">NO</span> — SIEM alerts and notifies; it does NOT block or stop threats directly</td></tr>
+        <tr><td><strong>Fine-tuning required</strong></td><td>SIEM must be fine-tuned to detect the specific things you want — generic defaults won't catch everything</td></tr>
+        <tr><td><strong>Example platform</strong></td><td>Splunk</td></tr>
+      </table>
+      <div class="callout warn"><strong>SIEM alerts other devices</strong> (firewalls, IPS) to stop what's coming through — but the SIEM itself doesn't stop it. It is the control center that sees everything and directs other tools.</div>
+    </div>
+  </div>
+
+  <!-- SOAR -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>&#129302; SOAR — Security Orchestration, Automation and Response <span class="tag-new">NEW</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body">
+      <div class="callout green"><strong>SOAR = SIEM on steroids.</strong> It doesn't just detect and alert — it automatically fixes things by orchestrating other security tools.</div>
+      <table>
+        <tr><th>Feature</th><th>SIEM</th><th>SOAR</th></tr>
+        <tr><td><strong>Detects threats</strong></td><td>&#10003; Yes</td><td>&#10003; Yes</td></tr>
+        <tr><td><strong>Alerts security team</strong></td><td>&#10003; Yes</td><td>&#10003; Yes</td></tr>
+        <tr><td><strong>Automatically responds</strong></td><td>&#10007; No</td><td>&#10003; Yes — uses playbooks and integrations</td></tr>
+      </table>
+      <div class="callout">Rarely tested on Security+, but if it appears: look for <strong>automated response</strong> — SOAR orchestrates tools to take action automatically, not just send an alert.</div>
+    </div>
+  </div>
+
+  <!-- SECURITY MONITORING RESOURCES -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>&#128295; Security Monitoring Resources <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body">
+      <table>
+        <tr><th>Resource</th><th>Purpose</th></tr>
+        <tr><td><strong>SCAP</strong></td><td>Security Content Automation Protocol — standardized framework for automated vulnerability management and compliance checks</td></tr>
+        <tr><td><strong>Agents</strong></td><td>Software installed on endpoints to collect and report security data (logs, system activity, vulnerabilities)</td></tr>
+        <tr><td><strong>SIEM</strong></td><td>Aggregates and correlates logs from across the environment — centralized monitoring and real-time alerting</td></tr>
+        <tr><td><strong>DLP</strong></td><td>Data Loss Prevention — monitors and protects sensitive data to prevent unauthorized exfiltration</td></tr>
+        <tr><td><strong>SNMP Traps</strong></td><td>Proactive push alerts from network devices when specific events occur (vs. polling which waits)</td></tr>
+        <tr><td><strong>Vulnerability Scanners</strong></td><td>Identify known weaknesses across systems and applications — provide data for analysis and prioritization</td></tr>
+        <tr><td><strong>NetFlow</strong></td><td>Analyzes traffic patterns to detect suspicious behavior</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- SCAP -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>&#128295; SCAP — Security Content Automation Protocol <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body">
+      <p>SCAP is not a single tool — it is a <strong>collection of standards</strong> used to automate vulnerability management, configuration compliance, and security policy enforcement.</p>
+      <div class="callout">SCAP provides a consistent way for tools (vulnerability scanners, compliance checkers) to communicate, measure, and report security posture using a common format — improving accuracy and interoperability between tools.</div>
+      <h3>SCAP Languages — The Three Components</h3>
+      <table>
+        <tr><th>Component</th><th>Full Name</th><th>What It Does</th></tr>
+        <tr><td><strong>OVAL</strong></td><td>Open Vulnerability and Assessment Language</td><td>Defines <em>what to look for</em> during a scan — checks for specific vulnerabilities or config states (missing patches, insecure settings)</td></tr>
+        <tr><td><strong>XCCDF</strong></td><td>Extensible Configuration Checklist Description Format</td><td>Defines <em>how systems should be configured</em> — structured security checklists and benchmarks (e.g., CIS benchmarks) with rules for evaluating compliance</td></tr>
+        <tr><td><strong>ARF</strong></td><td>Asset Reporting Format</td><td>Organizes and communicates <em>assessment results</em> — combines OVAL and XCCDF findings into a standardized report shareable across tools</td></tr>
+      </table>
+      <div class="callout warn"><strong>Memory shortcut:</strong> OVAL = <em>what</em> to look for &nbsp;|&nbsp; XCCDF = <em>how</em> systems should be configured &nbsp;|&nbsp; ARF = the <em>results report</em> combining both</div>
+    </div>
+  </div>
+
+  <!-- BENCHMARKS / CIS -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>&#128207; Benchmarks — CIS Configuration Standards <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body">
+      <p>Benchmarks are established best-practice configuration standards used to secure systems, networks, and applications by reducing vulnerabilities and enforcing consistent security settings.</p>
+      <table>
+        <tr><th>Term</th><th>Detail</th></tr>
+        <tr><td><strong>CIS</strong></td><td><strong>Center for Internet Security</strong> — develops the most widely used security benchmarks. CIS Benchmarks cover OS, servers, databases, and devices.</td></tr>
+        <tr><td><strong>Purpose</strong></td><td>Detailed guidance on how to properly configure systems to meet recognized security standards — without these, you're non-compliant</td></tr>
+        <tr><td><strong>Used in scanning</strong></td><td>Vulnerability tools compare current system configuration against benchmark recommendations to identify weaknesses (unnecessary services, insecure permissions, default configs)</td></tr>
+        <tr><td><strong>Benefit</strong></td><td>Hardens the environment, reduces attack surface, maintains compliance with regulations and frameworks</td></tr>
+      </table>
+      <div class="callout green"><strong>SCAP + Benchmarks = Automated Compliance.</strong> SCAP uses XCCDF to define how systems should be configured — CIS Benchmarks provide those definitions.</div>
+    </div>
+  </div>
+
+  <!-- SNMP TRAPS -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>&#128225; SNMP Traps <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body">
+      <p>SNMP Traps are a feature of <strong>Simple Network Management Protocol (SNMP)</strong> — used for real-time proactive alerting from network devices.</p>
+      <div class="two-col">
+        <div class="callout red">
+          <strong>Polling (reactive):</strong><br/>
+          Management system asks the device "are you OK?" at set intervals. You only know something went wrong when you ask.
+        </div>
+        <div class="callout green">
+          <strong>SNMP Traps (proactive):</strong><br/>
+          Device sends an alert to the management system the moment a specific event occurs — immediately, without being asked.
+        </div>
+      </div>
+      <table>
+        <tr><th>Feature</th><th>Detail</th></tr>
+        <tr><td><strong>Direction</strong></td><td>Device &#8594; Management System (device initiates)</td></tr>
+        <tr><td><strong>Trigger examples</strong></td><td>Device failure, high CPU usage, network interface going down, security event</td></tr>
+        <tr><td><strong>Integration</strong></td><td>Sends to centralized monitoring or SIEM — triggers alerts or incident response actions</td></tr>
+        <tr><td><strong>Advantage</strong></td><td>Reduces response time vs. polling — immediate notification of critical events</td></tr>
+      </table>
+    </div>
+  </div>
+
   <!-- QUIZ -->
   <div style="margin-top:2rem;">
     <div class="quiz-intro">
-      <h2>Pen Test, Bug Bounties &amp; Audits — Practice Quiz</h2>
-      <p>12 exam-focused questions with full explanations</p>
+      <h2>Pen Test, Audits &amp; Security Monitoring — Practice Quiz</h2>
+      <p>Exam-focused questions with full explanations — covers pen testing, SIEM, SCAP, risk, vuln mgmt, and more</p>
       <button class="btn btn-primary" id="ptStartBtn" onclick="startPtQuiz()">Start Quiz</button>
     </div>
 
@@ -1663,7 +1816,47 @@ const ptQs = [
   { q:"Which of the following represents a PROACTIVE security measure? (Select the BEST answer)",
     opts:["Restoring systems from backup after a ransomware attack","Issuing a breach notification to affected customers","Conducting regular penetration tests and vulnerability scans before an attack occurs","Resetting all passwords after a credential leak is discovered"],
     ans:2,
-    exp:"Proactive = done BEFORE an attack. Vulnerability scans, pen tests, bug bounties, audits, patching, and dark web monitoring are all proactive. The other options are reactive — they happen AFTER a security event." }
+    exp:"Proactive = done BEFORE an attack. Vulnerability scans, pen tests, bug bounties, audits, patching, and dark web monitoring are all proactive. The other options are reactive — they happen AFTER a security event." },
+  { q:"A SIEM performs two primary functions. What are they?",
+    opts:["Scanning and Patching","Aggregation and Correlation","Monitoring and Blocking","Authentication and Authorization"],
+    ans:1,
+    exp:"SIEM does exactly 2 things: (1) AGGREGATES — collects logs from all devices and systems into one centralized dashboard; (2) CORRELATES — sifts through those logs looking for Indicators of Compromise (IoC). Dashboard is the keyword exam questions use for the centralized view." },
+  { q:"A SIEM stores all collected log data in a special drive to prevent tampering. What type of drive is this?",
+    opts:["SSD (Solid-State Drive)","RAID array","WORM drive (Write Once, Read Many)","Encrypted external drive"],
+    ans:2,
+    exp:"SIEM stores logs on a WORM drive — Write Once, Read Many. Once logs are written they cannot be modified, which protects their integrity for audits and forensic investigations. The SIEM also hashes logs for deduplication — if it finds the same hash it skips re-storing the duplicate to save space." },
+  { q:"Why is accurate time synchronization critical for a SIEM?",
+    opts:["It speeds up the correlation algorithm","Without it, SIEM alerts are sent to the wrong devices","Logs from different systems must align chronologically so events can be accurately correlated across sources","It prevents duplicate logs on the WORM drive"],
+    ans:2,
+    exp:"SIEM correlates events from many different systems. If those systems have drifted clocks, correlation is wrong — an event from one system might appear to precede an alert from another when they are actually the same attack. NTP (Network Time Protocol) keeps all devices time-synchronized so logs are accurate." },
+  { q:"Malware is detected on the network. The SIEM generates an alert. What does the SIEM do regarding stopping the attack?",
+    opts:["Automatically quarantines the infected system","Patches the vulnerability the malware exploited","Alerts security personnel and other tools — but does NOT directly block the attack","Deletes the malware files from the WORM drive"],
+    ans:2,
+    exp:"SIEM does NOT stop attacks directly. It detects, alerts, and can notify other tools (firewalls, IPS) to take blocking action — but SIEM itself is the detection and notification platform, not the prevention tool. It also must be fine-tuned to detect specific threats effectively." },
+  { q:"SOAR differs from a SIEM primarily because SOAR:",
+    opts:["Only monitors network traffic","Stores logs on WORM drives","Automatically responds to threats using other tools and playbooks, not just alerts","Replaces vulnerability scanners"],
+    ans:2,
+    exp:"SOAR = SIEM on steroids. Both detect threats and alert. But SOAR goes further — it automatically responds using playbooks and integrations with other security tools (it orchestrates them). If you see 'automated response' in an exam question, think SOAR." },
+  { q:"What is the correct order of the log management lifecycle?",
+    opts:["Alerting → Aggregation → Archiving → Reporting → Scanning","Aggregation → Scanning/Analysis → Alerting → Reporting → Archiving","Archiving → Aggregation → Scanning → Alerting → Reporting","Reporting → Aggregation → Scanning → Alerting → Archiving"],
+    ans:1,
+    exp:"Log management lifecycle in order: (1) Aggregation — collect logs into a central location; (2) Scanning/Analysis — analyze for threats using rules/signatures; (3) Alerting — notify security personnel; (4) Reporting — summarize events and trends; (5) Archiving — securely store for long-term retention. Together these form a continuous cycle." },
+  { q:"SCAP stands for:",
+    opts:["Security Compliance Audit Protocol","Structured Configuration and Assessment Platform","Security Content Automation Protocol","System Configuration and Analysis Process"],
+    ans:2,
+    exp:"SCAP = Security Content Automation Protocol. It is a collection of standards (not a single tool) used to automate vulnerability management, configuration compliance, and security policy enforcement. It improves accuracy and interoperability by providing a common format for measuring and reporting security posture across tools." },
+  { q:"In SCAP, which component defines what to look for during a scan — such as checking for missing patches or insecure settings?",
+    opts:["XCCDF — Extensible Configuration Checklist Description Format","ARF — Asset Reporting Format","OVAL — Open Vulnerability and Assessment Language","CIS Benchmarks"],
+    ans:2,
+    exp:"OVAL (Open Vulnerability and Assessment Language) defines WHAT to look for during a scan — the specific vulnerability checks and configuration state checks like missing patches or insecure settings. XCCDF defines HOW systems should be configured (the compliance policies). ARF is the results report that combines both." },
+  { q:"CIS benchmarks are used to evaluate system configuration security. What does CIS stand for?",
+    opts:["Cybersecurity Information Standard","Critical Infrastructure Security","Center for Internet Security","Configuration Integration System"],
+    ans:2,
+    exp:"CIS = Center for Internet Security. CIS Benchmarks provide detailed, authoritative guidance on configuring operating systems, servers, databases, and devices securely. They are used in vulnerability scanning and compliance assessments — tools compare current configuration against these benchmarks to find weaknesses." },
+  { q:"Instead of a management system periodically polling for device status, a router automatically sends an alert to the SIEM when its CPU spikes. What mechanism is this?",
+    opts:["NetFlow analysis","SNMP polling","SNMP trap","Syslog forwarding"],
+    ans:2,
+    exp:"SNMP Trap = a device proactively PUSHES an alert to a management system when a specific event occurs. This is the opposite of SNMP Polling, where the management system periodically asks the device if everything is OK. Traps provide immediate notification, reducing response time compared to traditional polling." }
 ];
 
 let ptAnswered = {};
