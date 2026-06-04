@@ -306,6 +306,74 @@
     /* GRID */
     .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     @media(max-width:640px) { .two-col { grid-template-columns: 1fr; } nav { gap: 1rem; } }
+
+    /* SIMULATION LAB */
+    .sim-diagram {
+      background: var(--surface2); border: 1px solid var(--border); border-radius: 10px;
+      padding: 1.5rem; text-align: center; margin: 1rem 0;
+    }
+    .sim-node {
+      display: inline-block; background: var(--bg); border: 2px solid var(--border);
+      border-radius: 8px; padding: .75rem 1.25rem; min-width: 130px; text-align: center;
+    }
+    .sim-node.hq { border-color: var(--accent); }
+    .sim-node.branch { border-color: var(--green); }
+    .sim-tunnel {
+      display: inline-flex; align-items: center; gap: .4rem; padding: 0 .75rem;
+    }
+    .sim-tunnel-line {
+      display: inline-block; width: 70px; height: 2px;
+      background: var(--border); border-radius: 2px;
+    }
+    .sim-tunnel.active .sim-tunnel-line { background: var(--green); }
+    .sim-step {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; margin-bottom: 1rem; overflow: hidden; transition: border-color .3s;
+    }
+    .sim-step.step-correct { border-color: var(--green); }
+    .sim-step.step-wrong   { border-color: var(--red); }
+    .sim-step-header {
+      padding: .85rem 1.25rem; display: flex; align-items: center;
+      gap: .85rem; background: var(--surface2);
+    }
+    .sim-step-num {
+      background: var(--border); color: var(--muted); font-weight: 700;
+      font-size: .75rem; padding: .25rem .6rem; border-radius: 5px; white-space: nowrap;
+    }
+    .sim-step.step-correct .sim-step-num { background: var(--green); color: #000; }
+    .sim-step.step-wrong   .sim-step-num { background: var(--red);   color: #fff; }
+    .sim-step-title { font-size: .95rem; font-weight: 600; flex: 1; }
+    .sim-choices { padding: .75rem 1.25rem 1rem; display: flex; flex-direction: column; gap: .45rem; }
+    .sim-choice {
+      padding: .55rem 1rem; border-radius: 7px; border: 1px solid var(--border);
+      cursor: pointer; font-size: .875rem; transition: all .15s;
+      display: flex; align-items: flex-start; gap: .75rem;
+    }
+    .sim-choice:hover:not(.locked) { border-color: var(--accent); background: #1a2035; }
+    .sim-choice.locked { cursor: default; }
+    .sim-choice.sim-correct { border-color: var(--green); background: #0f2018; }
+    .sim-choice.sim-wrong   { border-color: var(--red);   background: #1f0f0f; }
+    .sim-feedback {
+      margin: 0 1.25rem 1rem; padding: .7rem 1rem; border-radius: 6px;
+      font-size: .85rem; display: none;
+      border-left: 3px solid var(--accent); background: #1a2035;
+    }
+    .sim-feedback.show { display: block; }
+    .sim-feedback.fb-correct { border-color: var(--green); background: #0f2018; color: #6ee7b7; }
+    .sim-feedback.fb-wrong   { border-color: var(--red);   background: #1f0f0f; color: #fca5a5; }
+    .sim-result {
+      background: var(--surface); border: 2px solid var(--border); border-radius: 12px;
+      padding: 2rem; text-align: center; margin-top: 1.5rem; display: none;
+    }
+    .sim-result.show { display: block; }
+    .sim-result.tunnel-up   { border-color: var(--green); background: #0a1a12; }
+    .sim-result.tunnel-fail { border-color: var(--red);   background: #1a0a0a; }
+    .sim-result h2 { font-size: 1.5rem; margin-bottom: .5rem; }
+    .sim-result.tunnel-up   h2 { color: var(--green); }
+    .sim-result.tunnel-fail h2 { color: var(--red);   }
+    .sim-score-badge { display: inline-block; font-size: 2rem; font-weight: 800; margin: .75rem 0; }
+    .tunnel-up   .sim-score-badge { color: var(--green); }
+    .tunnel-fail .sim-score-badge { color: var(--warn);  }
   </style>
 </head>
 <body>
@@ -321,6 +389,7 @@
   <span class="date-sep">Jun 3</span>
   <a href="#" onclick="showPage('notes3',this)">Ch.3 Notes</a>
   <a href="#" onclick="showPage('quiz3',this)">Ch.3 Test</a>
+  <a href="#" onclick="showPage('sim3',this)">🔬 VPN Lab</a>
 </nav>
 
 <div class="container">
@@ -1898,6 +1967,61 @@
     <div id="quizCards3"></div>
   </div><!-- /quiz3 -->
 
+
+  <!-- ===================== VPN SIMULATION ===================== -->
+  <div id="sim3" class="page">
+    <div class="page-header">
+      <h1>🔬 PBQ Simulation — Site-to-Site VPN</h1>
+      <p>Chapter 3 · Interactive Lab · Configure the IPSec tunnel correctly across 7 steps</p>
+    </div>
+
+    <div class="section">
+      <div class="section-header open" onclick="toggle(this)">
+        <span>📋 Scenario Brief</span><span class="chevron">▼</span>
+      </div>
+      <div class="section-body open">
+        <p>Your company's <strong>HQ office in Miami</strong> (network: <code>10.0.1.0/24</code>) needs a permanent encrypted connection to the <strong>Branch Office in Dallas</strong> (network: <code>10.0.2.0/24</code>). Employees at both locations must communicate securely as if on the same internal network — no per-user logins required.</p>
+        <p style="margin-top:.5rem;">As the network security administrator, configure the VPN tunnel step by step. A wrong choice means the tunnel will fail or be insecure.</p>
+        <div class="callout warn">⚠ ON TEST — PBQ simulations test your ability to select the right protocols, modes, and algorithms in order. Know the full IPSec chain: VPN Type → Protocol → Mode → IPSec Protocol → IKE Auth → Encryption → Integrity.</div>
+        <div class="callout exam">Exam Tip: The correct complete answer is — Site-to-Site · IPSec · Tunnel Mode · ESP · Pre-Shared Key · AES-256 · SHA-256. Lock this in your memory.</div>
+      </div>
+    </div>
+
+    <!-- Live Network Diagram -->
+    <div class="sim-diagram">
+      <div style="display:flex;align-items:center;justify-content:center;flex-wrap:nowrap;gap:0;">
+        <div class="sim-node hq">
+          <div style="font-size:1.4rem;">🏢</div>
+          <div style="font-weight:700;color:var(--accent);font-size:.9rem;">HQ — Miami</div>
+          <div style="font-size:.7rem;color:var(--muted);">10.0.1.0/24</div>
+          <div style="font-size:.7rem;color:var(--muted);">GW: 10.0.1.1</div>
+        </div>
+        <div id="sim3Tunnel" class="sim-tunnel">
+          <div class="sim-tunnel-line"></div>
+          <div style="text-align:center;padding:0 .4rem;">
+            <div style="font-size:.65rem;color:var(--muted);margin-bottom:.15rem;">🌐 Internet</div>
+            <div id="sim3TunnelStatus" style="font-size:.7rem;font-weight:700;color:var(--muted);">0/7 configured</div>
+          </div>
+          <div class="sim-tunnel-line"></div>
+        </div>
+        <div class="sim-node branch">
+          <div style="font-size:1.4rem;">🏢</div>
+          <div style="font-weight:700;color:var(--green);font-size:.9rem;">Branch — Dallas</div>
+          <div style="font-size:.7rem;color:var(--muted);">10.0.2.0/24</div>
+          <div style="font-size:.7rem;color:var(--muted);">GW: 10.0.2.1</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Steps rendered by JS -->
+    <div id="sim3Steps"></div>
+
+    <!-- Final Result Banner -->
+    <div id="sim3Result" class="sim-result"></div>
+
+  </div><!-- /sim3 -->
+
+
 </div><!-- /container -->
 
 <script>
@@ -3134,6 +3258,214 @@
   }
 
   buildQuiz3();
+
+
+  // ── SITE-TO-SITE VPN SIMULATION ──
+  const sim3Data = [
+    {
+      title: 'Step 1 — Select VPN Type',
+      q: 'HQ (Miami, 10.0.1.0/24) needs a permanent encrypted connection to the Branch (Dallas, 10.0.2.0/24). Devices at both sites must communicate automatically — no per-user logins. Which VPN type should you deploy?',
+      choices: [
+        { text: 'Remote Access VPN', desc: 'For individual users connecting from home or mobile — not for network-to-network tunnels.' },
+        { text: 'SSL VPN (Clientless)', desc: 'Browser-based VPN for remote users accessing specific apps — not designed for site-to-site.' },
+        { text: 'Site-to-Site VPN', desc: 'Creates a permanent encrypted tunnel between two entire networks — no per-user login required.' },
+        { text: 'Split Tunnel VPN', desc: 'A traffic routing method, not a VPN type — determines which traffic goes through the VPN.' }
+      ],
+      correct: 2,
+      okMsg: '✅ Correct! Site-to-Site VPN creates a permanent always-on encrypted tunnel between two networks. Devices communicate automatically through it. This is also called a gateway-to-gateway VPN.',
+      noMsg: ['Remote Access VPN is for individual users (laptop, phone) — not for connecting two office networks together.', 'SSL VPN (Clientless) lets remote users reach specific apps via browser — not a site-to-site network solution.', '', 'Split tunnel is a routing configuration — it decides which traffic goes through the VPN, not what type of VPN to use.']
+    },
+    {
+      title: 'Step 2 — Choose VPN Protocol',
+      q: 'Site-to-Site VPN is confirmed. Which protocol provides the strongest security and is the industry standard for site-to-site connections?',
+      choices: [
+        { text: 'PPTP', desc: 'Legacy Microsoft protocol using RC4 encryption — broken and obsolete, never use.' },
+        { text: 'L2TP (without IPSec)', desc: 'Layer 2 tunneling protocol — provides NO encryption on its own.' },
+        { text: 'HTTPS / TLS only', desc: 'Secures web application traffic at Layer 7 — not a network-level VPN protocol.' },
+        { text: 'IPSec', desc: 'Industry-standard protocol suite providing encryption, integrity, and authentication for IP traffic.' }
+      ],
+      correct: 3,
+      okMsg: '✅ Correct! IPSec (Internet Protocol Security) is the gold standard for site-to-site VPNs. It operates at Layer 3, uses UDP 500 for IKE key exchange, and UDP 4500 for NAT traversal.',
+      noMsg: ['PPTP uses RC4 encryption — broken and deprecated. Never use PPTP.', 'L2TP alone has no encryption. It must be paired with IPSec (L2TP/IPSec) to be secure.', 'HTTPS/TLS secures web application traffic — it does not build network-level site-to-site tunnels.', '']
+    },
+    {
+      title: 'Step 3 — Select IPSec Mode',
+      q: 'IPSec is selected. The tunnel connects two gateways — the entire IP packet including internal IP headers must be hidden from the internet. Which IPSec mode is required?',
+      choices: [
+        { text: 'Tunnel Mode', desc: 'Encrypts the ENTIRE original IP packet (headers + payload) and wraps it in a new outer packet — used for site-to-site (gateway-to-gateway).' },
+        { text: 'Transport Mode', desc: 'Encrypts only the payload — leaves the original IP headers exposed. Used for host-to-host within the same network.' },
+        { text: 'Bridge Mode', desc: 'Not a valid IPSec mode.' },
+        { text: 'Aggressive Mode', desc: 'An IKE negotiation style, not an IPSec packet mode.' }
+      ],
+      correct: 0,
+      okMsg: '✅ Correct! Tunnel Mode encrypts the entire original IP packet and wraps it in a new outer IP packet. Internal source/destination addresses are hidden from the internet. Required for gateway-to-gateway (site-to-site) deployments.',
+      noMsg: ['', 'Transport Mode encrypts only the data payload — the original IP headers remain visible. Used for host-to-host within a single network, not across sites.', 'Bridge Mode is not a real IPSec mode.', 'Aggressive Mode is an IKE Phase 1 negotiation style — not an IPSec packet encapsulation mode.']
+    },
+    {
+      title: 'Step 4 — Select IPSec Protocol',
+      q: 'Tunnel Mode is set. You need full protection: encryption + data integrity + authentication for all traffic in the tunnel. Which IPSec protocol provides all three?',
+      choices: [
+        { text: 'AH — Authentication Header', desc: 'Provides data integrity and authentication ONLY — does NOT encrypt the payload.' },
+        { text: 'ESP — Encapsulating Security Payload', desc: 'Provides encryption, integrity, AND authentication — complete protection.' },
+        { text: 'IKE only', desc: 'Handles key negotiation between peers — does not protect data traffic.' },
+        { text: 'AH + ESP combined', desc: 'Redundant — ESP alone already provides all functions that AH provides, plus encryption.' }
+      ],
+      correct: 1,
+      okMsg: '✅ Correct! ESP (Encapsulating Security Payload) provides all three — encryption, integrity, and authentication. AH provides only integrity and authentication with no encryption. Always choose ESP when confidentiality is required.',
+      noMsg: ['AH provides NO encryption — traffic can be read in transit. Use ESP when you need confidentiality.', '', 'IKE manages key negotiation between VPN peers — it does not encrypt or authenticate data packets.', 'ESP already includes everything AH does, plus adds encryption. Using both is redundant and unnecessary.']
+    },
+    {
+      title: 'Step 5 — IKE Phase 1 Authentication',
+      q: 'Configuring IKE Phase 1 to build the secure channel. Both VPN gateways must authenticate each other. Which method is most common for site-to-site VPNs?',
+      choices: [
+        { text: 'Username and Password', desc: 'Used for remote access VPN user logins — not for machine-to-machine gateway authentication.' },
+        { text: 'Pre-Shared Key (PSK)', desc: 'The same secret key is configured on both gateways — simple and common for site-to-site.' },
+        { text: 'RADIUS', desc: 'A network access control protocol used for user authentication — not for IKE Phase 1 gateway negotiation.' },
+        { text: 'TACACS+', desc: 'Used for device administration authentication (SSH to routers/switches) — not for VPN tunnel auth.' }
+      ],
+      correct: 1,
+      okMsg: '✅ Correct! Pre-Shared Key (PSK) is the standard authentication method for site-to-site VPNs — the same secret is configured on both gateways. For large-scale deployments with many sites, digital certificates (PKI) are used instead.',
+      noMsg: ['Username/Password is for remote access VPN users authenticating from a device — not gateway-to-gateway tunnel authentication.', '', 'RADIUS is a protocol for centralizing user authentication — not used directly in IKE Phase 1 gateway negotiation.', 'TACACS+ authenticates administrators managing network devices — not VPN tunnel peers.']
+    },
+    {
+      title: 'Step 6 — Encryption Algorithm',
+      q: 'Configuring IKE Phase 2 (IPSec SA). Select the encryption algorithm that provides the strongest protection — NIST-approved and used by the NSA for Top Secret data.',
+      choices: [
+        { text: 'DES', desc: '56-bit key — broken in under 24 hours by brute force. Never use.' },
+        { text: '3DES', desc: 'Three passes of DES — deprecated by NIST in 2023, too slow, no longer considered secure.' },
+        { text: 'AES-256', desc: '256-bit key, NIST-approved, used by NSA for Top Secret. Current gold standard.' },
+        { text: 'RC4', desc: 'Stream cipher — broken, used by WEP and PPTP. Never use for VPNs.' }
+      ],
+      correct: 2,
+      okMsg: '✅ Correct! AES-256 is the gold standard encryption algorithm. 256-bit key, approved by NIST and used by the NSA for classifying Top Secret data. DES = broken. 3DES = deprecated 2023. RC4 = broken.',
+      noMsg: ['DES uses a 56-bit key and was cracked in under 24 hours — never use DES for any security application.', '3DES was deprecated by NIST in 2023 — too slow and insufficient key strength for modern requirements.', '', 'RC4 is a broken stream cipher used by WEP and PPTP — never use for modern secure communications.']
+    },
+    {
+      title: 'Step 7 — Integrity / Hashing Algorithm',
+      q: 'Final step: choose the hashing algorithm that verifies packet integrity and authenticates data through the tunnel. Select the current NIST-approved standard.',
+      choices: [
+        { text: 'MD5', desc: '128-bit hash — broken, collision vulnerabilities proven. Never use for security.' },
+        { text: 'SHA-1', desc: '160-bit hash — deprecated by NIST in 2011, practical collision demonstrated in 2017.' },
+        { text: 'CRC32', desc: 'Cyclic Redundancy Check — error detection only, not a cryptographic hash.' },
+        { text: 'SHA-256', desc: 'Part of the SHA-2 family — 256-bit, NIST-approved, current standard for VPN integrity.' }
+      ],
+      correct: 3,
+      okMsg: '✅ Correct! SHA-256 (SHA-2 family) is the current standard for data integrity in IPSec VPNs. MD5 = broken collisions. SHA-1 = deprecated 2011. CRC32 = error detection only, not cryptographic.',
+      noMsg: ['MD5 is broken — collision vulnerabilities make it unsuitable for any security application.', 'SHA-1 was deprecated by NIST in 2011 — practical collision attacks were demonstrated in 2017.', 'CRC32 detects accidental transmission errors — it is not a cryptographic hash and provides no security.', '']
+    }
+  ];
+
+  let sim3Answered = [];
+  let sim3Results  = [];
+
+  function buildSim3() {
+    sim3Answered = new Array(sim3Data.length).fill(false);
+    sim3Results  = new Array(sim3Data.length).fill(null);
+
+    const container = document.getElementById('sim3Steps');
+    container.innerHTML = '';
+    const resultDiv = document.getElementById('sim3Result');
+    resultDiv.className = 'sim-result';
+    resultDiv.innerHTML = '';
+    updateSim3Diagram();
+
+    sim3Data.forEach((step, si) => {
+      const div = document.createElement('div');
+      div.className = 'sim-step';
+      div.id = `sim3-step-${si}`;
+
+      const letters = ['A','B','C','D'];
+      const choicesHtml = step.choices.map((c, ci) =>
+        `<div class="sim-choice" id="sim3-c-${si}-${ci}" onclick="sim3Select(${si},${ci},this)">
+           <span class="opt-letter">${letters[ci]}</span>
+           <span><strong>${c.text}</strong> <span style="color:var(--muted);">— ${c.desc}</span></span>
+         </div>`
+      ).join('');
+
+      div.innerHTML = `
+        <div class="sim-step-header">
+          <span class="sim-step-num">STEP ${si + 1}</span>
+          <span class="sim-step-title">${step.title}</span>
+          <span id="sim3-icon-${si}" style="font-size:1.1rem;"></span>
+        </div>
+        <div class="sim-choices">
+          <p style="color:var(--muted);font-size:.85rem;margin-bottom:.6rem;">${step.q}</p>
+          ${choicesHtml}
+        </div>
+        <div class="sim-feedback" id="sim3-fb-${si}"></div>`;
+
+      container.appendChild(div);
+    });
+  }
+
+  function sim3Select(si, ci, btn) {
+    if (sim3Answered[si]) return;
+    sim3Answered[si] = true;
+
+    const step    = sim3Data[si];
+    const isRight = ci === step.correct;
+    sim3Results[si] = isRight;
+
+    const stepDiv = document.getElementById(`sim3-step-${si}`);
+    stepDiv.querySelectorAll('.sim-choice').forEach(c => { c.classList.add('locked'); c.onclick = null; });
+
+    btn.classList.add(isRight ? 'sim-correct' : 'sim-wrong');
+    if (!isRight) document.getElementById(`sim3-c-${si}-${step.correct}`).classList.add('sim-correct');
+
+    stepDiv.classList.add(isRight ? 'step-correct' : 'step-wrong');
+    document.getElementById(`sim3-icon-${si}`).textContent = isRight ? '✅' : '❌';
+
+    const fb = document.getElementById(`sim3-fb-${si}`);
+    fb.className = `sim-feedback show ${isRight ? 'fb-correct' : 'fb-wrong'}`;
+    fb.innerHTML = isRight ? step.okMsg : `❌ Incorrect. ${step.noMsg[ci]} The correct answer is highlighted above.`;
+
+    updateSim3Diagram();
+    if (sim3Answered.every(Boolean)) showSim3Result();
+  }
+
+  function updateSim3Diagram() {
+    const correct = sim3Results.filter(r => r === true).length;
+    const done    = sim3Answered.filter(Boolean).length;
+    const allDone = done === sim3Data.length;
+    const allRight = allDone && sim3Results.every(r => r === true);
+
+    const tunnel = document.getElementById('sim3Tunnel');
+    const status = document.getElementById('sim3TunnelStatus');
+
+    if (allDone) {
+      tunnel.className = allRight ? 'sim-tunnel active' : 'sim-tunnel';
+      status.textContent = allRight ? '🔒 TUNNEL UP' : '⚠ CONFIG ERROR';
+      status.style.color = allRight ? 'var(--green)' : 'var(--red)';
+    } else {
+      tunnel.className = 'sim-tunnel';
+      status.textContent = `${correct}/${sim3Data.length} configured`;
+      status.style.color = 'var(--muted)';
+    }
+  }
+
+  function showSim3Result() {
+    const correct  = sim3Results.filter(Boolean).length;
+    const total    = sim3Data.length;
+    const allRight = correct === total;
+    const result   = document.getElementById('sim3Result');
+
+    result.className = `sim-result show ${allRight ? 'tunnel-up' : 'tunnel-fail'}`;
+    result.innerHTML = allRight
+      ? `<h2>🔒 TUNNEL ESTABLISHED</h2>
+         <div class="sim-score-badge">${correct}/${total}</div>
+         <p style="color:var(--green);font-size:.95rem;">Perfect configuration — the IPSec site-to-site tunnel is up and encrypted!</p>
+         <p style="color:var(--muted);font-size:.825rem;margin-top:.4rem;">Site-to-Site · IPSec · Tunnel Mode · ESP · Pre-Shared Key · AES-256 · SHA-256</p>
+         <button class="btn btn-secondary" style="margin-top:1rem;" onclick="resetSim3()">🔄 Reset Lab</button>`
+      : `<h2>⚠ TUNNEL FAILED — Configuration Error</h2>
+         <div class="sim-score-badge">${correct}/${total}</div>
+         <p style="color:var(--warn);font-size:.95rem;">${correct} of ${total} steps correct. Review the flagged steps and retry.</p>
+         <p style="color:var(--muted);font-size:.825rem;margin-top:.4rem;">Correct config: Site-to-Site · IPSec · Tunnel Mode · ESP · Pre-Shared Key · AES-256 · SHA-256</p>
+         <button class="btn btn-secondary" style="margin-top:1rem;" onclick="resetSim3()">🔄 Reset Lab</button>`;
+  }
+
+  function resetSim3() { buildSim3(); window.scrollTo(0,0); }
+
+  buildSim3();
 </script>
 </body>
 </html>
