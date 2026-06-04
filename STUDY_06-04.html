@@ -149,6 +149,7 @@
   <a href="#" onclick="showPage('quiz4',this)">Ch.4 Quiz</a>
   <a href="#" onclick="showPage('stix',this)">&#127981; STIX &amp; TAXII</a>
   <a href="#" onclick="showPage('pentest',this)">&#128270; Pen Test &amp; Audits</a>
+  <a href="#" onclick="showPage('irforensics',this)">&#128296; IR &amp; Forensics</a>
   <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">&#9728;&#65039; Light</button>
 </nav>
 
@@ -2107,6 +2108,193 @@
 <!-- END PEN TEST & AUDITS -->
 
 
+<!-- =================== IR & FORENSICS PAGE =================== -->
+<div id="irforensics" class="page">
+  <div class="page-header">
+    <h1>&#128296; Incident Response &amp; Digital Forensics <span class="tag-test">ON TEST</span></h1>
+    <p>IR lifecycle, tabletop vs simulation, RCA, threat hunting, chain of custody, legal hold, E-Discovery, and more.</p>
+  </div>
+
+  <!-- TECHNICAL DEBT -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>&#128193; Technical Debt <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body">
+      <p>Technical debt refers to the accumulated cost of shortcuts, outdated code, and deferred maintenance in a system. In security, <strong>outdated or poorly maintained code can introduce vulnerabilities and failures</strong> — the longer debt is ignored, the greater the security risk it creates.</p>
+      <div class="callout warn">Know the term for the exam: technical debt = security risk that grows over time when code, configurations, or systems are not kept current or properly maintained.</div>
+    </div>
+  </div>
+
+  <!-- INCIDENT RESPONSE LIFECYCLE -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#128680; Incident Response Lifecycle <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <p>Incident response is a structured process used to identify, manage, and recover from security incidents — with the goal of minimizing damage, reducing recovery time, and preventing future occurrences.</p>
+      <div class="callout warn" style="text-align:center;font-size:.95rem;">
+        <strong>Preparation → Detection &amp; Analysis → Containment → Eradication → Recovery → Lessons Learned</strong>
+      </div>
+      <table>
+        <tr><th>Phase</th><th>What happens</th></tr>
+        <tr><td><strong>1. Preparation</strong></td><td>Establish plans, tools, policies, and train personnel before an incident occurs</td></tr>
+        <tr><td><strong>2. Detection &amp; Analysis</strong></td><td>Identify and investigate the incident — determine scope and impact</td></tr>
+        <tr><td><strong>3. Containment</strong></td><td>Take action to limit the spread or damage — isolate affected systems</td></tr>
+        <tr><td><strong>4. Eradication</strong></td><td>Remove the root cause — malware, unauthorized access, misconfiguration — from the environment</td></tr>
+        <tr><td><strong>5. Recovery</strong></td><td>Restore systems to normal operations securely</td></tr>
+        <tr><td><strong>6. Lessons Learned</strong></td><td>Review the incident to improve future response — update policies, strengthen defenses. Also called: <em>After Action Report</em> or <em>Lesson Review</em></td></tr>
+      </table>
+      <div class="callout">IR integrates with <strong>SIEM</strong> (detection and logging) and <strong>SOAR</strong> (automated response) for faster, more consistent incident handling.</div>
+    </div>
+  </div>
+
+  <!-- TABLETOP vs SIMULATION -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#127922; Tabletop Exercise vs Simulation <span class="tag-test">BOTH BEEN ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <table>
+        <tr><th></th><th>Tabletop Exercise</th><th>Simulation</th></tr>
+        <tr><td><strong>Type</strong></td><td>Discussion-based</td><td>Hands-on, technical</td></tr>
+        <tr><td><strong>How it works</strong></td><td>Team members walk through a simulated scenario <em>step by step verbally</em>, explaining how they would respond per the IR plan</td><td>Realistic attack scenario executed in a controlled environment — teams actively respond as if the incident were real, using actual tools and systems</td></tr>
+        <tr><td><strong>Systems affected</strong></td><td>None — no real systems touched</td><td>Yes — real tools and systems involved</td></tr>
+        <tr><td><strong>Risk</strong></td><td>Low pressure — safe environment</td><td><span style="color:var(--red);font-weight:700">Can cause real-world events if not carefully controlled</span></td></tr>
+        <tr><td><strong>Tests</strong></td><td>Gaps in procedures, roles, communication, and decision-making</td><td>Detection capability, response time, and technical effectiveness</td></tr>
+      </table>
+      <div class="callout green">Both methods validate IR readiness, improve coordination, uncover weaknesses, and ensure personnel are properly trained — making real-world incident handling faster and more effective.</div>
+    </div>
+  </div>
+
+  <!-- ROOT CAUSE ANALYSIS -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#128269; Root Cause Analysis (RCA) <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <p>RCA is the process of identifying the <strong>underlying reason why a security incident occurred</strong> — not just fixing symptoms, but finding what actually failed.</p>
+      <table>
+        <tr><th>Feature</th><th>Detail</th></tr>
+        <tr><td><strong>When it happens</strong></td><td>After the incident is contained and resolved — part of the <strong>Lessons Learned</strong> phase</td></tr>
+        <tr><td><strong>What it examines</strong></td><td>Logs, system behavior, and response actions to pinpoint the origin</td></tr>
+        <tr><td><strong>Common root causes</strong></td><td>Misconfiguration, unpatched vulnerability, weak access controls, human error</td></tr>
+        <tr><td><strong>Goal</strong></td><td>Implement long-term fixes, update policies, enhance training — prevent the same incident from happening again</td></tr>
+      </table>
+      <div class="callout red"><strong>RCA ≠ fixing symptoms.</strong> Rebooting a compromised server is fixing a symptom. Finding the unpatched vulnerability that allowed the compromise = root cause analysis.</div>
+    </div>
+  </div>
+
+  <!-- THREAT HUNTING & INTEL -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>&#127993; Threat Hunting, Feeds &amp; Intelligence Fusion</h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body">
+      <table>
+        <tr><th>Concept</th><th>What it is</th></tr>
+        <tr><td><strong>Threat Hunting</strong></td><td>Proactive activity — analysts actively search networks and systems for hidden threats that bypassed traditional defenses, rather than waiting for an alert. Looks for IoCs, attacker behaviors, and anomalies.</td></tr>
+        <tr><td><strong>Maneuvers</strong></td><td>Deliberate defensive actions during threat hunting to observe, track, or influence attacker behavior — monitoring lateral movement, deploying honeypots</td></tr>
+        <tr><td><strong>Advisories &amp; Bulletins</strong></td><td>Official communications from vendors, security agencies, and CERTs about newly discovered vulnerabilities, threats, and mitigations</td></tr>
+        <tr><td><strong>Threat Feeds</strong></td><td>Continuous streams of updated threat intelligence (malicious IPs, domains, file hashes, attack signatures) — automatically integrated into SIEM and other security tools</td></tr>
+        <tr><td><strong>Intelligence Fusion</strong></td><td>Combining data from multiple sources (threat feeds, internal logs, advisories, external intel) to build a complete, accurate picture of the threat landscape — enables informed decision-making for hunting and IR</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- DIGITAL FORENSICS -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#128187; Digital Forensics — Core Concepts <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <p>Digital forensics is the process of <strong>collecting, analyzing, and preserving digital evidence</strong> from computers, networks, and devices in a manner that maintains integrity — so it can be used in investigations or legal proceedings.</p>
+      <div class="callout red" style="text-align:center;">
+        <strong>Order of operations: Legal Hold → Chain of Custody → Acquisition → Preservation → Analysis → Reporting</strong>
+      </div>
+      <table>
+        <tr><th>Concept</th><th>What it means</th></tr>
+        <tr><td><strong>Legal Hold</strong></td><td>When litigation or investigation is anticipated, normal data handling (deletion, overwriting, log rotation) must be <strong>SUSPENDED</strong>. Preserve all potentially relevant data — failure to do so can result in legal penalties.</td></tr>
+        <tr><td><strong>Chain of Custody</strong></td><td>Documents every person who collected, handled, accessed, or transferred evidence — from collection to court. Proves evidence was not altered or tampered with. <strong>Critical for admissibility.</strong></td></tr>
+        <tr><td><strong>Forensic Image</strong></td><td>Exact bit-by-bit copy of the original data. Always work on the <strong>copy</strong> — never the original. Original goes into a <strong>Faraday cage</strong> (static-safe, electromagnetically shielded storage).</td></tr>
+        <tr><td><strong>Write Blocker</strong></td><td>Hardware or software tool that <strong>prevents any writes to original media</strong> during acquisition. Ensures no data is accidentally written, altered, or deleted. Critical for legal admissibility.</td></tr>
+        <tr><td><strong>Hashing</strong></td><td>Generate MD5 or SHA-256 hash <strong>before and after acquisition</strong>. If hashes match, data is unchanged and trustworthy — proves integrity of the forensic image.</td></tr>
+        <tr><td><strong>DCFLDD</strong></td><td>DoD Computer Forensic Lab Disk Duplication tool — has three modes: copy, hash, and <strong>forensic image</strong>. Always use <em>forensic image</em> — it copies bit-by-bit AND hashes simultaneously.</td></tr>
+        <tr><td><strong>Preservation</strong></td><td>Protecting evidence in its original state throughout the process — forensic images instead of originals, write blockers, proper environmental and access controls for storage</td></tr>
+        <tr><td><strong>Reporting</strong></td><td>Final phase — documents what happened, how, what was affected, actions taken, and recommendations. <strong>No jargon, no opinions</strong> — factual and tailored to the audience (technical teams, management, or courts)</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- E-DISCOVERY -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#128196; E-Discovery &amp; ESI <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <p><strong>E-Discovery (Electronic Discovery)</strong> is the process of identifying, collecting, and producing <strong>ESI — Electronically Stored Information</strong> for legal proceedings, investigations, or regulatory compliance.</p>
+      <table>
+        <tr><th>Feature</th><th>Detail</th></tr>
+        <tr><td><strong>ESI includes</strong></td><td>Emails, documents, logs, databases, and any other electronically stored data relevant to a case</td></tr>
+        <tr><td><strong>Tied to</strong></td><td>Legal Hold (data must be preserved once relevant), Chain of Custody (handling integrity), and Preservation (evidence not altered)</td></tr>
+        <tr><td><strong>Goal</strong></td><td>Efficiently find and provide accurate digital evidence while maintaining integrity and compliance with legal requirements</td></tr>
+        <tr><td><strong>Supports</strong></td><td>Litigation, regulatory audits, and internal investigations</td></tr>
+      </table>
+      <div class="callout warn"><strong>E-Discovery exam shortcut:</strong> When you see "litigation" + "electronic data" — think E-Discovery. When you see "suspend deletion" — think Legal Hold. They often appear together.</div>
+    </div>
+  </div>
+
+  <!-- DATA SOURCES -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>&#128202; Data Sources for Forensics &amp; Monitoring</h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body">
+      <table>
+        <tr><th>Source</th><th>What it provides</th></tr>
+        <tr><td><strong>Log files</strong></td><td>OS, application, and network device logs — records of user activity and system events</td></tr>
+        <tr><td><strong>Network traffic captures / Packet captures</strong></td><td>Show communication between systems — can reveal malicious behavior and data exfiltration</td></tr>
+        <tr><td><strong>Endpoints</strong></td><td>Computers, servers, mobile devices — contain files, memory data, and artifacts left by attackers</td></tr>
+        <tr><td><strong>Security tools</strong></td><td>SIEM, IDS/IPS, firewalls, antivirus — generate alerts and telemetry</td></tr>
+        <tr><td><strong>Vulnerability scans</strong></td><td>Identify weaknesses — provide insight into potential attacker entry points</td></tr>
+        <tr><td><strong>Dashboards / Automated reports</strong></td><td>Centralized visibility (e.g., SIEM dashboard)</td></tr>
+        <tr><td><strong>Threat feeds &amp; advisories</strong></td><td>External context on emerging threats</td></tr>
+        <tr><td><strong>Cloud service logs</strong></td><td>SaaS/IaaS/PaaS activity — critical as workloads move to cloud</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- IR & FORENSICS QUIZ -->
+  <div style="margin-top:2rem;">
+    <div class="quiz-intro">
+      <h2>IR &amp; Digital Forensics — Practice Quiz</h2>
+      <p>Exam-focused questions on incident response, forensics, chain of custody, legal hold, RCA, and E-Discovery</p>
+      <button class="btn btn-primary" id="irStartBtn" onclick="startIrQuiz()">Start Quiz</button>
+    </div>
+    <div id="irScoreBar" class="score-bar">
+      <div class="score-num" id="irScoreNum">0/0</div>
+      <div class="score-label" id="irScoreLabel"></div>
+      <div class="progress-track"><div class="progress-fill" id="irScoreFill" style="width:0%"></div></div>
+      <div class="quiz-controls">
+        <button class="btn btn-secondary" onclick="resetIrQuiz()">&#8635; Try Again</button>
+      </div>
+    </div>
+    <div id="irQuestions" style="display:none">
+      <button class="btn btn-green" style="margin-bottom:1.5rem" onclick="submitIrQuiz()">&#10003; Submit Answers</button>
+    </div>
+  </div>
+</div>
+<!-- END IR & FORENSICS -->
+
+
 </div><!-- /container -->
 
 <script>
@@ -2947,6 +3135,127 @@ function resetQuiz() {
   document.getElementById('startBtn').style.display = 'inline-flex';
   document.getElementById('quizQuestions').style.display = 'none';
   document.getElementById('quizQuestions').innerHTML = '';
+}
+</script>
+
+<script>
+/* IR & FORENSICS QUIZ */
+const irQs = [
+  { q:"What is the CORRECT order of the Incident Response lifecycle?",
+    opts:["Detection → Containment → Preparation → Eradication → Recovery → Lessons Learned",
+          "Preparation → Detection & Analysis → Containment → Eradication → Recovery → Lessons Learned",
+          "Containment → Detection → Preparation → Recovery → Eradication → Lessons Learned",
+          "Detection → Eradication → Containment → Recovery → Preparation → Lessons Learned"],
+    ans:1,
+    exp:"IR lifecycle: (1) Preparation — establish plans/tools; (2) Detection & Analysis — identify and evaluate; (3) Containment — limit spread; (4) Eradication — remove root cause; (5) Recovery — restore operations securely; (6) Lessons Learned — review and improve. This exact order is tested." },
+  { q:"After ransomware is resolved, the team discovers an unpatched vulnerability was the entry point and updates their patching policy. What IR phase and process is this?",
+    opts:["Containment — isolating the system","Eradication — removing the ransomware","Lessons Learned — Root Cause Analysis","Detection — identifying the ransomware"],
+    ans:2,
+    exp:"RCA (Root Cause Analysis) is part of the Lessons Learned phase. It identifies the underlying WHY — not just fixing symptoms. Finding the unpatched vulnerability = root cause. Updating the patching policy = long-term fix. RCA prevents recurrence." },
+  { q:"A security team gathers in a conference room and verbally walks through a simulated attack scenario step by step without touching any real systems. What type of exercise is this?",
+    opts:["Simulation — hands-on technical test","Red team engagement","Tabletop exercise — discussion-based scenario","Penetration test"],
+    ans:2,
+    exp:"Tabletop exercise = discussion-based. Teams walk through scenarios verbally per the IR plan — no real systems touched, low pressure. Tests gaps in procedures, roles, communication, and decision-making. Simulation = hands-on, uses real tools and systems, can cause real-world events." },
+  { q:"Legal counsel notifies IT that a lawsuit has been filed and all emails and logs from the past year must be preserved. What must the IT team do IMMEDIATELY?",
+    opts:["Delete logs older than 90 days to reduce exposure","Issue a legal hold — suspend all deletion, overwriting, and log rotation for relevant data","Perform a forensic image of all systems","Run E-Discovery analysis tools"],
+    ans:1,
+    exp:"Legal Hold = when litigation is anticipated, SUSPEND normal data handling — no deletion, no overwriting, no log rotation for relevant data. Failure can result in legal penalties. Issue the hold first, then proceed with preservation and forensic steps." },
+  { q:"A forensic investigator logs every person who handles a piece of evidence — who collected it, when, where it was stored, and every transfer. What is this called?",
+    opts:["Legal hold","Forensic imaging","Chain of custody","E-Discovery"],
+    ans:2,
+    exp:"Chain of custody documents every person who collected, handled, accessed, or transferred evidence. It creates a verifiable timeline proving evidence was not altered. Breaks in chain of custody can make evidence inadmissible in legal proceedings." },
+  { q:"A forensic investigator attaches a device between a suspect drive and their workstation to ensure nothing can be written back to the original drive during acquisition. What is this device?",
+    opts:["Faraday cage","Hash validator","Write blocker","DCFLDD imager"],
+    ans:2,
+    exp:"Write blocker = hardware or software that prevents any writes to original media during acquisition. Without it, simply connecting a drive can cause the OS to write metadata — altering evidence and destroying admissibility. Always use a write blocker before touching original media." },
+  { q:"Before and after creating a forensic image, the investigator generates an MD5 hash of both the original and the copy. They match. What does this confirm?",
+    opts:["The drive has not been accessed since the incident","The forensic image is an exact unmodified copy of the original data","The drive contains known malware","Chain of custody has been maintained"],
+    ans:1,
+    exp:"Hashing verifies data integrity. MD5 or SHA-256 before AND after acquisition — if hashes match, the forensic image is a bit-for-bit exact copy and nothing was changed during copying. This is how forensic integrity is proven and verified." },
+  { q:"A court orders a company to produce all emails and financial records related to a contract dispute. What process covers the identification, collection, and production of this electronically stored information?",
+    opts:["Digital forensics analysis","Legal hold","E-Discovery","Chain of custody documentation"],
+    ans:2,
+    exp:"E-Discovery = identifying, collecting, and producing ESI (Electronically Stored Information) for legal proceedings. ESI = emails, documents, logs, databases. It is tied to legal hold (preserve first) and chain of custody (handle properly). The goal is providing accurate digital evidence in a legally acceptable format." },
+  { q:"Which forensic tool copies a drive bit-by-bit AND simultaneously hashes it — making it the correct mode to use during evidence acquisition?",
+    opts:["Copy mode — fastest acquisition method","Hash mode — generates integrity fingerprint only","Forensic image mode — creates exact copy and hashes simultaneously","Write blocker mode — prevents changes to original"],
+    ans:2,
+    exp:"DCFLDD (DoD Computer Forensic Lab Disk Duplication) has three modes: copy, hash, and forensic image. Always use FORENSIC IMAGE — it creates a bit-by-bit exact copy AND hashes it simultaneously, providing both an exact duplicate and integrity verification in one step." },
+  { q:"RCA finds a breach occurred because an admin reused the same password across multiple systems. What phase of IR does this belong to, and what is the correct long-term fix?",
+    opts:["Containment — block the compromised account immediately","Detection — add a SIEM correlation rule","Lessons Learned — enforce password manager + MFA policy to prevent recurrence","Recovery — restore the affected systems"],
+    ans:2,
+    exp:"RCA belongs to the Lessons Learned phase — after resolution, find the root cause and implement long-term fixes. Password reuse = root cause. Long-term fix = enforce unique passwords via password manager + require MFA. RCA drives policy and tooling improvements, not just immediate patches." }
+];
+
+let irAnswered = {};
+
+function startIrQuiz() {
+  document.getElementById('irStartBtn').style.display = 'none';
+  const container = document.getElementById('irQuestions');
+  container.style.display = 'block';
+  container.innerHTML = '<button class="btn btn-green" style="margin-bottom:1.5rem" onclick="submitIrQuiz()">&#10003; Submit Answers</button>';
+  irQs.forEach((q, i) => {
+    const card = document.createElement('div');
+    card.className = 'question-card';
+    card.id = 'ir' + i;
+    card.innerHTML = `
+      <div class="question-top">
+        <span class="q-num">Q${i+1}</span>
+        <span class="q-text">${q.q}</span>
+      </div>
+      <div class="options" id="iropts${i}">
+        ${q.opts.map((o,j) => `<div class="option" onclick="irpick(${i},${j})" id="iropt${i}_${j}">
+          <span class="opt-letter">${'ABCD'[j]}</span>${o}</div>`).join('')}
+      </div>
+      <div class="explanation" id="irexp${i}">${q.exp}</div>`;
+    container.appendChild(card);
+  });
+  container.innerHTML += '<button class="btn btn-green" style="margin-top:.5rem" onclick="submitIrQuiz()">&#10003; Submit Answers</button>';
+}
+
+function irpick(qi, oi) {
+  if (irAnswered[qi] !== undefined) return;
+  document.querySelectorAll(`#iropts${qi} .option`).forEach(o => o.classList.remove('selected'));
+  document.getElementById(`iropt${qi}_${oi}`).classList.add('selected');
+  irAnswered[qi] = oi;
+}
+
+function submitIrQuiz() {
+  let score = 0;
+  irQs.forEach((q, i) => {
+    const chosen = irAnswered[i];
+    const opts = document.querySelectorAll(`#iropts${i} .option`);
+    opts.forEach(o => o.classList.add('locked'));
+    opts[q.ans].classList.add('correct-ans');
+    if (chosen !== undefined && chosen !== q.ans) {
+      opts[chosen].classList.add('wrong-ans');
+      document.getElementById('ir'+i).classList.add('incorrect');
+    } else if (chosen === q.ans) {
+      score++;
+      document.getElementById('ir'+i).classList.add('correct');
+    } else {
+      document.getElementById('ir'+i).classList.add('incorrect');
+    }
+    document.getElementById('irexp'+i).classList.add('show');
+  });
+  const pct = Math.round(score / irQs.length * 100);
+  const bar = document.getElementById('irScoreBar');
+  bar.classList.add('show');
+  document.getElementById('irScoreNum').textContent = score + '/' + irQs.length;
+  document.getElementById('irScoreFill').style.width = pct + '%';
+  let msg = pct >= 90 ? '🏆 Excellent — exam ready on this material!' :
+            pct >= 75 ? '✅ Good — review any missed questions.' :
+                        '📖 Go back through the notes and retry.';
+  document.getElementById('irScoreLabel').textContent = pct + '% — ' + msg;
+  bar.scrollIntoView({ behavior: 'smooth' });
+  document.querySelectorAll('#irQuestions .btn-green').forEach(b => b.style.display = 'none');
+}
+
+function resetIrQuiz() {
+  irAnswered = {};
+  document.getElementById('irScoreBar').classList.remove('show');
+  document.getElementById('irStartBtn').style.display = 'inline-flex';
+  document.getElementById('irQuestions').style.display = 'none';
+  document.getElementById('irQuestions').innerHTML = '';
 }
 </script>
 </body>
