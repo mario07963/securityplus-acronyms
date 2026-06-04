@@ -1491,11 +1491,90 @@
     </div>
   </div>
 
+  <!-- SECURITY TECHNOLOGIES OVERVIEW -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>&#128737;&#65039; Security Technologies Overview — Defense in Depth <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body">
+      <p>Security technologies are the tools and solutions used to protect networks, systems, and data from threats — and to detect, prevent, and respond to security incidents. They work across multiple layers (<strong>defense in depth</strong>).</p>
+      <table>
+        <tr><th>Technology</th><th>Purpose</th></tr>
+        <tr><td><strong>Firewall</strong></td><td>Controls incoming and outgoing network traffic based on predefined rules</td></tr>
+        <tr><td><strong>IDS / IPS</strong></td><td>Intrusion Detection/Prevention System — monitors and blocks malicious activity</td></tr>
+        <tr><td><strong>SIEM</strong></td><td>Centralized log aggregation and correlation — real-time monitoring and alerting</td></tr>
+        <tr><td><strong>EPP</strong></td><td>Endpoint Protection Platform — defends individual devices against malware</td></tr>
+        <tr><td><strong>DLP</strong></td><td>Data Loss Prevention — protects sensitive information from unauthorized exfiltration</td></tr>
+        <tr><td><strong>Encryption</strong></td><td>Secures data both in transit and at rest</td></tr>
+        <tr><td><strong>Network Segmentation</strong></td><td>Limits the spread of attacks within an environment — limits lateral movement</td></tr>
+      </table>
+      <div class="callout"><strong>Defense in Depth</strong> = layered security strategy. No single technology provides complete protection — multiple overlapping controls ensure that if one layer fails, others remain.</div>
+    </div>
+  </div>
+
+  <!-- FIREWALLS -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#128293; Firewalls — Types, Rules &amp; ACLs <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <p>A firewall monitors incoming and outgoing network traffic based on predefined security rules. It filters traffic using IP addresses, ports, protocols, and sometimes application data.</p>
+      <h3>Firewall Types — Know the Progression</h3>
+      <table>
+        <tr><th>Type</th><th>How it works</th><th>Key Feature</th></tr>
+        <tr><td><strong>Packet Filtering</strong></td><td>Basic — allows or blocks traffic by simple criteria (IP, port, protocol)</td><td>Stateless — does not track connections</td></tr>
+        <tr><td><strong>Stateful Firewall</strong></td><td>Tracks active connections — makes decisions based on connection state</td><td>Understands whether traffic belongs to an established session</td></tr>
+        <tr><td><strong>NGFW</strong> (Next Generation)</td><td>Deep packet inspection + IPS + application-level filtering</td><td>Can block specific applications, not just ports — most advanced</td></tr>
+      </table>
+
+      <h3>Firewall Rules — Critical Exam Details</h3>
+      <table>
+        <tr><th>Rule</th><th>What it means</th></tr>
+        <tr><td><strong>Top-to-bottom reading</strong></td><td>Firewalls process rules in order from top to bottom — the first matching rule wins</td></tr>
+        <tr><td><strong>Implicit Denial</strong></td><td>The last rule should always be <em>deny all</em> — any IP, any source, any destination, any port, any protocol not explicitly permitted is denied. This is implicit denial.</td></tr>
+        <tr><td><strong>Screen Subnet (DMZ)</strong></td><td>Firewalls can create a screened subnet — a zone between public internet and internal network (also called DMZ)</td></tr>
+      </table>
+      <div class="callout red"><strong>IMPLICIT DENIAL = exam answer.</strong> The last rule on a firewall should deny all traffic that was not explicitly allowed. If no rule matched, the traffic is blocked. This is the default deny posture.</div>
+
+      <h3>ACLs — Access Control Lists</h3>
+      <p>ACLs are sets of rules used by network devices (routers, switches, firewalls) to permit or deny traffic based on defined criteria.</p>
+      <table>
+        <tr><th>Criteria used</th><th>Examples</th></tr>
+        <tr><td><strong>Source IP</strong></td><td>Allow traffic from 192.168.1.0/24</td></tr>
+        <tr><td><strong>Destination IP</strong></td><td>Deny traffic to 10.0.0.5</td></tr>
+        <tr><td><strong>Port numbers</strong></td><td>Allow TCP port 443 (HTTPS)</td></tr>
+        <tr><td><strong>Protocols</strong></td><td>Block ICMP (ping)</td></tr>
+      </table>
+      <div class="callout"><strong>Firewalls use ACLs</strong> to enforce security policies — restricting which traffic is allowed through the network. The ACL is the ruleset; the firewall is the enforcer.</div>
+    </div>
+  </div>
+
+  <!-- NETFLOW vs S-FLOW -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>&#128248; NetFlow vs S-Flow <span class="tag-warn">LOW TEST PRIORITY</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body">
+      <div class="callout warn">Instructor note: NetFlow is less likely to appear on the exam. Know the conceptual difference between full capture and sampling.</div>
+      <table>
+        <tr><th></th><th>NetFlow</th><th>S-Flow</th></tr>
+        <tr><td><strong>Method</strong></td><td>Full flow-based traffic analysis — captures all traffic</td><td>Statistical sampling — captures a subset of packets</td></tr>
+        <tr><td><strong>Accuracy</strong></td><td>Higher accuracy — full picture</td><td>Less precise — based on sampling</td></tr>
+        <tr><td><strong>Resource usage</strong></td><td>Higher overhead</td><td>Lightweight and scalable</td></tr>
+        <tr><td><strong>Best for</strong></td><td>Deep analysis, forensics, anomaly detection</td><td>Large high-speed networks where full capture isn't practical</td></tr>
+        <tr><td><strong>Association</strong></td><td>Cisco-origin technology</td><td>Vendor-agnostic — organizations moving away from Cisco-only environments</td></tr>
+      </table>
+    </div>
+  </div>
+
   <!-- QUIZ -->
   <div style="margin-top:2rem;">
     <div class="quiz-intro">
       <h2>Pen Test, Audits &amp; Security Monitoring — Practice Quiz</h2>
-      <p>Exam-focused questions with full explanations — covers pen testing, SIEM, SCAP, risk, vuln mgmt, and more</p>
+      <p>Exam-focused questions with full explanations — covers pen testing, firewalls, SIEM, SCAP, risk, vuln mgmt, and more</p>
       <button class="btn btn-primary" id="ptStartBtn" onclick="startPtQuiz()">Start Quiz</button>
     </div>
 
@@ -1856,7 +1935,31 @@ const ptQs = [
   { q:"Instead of a management system periodically polling for device status, a router automatically sends an alert to the SIEM when its CPU spikes. What mechanism is this?",
     opts:["NetFlow analysis","SNMP polling","SNMP trap","Syslog forwarding"],
     ans:2,
-    exp:"SNMP Trap = a device proactively PUSHES an alert to a management system when a specific event occurs. This is the opposite of SNMP Polling, where the management system periodically asks the device if everything is OK. Traps provide immediate notification, reducing response time compared to traditional polling." }
+    exp:"SNMP Trap = a device proactively PUSHES an alert to a management system when a specific event occurs. This is the opposite of SNMP Polling, where the management system periodically asks the device if everything is OK. Traps provide immediate notification, reducing response time compared to traditional polling." },
+  { q:"A firewall has a list of rules. Traffic arrives and no rule explicitly permits it. What happens under a properly configured firewall?",
+    opts:["The traffic is allowed by default","The firewall restarts to apply new rules","The traffic is denied — the last rule is an implicit denial that blocks all unmatched traffic","The traffic is flagged and forwarded to the SIEM for review"],
+    ans:2,
+    exp:"Implicit Denial = the last rule on a firewall denies ALL traffic not explicitly permitted. Any IP, any source, any destination, any port, any protocol that didn't match a previous rule is blocked. This is the default deny posture and a critical exam concept." },
+  { q:"A firewall reads its rules and the FIRST matching rule for a packet is ALLOW TCP port 80. A later rule says DENY TCP port 80. What happens?",
+    opts:["The packet is denied because the deny rule is more specific","The packet is allowed — firewalls read top to bottom and stop at the first match","Both rules cancel each other out and the packet is dropped","The firewall logs the conflict and asks the admin"],
+    ans:1,
+    exp:"Firewalls read rules TOP TO BOTTOM and stop at the FIRST match. If the first matching rule says ALLOW, the packet is allowed — even if a later rule would have denied it. Rule order matters critically — more specific rules should appear higher in the list." },
+  { q:"Which firewall type tracks active connections and allows or denies traffic based on the state of those connections?",
+    opts:["Packet filtering firewall","Next Generation Firewall (NGFW)","Stateful firewall","Application proxy firewall"],
+    ans:2,
+    exp:"Stateful firewalls track active connection state. They know whether traffic belongs to an established session. Packet filtering (stateless) only looks at individual packets without tracking sessions. NGFW goes further with deep packet inspection, IPS, and application-level filtering." },
+  { q:"An NGFW blocks an application like Tor even though it runs on a standard HTTPS port (443). What capability allows this?",
+    opts:["Port-based filtering","Implicit denial","Deep packet inspection and application-level filtering","Stateful connection tracking"],
+    ans:2,
+    exp:"NGFW (Next Generation Firewall) uses deep packet inspection and application-level filtering to identify and block specific applications regardless of what port they use. Traditional packet filtering only blocks by port/protocol — it cannot distinguish Tor on port 443 from legitimate HTTPS traffic." },
+  { q:"A router uses a list of rules to permit traffic from 192.168.1.0/24 to TCP port 443 and deny all other traffic. What is this list called?",
+    opts:["Firewall policy","ACL — Access Control List","Implicit denial rule","NGFW inspection profile"],
+    ans:1,
+    exp:"ACL = Access Control List. ACLs are sets of rules used by network devices (routers, switches, firewalls) to permit or deny traffic based on defined criteria: source/destination IP, port numbers, and protocols. They are how firewalls enforce security policies at the packet level." },
+  { q:"What security concept does a layered approach using firewalls + IPS + SIEM + endpoint protection represent?",
+    opts:["Zero Trust","Least Privilege","Defense in Depth","Implicit Denial"],
+    ans:2,
+    exp:"Defense in Depth = layered security strategy. No single technology provides complete protection — multiple overlapping controls ensure that if one layer fails, others remain. Firewalls + IDS/IPS + SIEM + endpoint protection + DLP + network segmentation working together is the textbook example." }
 ];
 
 let ptAnswered = {};
