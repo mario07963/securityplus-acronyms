@@ -359,6 +359,16 @@
     body.light .sim-result.tunnel-fail { background: #fee2e2; }
     body.light .progress-track     { background: #c8d3e8; }
 
+    /* Keep nav dark in light mode for readability */
+    body.light nav                  { background: #1e293b; border-bottom-color: #334155; }
+    body.light nav .logo            { color: #60a5fa; }
+    body.light nav a                { color: #94a3b8; border-bottom-color: transparent; }
+    body.light nav a:hover,
+    body.light nav a.active         { color: #ffffff; border-bottom-color: #60a5fa; }
+    body.light .date-sep            { color: #4a5568; }
+    body.light .theme-btn           { background: #2d3f58; border-color: #4a5568; color: #e2e8f0; }
+    body.light .theme-btn:hover     { background: #3b82f6; border-color: #3b82f6; color: #fff; }
+
     /* SIMULATION LAB */
     .sim-diagram {
       background: var(--surface2); border: 1px solid var(--border); border-radius: 10px;
