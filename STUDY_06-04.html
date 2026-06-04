@@ -1835,6 +1835,77 @@
     </div>
   </div>
 
+  <!-- ACCESS CONTROL MODELS -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#128272; Access Control Models — MAC, DAC, RBAC, ABAC, Rule-Based <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <p>Access control models define how permissions are assigned and enforced so that users and systems only access what they are authorized to use. Each model approaches this differently based on control, flexibility, and security requirements.</p>
+
+      <div class="callout red" style="text-align:center;font-size:.95rem;">
+        <strong>Quick reference — memorize these distinctions:</strong><br/><br/>
+        MAC = centrally controlled + classification labels &nbsp;|&nbsp; DAC = owner controls &nbsp;|&nbsp; RBAC = roles &nbsp;|&nbsp; ABAC = attributes &nbsp;|&nbsp; Rule-Based = system rules
+      </div>
+
+      <table>
+        <tr><th>Model</th><th>Full Name</th><th>Who controls access</th><th>Key characteristic</th><th>Typical use</th></tr>
+        <tr>
+          <td><strong>MAC</strong></td>
+          <td>Mandatory Access Control</td>
+          <td><strong>Centrally controlled</strong> — the system/admin, not the owner</td>
+          <td>Based on <strong>classification levels or labels</strong> (e.g., Unclassified, Secret, Top Secret). Users cannot change permissions — the system enforces them.</td>
+          <td>Government, military, high-security environments</td>
+        </tr>
+        <tr>
+          <td><strong>DAC</strong></td>
+          <td>Discretionary Access Control</td>
+          <td><strong>Resource owner</strong> controls who gets access</td>
+          <td>Owner has discretion to grant or revoke access to their own resources. Most flexible — but most risk if owner makes a mistake.</td>
+          <td>Standard file systems (Windows NTFS, Linux file permissions)</td>
+        </tr>
+        <tr>
+          <td><strong>RBAC</strong></td>
+          <td>Role-Based Access Control</td>
+          <td>Access assigned based on <strong>job roles</strong></td>
+          <td>Users inherit permissions from their role (e.g., "Nurse" role gets access to patient records; "HR" role gets access to HR systems). Easy to manage at scale.</td>
+          <td>Enterprise environments, Active Directory groups</td>
+        </tr>
+        <tr>
+          <td><strong>ABAC</strong></td>
+          <td>Attribute-Based Access Control</td>
+          <td>Access based on <strong>dynamic attributes</strong></td>
+          <td>Uses multiple attributes — user attributes (department, clearance), resource attributes (sensitivity), and environment attributes (time of day, location) — to make flexible, context-aware decisions.</td>
+          <td>Cloud environments, zero trust architectures</td>
+        </tr>
+        <tr>
+          <td><strong>Rule-Based</strong></td>
+          <td>Rule-Based Access Control</td>
+          <td>Access enforced by <strong>system-defined rules</strong></td>
+          <td>Static rules set by administrators that apply to all users uniformly — e.g., "No access to the network after 6 PM" or firewall ACL rules. Rules are not tied to identity or role.</td>
+          <td>Firewalls, routers, time-based access restrictions</td>
+        </tr>
+      </table>
+
+      <h3>MAC vs DAC — The Key Difference</h3>
+      <div class="two-col">
+        <div class="callout red">
+          <strong>MAC (Mandatory):</strong><br/>
+          Owner cannot change permissions. The system enforces labels. Even if you own the file, you cannot grant access to someone with a lower classification. Control is <em>mandatory</em> — taken away from the user.
+        </div>
+        <div class="callout">
+          <strong>DAC (Discretionary):</strong><br/>
+          Owner decides who gets access. You own the file, you choose who can read it. Control is <em>discretionary</em> — left to the owner's judgment.
+        </div>
+      </div>
+
+      <div class="callout warn">
+        <strong>RBAC vs ABAC:</strong> RBAC grants access based on a <em>static role</em> assigned to the user. ABAC is more dynamic — it evaluates multiple attributes in real time (who you are + what you're accessing + when/where you're doing it) to make the access decision. ABAC is more flexible and granular but more complex to configure.
+      </div>
+    </div>
+  </div>
+
   <!-- QUIZ -->
   <div style="margin-top:2rem;">
     <div class="quiz-intro">
@@ -2316,7 +2387,27 @@ const ptQs = [
   { q:"A financial system requires that the person who initiates a wire transfer cannot also be the person who approves it. What security principle is this?",
     opts:["Least privilege","Mandatory access control","Separation of duties","Account provisioning"],
     ans:2,
-    exp:"Separation of duties = no single person has enough access to complete a sensitive or high-risk task alone. It distributes critical capabilities across multiple people to prevent fraud, errors, and abuse of privilege. It upholds least privilege by ensuring no one individual accumulates excessive access." }
+    exp:"Separation of duties = no single person has enough access to complete a sensitive or high-risk task alone. It distributes critical capabilities across multiple people to prevent fraud, errors, and abuse of privilege. It upholds least privilege by ensuring no one individual accumulates excessive access." },
+  { q:"A military system assigns access based on classification labels — Unclassified, Secret, Top Secret. Users cannot change who has access to their own files. Which access control model is this?",
+    opts:["DAC — Discretionary Access Control","RBAC — Role-Based Access Control","MAC — Mandatory Access Control","ABAC — Attribute-Based Access Control"],
+    ans:2,
+    exp:"MAC (Mandatory Access Control) is centrally controlled and based on classification levels or labels. The owner cannot change permissions — the system enforces them. Even if you own the file, you cannot grant access to someone with a lower classification level. MAC is used in government, military, and high-security environments." },
+  { q:"A user creates a shared folder and decides which coworkers can read or edit its contents. Which access control model is in use?",
+    opts:["MAC — the system enforces the labels","RBAC — access is tied to job roles","Rule-Based — system rules determine access","DAC — the resource owner controls access"],
+    ans:3,
+    exp:"DAC (Discretionary Access Control) lets the resource OWNER decide who gets access. The owner has discretion to grant or revoke permissions on their own resources. It is the most flexible model but also carries the most risk — if the owner makes a poor decision, access is misconfigured." },
+  { q:"An organization assigns permissions by grouping users into 'Nurse,' 'Doctor,' and 'Admin' categories. Each category has a predefined set of permissions. Which access control model is this?",
+    opts:["MAC","DAC","RBAC — Role-Based Access Control","Rule-Based Access Control"],
+    ans:2,
+    exp:"RBAC (Role-Based Access Control) assigns access based on job roles. Users inherit permissions from their assigned role. This makes it easy to manage at scale — onboard a new nurse, assign them the 'Nurse' role, and they immediately get the right access. Common in enterprise environments and Active Directory." },
+  { q:"A cloud system grants a user access to a sensitive document only if: they are in the Finance department, the document is rated Internal, and they are accessing from within the corporate network during business hours. Which access control model supports this multi-attribute decision?",
+    opts:["MAC — classification label controls it","DAC — the document owner approved it","RBAC — the user has the Finance role","ABAC — multiple dynamic attributes determine access"],
+    ans:3,
+    exp:"ABAC (Attribute-Based Access Control) makes access decisions based on multiple dynamic attributes: user attributes (department, clearance), resource attributes (sensitivity rating), and environmental attributes (time of day, location). This flexibility makes ABAC ideal for cloud and zero-trust architectures where context matters." },
+  { q:"A firewall rule states: 'Deny all inbound traffic after 11 PM regardless of user identity.' Which access control model does this represent?",
+    opts:["RBAC — a role named 'after-hours' is denied","ABAC — time is an attribute","Rule-Based Access Control — static system rules apply universally","MAC — the classification level blocks after-hours traffic"],
+    ans:2,
+    exp:"Rule-Based Access Control enforces static, system-defined rules that apply uniformly to all users regardless of identity or role. Firewall ACL rules, time-based access restrictions, and router rules are classic examples. Unlike ABAC, rule-based controls are not tied to user attributes — the rule applies to everyone equally." }
 ];
 
 let ptAnswered = {};
