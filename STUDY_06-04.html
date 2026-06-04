@@ -1707,6 +1707,87 @@
     </div>
   </div>
 
+  <!-- NAC -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#127973; NAC — Network Access Control <span class="tag-test">ON TEST — "Health Policy"</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <div class="callout red">
+        <strong>EXAM TRAP:</strong> Port security gets all the credit — but <strong>NAC is what actually shuts down the port.</strong><br/>
+        If a MAC address doesn't match what MAC filtering has on the switch, <strong>NAC shuts down the port</strong> and tells port security it did it.
+      </div>
+      <p>NAC is a <strong>"health policy"</strong> for your network. It enforces policies to determine whether a device is allowed to connect and what level of access it should receive. Evaluates two things at connection time:</p>
+      <table>
+        <tr><th>Check</th><th>Question it answers</th></tr>
+        <tr><td><strong>Authentication</strong></td><td>Who / what is connecting?</td></tr>
+        <tr><td><strong>Posture Assessment</strong></td><td>Is the device secure and compliant? (up-to-date patches, AV, proper config)</td></tr>
+      </table>
+      <h3>NAC Outcomes</h3>
+      <table>
+        <tr><th>Result</th><th>Action</th></tr>
+        <tr><td>Compliant device</td><td>Full network access granted</td></tr>
+        <tr><td>Non-compliant device</td><td>Placed in <strong>quarantine network</strong> — can only reach remediation services (Windows Update, AV updates)</td></tr>
+        <tr><td>Unknown / unauthorized</td><td>Access denied entirely</td></tr>
+      </table>
+      <div class="callout">NAC integrates with <strong>802.1X</strong>, <strong>RADIUS servers</strong>, and endpoint security tools to enforce policy decisions across both wired and wireless networks.</div>
+
+      <h3>Pre-Admission vs Post-Admission</h3>
+      <table>
+        <tr><th></th><th>Pre-Admission</th><th>Post-Admission</th></tr>
+        <tr><td><strong>When</strong></td><td>Before the device is granted access</td><td>After the device is already connected</td></tr>
+        <tr><td><strong>What it does</strong></td><td>Evaluates compliance at connection time</td><td>Continuously monitors compliance — if device falls out (disabled AV, missing patch) → restrict or quarantine</td></tr>
+      </table>
+
+      <h3>Persistent vs Dissolvable NAC</h3>
+      <table>
+        <tr><th></th><th>Persistent (Permanent)</th><th>Dissolvable (Temporary)</th></tr>
+        <tr><td><strong>Enforcement</strong></td><td>Continuous — post-admission monitoring</td><td>One-time check at connection only — then "dissolves"</td></tr>
+        <tr><td><strong>Security</strong></td><td>More secure — enforces ongoing compliance</td><td>Less secure — no ongoing monitoring</td></tr>
+        <tr><td><strong>Complexity</strong></td><td>More complex</td><td>Simpler to implement</td></tr>
+      </table>
+
+      <h3>Agent-Based vs Agentless NAC <span class="tag-test">TEST</span></h3>
+      <table>
+        <tr><th></th><th>Agent-Based</th><th>Agentless</th></tr>
+        <tr><td><strong>Software required</strong></td><td>Yes — agent installed on endpoint</td><td>No — uses native protocols / network scans</td></tr>
+        <tr><td><strong>Visibility</strong></td><td>Deep, detailed, continuous</td><td>Limited, surface-level</td></tr>
+        <tr><td><strong>Monitoring type</strong></td><td>Persistent / post-admission</td><td>Dissolvable / pre-admission only</td></tr>
+        <tr><td><strong>Best for</strong></td><td>Managed corporate devices needing continuous compliance</td><td>Guest devices, unmanaged systems, BYOD</td></tr>
+        <tr><td><strong>Complexity</strong></td><td>Higher — must deploy and maintain on every device</td><td>Lower — no installation needed</td></tr>
+      </table>
+      <div class="callout warn"><strong>Exam shortcut:</strong> Agent-based = more visibility + continuous monitoring (persistent) | Agentless = simpler + one-time check (dissolvable). Choice depends on visibility needs vs ease of deployment.</div>
+    </div>
+  </div>
+
+  <!-- UBA -->
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <h2>&#128100; UBA — User Behavior Analytics <span class="tag-test">ON TEST</span></h2>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <p>UBA is a security monitoring technique that analyzes patterns of normal user activity and detects deviations to identify potential threats — particularly <strong>insider threats, compromised accounts, and APTs</strong> that bypass traditional signature-based controls.</p>
+      <table>
+        <tr><th>Feature</th><th>Detail</th></tr>
+        <tr><td><strong>How it works</strong></td><td>Establishes a <strong>baseline of normal behavior</strong> over time (login times, access patterns, file usage, network activity), then flags significant deviations</td></tr>
+        <tr><td><strong>Uses</strong></td><td>Data analysis + machine learning + behavioral baselines</td></tr>
+        <tr><td><strong>Detects</strong></td><td>Insider misuse, compromised accounts, APTs that evade signature detection</td></tr>
+        <tr><td><strong>Integration</strong></td><td>Integrated with SIEM — correlates behavioral anomalies with other security events to generate accurate alerts and reduce false positives</td></tr>
+      </table>
+      <h3>Behavioral Triggers That UBA Flags</h3>
+      <table>
+        <tr><th>Anomaly</th><th>Why suspicious</th></tr>
+        <tr><td>Login from an unusual geographic location</td><td>Deviates from the user's normal location baseline</td></tr>
+        <tr><td>Accessing files/data the user normally never touches</td><td>Suggests privilege abuse or compromised account lateral movement</td></tr>
+        <tr><td>Actions performed at odd hours (2 AM when user normally works 9–5)</td><td>Deviates from established time-of-day baseline</td></tr>
+        <tr><td>Sudden large data downloads or exfiltration attempts</td><td>Abnormal volume deviates from file-access baseline</td></tr>
+      </table>
+      <div class="callout green">UBA is especially effective against <strong>insider threats</strong> — these attackers have legitimate credentials and bypass perimeter defenses. UBA catches them because their <em>behavior</em> changes even when their credentials are valid.</div>
+    </div>
+  </div>
+
   <!-- QUIZ -->
   <div style="margin-top:2rem;">
     <div class="quiz-intro">
@@ -2140,7 +2221,35 @@ const ptQs = [
   { q:"SELinux and Group Policy both enforce security controls. SELinux differs from Group Policy primarily because SELinux:",
     opts:["Only works on Windows servers","Enforces mandatory access control that cannot be overridden even by administrators","Manages Active Directory user accounts","Provides cloud-based policy enforcement"],
     ans:1,
-    exp:"SELinux = Linux-based Mandatory Access Control (MAC). It enforces strict policies on how processes and users interact with files and system resources — and these policies CANNOT be overridden even by users with administrator privileges. Group Policy is Windows-based centralized configuration management via Active Directory — it manages settings but relies on administrator-level permissions." }
+    exp:"SELinux = Linux-based Mandatory Access Control (MAC). It enforces strict policies on how processes and users interact with files and system resources — and these policies CANNOT be overridden even by users with administrator privileges. Group Policy is Windows-based centralized configuration management via Active Directory — it manages settings but relies on administrator-level permissions." },
+  { q:"Port security is often given credit for shutting down a switch port when an unauthorized device connects. What technology actually enforces this action?",
+    opts:["MAC filtering alone","Port security itself","NAC — Network Access Control","802.1X supplicant"],
+    ans:2,
+    exp:"EXAM TRAP: Port security gets the glory, but NAC (Network Access Control) is what actually shuts down the port. If a MAC address doesn't match what MAC filtering has configured on the switch, NAC shuts down the port and tells port security it did it. NAC is the 'health policy' enforcer." },
+  { q:"A laptop connects to the corporate network. NAC performs a posture assessment and finds the antivirus definitions are 30 days out of date. What should NAC do?",
+    opts:["Grant full network access — the device is still partially compliant","Block the device permanently","Place the device in a quarantine network where it can only reach remediation services","Disable the switch port permanently"],
+    ans:2,
+    exp:"When NAC finds a non-compliant device, the correct response is quarantine — not full block and not full access. The quarantine network allows the device to reach remediation services (Windows Update, AV update servers) so it can become compliant, then be granted full access. This is the 'health policy' in action." },
+  { q:"A NAC solution checks a device's patch level and antivirus status at the moment it connects, grants access if compliant, but does NOT continue monitoring after that. What type of NAC is this?",
+    opts:["Persistent NAC / post-admission control","Agent-based NAC","Dissolvable NAC / pre-admission control","Continuous compliance NAC"],
+    ans:2,
+    exp:"Dissolvable NAC performs a one-time check at connection time (pre-admission), then the enforcement 'dissolves' — there is no ongoing monitoring after access is granted. Persistent NAC continuously monitors after connection (post-admission) and will restrict or quarantine a device that later falls out of compliance." },
+  { q:"A company wants to continuously monitor connected devices and automatically quarantine any device that disables its antivirus after connecting. Which NAC configuration provides this?",
+    opts:["Dissolvable NAC with pre-admission checks","Agentless NAC using network scans","Persistent NAC with post-admission enforcement","One-time posture check only"],
+    ans:2,
+    exp:"Persistent NAC provides continuous post-admission enforcement — it keeps monitoring devices after they connect and dynamically adjusts access if a device falls out of compliance (e.g., AV disabled, patch missing). Dissolvable NAC only checks at connection time and would miss a device that becomes non-compliant after connecting." },
+  { q:"An organization needs NAC for a hospital guest Wi-Fi network where thousands of unknown personal devices connect daily. Which NAC approach is most appropriate?",
+    opts:["Agent-based NAC — install software on every guest device","Persistent NAC with continuous post-admission monitoring","Agentless NAC — no software installation required, uses network scans","Mandatory 802.1X certificate-based authentication for guests"],
+    ans:2,
+    exp:"Agentless NAC requires no software installation on endpoints — it uses native protocols and network scans to evaluate devices. This is ideal for guest networks, BYOD scenarios, and unmanaged devices where you cannot install agents. It provides limited visibility and typically only supports pre-admission checks, but that is acceptable for guest access." },
+  { q:"A security analyst notices that a user who normally logs in from Chicago at 9 AM has suddenly logged in from another country at 3 AM and is accessing financial records they have never touched before. What technology would BEST detect this as anomalous?",
+    opts:["Signature-based IDS","Vulnerability scanner","UBA — User Behavior Analytics","SNMP trap"],
+    ans:2,
+    exp:"UBA (User Behavior Analytics) establishes a baseline of normal user behavior — login times, locations, access patterns, file usage. When a user deviates significantly (different country, odd hours, unusual data access), UBA flags it as a potential insider threat or compromised account. Signature-based IDS only catches known attack patterns — it would not detect this behavioral anomaly." },
+  { q:"UBA is especially effective against which type of threat that often bypasses traditional perimeter defenses?",
+    opts:["Zero-day software vulnerabilities","DDoS attacks","Insider threats and compromised legitimate accounts","SQL injection attacks"],
+    ans:2,
+    exp:"UBA is designed specifically for insider threats and compromised accounts — attackers who have valid credentials and bypass perimeter controls like firewalls and IDS. Traditional security tools look for malicious traffic patterns; UBA detects anomalous BEHAVIOR even when the credentials being used are legitimate. It's also effective against APTs that move slowly and blend in." }
 ];
 
 let ptAnswered = {};
