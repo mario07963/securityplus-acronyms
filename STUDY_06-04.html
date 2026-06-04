@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
@@ -150,6 +150,7 @@
   <a href="#" onclick="showPage('stix',this)">&#127981; STIX &amp; TAXII</a>
   <a href="#" onclick="showPage('pentest',this)">&#128270; Pen Test &amp; Audits</a>
   <a href="#" onclick="showPage('irforensics',this)">&#128296; IR &amp; Forensics</a>
+  <a href="#" onclick="showPage('governance',this)">&#128220; Governance &amp; Policy</a>
   <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">&#9728;&#65039; Light</button>
 </nav>
 
@@ -2295,6 +2296,258 @@
 <!-- END IR & FORENSICS -->
 
 
+
+<!-- ===== GOVERNANCE & POLICY TAB ===== -->
+<div id="governance" class="page" style="display:none">
+  <h2>&#128220; Governance &amp; Policy</h2>
+
+  <details open><summary>Security Governance Overview</summary>
+  <div class="card">
+    <p><strong>Security Governance</strong> = the framework of policies, procedures, roles, and responsibilities that govern how an organization manages and enforces its overall security strategy.</p>
+    <ul>
+      <li>Establishes WHO is responsible, HOW decisions are made, WHAT standards must be followed</li>
+      <li>Ensures security aligns with business objectives, regulatory requirements, and risk management</li>
+      <li>Includes: creating policies, defining accountability, ensuring compliance through audits</li>
+      <li>Purpose: provide structured direction so security is treated as a <em>business-level priority</em>, not just a technical function</li>
+    </ul>
+  </div>
+  </details>
+
+  <details open><summary>Policy Hierarchy — Policy vs Standard vs Guideline vs SOP</summary>
+  <div class="card">
+    <table style="width:100%;border-collapse:collapse">
+      <tr style="background:#1e3a5f;color:#93c5fd">
+        <th style="padding:8px;border:1px solid #334155">Type</th>
+        <th style="padding:8px;border:1px solid #334155">Mandatory?</th>
+        <th style="padding:8px;border:1px solid #334155">What It Covers</th>
+        <th style="padding:8px;border:1px solid #334155">Test Keyword</th>
+      </tr>
+      <tr>
+        <td style="padding:8px;border:1px solid #334155"><strong>Policy</strong></td>
+        <td style="padding:8px;border:1px solid #334155">YES</td>
+        <td style="padding:8px;border:1px solid #334155">High-level rule — WHAT must be done and WHY. Created by management. Broad and enforceable.</td>
+        <td style="padding:8px;border:1px solid #334155">WHAT / WHY</td>
+      </tr>
+      <tr style="background:#0f1e30">
+        <td style="padding:8px;border:1px solid #334155"><strong>Standard</strong></td>
+        <td style="padding:8px;border:1px solid #334155">YES</td>
+        <td style="padding:8px;border:1px solid #334155">Specific technical requirements supporting the policy (encryption algorithm, password length, config settings). Little room for interpretation.</td>
+        <td style="padding:8px;border:1px solid #334155">SPECIFIC / TECHNICAL</td>
+      </tr>
+      <tr>
+        <td style="padding:8px;border:1px solid #334155"><strong>Guideline</strong></td>
+        <td style="padding:8px;border:1px solid #334155">NO</td>
+        <td style="padding:8px;border:1px solid #334155">Recommended best practices — advisory, flexible, allows professional judgment. NOT mandatory.</td>
+        <td style="padding:8px;border:1px solid #334155">RECOMMENDED / FLEXIBLE</td>
+      </tr>
+      <tr style="background:#0f1e30">
+        <td style="padding:8px;border:1px solid #334155"><strong>SOP (Standard Operating Procedure)</strong></td>
+        <td style="padding:8px;border:1px solid #334155">YES</td>
+        <td style="padding:8px;border:1px solid #334155">Detailed step-by-step instructions for carrying out tasks in alignment with policies. HOW to execute.</td>
+        <td style="padding:8px;border:1px solid #334155">HOW / STEP-BY-STEP</td>
+      </tr>
+    </table>
+    <p style="margin-top:10px;color:#fbbf24">&#9888; TEST TIP: Policy = WHAT and WHY (mandatory rule). SOP = HOW (step-by-step execution). Together, policies set the rules and SOPs ensure those rules are followed consistently.</p>
+  </div>
+  </details>
+
+  <details open><summary>Agreements &amp; Contracts — BPA, SLA, MOA, MOU, ISA</summary>
+  <div class="card">
+    <table style="width:100%;border-collapse:collapse">
+      <tr style="background:#1e3a5f;color:#93c5fd">
+        <th style="padding:8px;border:1px solid #334155">Agreement</th>
+        <th style="padding:8px;border:1px solid #334155">Full Name</th>
+        <th style="padding:8px;border:1px solid #334155">Focus</th>
+        <th style="padding:8px;border:1px solid #334155">Key Distinction</th>
+      </tr>
+      <tr>
+        <td style="padding:8px;border:1px solid #334155"><strong>BPA</strong></td>
+        <td style="padding:8px;border:1px solid #334155">Business Partnership Agreement</td>
+        <td style="padding:8px;border:1px solid #334155">Security responsibilities &amp; obligations between org and 3rd party partner</td>
+        <td style="padding:8px;border:1px solid #334155">SECURITY and TRUST in the partnership</td>
+      </tr>
+      <tr style="background:#0f1e30">
+        <td style="padding:8px;border:1px solid #334155"><strong>SLA</strong></td>
+        <td style="padding:8px;border:1px solid #334155">Service Level Agreement</td>
+        <td style="padding:8px;border:1px solid #334155">Measurable performance metrics: <em>uptime</em>, availability, response times, support expectations, remedies if not met</td>
+        <td style="padding:8px;border:1px solid #334155">PERFORMANCE and SERVICE RELIABILITY — keyword: <strong>UPTIME</strong></td>
+      </tr>
+      <tr>
+        <td style="padding:8px;border:1px solid #334155"><strong>MOA</strong></td>
+        <td style="padding:8px;border:1px solid #334155">Memorandum of Agreement</td>
+        <td style="padding:8px;border:1px solid #334155">Formal, specific responsibilities, roles, deliverables — resource sharing, funding, services</td>
+        <td style="padding:8px;border:1px solid #334155">MORE FORMAL, binding — similar to a contract</td>
+      </tr>
+      <tr style="background:#0f1e30">
+        <td style="padding:8px;border:1px solid #334155"><strong>MOU</strong></td>
+        <td style="padding:8px;border:1px solid #334155">Memorandum of Understanding</td>
+        <td style="padding:8px;border:1px solid #334155">Mutual understanding of shared goals/intentions — general roles without strict enforcement</td>
+        <td style="padding:8px;border:1px solid #334155">LESS FORMAL — no legal weight of a contract</td>
+      </tr>
+      <tr>
+        <td style="padding:8px;border:1px solid #334155"><strong>ISA</strong></td>
+        <td style="padding:8px;border:1px solid #334155">Interconnection Security Agreement</td>
+        <td style="padding:8px;border:1px solid #334155">Security requirements for CONNECTED IT systems between organizations: auth methods, encryption, access controls, incident response</td>
+        <td style="padding:8px;border:1px solid #334155">SPECIFICALLY for securing system-to-system connections and data exchange</td>
+      </tr>
+    </table>
+    <p style="margin-top:10px;color:#fbbf24">&#9888; TEST TIP: BPA = security &amp; trust | SLA = performance &amp; uptime | MOA = formal/enforceable | MOU = informal/mutual | ISA = securing connections</p>
+  </div>
+  </details>
+
+  <details open><summary>Acceptable Use Policy (AUP)</summary>
+  <div class="card">
+    <p><strong>AUP</strong> = a formal, mandatory, and enforceable document defining the rules and guidelines for how users are allowed to use an organization's IT systems, networks, and resources.</p>
+    <ul>
+      <li>Outlines <strong>permitted</strong> business use and <strong>prohibited</strong> activities (unauthorized access, downloading malicious content)</li>
+      <li>Expectations for protecting company data</li>
+      <li>Consequences for violations clearly stated</li>
+      <li>Reduces security risk by communicating user responsibilities</li>
+      <li>Ensures technology is used safely, responsibly, and in alignment with security policies</li>
+    </ul>
+  </div>
+  </details>
+
+  <details open><summary>IR vs Business Continuity vs Disaster Recovery — BCDR</summary>
+  <div class="card">
+    <table style="width:100%;border-collapse:collapse">
+      <tr style="background:#1e3a5f;color:#93c5fd">
+        <th style="padding:8px;border:1px solid #334155">Concept</th>
+        <th style="padding:8px;border:1px solid #334155">Focus</th>
+        <th style="padding:8px;border:1px solid #334155">Scope</th>
+      </tr>
+      <tr>
+        <td style="padding:8px;border:1px solid #334155"><strong>IR (Incident Response)</strong></td>
+        <td style="padding:8px;border:1px solid #334155">Detect, contain, eradicate, recover from active security events</td>
+        <td style="padding:8px;border:1px solid #334155">REACTIVE — short-term, directly deals with active threats</td>
+      </tr>
+      <tr style="background:#0f1e30">
+        <td style="padding:8px;border:1px solid #334155"><strong>Business Continuity (BC)</strong></td>
+        <td style="padding:8px;border:1px solid #334155">Ensure critical business functions continue during ANY disruption (cyber, natural disaster, system failure)</td>
+        <td style="padding:8px;border:1px solid #334155">BROADER — planning, redundancy, risk management to maintain essential services</td>
+      </tr>
+      <tr>
+        <td style="padding:8px;border:1px solid #334155"><strong>Disaster Recovery (DR)</strong></td>
+        <td style="padding:8px;border:1px solid #334155">Restore IT systems, data, and infrastructure after major disruption — rebuild servers, recover from backups, re-establish network</td>
+        <td style="padding:8px;border:1px solid #334155">SUBSET of BC — guided by RTO (Recovery Time Objective) and RPO (Recovery Point Objective)</td>
+      </tr>
+    </table>
+    <p style="margin-top:10px;color:#fbbf24">&#9888; ON TEST: You may see <strong>BCDR</strong> (Business Continuity and Disaster Recovery combined) — it is the same concept, combined for ease of management.</p>
+    <p style="color:#fbbf24">KEY DISTINCTION: IR handles ACTIVE security events | BC ensures operations CONTINUE | DR RESTORES systems and data after disruption</p>
+  </div>
+  </details>
+
+  <details open><summary>Change Management &amp; Change Control</summary>
+  <div class="card">
+    <p><strong>Change Management</strong> = a structured process to plan, review, approve, implement, and document changes to systems, networks, or applications in a controlled and secure manner.</p>
+    <p><strong>Goal:</strong> minimize risk of disruption, prevent unintended consequences, ensure all changes are properly tested and authorized before being applied.</p>
+    <h4>Change Management Process Steps:</h4>
+    <ol>
+      <li><strong>Request a Change</strong> — submit a change request (CR or RFC)</li>
+      <li><strong>Risk &amp; Impact Assessment</strong> — evaluate potential risks and effects</li>
+      <li><strong>Approval — Change Advisory Board (CAB)</strong> — formal approval body</li>
+      <li><strong>Test in Controlled Environment</strong> — validate before production</li>
+      <li><strong>Implement the Change</strong> — deploy to production</li>
+      <li><strong>Document the Results</strong> — for accountability and future reference</li>
+    </ol>
+    <p><strong>Change Control</strong> = the formal sub-process within change management focused on PREVENTING disruptions, security vulnerabilities, and unintended consequences caused by unmanaged changes.</p>
+  </div>
+  </details>
+
+  <details open><summary>SDLC — Software Development Life Cycle</summary>
+  <div class="card">
+    <p><strong>SDLC</strong> = a structured process to design, develop, test, deploy, and maintain software in a secure and systematic way.</p>
+    <p><strong>SSDLC</strong> (Secure SDLC) = security integrated throughout every phase — NOT as an afterthought. Fixing issues early reduces risk and cost.</p>
+    <h4>SDLC Phases:</h4>
+    <table style="width:100%;border-collapse:collapse">
+      <tr style="background:#1e3a5f;color:#93c5fd">
+        <th style="padding:8px;border:1px solid #334155">Phase</th>
+        <th style="padding:8px;border:1px solid #334155">What Happens</th>
+      </tr>
+      <tr><td style="padding:8px;border:1px solid #334155"><strong>1. Planning</strong></td><td style="padding:8px;border:1px solid #334155">Define goals, scope, requirements, resources, timelines, potential risks — sets foundation</td></tr>
+      <tr style="background:#0f1e30"><td style="padding:8px;border:1px solid #334155"><strong>2. Design</strong></td><td style="padding:8px;border:1px solid #334155">Create system architecture, data flows, security controls — security built IN not added later</td></tr>
+      <tr><td style="padding:8px;border:1px solid #334155"><strong>3. Development / Implementation</strong></td><td style="padding:8px;border:1px solid #334155">Actual coding — follow secure coding practices to minimize vulnerabilities</td></tr>
+      <tr style="background:#0f1e30"><td style="padding:8px;border:1px solid #334155"><strong>4. Testing</strong></td><td style="padding:8px;border:1px solid #334155">Functional testing + security testing — ensure software works correctly and securely</td></tr>
+      <tr><td style="padding:8px;border:1px solid #334155"><strong>5. Deployment</strong></td><td style="padding:8px;border:1px solid #334155">Release software to production environment for end users</td></tr>
+      <tr style="background:#0f1e30"><td style="padding:8px;border:1px solid #334155"><strong>6. Maintenance</strong></td><td style="padding:8px;border:1px solid #334155">Ongoing updates, patches, vulnerability fixes, performance improvements</td></tr>
+    </table>
+  </div>
+  </details>
+
+  <details open><summary>Procedures — Onboarding, Offboarding &amp; Playbooks</summary>
+  <div class="card">
+    <p><strong>Procedures</strong> = detailed step-by-step instructions that explain exactly HOW to perform specific tasks in alignment with policies and standards.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:10px">
+      <div style="background:#0f1e30;padding:12px;border-radius:8px;border:1px solid #2563eb">
+        <h4 style="color:#93c5fd">Onboarding</h4>
+        <p>Integrating NEW users into org systems:</p>
+        <ul>
+          <li>Create accounts</li>
+          <li>Assign access based on <strong>least privilege</strong></li>
+          <li>Provide security training</li>
+          <li>Ensure user understands AUP</li>
+        </ul>
+        <p><em>Critical for establishing secure access from the start</em></p>
+      </div>
+      <div style="background:#0f1e30;padding:12px;border-radius:8px;border:1px solid #2563eb">
+        <h4 style="color:#93c5fd">Offboarding</h4>
+        <p>Securely removing DEPARTING users:</p>
+        <ul>
+          <li>Disable or delete accounts</li>
+          <li>Revoke ALL permissions</li>
+          <li>Recover assets</li>
+          <li>Ensure NO unauthorized access remains</li>
+        </ul>
+        <p><em>Prevents insider threats and lingering access risk</em></p>
+      </div>
+      <div style="background:#0f1e30;padding:12px;border-radius:8px;border:1px solid #2563eb">
+        <h4 style="color:#93c5fd">Playbooks</h4>
+        <p>Predefined structured procedures for SPECIFIC incidents (malware, phishing):</p>
+        <ul>
+          <li>Provides clear, repeatable guidance</li>
+          <li>Integrated into <strong>SOAR</strong> automation</li>
+          <li>SOAR uses BOTH playbooks AND runbooks</li>
+        </ul>
+        <p><em>Fast, consistent, automated incident response</em></p>
+      </div>
+    </div>
+  </div>
+  </details>
+
+  <details open><summary>Data Sources — Automated Reports, Dashboards &amp; PCAP</summary>
+  <div class="card">
+    <ul>
+      <li><strong>Automated Reports</strong> — system-generated summaries from SIEM or vulnerability scanners highlighting findings, trends, and alerts. Helps analysts quickly prioritize responses.</li>
+      <li><strong>Dashboards</strong> — real-time visual representation of security data aggregating from multiple sources into charts, graphs, and alerts. Enables quick decision-making and situational awareness.</li>
+      <li><strong>PCAP (Packet Capture)</strong> — detailed recordings of network traffic allowing analysts to inspect individual packets. Especially valuable for deep analysis of attacks, troubleshooting, and forensic investigation.</li>
+    </ul>
+    <p>Together these provide visibility into system health, network activity, and potential threats — allowing organizations to detect vulnerabilities, monitor ongoing activity, and respond effectively.</p>
+  </div>
+  </details>
+
+  <details open><summary>Legal Considerations</summary>
+  <div class="card">
+    <p><strong>Legal Considerations</strong> = the laws, regulations, and legal obligations governing how an organization manages security, data, and incident response activities.</p>
+    <ul>
+      <li>Compliance with applicable regulations: data protection laws, privacy requirements, industry standards</li>
+      <li>Respecting user privacy and properly handling <strong>PII (Personally Identifiable Information)</strong></li>
+      <li>Ensuring monitoring or investigative actions are <strong>legally authorized</strong></li>
+      <li>Critical during incident response and digital forensics — evidence collection must be legally sanctioned</li>
+    </ul>
+  </div>
+  </details>
+
+  <!-- GOVERNANCE QUIZ -->
+  <hr style="border-color:#334155;margin:30px 0">
+  <h3>&#127891; Governance &amp; Policy Quiz</h3>
+  <div id="govScoreBar" class="score-bar"></div>
+  <button id="govStartBtn" class="btn-green" onclick="startGovQuiz()">&#9654; Start Quiz (13 questions)</button>
+  <button id="govSubmitBtn" class="btn-green" onclick="submitGovQuiz()" style="display:none">&#10003; Submit Answers</button>
+  <button class="btn-green" onclick="resetGovQuiz()">&#8635; Reset</button>
+  <div id="govQuestions" style="display:none"></div>
+</div>
+
+
 </div><!-- /container -->
 
 <script>
@@ -3257,6 +3510,108 @@ function resetIrQuiz() {
   document.getElementById('irQuestions').style.display = 'none';
   document.getElementById('irQuestions').innerHTML = '';
 }
+
+/* ===== GOVERNANCE QUIZ ===== */
+const govQs = [
+  { q:"What is the KEY difference between a Policy and a Standard?",
+    opts:["Policy = mandatory rule (what/why); Standard = mandatory specific technical requirement (how implemented)","Policy = optional guideline; Standard = mandatory rule","Policy = step-by-step instructions; Standard = high-level goals","Policy = technical specification; Standard = business objective"],
+    ans:0, exp:"Policy sets the mandatory rule — WHAT must be done and WHY. Standards are also mandatory but define the specific technical HOW (e.g., required encryption algorithm, password length)." },
+  { q:"What is the difference between a Guideline and a Policy?",
+    opts:["Guidelines are recommended/flexible best practices; Policies are mandatory and enforceable","Guidelines are mandatory; Policies are optional","Guidelines are step-by-step; Policies are high-level","Both are mandatory but guidelines are more detailed"],
+    ans:0, exp:"Guidelines = advisory, flexible, not mandatory. Policies = mandatory, formal, enforceable. Think: guidelines GUIDE, policies REQUIRE." },
+  { q:"A company signs an agreement with a cloud vendor defining uptime of 99.9%, response time targets, and remedies if not met. This is a:",
+    opts:["SLA — Service Level Agreement","BPA — Business Partnership Agreement","MOA — Memorandum of Agreement","ISA — Interconnection Security Agreement"],
+    ans:0, exp:"SLA focuses on measurable SERVICE PERFORMANCE metrics: uptime, availability, response time, and consequences if not met. Key word: UPTIME." },
+  { q:"Which agreement is specifically designed to secure the connection between two organizations' IT systems?",
+    opts:["ISA — Interconnection Security Agreement","MOU — Memorandum of Understanding","SLA — Service Level Agreement","AUP — Acceptable Use Policy"],
+    ans:0, exp:"ISA (Interconnection Security Agreement) defines security requirements for CONNECTED information systems — authentication methods, encryption, access controls between organizations." },
+  { q:"What is the difference between MOU and MOA?",
+    opts:["MOU = less formal, mutual understanding; MOA = formal and enforceable (like a contract)","MOU = formal contract; MOA = informal understanding","Both are equally binding","MOU covers technical specs; MOA covers business goals"],
+    ans:0, exp:"MOA is MORE formal and binding — similar to a contract with defined responsibilities. MOU is LESS formal — establishes mutual understanding and cooperation without legal weight." },
+  { q:"What is a Business Partnership Agreement (BPA)?",
+    opts:["A formal contract defining SECURITY responsibilities between an org and a 3rd party partner","An agreement defining service uptime metrics","A document outlining steps for incident response","A policy governing employee device use"],
+    ans:0, exp:"BPA defines SECURITY responsibilities and obligations when external vendors/partners have access to internal systems. Focus: SECURITY and TRUST in the partnership." },
+  { q:"What is the KEY distinction between Incident Response, Business Continuity, and Disaster Recovery?",
+    opts:["IR = active security events; BC = operations continue during disruption; DR = restore IT systems after disruption","IR = restore systems; BC = detect threats; DR = contain incidents","All three serve the same purpose","IR = long-term planning; BC = detection; DR = eradication"],
+    ans:0, exp:"IR is REACTIVE to active security threats (short-term). BC ensures CRITICAL FUNCTIONS CONTINUE during disruption. DR is a subset of BC focused on RESTORING IT SYSTEMS. BCDR combines BC+DR." },
+  { q:"What does BCDR stand for and why is it used?",
+    opts:["Business Continuity and Disaster Recovery — combined for ease of management","Business Compliance and Data Recovery — combined compliance framework","Breach Containment and Damage Response — incident handling","Backup Control and Data Redundancy — backup management"],
+    ans:0, exp:"BCDR = Business Continuity + Disaster Recovery combined. The instructor specifically flagged this: 'It will be called BCDR on the test — all because of ease of management.'" },
+  { q:"What is the Change Advisory Board (CAB)?",
+    opts:["A group that approves changes during the change management process","A team that performs penetration testing","A committee that writes security policies","A board that manages user accounts"],
+    ans:0, exp:"CAB = Change Advisory Board — the body that reviews and APPROVES changes as part of the change management/change control process. No change goes live without CAB approval." },
+  { q:"In the SDLC, when should security be integrated?",
+    opts:["Throughout every phase — not as an afterthought","Only during the testing phase","Only during deployment","After development is complete"],
+    ans:0, exp:"SSDLC (Secure SDLC) = security integrated throughout ALL phases (Planning → Design → Development → Testing → Deployment → Maintenance). Fixing security early reduces risk and cost." },
+  { q:"What is an Acceptable Use Policy (AUP)?",
+    opts:["A mandatory document defining rules for how users may use org IT systems, networks, and resources","An optional guideline for password creation","A vendor contract for service levels","A technical standard for encryption"],
+    ans:0, exp:"AUP is MANDATORY and ENFORCEABLE — defines what is permitted/prohibited use of org IT resources, expectations for protecting company data, and consequences for violations." },
+  { q:"What does offboarding REQUIRE to prevent security risks?",
+    opts:["Disabling/deleting accounts, revoking permissions, recovering assets — no lingering access","Only changing the user's password","Keeping the account active for 30 days for data transfer","Only removing building badge access"],
+    ans:0, exp:"Offboarding must FULLY remove access: disable/delete accounts, revoke ALL permissions, recover assets. Lingering access = insider threat risk and unauthorized access." },
+  { q:"SOAR playbooks differ from regular procedures because:",
+    opts:["Playbooks in SOAR are automated — integrated into orchestration systems for consistent repeatable response","Playbooks are only used for documentation, not automation","SOAR uses runbooks but NOT playbooks","Playbooks require manual execution every time"],
+    ans:0, exp:"SOAR uses BOTH playbooks AND runbooks (the only framework with both). Playbooks are predefined procedures automated within SOAR for fast, consistent incident response." }
+];
+
+let govAnswered = {};
+function startGovQuiz() {
+  govAnswered = {};
+  const box = document.getElementById('govQuestions');
+  box.innerHTML = '';
+  govQs.forEach((q, qi) => {
+    let html = `<div class="q-block" id="govQ${qi}"><p><strong>Q${qi+1}:</strong> ${q.q}</p>`;
+    q.opts.forEach((o, oi) => {
+      html += `<button class="btn-green" onclick="govpick(${qi},${oi})">${String.fromCharCode(65+oi)}. ${o}</button>`;
+    });
+    html += `<div class="feedback" id="govFB${qi}" style="display:none"></div></div>`;
+    box.innerHTML += html;
+  });
+  box.style.display = 'block';
+  document.getElementById('govStartBtn').style.display = 'none';
+  document.getElementById('govSubmitBtn').style.display = 'inline-flex';
+  document.getElementById('govScoreBar').classList.remove('show');
+}
+function govpick(qi, oi) {
+  govAnswered[qi] = oi;
+  const block = document.getElementById('govQ'+qi);
+  block.querySelectorAll('.btn-green').forEach((b,i) => {
+    b.style.background = i === oi ? '#2563eb' : '';
+    b.style.color = i === oi ? '#fff' : '';
+  });
+}
+function submitGovQuiz() {
+  let score = 0;
+  govQs.forEach((q, qi) => {
+    const fb = document.getElementById('govFB'+qi);
+    fb.style.display = 'block';
+    if (govAnswered[qi] === q.ans) {
+      score++;
+      fb.style.color = '#4ade80';
+      fb.innerHTML = '&#10003; Correct! ' + q.exp;
+    } else {
+      fb.style.color = '#f87171';
+      const picked = govAnswered[qi] !== undefined ? String.fromCharCode(65+govAnswered[qi])+'. '+q.opts[govAnswered[qi]] : 'No answer';
+      fb.innerHTML = '&#10007; Incorrect. You chose: '+picked+'<br><strong>Correct: '+String.fromCharCode(65+q.ans)+'. '+q.opts[q.ans]+'</strong><br>'+q.exp;
+    }
+  });
+  document.getElementById('govSubmitBtn').style.display = 'none';
+  const bar = document.getElementById('govScoreBar');
+  bar.classList.add('show');
+  const pct = Math.round(score/govQs.length*100);
+  const msg = pct >= 80 ? 'Great job!' : pct >= 60 ? 'Keep studying!' : 'Review this section.';
+  bar.textContent = 'Score: '+score+'/'+govQs.length+' ('+pct+'%) — '+msg;
+  bar.scrollIntoView({ behavior: 'smooth' });
+  document.querySelectorAll('#govQuestions .btn-green').forEach(b => b.style.display = 'none');
+}
+function resetGovQuiz() {
+  govAnswered = {};
+  document.getElementById('govScoreBar').classList.remove('show');
+  document.getElementById('govStartBtn').style.display = 'inline-flex';
+  document.getElementById('govQuestions').style.display = 'none';
+  document.getElementById('govQuestions').innerHTML = '';
+}
 </script>
+
 </body>
 </html>
