@@ -2086,7 +2086,597 @@
 
   <!-- QUIZ -->
   <div style="margin-top:2rem;">
-    <div class="quiz-intro">
+    <!-- RED / BLUE / PURPLE / WHITE TEAMS -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>&#127939; Security Teams: Red, Blue, Purple, White <span class="tag-test">TEST</span></h2>
+      <span class="chevron">&#9660;</span>
+    </div>
+    <div class="section-body">
+      <table>
+        <tr><th>Team</th><th>Role</th><th>Goal</th></tr>
+        <tr><td><span style="color:#ef4444"><strong>Red Team</strong></span></td><td>Offensive - simulates real attackers</td><td>Find vulnerabilities before real attackers do. Uses real-world tactics.</td></tr>
+        <tr><td><span style="color:#3b82f6"><strong>Blue Team</strong></span></td><td>Defensive - protects and detects</td><td>Defend against attacks, monitor, respond to incidents, harden systems</td></tr>
+        <tr><td><span style="color:#a855f7"><strong>Purple Team</strong></span></td><td>Red + Blue collaboration</td><td>Red attacks while Blue defends simultaneously - improves BOTH teams. Best of both.</td></tr>
+        <tr><td><strong>White Team</strong></td><td>Referees / administrators</td><td>Oversees red/blue exercises, sets rules, evaluates results, ensures safety</td></tr>
+        <tr><td><strong>Physical Red Team</strong></td><td>Offensive physical security testing</td><td>Tailgating, badge cloning, dumpster diving, impersonation on-site</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- WHITE / BLACK / GRAY BOX TESTING -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>&#11035; Testing Methodologies: White, Black, Gray Box <span class="tag-test">TEST</span></h2>
+      <span class="chevron">&#9660;</span>
+    </div>
+    <div class="section-body">
+      <table>
+        <tr><th>Type</th><th>Knowledge Given</th><th>Simulates</th><th>Best For</th></tr>
+        <tr><td><strong>Black Box</strong></td><td>No info - tester knows nothing about target</td><td>External attacker with zero knowledge</td><td>Testing perimeter defenses realistically</td></tr>
+        <tr><td><strong>White Box</strong></td><td>Full info - source code, architecture, credentials</td><td>Insider or trusted partner with full access</td><td>Thorough internal review, SDLC testing</td></tr>
+        <tr><td><strong>Gray Box</strong></td><td>Partial info - some credentials or architecture docs</td><td>Attacker with some internal knowledge</td><td>Balanced assessment - efficient AND realistic</td></tr>
+      </table>
+      <div class="callout blue"><strong>Memory trick: Black = blind. White = full light. Gray = in between.</strong></div>
+    </div>
+  </div>
+
+  <!-- PASSIVE VS ACTIVE RECONNAISSANCE -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>&#128270; Passive vs Active Reconnaissance <span class="tag-test">TEST</span></h2>
+      <span class="chevron">&#9660;</span>
+    </div>
+    <div class="section-body">
+      <table>
+        <tr><th>Type</th><th>Method</th><th>Detection Risk</th><th>Examples</th></tr>
+        <tr><td><strong>Passive Recon</strong></td><td>Gather info WITHOUT directly touching target systems</td><td>Very low - no direct interaction</td><td>OSINT, WHOIS, Google dorking, LinkedIn, job postings, Shodan, DNS lookups via public records</td></tr>
+        <tr><td><strong>Active Recon</strong></td><td>Directly interact with target systems to gather info</td><td>Higher - traffic goes to target</td><td>Port scanning (Nmap), ping sweeps, banner grabbing, vulnerability scanning</td></tr>
+      </table>
+      <div class="callout red"><strong>Passive = no touch, no traces. Active = direct contact = detectable.</strong></div>
+    </div>
+  </div>
+
+  <!-- DETECTING ABNORMAL BEHAVIOR -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>&#128272; Detecting Abnormal Behavior</h2>
+      <span class="chevron">&#9660;</span>
+    </div>
+    <div class="section-body">
+      <p>Security monitoring looks for deviations from <strong>established baselines</strong>. Abnormal behavior indicators include:</p>
+      <table>
+        <tr><th>Behavior</th><th>Potential Indicator</th></tr>
+        <tr><td>Login at 3 AM from different country</td><td>Account compromise / credential theft</td></tr>
+        <tr><td>Large data transfer to external IP</td><td>Data exfiltration</td></tr>
+        <tr><td>Unusual process spawned from browser</td><td>Web-based exploit / drive-by</td></tr>
+        <tr><td>Admin account used from new device</td><td>Lateral movement or compromised admin</td></tr>
+        <tr><td>Spike in failed auth attempts</td><td>Brute force / password spray attack</td></tr>
+        <tr><td>Scheduled task created by non-admin</td><td>Persistence mechanism installed by attacker</td></tr>
+      </table>
+      <div class="callout blue"><strong>UBA (User Behavior Analytics) automates baseline tracking and deviation detection.</strong></div>
+    </div>
+  </div>
+
+  <!-- ADDIE FRAMEWORK -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>&#127979; ADDIE Framework - Security Training Design</h2>
+      <span class="chevron">&#9660;</span>
+    </div>
+    <div class="section-body">
+      <p>ADDIE is an <strong>instructional design framework</strong> used to build effective security awareness training programs.</p>
+      <table>
+        <tr><th>Phase</th><th>What Happens</th></tr>
+        <tr><td><strong>A</strong>nalyze</td><td>Identify training needs, gaps, target audience, and learning objectives</td></tr>
+        <tr><td><strong>D</strong>esign</td><td>Plan the training structure, content outline, and assessment approach</td></tr>
+        <tr><td><strong>D</strong>evelop</td><td>Build the actual training materials, modules, scenarios</td></tr>
+        <tr><td><strong>I</strong>mplement</td><td>Deliver the training to the target audience</td></tr>
+        <tr><td><strong>E</strong>valuate</td><td>Measure effectiveness - did behavior change? Run again if needed.</td></tr>
+      </table>
+      <div class="callout blue"><strong>ADDIE = Analyze &#x2192; Design &#x2192; Develop &#x2192; Implement &#x2192; Evaluate</strong></div>
+    </div>
+  </div>
+
+  <!-- INITIAL vs RECURRING TRAINING EFFECTIVENESS -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>&#128260; Training Effectiveness: Initial vs Recurring</h2>
+      <span class="chevron">&#9660;</span>
+    </div>
+    <div class="section-body">
+      <table>
+        <tr><th>Type</th><th>When</th><th>Purpose</th></tr>
+        <tr><td><strong>Initial Training</strong></td><td>At onboarding or when a new policy is introduced</td><td>Establishes baseline security awareness and policy knowledge</td></tr>
+        <tr><td><strong>Recurring Training</strong></td><td>Periodic (annual, quarterly) refreshers</td><td>Keeps security top of mind, covers new threats, reinforces previous training</td></tr>
+        <tr><td><strong>Effectiveness Metrics</strong></td><td>Post-training tests, phishing simulation click rates, incident reduction</td><td>Measures whether training actually changes behavior</td></tr>
+      </table>
+    </div>
+  </div>
+
+const ptQs = [
+  { q:"CVSS scoring uses three metric groups. Which metric group measures the intrinsic characteristics of a vulnerability that do NOT change over time or environment?",
+    opts:["Temporal Metrics","Environmental Metrics","Base Metrics","Organizational Metrics"],
+    ans:2,
+    exp:"Base Metrics measure the intrinsic characteristics of the vulnerability itself — they never change regardless of time or environment. Base is always present and is the most important of the three. It answers: 'How bad is this vulnerability in general?'" },
+  { q:"A security researcher publishes a working exploit for a known vulnerability. Which CVSS metric group would change as a result?",
+    opts:["Base Metrics — because the vulnerability severity changed","Environmental Metrics — because the organization's exposure changed","Temporal Metrics — because the current threat level changed over time","None — CVSS scores never change once assigned"],
+    ans:2,
+    exp:"Temporal Metrics measure factors that change over time — including whether a public exploit is available, whether a patch exists, etc. A public exploit being released raises the Temporal score. The Base score stays the same because the underlying vulnerability didn't change." },
+  { q:"Two organizations have the exact same vulnerability. Organization A runs it on a public-facing web server; Organization B runs it on an air-gapped internal lab machine. Which CVSS metric accounts for this difference in risk?",
+    opts:["Base Metrics","Temporal Metrics","Environmental Metrics","Exposure Factor"],
+    ans:2,
+    exp:"Environmental Metrics adjust the CVSS score based on your specific organization and environment. The same vulnerability can have very different Environmental scores depending on asset importance, system exposure, and existing controls. This is why the same CVE can be Critical to one org and Low to another." },
+  { q:"Which CVSS metric group is ALWAYS present and considered the most important?",
+    opts:["Temporal","Environmental","Organizational","Base"],
+    ans:3,
+    exp:"Base Metrics are always present — every CVSS score has a Base score. Temporal and Environmental are optional modifiers. Base answers 'how bad is this in general?' and is the foundation of every CVSS score." },
+  { q:"Why was the CVE system created?",
+    opts:["To assign CVSS severity scores to vulnerabilities","To give organizations a database of remediation steps","To provide a common unique identifier so all vendors and tools refer to the same vulnerability without confusion","To replace the NVD database"],
+    ans:2,
+    exp:"Without CVE, Vendor A might call it 'Apache Bug #4' while Vendor B calls it 'RCE Flaw 2021' — chaos. CVE gives every publicly known vulnerability one universal unique ID (CVE-YYYY-NNNNN) so every security tool, vendor, and professional worldwide references the exact same issue." },
+  { q:"After a data breach, the organization faces customer churn and negative press coverage. Which impact type is this?",
+    opts:["Financial","Operational","Reputational","Legal"],
+    ans:2,
+    exp:"Reputational Impact = damage to an organization's public image, leading to loss of customer trust, brand damage, and customer aversion. This is distinct from Financial impact (direct monetary loss) even though reputation damage can eventually cause financial loss." },
+  { q:"A ransomware attack takes all company systems offline for three days. Which impact type BEST describes the disruption to daily business operations?",
+    opts:["Financial","Reputational","Legal / Regulatory","Operational"],
+    ans:3,
+    exp:"Operational Impact = disruption to normal business operations — system downtime, service outages, and reduced productivity. The financial cost of the ransom and recovery is Financial impact; the fact that operations stopped is Operational impact." },
+  { q:"A company is fined $500,000 by a regulatory agency after a data breach exposed customer PII. Which impact type is this?",
+    opts:["Financial","Reputational","Legal / Regulatory","Organizational"],
+    ans:2,
+    exp:"Legal / Regulatory Impact = consequences of non-compliance: fines, penalties, lawsuits, and regulatory sanctions. Note: the $500,000 fine could also be viewed as Financial, but the CAUSE is regulatory non-compliance, so the primary classification is Legal/Regulatory." },
+  { q:"A legacy system cannot support modern encryption standards. The security team formally documents this with leadership approval and no expiration date. What is this called?",
+    opts:["Exception","Exemption","Compensating control","Risk acceptance"],
+    ans:1,
+    exp:"Exemption = long-term or permanent allowance when a requirement CANNOT reasonably be met — typically legacy systems that cannot support modern controls. It requires formal approval, documentation, and leadership risk acceptance. Exception is temporary and has an expiration date." },
+  { q:"A patch cannot be applied to a critical server until a maintenance window in 30 days. The team documents this with a temporary workaround and a defined expiration date. What is this called?",
+    opts:["Exemption","Risk Transference","Exception","Risk Acceptance"],
+    ans:2,
+    exp:"Exception = short-term allowance when a control cannot be implemented immediately, with a DEFINED EXPIRATION DATE and compensating controls in place. Exemption is longer-term or permanent. The 30-day defined end date makes this an Exception." },
+  { q:"After applying a patch for a critical vulnerability, what should the security team do to confirm the fix was successful?",
+    opts:["Archive the CVE record and close the ticket","Perform validation — rescan, test, or review configurations to confirm the vulnerability is resolved","Immediately run another penetration test","Increase the CVSS score threshold"],
+    ans:1,
+    exp:"Validation is the final step in the vulnerability management lifecycle — confirming the remediation or mitigation worked. Methods include rescanning (CVE should no longer appear), testing the exploit path, and reviewing system configurations. It also ensures the fix didn't introduce new problems." },
+  { q:"A security team rescans a server after applying a patch and confirms the CVE no longer appears. What step of the vulnerability management lifecycle is this?",
+    opts:["Identification","Prioritization","Remediation","Validation"],
+    ans:3,
+    exp:"Validation = confirming the fix worked. Rescanning after a patch and confirming the CVE is gone is the classic validation method. The full lifecycle order is: Identify → Evaluate → Prioritize → Remediate/Mitigate → Validate." },
+  { q:"What is the PRIMARY purpose of security monitoring?",
+    opts:["To replace penetration testing","To continuously observe systems and detect threats, IoCs, and policy violations in real time","To generate CVSS scores for new vulnerabilities","To automate patch deployment"],
+    ans:1,
+    exp:"Security monitoring = continuous real-time observation of systems, networks, and applications to detect unusual activity, threats, IoCs, and policy violations. It provides visibility — 'you can't fix what you don't know you have.' SIEM platforms are the primary tool for this." },
+  { q:"An organization uses a platform that collects and correlates logs from firewalls, servers, and endpoint agents to detect threats in real time. What type of tool is this?",
+    opts:["Vulnerability scanner","Penetration testing framework","SIEM (Security Information and Event Management)","IDS only"],
+    ans:2,
+    exp:"SIEM = Security Information and Event Management. It aggregates logs and data from across the environment and correlates them to detect threats in real time. It is the core tool for security monitoring and is heavily associated with this topic on the Security+ exam." },
+  { q:"CPU usage spikes, memory anomalies, and host-based system logs are monitored at which layer of security monitoring?",
+    opts:["Infrastructure layer","Application layer","System (host) layer","Network layer"],
+    ans:2,
+    exp:"System-level monitoring focuses on host-based activity — CPU usage, memory, system performance, and system logs. This layer identifies performance problems and early signs of compromise at the individual device level." },
+  { q:"DLP logs, antivirus logs, and cloud application monitors belong to which security monitoring layer?",
+    opts:["System layer","Application layer","Infrastructure layer","Physical layer"],
+    ans:1,
+    exp:"Application-level monitoring tracks how applications behave — including antivirus logs, DLP (Data Loss Prevention) logs, and cloud monitors. This layer identifies security gaps in software behavior and data handling." },
+  { q:"An organization's leadership defines the overall amount of risk the company is willing to accept across all operations in pursuit of business goals. What is this called?",
+    opts:["Risk Threshold","Risk Tolerance","Risk Appetite","Risk Acceptance"],
+    ans:2,
+    exp:"Risk Appetite = the overall level of risk an organization is willing to accept in pursuit of its goals. It is set at the strategic level by executives and applies across the entire organization. Risk Tolerance is the measurable range for specific systems; Risk Threshold is the hard trigger line where action must happen." },
+  { q:"A system's SLA states it can have no more than 4 hours of downtime per month. This measurable limit on acceptable variation is an example of:",
+    opts:["Risk Appetite","Risk Threshold","Risk Tolerance","Risk Transference"],
+    ans:2,
+    exp:"Risk Tolerance = the acceptable range of variation expressed in measurable terms (e.g., max downtime, acceptable vulnerability count). It refines Risk Appetite for specific systems and processes. The 4-hour limit is a specific, measurable tolerance level." },
+  { q:"A CVSS 9.8 vulnerability is detected. Security policy states that any CVSS score above 9.0 requires immediate emergency patching. The 9.0 line represents what?",
+    opts:["Risk Appetite","Risk Tolerance","Risk Threshold","Risk Acceptance"],
+    ans:2,
+    exp:"Risk Threshold = the precise trigger point where risk becomes unacceptable and action MUST be taken immediately. Crossing the threshold triggers intervention — in this case, emergency change management for immediate patching." },
+  { q:"A question on the exam mentions that an organization purchased cyber liability insurance to cover data breach costs. What risk response strategy is this?",
+    opts:["Risk Mitigation","Risk Acceptance","Risk Avoidance","Risk Transference"],
+    ans:3,
+    exp:"EXAM SHORTCUT: When you see the word INSURANCE — the answer is Risk Transference. Insurance shifts the financial impact of an incident to a 3rd party. It does NOT reduce the likelihood of an attack — only the financial burden if one occurs." },
+  { q:"Cyber insurance reduces which aspect of risk?",
+    opts:["The likelihood of an attack occurring","The financial impact if an attack occurs","The CVSS score of exploited vulnerabilities","The number of vulnerabilities in the environment"],
+    ans:1,
+    exp:"Cyber insurance is Risk Transference — it shifts FINANCIAL impact to the insurer. It does NOT reduce the probability/likelihood of an attack. The organization still needs proper security controls — they're required to even qualify for coverage." },
+  { q:"A legacy medical device cannot be patched due to FDA approval constraints. The security team adds firewall rules and enhanced monitoring around it instead. What type of control is this?",
+    opts:["Preventive control","Compensating control","Detective control","Corrective control"],
+    ans:1,
+    exp:"Compensating controls are alternative security measures used when the primary control (patching) cannot be implemented — due to cost, technical limitations, or operational/regulatory constraints. Firewall rules + monitoring around an unpatched legacy system = classic compensating control." },
+  { q:"After a breach, an attacker who gained access to a workstation was unable to reach the database server because it was on a separate network zone. What mitigation strategy prevented lateral movement?",
+    opts:["Patch management","Risk Transference","Network Segmentation","Compensating controls"],
+    ans:2,
+    exp:"Network Segmentation divides the network into isolated zones so that if one segment is compromised, the attacker cannot easily move laterally to other areas. It is a mitigation strategy — it reduces exposure and impact but does not eliminate the underlying vulnerability." },
+  { q:"What is the CORRECT order of the patch management process?",
+    opts:["Deploy → Test → Identify → Verify","Identify → Deploy → Test → Verify","Identify → Test → Deploy → Verify","Test → Identify → Verify → Deploy"],
+    ans:2,
+    exp:"Correct patch management order: 1) IDENTIFY missing patches via vulnerability scanning, 2) TEST patches in a controlled environment, 3) DEPLOY through change management, 4) VERIFY the vulnerability is resolved. Never skip testing — deploying untested patches can break production systems." },
+  { q:"A vulnerability scanner reports a CVSS 9.1 vulnerability on a web server. What should you do NEXT to confirm it is actually exploitable?",
+    opts:["Immediately patch the server","Run a penetration test","Increase the firewall rules","Ignore it — CVSS scores can be wrong"],
+    ans:1,
+    exp:"The workflow is: vulnerability scan → CVSS score → CVE → THEN run a pen test to confirm exploitability. A high CVSS score means prioritize, but a pen test CONFIRMS the vulnerability can actually be exploited in your environment." },
+  { q:"Which of the following BEST describes a penetration test?",
+    opts:["A passive scan that identifies potential weaknesses","A 100% active test that attempts to exploit vulnerabilities","An automated tool that patches vulnerabilities","A log review process"],
+    ans:1,
+    exp:"A pen test is 100% ACTIVE — nothing passive about it. It actively attempts to exploit vulnerabilities. It will cause controlled problems intentionally — that's the point." },
+  { q:"How does a penetration test differ from a vulnerability scan?",
+    opts:["They are the same thing","A vulnerability scan actively exploits; a pen test passively lists weaknesses","A vulnerability scan finds theoretical weaknesses; a pen test confirms actual exploitability","Pen tests are automated; vulnerability scans require a human"],
+    ans:2,
+    exp:"Vulnerability scan = finds theoretical weaknesses that MAY exist. Pen test = actively tries to exploit those weaknesses to CONFIRM they are real and exploitable. This distinction is heavily tested." },
+  { q:"A pen tester is given full knowledge of the network architecture, source code, and credentials before testing. What type of pen test is this?",
+    opts:["Black Box","Gray Box","White Box","Blue Box"],
+    ans:2,
+    exp:"White Box pen test = full knowledge given to the tester. Black Box = no prior knowledge (simulates external attacker). Gray Box = partial knowledge (simulates insider/privileged user)." },
+  { q:"A pen tester receives no information about the target environment and must discover everything from scratch. This simulates which threat actor scenario?",
+    opts:["Malicious insider","Privileged user","External attacker with no prior access","A rogue administrator"],
+    ans:2,
+    exp:"Black Box pen testing gives the tester no prior information — they discover everything themselves. This most closely simulates an external attacker who has no insider knowledge of the organization." },
+  { q:"Before starting a penetration test, what is the MOST important thing a tester must obtain?",
+    opts:["A list of all CVEs on the network","Written authorization from the organization","The CVSS scores of all vulnerabilities","Network diagrams"],
+    ans:1,
+    exp:"ALWAYS get written authorization before pen testing. Testing without explicit written permission is illegal — even if you are an employee of the company. Rules of engagement must be documented." },
+  { q:"A database is valued at $200,000. In a ransomware attack, the organization expects to lose 40% of its value. What is the Single Loss Expectancy (SLE)?",
+    opts:["$200,000","$40,000","$80,000","$120,000"],
+    ans:2,
+    exp:"SLE = AV × EF. AV = $200,000. EF = 40% = 0.4. SLE = $200,000 × 0.4 = $80,000. SLE is the cost of ONE incident — not yearly, that's ALE." },
+  { q:"An asset has an SLE of $50,000. The threat is expected to occur once every 5 years. What is the Annual Loss Expectancy (ALE)?",
+    opts:["$250,000","$50,000","$10,000","$25,000"],
+    ans:2,
+    exp:"ALE = SLE × ARO. ARO = 1 ÷ 5 = 0.2 (once every 5 years). ALE = $50,000 × 0.2 = $10,000 per year. The ARO trap: 'once every 5 years' = 0.2, NOT 5." },
+  { q:"A threat is expected to occur once every 5 years. What is the Annual Rate of Occurrence (ARO)?",
+    opts:["5","0.5","0.2","1"],
+    ans:2,
+    exp:"ARO = 1 ÷ number of years between occurrences. Once every 5 years = 1/5 = 0.2. This is the most-tested ARO trap. Do NOT use 5 — that would mean 5 times per year." },
+  { q:"An asset is worth $500,000. A flood is expected to destroy 20% of it, and occurs once every 10 years. What is the ALE?",
+    opts:["$100,000","$10,000","$50,000","$1,000"],
+    ans:1,
+    exp:"Step 1: SLE = AV × EF = $500,000 × 0.2 = $100,000. Step 2: ARO = 1 ÷ 10 = 0.1. Step 3: ALE = SLE × ARO = $100,000 × 0.1 = $10,000 per year." },
+  { q:"An organization's ALE for a server breach is $60,000 per year. A security vendor offers a control that costs $45,000 per year. Should the organization implement it?",
+    opts:["No — the control costs too much relative to the risk","Yes — the control cost ($45,000) is less than the ALE ($60,000), so it is financially justified","No — ALE calculations don't apply to purchasing decisions","Yes — all security controls must always be implemented regardless of cost"],
+    ans:1,
+    exp:"If control cost < ALE, implement the control. $45,000 < $60,000 — the organization saves $15,000/year by implementing it. If the control cost MORE than the ALE, it would be cheaper to accept the risk." },
+  { q:"An organization posts a program on HackerOne offering cash rewards for finding and responsibly reporting security vulnerabilities. What is this called?",
+    opts:["Penetration test","Vulnerability scan","Bug bounty program","Red team exercise"],
+    ans:2,
+    exp:"Bug bounty programs use platforms like HackerOne and BugCrowd to crowdsource vulnerability discovery. Organizations define scope, eligible vuln types, and payout tiers based on CVSS severity." },
+  { q:"What is the PRIMARY advantage of a bug bounty program over an internal security team alone?",
+    opts:["It is cheaper than buying a firewall","It replaces the need for penetration testing entirely","It gives thousands of skilled external researchers access to find complex hidden vulnerabilities","It is fully automated"],
+    ans:2,
+    exp:"Bug bounties provide crowdsourced security testing — thousands of skilled researchers looking for issues instead of just your internal team. This dramatically increases the chances of finding complex or hidden vulnerabilities." },
+  { q:"An organization reviews its server patch levels, access control configurations, and system hardening baselines. What type of audit is this?",
+    opts:["Process audit","Financial audit","System audit","Compliance audit"],
+    ans:2,
+    exp:"System audit = TECHNICAL focus. It reviews IT systems including configurations, access controls, permissions, and patch levels. Process audit = procedural focus on how people follow policies." },
+  { q:"An organization discovers that employees are not following the documented incident response procedures, even though all technical controls are properly configured. What type of audit would have caught this?",
+    opts:["System audit","Vulnerability scan","Process audit","Network audit"],
+    ans:2,
+    exp:"Process audit = PROCEDURE-focused. It evaluates whether people and workflows follow security policies. A company can PASS a system audit (technical config correct) but FAIL a process audit (employees not following procedures). Both are needed." },
+  { q:"Which statement about system audits and process audits is TRUE?",
+    opts:["A company that passes a system audit automatically passes a process audit","System audits are always performed by 3rd parties only","A company can pass a system audit but fail a process audit","Process audits only apply to HR departments"],
+    ans:2,
+    exp:"A company can pass a system audit (everything technically configured correctly) but fail a process audit if employees aren't following security procedures. This is why both types of audits are necessary together." },
+  { q:"An email scanner is letting certain phishing messages through for a specific group of users. Multiple users in the department are affected. What is the BEST solution?",
+    opts:["Tell each individual user to mark future emails as spam","Have each user create their own email filter rules","Fine-tune the scanner's configuration at the admin level to close the filtering gap","Remove the email scanner and replace it with a firewall"],
+    ans:2,
+    exp:"When a scanner misses something for a GROUP of people, the correct answer is always to fine-tune the scanner centrally — not to tell individuals to work around it. Individual fixes are band-aids; the scalable solution is adjusting the scanner's configuration." },
+  { q:"Risk is calculated as:",
+    opts:["Threat × Vulnerability","Likelihood + Impact","Likelihood × Impact","Asset Value ÷ Threat"],
+    ans:2,
+    exp:"Risk = Likelihood × Impact. Likelihood = how probable the threat is. Impact = how much damage it would cause. High likelihood × high impact = highest risk — address first." },
+  { q:"An organization identifies a vulnerability with a high likelihood of exploitation but very low impact if exploited. How should they prioritize it?",
+    opts:["Treat it as the highest priority immediately","Treat it as moderate — high likelihood raises risk even with low impact","Ignore it completely — low impact means no risk","Transfer the risk immediately to cyber insurance"],
+    ans:1,
+    exp:"Risk = Likelihood × Impact. High likelihood but low impact results in moderate risk. It's not the highest priority (which would be high × high), but it shouldn't be ignored. Context and the full Risk calculation matter." },
+  { q:"A company buys cyber insurance to cover the financial losses from a potential data breach. Which risk response strategy is this?",
+    opts:["Avoid","Mitigate","Accept","Transfer"],
+    ans:3,
+    exp:"Transfer = shifting risk to a 3rd party. Cyber insurance is the classic example — you transfer financial risk to the insurer. Outsourcing a high-risk function is another form of risk transfer." },
+  { q:"Which of the following represents a PROACTIVE security measure? (Select the BEST answer)",
+    opts:["Restoring systems from backup after a ransomware attack","Issuing a breach notification to affected customers","Conducting regular penetration tests and vulnerability scans before an attack occurs","Resetting all passwords after a credential leak is discovered"],
+    ans:2,
+    exp:"Proactive = done BEFORE an attack. Vulnerability scans, pen tests, bug bounties, audits, patching, and dark web monitoring are all proactive. The other options are reactive — they happen AFTER a security event." },
+  { q:"A SIEM performs two primary functions. What are they?",
+    opts:["Scanning and Patching","Aggregation and Correlation","Monitoring and Blocking","Authentication and Authorization"],
+    ans:1,
+    exp:"SIEM does exactly 2 things: (1) AGGREGATES — collects logs from all devices and systems into one centralized dashboard; (2) CORRELATES — sifts through those logs looking for Indicators of Compromise (IoC). Dashboard is the keyword exam questions use for the centralized view." },
+  { q:"A SIEM stores all collected log data in a special drive to prevent tampering. What type of drive is this?",
+    opts:["SSD (Solid-State Drive)","RAID array","WORM drive (Write Once, Read Many)","Encrypted external drive"],
+    ans:2,
+    exp:"SIEM stores logs on a WORM drive — Write Once, Read Many. Once logs are written they cannot be modified, which protects their integrity for audits and forensic investigations. The SIEM also hashes logs for deduplication — if it finds the same hash it skips re-storing the duplicate to save space." },
+  { q:"Why is accurate time synchronization critical for a SIEM?",
+    opts:["It speeds up the correlation algorithm","Without it, SIEM alerts are sent to the wrong devices","Logs from different systems must align chronologically so events can be accurately correlated across sources","It prevents duplicate logs on the WORM drive"],
+    ans:2,
+    exp:"SIEM correlates events from many different systems. If those systems have drifted clocks, correlation is wrong — an event from one system might appear to precede an alert from another when they are actually the same attack. NTP (Network Time Protocol) keeps all devices time-synchronized so logs are accurate." },
+  { q:"Malware is detected on the network. The SIEM generates an alert. What does the SIEM do regarding stopping the attack?",
+    opts:["Automatically quarantines the infected system","Patches the vulnerability the malware exploited","Alerts security personnel and other tools — but does NOT directly block the attack","Deletes the malware files from the WORM drive"],
+    ans:2,
+    exp:"SIEM does NOT stop attacks directly. It detects, alerts, and can notify other tools (firewalls, IPS) to take blocking action — but SIEM itself is the detection and notification platform, not the prevention tool. It also must be fine-tuned to detect specific threats effectively." },
+  { q:"SOAR differs from a SIEM primarily because SOAR:",
+    opts:["Only monitors network traffic","Stores logs on WORM drives","Automatically responds to threats using other tools and playbooks, not just alerts","Replaces vulnerability scanners"],
+    ans:2,
+    exp:"SOAR = SIEM on steroids. Both detect threats and alert. But SOAR goes further — it automatically responds using playbooks and integrations with other security tools (it orchestrates them). If you see 'automated response' in an exam question, think SOAR." },
+  { q:"What is the correct order of the log management lifecycle?",
+    opts:["Alerting → Aggregation → Archiving → Reporting → Scanning","Aggregation → Scanning/Analysis → Alerting → Reporting → Archiving","Archiving → Aggregation → Scanning → Alerting → Reporting","Reporting → Aggregation → Scanning → Alerting → Archiving"],
+    ans:1,
+    exp:"Log management lifecycle in order: (1) Aggregation — collect logs into a central location; (2) Scanning/Analysis — analyze for threats using rules/signatures; (3) Alerting — notify security personnel; (4) Reporting — summarize events and trends; (5) Archiving — securely store for long-term retention. Together these form a continuous cycle." },
+  { q:"SCAP stands for:",
+    opts:["Security Compliance Audit Protocol","Structured Configuration and Assessment Platform","Security Content Automation Protocol","System Configuration and Analysis Process"],
+    ans:2,
+    exp:"SCAP = Security Content Automation Protocol. It is a collection of standards (not a single tool) used to automate vulnerability management, configuration compliance, and security policy enforcement. It improves accuracy and interoperability by providing a common format for measuring and reporting security posture across tools." },
+  { q:"In SCAP, which component defines what to look for during a scan — such as checking for missing patches or insecure settings?",
+    opts:["XCCDF — Extensible Configuration Checklist Description Format","ARF — Asset Reporting Format","OVAL — Open Vulnerability and Assessment Language","CIS Benchmarks"],
+    ans:2,
+    exp:"OVAL (Open Vulnerability and Assessment Language) defines WHAT to look for during a scan — the specific vulnerability checks and configuration state checks like missing patches or insecure settings. XCCDF defines HOW systems should be configured (the compliance policies). ARF is the results report that combines both." },
+  { q:"CIS benchmarks are used to evaluate system configuration security. What does CIS stand for?",
+    opts:["Cybersecurity Information Standard","Critical Infrastructure Security","Center for Internet Security","Configuration Integration System"],
+    ans:2,
+    exp:"CIS = Center for Internet Security. CIS Benchmarks provide detailed, authoritative guidance on configuring operating systems, servers, databases, and devices securely. They are used in vulnerability scanning and compliance assessments — tools compare current configuration against these benchmarks to find weaknesses." },
+  { q:"Instead of a management system periodically polling for device status, a router automatically sends an alert to the SIEM when its CPU spikes. What mechanism is this?",
+    opts:["NetFlow analysis","SNMP polling","SNMP trap","Syslog forwarding"],
+    ans:2,
+    exp:"SNMP Trap = a device proactively PUSHES an alert to a management system when a specific event occurs. This is the opposite of SNMP Polling, where the management system periodically asks the device if everything is OK. Traps provide immediate notification, reducing response time compared to traditional polling." },
+  { q:"A firewall has a list of rules. Traffic arrives and no rule explicitly permits it. What happens under a properly configured firewall?",
+    opts:["The traffic is allowed by default","The firewall restarts to apply new rules","The traffic is denied — the last rule is an implicit denial that blocks all unmatched traffic","The traffic is flagged and forwarded to the SIEM for review"],
+    ans:2,
+    exp:"Implicit Denial = the last rule on a firewall denies ALL traffic not explicitly permitted. Any IP, any source, any destination, any port, any protocol that didn't match a previous rule is blocked. This is the default deny posture and a critical exam concept." },
+  { q:"A firewall reads its rules and the FIRST matching rule for a packet is ALLOW TCP port 80. A later rule says DENY TCP port 80. What happens?",
+    opts:["The packet is denied because the deny rule is more specific","The packet is allowed — firewalls read top to bottom and stop at the first match","Both rules cancel each other out and the packet is dropped","The firewall logs the conflict and asks the admin"],
+    ans:1,
+    exp:"Firewalls read rules TOP TO BOTTOM and stop at the FIRST match. If the first matching rule says ALLOW, the packet is allowed — even if a later rule would have denied it. Rule order matters critically — more specific rules should appear higher in the list." },
+  { q:"Which firewall type tracks active connections and allows or denies traffic based on the state of those connections?",
+    opts:["Packet filtering firewall","Next Generation Firewall (NGFW)","Stateful firewall","Application proxy firewall"],
+    ans:2,
+    exp:"Stateful firewalls track active connection state. They know whether traffic belongs to an established session. Packet filtering (stateless) only looks at individual packets without tracking sessions. NGFW goes further with deep packet inspection, IPS, and application-level filtering." },
+  { q:"An NGFW blocks an application like Tor even though it runs on a standard HTTPS port (443). What capability allows this?",
+    opts:["Port-based filtering","Implicit denial","Deep packet inspection and application-level filtering","Stateful connection tracking"],
+    ans:2,
+    exp:"NGFW (Next Generation Firewall) uses deep packet inspection and application-level filtering to identify and block specific applications regardless of what port they use. Traditional packet filtering only blocks by port/protocol — it cannot distinguish Tor on port 443 from legitimate HTTPS traffic." },
+  { q:"A router uses a list of rules to permit traffic from 192.168.1.0/24 to TCP port 443 and deny all other traffic. What is this list called?",
+    opts:["Firewall policy","ACL — Access Control List","Implicit denial rule","NGFW inspection profile"],
+    ans:1,
+    exp:"ACL = Access Control List. ACLs are sets of rules used by network devices (routers, switches, firewalls) to permit or deny traffic based on defined criteria: source/destination IP, port numbers, and protocols. They are how firewalls enforce security policies at the packet level." },
+  { q:"What security concept does a layered approach using firewalls + IPS + SIEM + endpoint protection represent?",
+    opts:["Zero Trust","Least Privilege","Defense in Depth","Implicit Denial"],
+    ans:2,
+    exp:"Defense in Depth = layered security strategy. No single technology provides complete protection — multiple overlapping controls ensure that if one layer fails, others remain. Firewalls + IDS/IPS + SIEM + endpoint protection + DLP + network segmentation working together is the textbook example." },
+  { q:"An ACL has rules permitting specific traffic. A packet arrives that matches none of the rules. What happens?",
+    opts:["The packet is forwarded to the next router for evaluation","The packet is allowed — unmatched traffic is permitted by default","The packet is denied — an implicit denial blocks all unmatched traffic at the end of every ACL","The packet is logged and held in a queue for admin review"],
+    ans:2,
+    exp:"Implicit denial ends every ACL. Any traffic not explicitly permitted by a rule is automatically blocked. This applies to both ACLs and firewalls. The exam will test whether you know that the default behavior is deny — not allow — when no rule matches." },
+  { q:"A Standard ACL differs from an Extended ACL in that a Standard ACL filters traffic based only on:",
+    opts:["Destination IP address","Source IP address only","Port numbers and protocols","Application data"],
+    ans:1,
+    exp:"Standard ACL = source IP address only. Extended ACL = source IP + destination IP + port numbers + protocols. Extended ACLs provide granular control (e.g., allow only HTTPS from a specific subnet to a specific server). Standard ACLs are simpler but less precise." },
+  { q:"A company places its web server, email server, and DNS server in a separate network zone that is accessible from the internet but isolated from the internal corporate network. What is this zone called?",
+    opts:["VLAN","Intranet","DMZ (Demilitarized Zone) / Screen Subnet","Honeypot"],
+    ans:2,
+    exp:"DMZ (Demilitarized Zone) = screen subnet = a network segment between the untrusted internet and the trusted internal network. It hosts public-facing services so external users can access them without reaching the internal network. If a DMZ system is compromised, the attacker is contained within that isolated segment." },
+  { q:"An organization uses two firewalls to create a DMZ: one between the internet and the DMZ, and another between the DMZ and the internal network. What is this architecture called?",
+    opts:["Dual-homed firewall","Transparent firewall","Back-to-back firewall","Bastion host"],
+    ans:2,
+    exp:"Back-to-back firewall = two firewalls creating a DMZ. Architecture: Internet → [Firewall 1] → DMZ → [Firewall 2] → Internal Network. The DMZ hosts public services; even if an attacker breaches the first firewall and compromises a DMZ server, the second firewall prevents them from reaching the internal network." },
+  { q:"A security system detects a SQL injection attempt and immediately drops the malicious packets without notifying an admin first. Which technology is this?",
+    opts:["IDS — Intrusion Detection System","Firewall with packet filtering","IPS — Intrusion Prevention System","SIEM correlation rule"],
+    ans:2,
+    exp:"IPS = Intrusion Prevention System — ACTIVE. It sits inline with network traffic and automatically blocks/drops threats in real time without waiting for admin input. IDS is passive — it only detects and alerts, but does NOT take action to stop the threat. IPS acts; IDS notifies." },
+  { q:"An IDS flags unusual outbound traffic that doesn't match any known malware signature, but the volume and timing are abnormal compared to the baseline. Which detection method identified this?",
+    opts:["Signature-based detection","Heuristic scanning","Anomaly-based detection","Log correlation"],
+    ans:2,
+    exp:"Anomaly-based detection compares current traffic/behavior to a baseline of 'normal' — deviations trigger alerts. It can catch zero-day attacks and unknown threats that have no signature yet. Signature-based detection matches against a database of known attack patterns and misses new, unknown attacks." },
+  { q:"A user types a website URL into their browser. Before any connection is established, the request is checked against a list of blocked domains and access is denied. What technology prevented this?",
+    opts:["Web application firewall","Full content inspection","DNS filtering","NGFW deep packet inspection"],
+    ans:2,
+    exp:"DNS filtering operates at the DNS resolution stage — before a connection is ever established. It checks the requested domain against an allow/block list based on reputation, category, or policy. If the domain is blocked, DNS resolution is denied, so the connection never starts. This is faster than full content inspection but provides less visibility (domain name only, not payload)." },
+  { q:"Which email security protocol attaches a digital signature to outgoing messages so the receiving server can verify the message was not altered and truly came from the claimed domain?",
+    opts:["SPF — Sender Policy Framework","DMARC — Domain-based Message Authentication","DKIM — DomainKeys Identified Mail","S/MIME"],
+    ans:2,
+    exp:"DKIM (DomainKeys Identified Mail) attaches a cryptographic digital signature to outgoing email. The receiving server uses the public key published in the sender's DNS to verify: (1) the message wasn't altered in transit, and (2) it genuinely came from the claimed domain. This provides message integrity and authentication." },
+  { q:"A domain owner wants to tell receiving mail servers to REJECT emails that fail SPF and DKIM checks, and also receive weekly reports on failed authentication attempts. Which protocol provides this capability?",
+    opts:["SPF","DKIM","DMARC","TLS"],
+    ans:2,
+    exp:"DMARC (Domain-based Message Authentication, Reporting and Conformance) builds on SPF and DKIM. It defines the policy for what receiving servers should do when authentication fails (none, quarantine, or reject) AND generates reports that let domain owners see authentication results and detect spoofing attempts." },
+  { q:"An organization's spam filter is being bypassed by attackers who simply change the display name in the From field. What is the BEST solution?",
+    opts:["Configure a stricter spam filter keyword list","Implement a mail gateway that enforces SPF, DKIM, and DMARC validation","Train users to manually verify every email sender","Block all external email"],
+    ans:1,
+    exp:"Spam filters alone are easily bypassed by spoofing the display name. A Mail Gateway uses SPF (verifies authorized sending server), DKIM (verifies message integrity and authenticity), and DMARC (enforces policy on failures) together — combined with content filtering, malware scanning, and DLP. Mail Gateway does NOT replace SPF/DKIM/DMARC — it uses them." },
+  { q:"SELinux and Group Policy both enforce security controls. SELinux differs from Group Policy primarily because SELinux:",
+    opts:["Only works on Windows servers","Enforces mandatory access control that cannot be overridden even by administrators","Manages Active Directory user accounts","Provides cloud-based policy enforcement"],
+    ans:1,
+    exp:"SELinux = Linux-based Mandatory Access Control (MAC). It enforces strict policies on how processes and users interact with files and system resources — and these policies CANNOT be overridden even by users with administrator privileges. Group Policy is Windows-based centralized configuration management via Active Directory — it manages settings but relies on administrator-level permissions." },
+  { q:"Port security is often given credit for shutting down a switch port when an unauthorized device connects. What technology actually enforces this action?",
+    opts:["MAC filtering alone","Port security itself","NAC — Network Access Control","802.1X supplicant"],
+    ans:2,
+    exp:"EXAM TRAP: Port security gets the glory, but NAC (Network Access Control) is what actually shuts down the port. If a MAC address doesn't match what MAC filtering has configured on the switch, NAC shuts down the port and tells port security it did it. NAC is the 'health policy' enforcer." },
+  { q:"A laptop connects to the corporate network. NAC performs a posture assessment and finds the antivirus definitions are 30 days out of date. What should NAC do?",
+    opts:["Grant full network access — the device is still partially compliant","Block the device permanently","Place the device in a quarantine network where it can only reach remediation services","Disable the switch port permanently"],
+    ans:2,
+    exp:"When NAC finds a non-compliant device, the correct response is quarantine — not full block and not full access. The quarantine network allows the device to reach remediation services (Windows Update, AV update servers) so it can become compliant, then be granted full access. This is the 'health policy' in action." },
+  { q:"A NAC solution checks a device's patch level and antivirus status at the moment it connects, grants access if compliant, but does NOT continue monitoring after that. What type of NAC is this?",
+    opts:["Persistent NAC / post-admission control","Agent-based NAC","Dissolvable NAC / pre-admission control","Continuous compliance NAC"],
+    ans:2,
+    exp:"Dissolvable NAC performs a one-time check at connection time (pre-admission), then the enforcement 'dissolves' — there is no ongoing monitoring after access is granted. Persistent NAC continuously monitors after connection (post-admission) and will restrict or quarantine a device that later falls out of compliance." },
+  { q:"A company wants to continuously monitor connected devices and automatically quarantine any device that disables its antivirus after connecting. Which NAC configuration provides this?",
+    opts:["Dissolvable NAC with pre-admission checks","Agentless NAC using network scans","Persistent NAC with post-admission enforcement","One-time posture check only"],
+    ans:2,
+    exp:"Persistent NAC provides continuous post-admission enforcement — it keeps monitoring devices after they connect and dynamically adjusts access if a device falls out of compliance (e.g., AV disabled, patch missing). Dissolvable NAC only checks at connection time and would miss a device that becomes non-compliant after connecting." },
+  { q:"An organization needs NAC for a hospital guest Wi-Fi network where thousands of unknown personal devices connect daily. Which NAC approach is most appropriate?",
+    opts:["Agent-based NAC — install software on every guest device","Persistent NAC with continuous post-admission monitoring","Agentless NAC — no software installation required, uses network scans","Mandatory 802.1X certificate-based authentication for guests"],
+    ans:2,
+    exp:"Agentless NAC requires no software installation on endpoints — it uses native protocols and network scans to evaluate devices. This is ideal for guest networks, BYOD scenarios, and unmanaged devices where you cannot install agents. It provides limited visibility and typically only supports pre-admission checks, but that is acceptable for guest access." },
+  { q:"A security analyst notices that a user who normally logs in from Chicago at 9 AM has suddenly logged in from another country at 3 AM and is accessing financial records they have never touched before. What technology would BEST detect this as anomalous?",
+    opts:["Signature-based IDS","Vulnerability scanner","UBA — User Behavior Analytics","SNMP trap"],
+    ans:2,
+    exp:"UBA (User Behavior Analytics) establishes a baseline of normal user behavior — login times, locations, access patterns, file usage. When a user deviates significantly (different country, odd hours, unusual data access), UBA flags it as a potential insider threat or compromised account. Signature-based IDS only catches known attack patterns — it would not detect this behavioral anomaly." },
+  { q:"UBA is especially effective against which type of threat that often bypasses traditional perimeter defenses?",
+    opts:["Zero-day software vulnerabilities","DDoS attacks","Insider threats and compromised legitimate accounts","SQL injection attacks"],
+    ans:2,
+    exp:"UBA is designed specifically for insider threats and compromised accounts — attackers who have valid credentials and bypass perimeter controls like firewalls and IDS. Traditional security tools look for malicious traffic patterns; UBA detects anomalous BEHAVIOR even when the credentials being used are legitimate. It's also effective against APTs that move slowly and blend in." },
+  { q:"What does IAM stand for, and what is its primary purpose?",
+    opts:["Integrated Access Module — encrypts user credentials","Identity and Access Management — ensures only authorized users and devices access the right resources at the right time","Internet Authentication Mechanism — manages firewall rules","Internal Audit Management — tracks compliance violations"],
+    ans:1,
+    exp:"IAM = Identity and Access Management. It is a framework of policies, technologies, and processes ensuring that only authorized users and devices can access specific organizational resources. It manages digital identities and controls what those identities are permitted to do — enforcing Authentication, Authorization, and Accounting (AAA/IAAA)." },
+  { q:"An administrator must access a critical internal server. Instead of connecting directly, they first authenticate to a hardened server in a secure zone, then reach the internal system from there. What is this hardened server called?",
+    opts:["Honeypot","Bastion host / Jump box","Proxy server","DMZ web server"],
+    ans:1,
+    exp:"A Jump Box (also called a jump server or bastion host) is a hardened server in a secure network zone that acts as the single controlled entry point for administrative access to internal systems. All admin traffic is routed through it, creating an auditable chokepoint. It is commonly combined with SSO so admins authenticate once with corporate identity." },
+  { q:"Which AAA component answers the question 'What did the user do and when?'",
+    opts:["Authentication","Authorization","Accounting","Identification"],
+    ans:2,
+    exp:"Accounting = the AAA component that tracks and logs user activity — what resources were accessed, what actions were taken, and when. This produces the audit trail used for forensic investigations, compliance reporting, and detecting policy violations. Authentication = proving identity. Authorization = defining what is permitted." },
+  { q:"A new employee is created in Active Directory and given access only to the files needed for their specific job role. What process is this, and which principle does it follow?",
+    opts:["Authentication following separation of duties","Account provisioning following least privilege","Authorization following need-to-know only","Identity federation following zero trust"],
+    ans:1,
+    exp:"Account provisioning = creating the user account AND assigning appropriate permissions. The principle of least privilege requires that users receive only the minimum access needed to do their job — nothing more. Both steps (creating the user and assigning permissions) must apply least privilege from the start." },
+  { q:"A financial system requires that the person who initiates a wire transfer cannot also be the person who approves it. What security principle is this?",
+    opts:["Least privilege","Mandatory access control","Separation of duties","Account provisioning"],
+    ans:2,
+    exp:"Separation of duties = no single person has enough access to complete a sensitive or high-risk task alone. It distributes critical capabilities across multiple people to prevent fraud, errors, and abuse of privilege. It upholds least privilege by ensuring no one individual accumulates excessive access." },
+  { q:"A military system assigns access based on classification labels — Unclassified, Secret, Top Secret. Users cannot change who has access to their own files. Which access control model is this?",
+    opts:["DAC — Discretionary Access Control","RBAC — Role-Based Access Control","MAC — Mandatory Access Control","ABAC — Attribute-Based Access Control"],
+    ans:2,
+    exp:"MAC (Mandatory Access Control) is centrally controlled and based on classification levels or labels. The owner cannot change permissions — the system enforces them. Even if you own the file, you cannot grant access to someone with a lower classification level. MAC is used in government, military, and high-security environments." },
+  { q:"A user creates a shared folder and decides which coworkers can read or edit its contents. Which access control model is in use?",
+    opts:["MAC — the system enforces the labels","RBAC — access is tied to job roles","Rule-Based — system rules determine access","DAC — the resource owner controls access"],
+    ans:3,
+    exp:"DAC (Discretionary Access Control) lets the resource OWNER decide who gets access. The owner has discretion to grant or revoke permissions on their own resources. It is the most flexible model but also carries the most risk — if the owner makes a poor decision, access is misconfigured." },
+  { q:"An organization assigns permissions by grouping users into 'Nurse,' 'Doctor,' and 'Admin' categories. Each category has a predefined set of permissions. Which access control model is this?",
+    opts:["MAC","DAC","RBAC — Role-Based Access Control","Rule-Based Access Control"],
+    ans:2,
+    exp:"RBAC (Role-Based Access Control) assigns access based on job roles. Users inherit permissions from their assigned role. This makes it easy to manage at scale — onboard a new nurse, assign them the 'Nurse' role, and they immediately get the right access. Common in enterprise environments and Active Directory." },
+  { q:"A cloud system grants a user access to a sensitive document only if: they are in the Finance department, the document is rated Internal, and they are accessing from within the corporate network during business hours. Which access control model supports this multi-attribute decision?",
+    opts:["MAC — classification label controls it","DAC — the document owner approved it","RBAC — the user has the Finance role","ABAC — multiple dynamic attributes determine access"],
+    ans:3,
+    exp:"ABAC (Attribute-Based Access Control) makes access decisions based on multiple dynamic attributes: user attributes (department, clearance), resource attributes (sensitivity rating), and environmental attributes (time of day, location). This flexibility makes ABAC ideal for cloud and zero-trust architectures where context matters." },
+  { q:"A firewall rule states: 'Deny all inbound traffic after 11 PM regardless of user identity.' Which access control model does this represent?",
+    opts:["RBAC — a role named 'after-hours' is denied","ABAC — time is an attribute","Rule-Based Access Control — static system rules apply universally","MAC — the classification level blocks after-hours traffic"],
+    ans:2,
+    exp:"Rule-Based Access Control enforces static, system-defined rules that apply uniformly to all users regardless of identity or role. Firewall ACL rules, time-based access restrictions, and router rules are classic examples. Unlike ABAC, rule-based controls are not tied to user attributes — the rule applies to everyone equally." },
+  { q:"Before creating an account for a new contractor, the IT team requires the contractor to present a government-issued ID and have a manager verify their identity. What step in the identity lifecycle is this?",
+    opts:["Account provisioning","Authorization assignment","Identity proofing","Attestation"],
+    ans:2,
+    exp:"Identity proofing is the initial step in identity lifecycle management — verifying a user's real-world identity BEFORE their account is created. It ensures the access control system begins with a trusted, validated identity. Skipping identity proofing means all subsequent access decisions are built on an unverified foundation." },
+  { q:"A company wants to allow employees to access a partner organization's portal using their own corporate credentials, without creating separate accounts. What IAM concept enables this?",
+    opts:["Account provisioning","Identity proofing","LDAP directory sync","Federation with SSO"],
+    ans:3,
+    exp:"Federation establishes trust between different organizations or systems to allow shared authentication through a single identity. It enables SSO across organizational boundaries — employees use their own corporate credentials to access partner systems without managing separate accounts. SAML is commonly used to implement federation." },
+  { q:"An application wants to access a user's Google Calendar on their behalf without ever seeing the user's Google password. Which protocol enables this token-based delegated access?",
+    opts:["LDAP","SAML","OAuth 2.0","Kerberos"],
+    ans:2,
+    exp:"OAuth 2.0 provides delegated access using tokens without exposing user credentials. The user authorizes the app, Google issues an access token, and the app uses that token — never seeing the password. This is the 'Sign in with Google/Facebook' pattern used across the web." },
+  { q:"What does OpenID Connect add on top of OAuth 2.0?",
+    opts:["Encrypted password storage","Network segmentation policies","Identity verification via ID tokens — confirming WHO the user is","Time-based access restrictions"],
+    ans:2,
+    exp:"OAuth 2.0 handles authorization (what the app can access). OpenID Connect (OIDC) extends it by adding authentication — it issues an ID token that contains claims about the user's identity (who they are). OIDC = OAuth 2.0 + identity. Together they handle both 'who are you' and 'what can you do.'" },
+  { q:"An organization uses Active Directory for centralized user management. What protocol do systems use to query Active Directory for authentication and authorization information, and what is its secure version?",
+    opts:["RADIUS over UDP; secure version is TACACS+","SAML over HTTPS; secure version is OAuth","LDAP; secure version is LDAPS (LDAP over SSL/TLS)","Kerberos; secure version is Kerberos v5"],
+    ans:2,
+    exp:"LDAP (Lightweight Directory Access Protocol) is the standardized protocol used to access and manage directory information — associate it with Active Directory on the exam. Plain LDAP transmits data unencrypted. LDAPS (LDAP over SSL/TLS) adds encryption to ensure confidentiality and integrity of directory queries." },
+  { q:"A laptop must prove it has current patches and active antivirus before the VPN grants it access. The proof is validated using a hardware chip on the device. What is this process called, and what hardware is involved?",
+    opts:["Authorization via RADIUS","Network Access Control posture check using a RADIUS server","Attestation validated by a TPM (Trusted Platform Module)","Federation using SAML assertions"],
+    ans:2,
+    exp:"Attestation = providing proof that a device meets security requirements before access is granted. The device reports its security posture (OS version, patch level, AV status) which is verified against policy. A TPM (Trusted Platform Module) is the hardware chip that validates system integrity and ensures the device hasn't been tampered with." },
+  { q:"An admin account is elevated to Domain Admin only for the 30 minutes needed to complete a server migration, then automatically returns to standard user permissions. What PAM control is this?",
+    opts:["Password vaulting","Temporal account","Just-in-Time (JIT) permissions","Separation of duties"],
+    ans:2,
+    exp:"JIT (Just-in-Time) permissions dynamically grant elevated access only when needed, for only as long as needed, then automatically revoke it. This aligns with least privilege — accounts are unprivileged by default and elevated on-demand. It significantly reduces the attack window by ensuring privilege doesn't linger." },
+  { q:"A PAM system stores all administrator passwords in an encrypted repository. Admins never see or know the actual passwords — they request access and the system grants a session. What PAM control is this?",
+    opts:["Just-in-Time permissions","Temporal accounts","Password vaulting","Attestation"],
+    ans:2,
+    exp:"Password vaulting stores privileged credentials in a secure encrypted vault. Admins request access rather than handling passwords directly — the system grants the session, then rotates the password afterward. This prevents credential sharing, reuse, and exposure. Even if an admin is compromised, they cannot leak a password they never knew." },
+  { q:"A user logs into their laptop by pressing their finger on a sensor — no password is entered at any point. What type of authentication is this, and which factor does it use?",
+    opts:["Multi-factor authentication using something you know","Single-factor password authentication","Passwordless authentication using something you are (biometrics)","Federation using SAML assertions"],
+    ans:2,
+    exp:"Passwordless authentication replaces the 'something you know' factor (password) with alternatives. Biometrics (fingerprint, face ID) = 'something you are.' No password is transmitted or stored in a way attackers can exploit — making it resistant to brute force, credential stuffing, phishing, and credential theft." },
+  { q:"Which open standard for passwordless authentication uses hardware security keys and platform authenticators, and is commonly associated with YubiKeys?",
+    opts:["SAML","OAuth 2.0","FIDO (Fast Identity Online)","LDAPS"],
+    ans:2,
+    exp:"FIDO (Fast Identity Online) is an open industry standard for passwordless authentication. It uses hardware security keys and platform authenticators (like Windows Hello or Touch ID) that never transmit a shared secret. Know the FIDO name for the Security+ exam." },
+  { q:"A security team configures their tools to automatically block any IP address that fails authentication 10 times in a row. What is this an example of?",
+    opts:["Orchestration — multiple tools coordinated into a workflow","Automation — a single task executed without manual effort","SOAR responding to a full incident","Workforce multiplication"],
+    ans:1,
+    exp:"Automation = a single task executed automatically without manual effort. Auto-blocking an IP after failed logins is one discrete action triggered by a rule. Orchestration goes further by coordinating MULTIPLE automated tasks across different systems into a complete end-to-end workflow (detect → isolate → alert → report)." },
+  { q:"When a threat is detected, the security platform automatically isolates the infected endpoint, sends an alert to the SOC, opens a ticket, and generates a forensic report — all without human intervention. What is this an example of?",
+    opts:["Automation — a single task automated","Orchestration — multiple tasks coordinated into a complete incident response workflow","Workforce multiplier — fewer staff needed","Password vaulting — credentials secured automatically"],
+    ans:1,
+    exp:"Orchestration coordinates multiple automated tasks into a complete end-to-end workflow. Detect threat → isolate system → alert SOC → generate report = one integrated process across multiple tools. SOAR (Security Orchestration, Automation and Response) is the platform that makes this possible, tying together SIEM, firewalls, and endpoint tools." },
+  { q:"A CISO presents a business case: by implementing security automation, a 5-person security team can monitor and respond to threats at the scale previously requiring a 25-person team. What concept describes this benefit?",
+    opts:["Just-in-Time provisioning","Workforce multiplier","Separation of duties","Temporal access scaling"],
+    ans:1,
+    exp:"Workforce multiplier = automation allows a small security team to accomplish the work of a much larger one. By handling repetitive and time-consuming tasks automatically, automation frees security personnel to focus on higher-level analysis and decision-making. This is a key justification for investing in automation and SOAR platforms." }
+];
+
+let ptAnswered = {};
+
+function startPtQuiz() {
+  document.getElementById('ptStartBtn').style.display = 'none';
+  const container = document.getElementById('ptQuestions');
+  container.style.display = 'block';
+  container.innerHTML = '<button class="btn btn-green" style="margin-bottom:1.5rem" onclick="submitPtQuiz()">&#10003; Submit Answers</button>';
+  ptQs.forEach((q, i) => {
+    const card = document.createElement('div');
+    card.className = 'question-card';
+    card.id = 'pt' + i;
+    card.innerHTML = `
+      <div class="question-top">
+        <span class="q-num">Q${i+1}</span>
+        <span class="q-text">${q.q}</span>
+      </div>
+      <div class="options" id="ptopts${i}">
+        ${q.opts.map((o,j) => `<div class="option" onclick="ptpick(${i},${j})" id="ptopt${i}_${j}">
+          <span class="opt-letter">${'ABCD'[j]}</span>${o}</div>`).join('')}
+      </div>
+      <div class="explanation" id="ptexp${i}">${q.exp}</div>`;
+    container.appendChild(card);
+  });
+  container.innerHTML += '<button class="btn btn-green" style="margin-top:.5rem" onclick="submitPtQuiz()">&#10003; Submit Answers</button>';
+}
+
+function ptpick(qi, oi) {
+  if (ptAnswered[qi] !== undefined) return;
+  document.querySelectorAll(`#ptopts${qi} .option`).forEach(o => o.classList.remove('selected'));
+  document.getElementById(`ptopt${qi}_${oi}`).classList.add('selected');
+  ptAnswered[qi] = oi;
+}
+
+function submitPtQuiz() {
+  let score = 0;
+  ptQs.forEach((q, i) => {
+    const chosen = ptAnswered[i];
+    const opts = document.querySelectorAll(`#ptopts${i} .option`);
+    opts.forEach(o => o.classList.add('locked'));
+    opts[q.ans].classList.add('correct-ans');
+    if (chosen !== undefined && chosen !== q.ans) {
+      opts[chosen].classList.add('wrong-ans');
+      document.getElementById('pt'+i).classList.add('incorrect');
+    } else if (chosen === q.ans) {
+      score++;
+      document.getElementById('pt'+i).classList.add('correct');
+    } else {
+      document.getElementById('pt'+i).classList.add('incorrect');
+    }
+    document.getElementById('ptexp'+i).classList.add('show');
+  });
+  const pct = Math.round(score / ptQs.length * 100);
+  const bar = document.getElementById('ptScoreBar');
+  bar.classList.add('show');
+  document.getElementById('ptScoreNum').textContent = score + '/' + ptQs.length;
+  document.getElementById('ptScoreFill').style.width = pct + '%';
+  let msg = pct >= 90 ? '🏆 Excellent — exam ready on this material!' :
+            pct >= 75 ? '✅ Good — review any missed questions.' :
+                        '📖 Go back through the notes and retry.';
+  document.getElementById('ptScoreLabel').textContent = pct + '% — ' + msg;
+  bar.scrollIntoView({ behavior: 'smooth' });
+  document.querySelectorAll('#ptQuestions .btn-green').forEach(b => b.style.display = 'none');
+}
+
+function resetPtQuiz() {
+  ptAnswered = {};
+  document.getElementById('ptScoreBar').classList.remove('show');
+  document.getElementById('ptStartBtn').style.display = 'inline-flex';
+  document.getElementById('ptQuestions').style.display = 'none';
+  document.getElementById('ptQuestions').innerHTML = '';
+}
+<div class="quiz-intro">
       <h2>Pen Test, Audits &amp; Security Monitoring — Practice Quiz</h2>
       <p>Exam-focused questions with full explanations — covers pen testing, firewalls, IDS/IPS, email security, SIEM, SCAP, risk, and more</p>
       <button class="btn btn-primary" id="ptStartBtn" onclick="startPtQuiz()">Start Quiz</button>
@@ -2791,7 +3381,128 @@
   </div>
   </details>
 
-  <!-- GOVERNANCE QUIZ -->
+  
+  <!-- MSA / SOW / VENDOR OVERSIGHT -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>&#128221; Vendor Agreements: MSA, SOW, Work Order <span class="tag-test">TEST</span></h2>
+      <span class="chevron">&#9660;</span>
+    </div>
+    <div class="section-body">
+      <table>
+        <tr><th>Agreement</th><th>Purpose</th><th>Key Detail</th></tr>
+        <tr><td><strong>MSA</strong> (Master Service Agreement)</td><td>Umbrella contract governing overall vendor relationship</td><td>Sets terms, conditions, liability, security obligations for ALL future work</td></tr>
+        <tr><td><strong>SOW</strong> (Statement of Work)</td><td>Defines the SPECIFIC work to be performed under the MSA</td><td>Deliverables, timeline, milestones, responsibilities for a specific project</td></tr>
+        <tr><td><strong>Work Order / PO</strong></td><td>Formal authorization to begin work described in SOW</td><td>Triggers the actual engagement; ties to billing</td></tr>
+        <tr><td><strong>Vendor Monitoring</strong></td><td>Ongoing assessment of vendor security posture</td><td>Periodic audits, questionnaires, SOC 2 reports, continuous monitoring</td></tr>
+      </table>
+      <div class="callout blue"><strong>MSA = overall terms &#x2192; SOW = specific work &#x2192; Work Order = go-ahead. All three can carry security requirements.</strong></div>
+    </div>
+  </div>
+
+  <!-- RULES OF ENGAGEMENT -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>&#9878; Rules of Engagement (RoE) <span class="tag-test">TEST</span></h2>
+      <span class="chevron">&#9660;</span>
+    </div>
+    <div class="section-body">
+      <p>Rules of Engagement define the <strong>boundaries, scope, and authorized methods</strong> for penetration testing or security assessments. They protect BOTH the tester and the organization.</p>
+      <table>
+        <tr><th>Element</th><th>What It Covers</th></tr>
+        <tr><td>Scope</td><td>Which systems/networks are IN scope vs out of scope</td></tr>
+        <tr><td>Timing</td><td>Approved hours for testing (avoid business-critical windows)</td></tr>
+        <tr><td>Methods</td><td>Allowed attack types (no DoS unless explicitly authorized)</td></tr>
+        <tr><td>Communication</td><td>Who to contact if a critical vulnerability is found mid-test</td></tr>
+        <tr><td>Escalation</td><td>What happens if real malicious activity is discovered during testing</td></tr>
+      </table>
+      <div class="callout red"><strong>Without RoE, a pen tester could be charged with unauthorized access. RoE = legal and ethical protection.</strong></div>
+    </div>
+  </div>
+
+  <!-- COMPLIANCE MONITORING -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>&#9989; Compliance Monitoring Components <span class="tag-test">TEST</span></h2>
+      <span class="chevron">&#9660;</span>
+    </div>
+    <div class="section-body">
+      <table>
+        <tr><th>Component</th><th>Definition</th></tr>
+        <tr><td><strong>Due Diligence</strong></td><td>Research and assessment BEFORE a decision or partnership - verifying vendor security posture upfront</td></tr>
+        <tr><td><strong>Due Care</strong> (Professional Care)</td><td>ONGOING reasonable actions taken to maintain security after a decision - the standard of care expected</td></tr>
+        <tr><td><strong>Attestation</strong></td><td>Formal written statement (signed) confirming compliance with a policy, standard, or regulation</td></tr>
+        <tr><td><strong>Internal Monitoring</strong></td><td>Organization monitors its own systems and processes for compliance</td></tr>
+        <tr><td><strong>External Monitoring</strong></td><td>Third-party auditors verify compliance independently</td></tr>
+        <tr><td><strong>Automated Monitoring</strong></td><td>Tools continuously check controls and generate compliance reports (e.g., SCAP scanners)</td></tr>
+      </table>
+      <div class="callout blue"><strong>Due Diligence = before (verify). Due Care = after (maintain). Attestation = sign-off that you comply.</strong></div>
+    </div>
+  </div>
+
+  <!-- NON-COMPLIANCE CONSEQUENCES -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>&#128680; Non-Compliance Consequences</h2>
+      <span class="chevron">&#9660;</span>
+    </div>
+    <div class="section-body">
+      <table>
+        <tr><th>Consequence</th><th>Example</th></tr>
+        <tr><td>Fines &amp; Penalties</td><td>GDPR fines up to 4% of global annual revenue; PCI DSS fines up to $100K/month</td></tr>
+        <tr><td>Legal Sanctions</td><td>Criminal charges for executives; injunctions</td></tr>
+        <tr><td>Reputational Damage</td><td>Loss of customer trust, negative press coverage</td></tr>
+        <tr><td>Loss of Business</td><td>Losing payment processing rights (PCI DSS), losing government contracts</td></tr>
+        <tr><td>Increased Scrutiny</td><td>Mandatory audits, oversight from regulators</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- PRIVACY CONCEPTS -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>&#128274; Privacy: Key Concepts &amp; Roles <span class="tag-test">TEST</span></h2>
+      <span class="chevron">&#9660;</span>
+    </div>
+    <div class="section-body">
+      <table>
+        <tr><th>Term</th><th>Definition</th></tr>
+        <tr><td><strong>Data Subject</strong></td><td>The INDIVIDUAL whose personal data is collected/processed/stored. The customer, patient, employee whose info you hold.</td></tr>
+        <tr><td><strong>Data Controller</strong></td><td>Decides the PURPOSE and MEANS of processing. Sets the "why" and "how". Bears primary legal responsibility.</td></tr>
+        <tr><td><strong>Data Processor</strong></td><td>Carries out processing ON BEHALF of the controller. Cloud providers, payroll vendors are processors.</td></tr>
+        <tr><td><strong>Data Owner</strong></td><td>Senior person (executive/manager) accountable for a specific data set within the organization.</td></tr>
+        <tr><td><strong>Data Custodian</strong></td><td>IT/security staff who TECHNICALLY manage and protect the data day-to-day.</td></tr>
+        <tr><td><strong>Data Inventory &amp; Retention</strong></td><td>Knowing WHAT data you have, WHERE it is, and HOW LONG to keep it per policy/regulation.</td></tr>
+      </table>
+      <div class="callout red"><strong>CLAUDE IMPORTANT: "Right to be Forgotten" &#x2192; answer is ALWAYS GDPR. Data Subject = the individual whose data is held.</strong></div>
+      <table style="margin-top:1rem">
+        <tr><th>Privacy Right</th><th>Regulation</th><th>What It Means</th></tr>
+        <tr><td>Right to be Forgotten (Right to Erasure)</td><td><strong>GDPR</strong></td><td>Individual can demand complete deletion of their personal data</td></tr>
+        <tr><td>Right to Access</td><td>GDPR, CCPA</td><td>Individual can see what data you hold on them</td></tr>
+        <tr><td>Right to Portability</td><td>GDPR</td><td>Receive data in a machine-readable format to transfer to another service</td></tr>
+        <tr><td>Right to Rectification</td><td>GDPR</td><td>Correct inaccurate personal data</td></tr>
+        <tr><td>Opt-Out</td><td>CCPA</td><td>California residents can opt out of sale of personal info</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- INTERNAL / EXTERNAL COMPLIANCE REPORTING -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <h2>&#128202; Compliance Reporting: Internal vs External</h2>
+      <span class="chevron">&#9660;</span>
+    </div>
+    <div class="section-body">
+      <table>
+        <tr><th>Type</th><th>Audience</th><th>Purpose</th></tr>
+        <tr><td><strong>Internal Reporting</strong></td><td>Management, board, security team</td><td>Track security posture, identify gaps, drive remediation</td></tr>
+        <tr><td><strong>External Reporting</strong></td><td>Regulators, auditors, customers, public</td><td>Demonstrate compliance; breach notifications; regulatory filings</td></tr>
+        <tr><td><strong>Breach Notification</strong></td><td>Affected individuals + regulators</td><td>GDPR: 72 hours; HIPAA: 60 days for covered entities</td></tr>
+      </table>
+      <div class="callout blue"><strong>Tip: Internal = improve. External = prove.</strong></div>
+    </div>
+  </div>
+<!-- GOVERNANCE QUIZ -->
   <hr style="border-color:#334155;margin:30px 0">
   <h3>&#127891; Governance &amp; Policy Quiz</h3>
   <div id="govScoreBar" class="score-bar"></div>
@@ -2847,6 +3558,27 @@ const stixQs = [
     opts:["STIX = transport over HTTPS | TAXII = JSON threat format","STIX = JSON format describing threats | TAXII = HTTPS transport mechanism","STIX = vulnerability scoring | TAXII = threat intelligence format","STIX = firewall rules | TAXII = IDS signatures"],
     ans:1,
     exp:"STIX = JSON-based format that DESCRIBES threats. TAXII = transport mechanism using HTTPS to SHARE threat data. This is the tested pairing on Security+." }
+
+  { q:"Threat Intelligence Feeds provide continuous streams of updated threat data. Which of the following is an example of data found in a threat feed?",
+    opts:["CVSS scores for known vulnerabilities only","Malicious IP addresses, domains, file hashes, and attack signatures that can be integrated into SIEM","Employee user behavior baselines","Firewall configuration templates"],
+    ans:1,
+    exp:"Threat feeds = continuous streams of IOC (Indicator of Compromise) data including malicious IPs, domains, file hashes, and attack signatures. This data can be automatically integrated into SIEM to enhance detection and response." },
+  { q:"Intelligence Fusion involves combining data from MULTIPLE sources to create a more complete threat picture. Which sources does it combine?",
+    opts:["Only internal logs and SIEM data","Threat feeds, internal logs, advisories, and external intelligence - combined to enable better decision-making in threat hunting and IR","Only government advisories and vendor bulletins","Only dark web monitoring and open-source intelligence"],
+    ans:1,
+    exp:"Intelligence Fusion = combining threat feeds + internal logs + advisories + external intelligence into one complete, accurate picture of the threat landscape. This multi-source fusion enables more informed decisions in threat hunting and incident response." },
+  { q:"An organization receives an advisory from CISA warning about a new zero-day vulnerability being actively exploited. This advisory is BEST categorized as:",
+    opts:["A threat feed","An advisory/bulletin - official communications from security agencies providing info on new vulnerabilities and recommended mitigations","A STIX object","A CVE entry"],
+    ans:1,
+    exp:"Advisories and bulletins = official communications from organizations like CISA, vendors, or CERTs about newly discovered vulnerabilities, threats, and recommended mitigations. They give defenders actionable intelligence." },
+  { q:"Maneuver in threat hunting refers to:",
+    opts:["Physically moving servers to a secure location","Deliberately moving defenders to observe, track, or influence attacker behavior - such as monitoring lateral movement or deploying honeypots","Rotating IP addresses to avoid detection","Changing firewall rules in response to alerts"],
+    ans:1,
+    exp:"Maneuver in threat hunting = deliberate actions by defenders to observe, track, or even INFLUENCE attacker behavior during an investigation. Examples: monitoring lateral movement, deploying honeypots. Helps analysts understand attacker tactics and contain threats effectively." },
+  { q:"SOAR differs from SIEM in that SOAR:",
+    opts:["Only collects logs - it cannot take any action","FINDS threats AND AUTOMATICALLY RESPONDS using orchestrated workflows and integrations with other security tools (SIEM on steroids)","Only works with cloud environments","Only performs vulnerability scanning, not detection"],
+    ans:1,
+    exp:"SIEM = aggregates + correlates (detects, alerts). SOAR = SIEM on steroids - it FINDS things AND AUTOMATICALLY FIXES/responds using orchestrated playbooks and integrations with multiple tools. SOAR automates the response that SIEM can only alert about." }
 ];
 
 let stixAnswered = {};
@@ -2922,495 +3654,20 @@ function resetStixQuiz() {
 }
 
 /* PEN TEST & AUDITS QUIZ */
-const ptQs = [
-  { q:"CVSS scoring uses three metric groups. Which metric group measures the intrinsic characteristics of a vulnerability that do NOT change over time or environment?",
-    opts:["Temporal Metrics","Environmental Metrics","Base Metrics","Organizational Metrics"],
-    ans:2,
-    exp:"Base Metrics measure the intrinsic characteristics of the vulnerability itself — they never change regardless of time or environment. Base is always present and is the most important of the three. It answers: 'How bad is this vulnerability in general?'" },
-  { q:"A security researcher publishes a working exploit for a known vulnerability. Which CVSS metric group would change as a result?",
-    opts:["Base Metrics — because the vulnerability severity changed","Environmental Metrics — because the organization's exposure changed","Temporal Metrics — because the current threat level changed over time","None — CVSS scores never change once assigned"],
-    ans:2,
-    exp:"Temporal Metrics measure factors that change over time — including whether a public exploit is available, whether a patch exists, etc. A public exploit being released raises the Temporal score. The Base score stays the same because the underlying vulnerability didn't change." },
-  { q:"Two organizations have the exact same vulnerability. Organization A runs it on a public-facing web server; Organization B runs it on an air-gapped internal lab machine. Which CVSS metric accounts for this difference in risk?",
-    opts:["Base Metrics","Temporal Metrics","Environmental Metrics","Exposure Factor"],
-    ans:2,
-    exp:"Environmental Metrics adjust the CVSS score based on your specific organization and environment. The same vulnerability can have very different Environmental scores depending on asset importance, system exposure, and existing controls. This is why the same CVE can be Critical to one org and Low to another." },
-  { q:"Which CVSS metric group is ALWAYS present and considered the most important?",
-    opts:["Temporal","Environmental","Organizational","Base"],
-    ans:3,
-    exp:"Base Metrics are always present — every CVSS score has a Base score. Temporal and Environmental are optional modifiers. Base answers 'how bad is this in general?' and is the foundation of every CVSS score." },
-  { q:"Why was the CVE system created?",
-    opts:["To assign CVSS severity scores to vulnerabilities","To give organizations a database of remediation steps","To provide a common unique identifier so all vendors and tools refer to the same vulnerability without confusion","To replace the NVD database"],
-    ans:2,
-    exp:"Without CVE, Vendor A might call it 'Apache Bug #4' while Vendor B calls it 'RCE Flaw 2021' — chaos. CVE gives every publicly known vulnerability one universal unique ID (CVE-YYYY-NNNNN) so every security tool, vendor, and professional worldwide references the exact same issue." },
-  { q:"After a data breach, the organization faces customer churn and negative press coverage. Which impact type is this?",
-    opts:["Financial","Operational","Reputational","Legal"],
-    ans:2,
-    exp:"Reputational Impact = damage to an organization's public image, leading to loss of customer trust, brand damage, and customer aversion. This is distinct from Financial impact (direct monetary loss) even though reputation damage can eventually cause financial loss." },
-  { q:"A ransomware attack takes all company systems offline for three days. Which impact type BEST describes the disruption to daily business operations?",
-    opts:["Financial","Reputational","Legal / Regulatory","Operational"],
-    ans:3,
-    exp:"Operational Impact = disruption to normal business operations — system downtime, service outages, and reduced productivity. The financial cost of the ransom and recovery is Financial impact; the fact that operations stopped is Operational impact." },
-  { q:"A company is fined $500,000 by a regulatory agency after a data breach exposed customer PII. Which impact type is this?",
-    opts:["Financial","Reputational","Legal / Regulatory","Organizational"],
-    ans:2,
-    exp:"Legal / Regulatory Impact = consequences of non-compliance: fines, penalties, lawsuits, and regulatory sanctions. Note: the $500,000 fine could also be viewed as Financial, but the CAUSE is regulatory non-compliance, so the primary classification is Legal/Regulatory." },
-  { q:"A legacy system cannot support modern encryption standards. The security team formally documents this with leadership approval and no expiration date. What is this called?",
-    opts:["Exception","Exemption","Compensating control","Risk acceptance"],
-    ans:1,
-    exp:"Exemption = long-term or permanent allowance when a requirement CANNOT reasonably be met — typically legacy systems that cannot support modern controls. It requires formal approval, documentation, and leadership risk acceptance. Exception is temporary and has an expiration date." },
-  { q:"A patch cannot be applied to a critical server until a maintenance window in 30 days. The team documents this with a temporary workaround and a defined expiration date. What is this called?",
-    opts:["Exemption","Risk Transference","Exception","Risk Acceptance"],
-    ans:2,
-    exp:"Exception = short-term allowance when a control cannot be implemented immediately, with a DEFINED EXPIRATION DATE and compensating controls in place. Exemption is longer-term or permanent. The 30-day defined end date makes this an Exception." },
-  { q:"After applying a patch for a critical vulnerability, what should the security team do to confirm the fix was successful?",
-    opts:["Archive the CVE record and close the ticket","Perform validation — rescan, test, or review configurations to confirm the vulnerability is resolved","Immediately run another penetration test","Increase the CVSS score threshold"],
-    ans:1,
-    exp:"Validation is the final step in the vulnerability management lifecycle — confirming the remediation or mitigation worked. Methods include rescanning (CVE should no longer appear), testing the exploit path, and reviewing system configurations. It also ensures the fix didn't introduce new problems." },
-  { q:"A security team rescans a server after applying a patch and confirms the CVE no longer appears. What step of the vulnerability management lifecycle is this?",
-    opts:["Identification","Prioritization","Remediation","Validation"],
-    ans:3,
-    exp:"Validation = confirming the fix worked. Rescanning after a patch and confirming the CVE is gone is the classic validation method. The full lifecycle order is: Identify → Evaluate → Prioritize → Remediate/Mitigate → Validate." },
-  { q:"What is the PRIMARY purpose of security monitoring?",
-    opts:["To replace penetration testing","To continuously observe systems and detect threats, IoCs, and policy violations in real time","To generate CVSS scores for new vulnerabilities","To automate patch deployment"],
-    ans:1,
-    exp:"Security monitoring = continuous real-time observation of systems, networks, and applications to detect unusual activity, threats, IoCs, and policy violations. It provides visibility — 'you can't fix what you don't know you have.' SIEM platforms are the primary tool for this." },
-  { q:"An organization uses a platform that collects and correlates logs from firewalls, servers, and endpoint agents to detect threats in real time. What type of tool is this?",
-    opts:["Vulnerability scanner","Penetration testing framework","SIEM (Security Information and Event Management)","IDS only"],
-    ans:2,
-    exp:"SIEM = Security Information and Event Management. It aggregates logs and data from across the environment and correlates them to detect threats in real time. It is the core tool for security monitoring and is heavily associated with this topic on the Security+ exam." },
-  { q:"CPU usage spikes, memory anomalies, and host-based system logs are monitored at which layer of security monitoring?",
-    opts:["Infrastructure layer","Application layer","System (host) layer","Network layer"],
-    ans:2,
-    exp:"System-level monitoring focuses on host-based activity — CPU usage, memory, system performance, and system logs. This layer identifies performance problems and early signs of compromise at the individual device level." },
-  { q:"DLP logs, antivirus logs, and cloud application monitors belong to which security monitoring layer?",
-    opts:["System layer","Application layer","Infrastructure layer","Physical layer"],
-    ans:1,
-    exp:"Application-level monitoring tracks how applications behave — including antivirus logs, DLP (Data Loss Prevention) logs, and cloud monitors. This layer identifies security gaps in software behavior and data handling." },
-  { q:"An organization's leadership defines the overall amount of risk the company is willing to accept across all operations in pursuit of business goals. What is this called?",
-    opts:["Risk Threshold","Risk Tolerance","Risk Appetite","Risk Acceptance"],
-    ans:2,
-    exp:"Risk Appetite = the overall level of risk an organization is willing to accept in pursuit of its goals. It is set at the strategic level by executives and applies across the entire organization. Risk Tolerance is the measurable range for specific systems; Risk Threshold is the hard trigger line where action must happen." },
-  { q:"A system's SLA states it can have no more than 4 hours of downtime per month. This measurable limit on acceptable variation is an example of:",
-    opts:["Risk Appetite","Risk Threshold","Risk Tolerance","Risk Transference"],
-    ans:2,
-    exp:"Risk Tolerance = the acceptable range of variation expressed in measurable terms (e.g., max downtime, acceptable vulnerability count). It refines Risk Appetite for specific systems and processes. The 4-hour limit is a specific, measurable tolerance level." },
-  { q:"A CVSS 9.8 vulnerability is detected. Security policy states that any CVSS score above 9.0 requires immediate emergency patching. The 9.0 line represents what?",
-    opts:["Risk Appetite","Risk Tolerance","Risk Threshold","Risk Acceptance"],
-    ans:2,
-    exp:"Risk Threshold = the precise trigger point where risk becomes unacceptable and action MUST be taken immediately. Crossing the threshold triggers intervention — in this case, emergency change management for immediate patching." },
-  { q:"A question on the exam mentions that an organization purchased cyber liability insurance to cover data breach costs. What risk response strategy is this?",
-    opts:["Risk Mitigation","Risk Acceptance","Risk Avoidance","Risk Transference"],
-    ans:3,
-    exp:"EXAM SHORTCUT: When you see the word INSURANCE — the answer is Risk Transference. Insurance shifts the financial impact of an incident to a 3rd party. It does NOT reduce the likelihood of an attack — only the financial burden if one occurs." },
-  { q:"Cyber insurance reduces which aspect of risk?",
-    opts:["The likelihood of an attack occurring","The financial impact if an attack occurs","The CVSS score of exploited vulnerabilities","The number of vulnerabilities in the environment"],
-    ans:1,
-    exp:"Cyber insurance is Risk Transference — it shifts FINANCIAL impact to the insurer. It does NOT reduce the probability/likelihood of an attack. The organization still needs proper security controls — they're required to even qualify for coverage." },
-  { q:"A legacy medical device cannot be patched due to FDA approval constraints. The security team adds firewall rules and enhanced monitoring around it instead. What type of control is this?",
-    opts:["Preventive control","Compensating control","Detective control","Corrective control"],
-    ans:1,
-    exp:"Compensating controls are alternative security measures used when the primary control (patching) cannot be implemented — due to cost, technical limitations, or operational/regulatory constraints. Firewall rules + monitoring around an unpatched legacy system = classic compensating control." },
-  { q:"After a breach, an attacker who gained access to a workstation was unable to reach the database server because it was on a separate network zone. What mitigation strategy prevented lateral movement?",
-    opts:["Patch management","Risk Transference","Network Segmentation","Compensating controls"],
-    ans:2,
-    exp:"Network Segmentation divides the network into isolated zones so that if one segment is compromised, the attacker cannot easily move laterally to other areas. It is a mitigation strategy — it reduces exposure and impact but does not eliminate the underlying vulnerability." },
-  { q:"What is the CORRECT order of the patch management process?",
-    opts:["Deploy → Test → Identify → Verify","Identify → Deploy → Test → Verify","Identify → Test → Deploy → Verify","Test → Identify → Verify → Deploy"],
-    ans:2,
-    exp:"Correct patch management order: 1) IDENTIFY missing patches via vulnerability scanning, 2) TEST patches in a controlled environment, 3) DEPLOY through change management, 4) VERIFY the vulnerability is resolved. Never skip testing — deploying untested patches can break production systems." },
-  { q:"A vulnerability scanner reports a CVSS 9.1 vulnerability on a web server. What should you do NEXT to confirm it is actually exploitable?",
-    opts:["Immediately patch the server","Run a penetration test","Increase the firewall rules","Ignore it — CVSS scores can be wrong"],
-    ans:1,
-    exp:"The workflow is: vulnerability scan → CVSS score → CVE → THEN run a pen test to confirm exploitability. A high CVSS score means prioritize, but a pen test CONFIRMS the vulnerability can actually be exploited in your environment." },
-  { q:"Which of the following BEST describes a penetration test?",
-    opts:["A passive scan that identifies potential weaknesses","A 100% active test that attempts to exploit vulnerabilities","An automated tool that patches vulnerabilities","A log review process"],
-    ans:1,
-    exp:"A pen test is 100% ACTIVE — nothing passive about it. It actively attempts to exploit vulnerabilities. It will cause controlled problems intentionally — that's the point." },
-  { q:"How does a penetration test differ from a vulnerability scan?",
-    opts:["They are the same thing","A vulnerability scan actively exploits; a pen test passively lists weaknesses","A vulnerability scan finds theoretical weaknesses; a pen test confirms actual exploitability","Pen tests are automated; vulnerability scans require a human"],
-    ans:2,
-    exp:"Vulnerability scan = finds theoretical weaknesses that MAY exist. Pen test = actively tries to exploit those weaknesses to CONFIRM they are real and exploitable. This distinction is heavily tested." },
-  { q:"A pen tester is given full knowledge of the network architecture, source code, and credentials before testing. What type of pen test is this?",
-    opts:["Black Box","Gray Box","White Box","Blue Box"],
-    ans:2,
-    exp:"White Box pen test = full knowledge given to the tester. Black Box = no prior knowledge (simulates external attacker). Gray Box = partial knowledge (simulates insider/privileged user)." },
-  { q:"A pen tester receives no information about the target environment and must discover everything from scratch. This simulates which threat actor scenario?",
-    opts:["Malicious insider","Privileged user","External attacker with no prior access","A rogue administrator"],
-    ans:2,
-    exp:"Black Box pen testing gives the tester no prior information — they discover everything themselves. This most closely simulates an external attacker who has no insider knowledge of the organization." },
-  { q:"Before starting a penetration test, what is the MOST important thing a tester must obtain?",
-    opts:["A list of all CVEs on the network","Written authorization from the organization","The CVSS scores of all vulnerabilities","Network diagrams"],
-    ans:1,
-    exp:"ALWAYS get written authorization before pen testing. Testing without explicit written permission is illegal — even if you are an employee of the company. Rules of engagement must be documented." },
-  { q:"A database is valued at $200,000. In a ransomware attack, the organization expects to lose 40% of its value. What is the Single Loss Expectancy (SLE)?",
-    opts:["$200,000","$40,000","$80,000","$120,000"],
-    ans:2,
-    exp:"SLE = AV × EF. AV = $200,000. EF = 40% = 0.4. SLE = $200,000 × 0.4 = $80,000. SLE is the cost of ONE incident — not yearly, that's ALE." },
-  { q:"An asset has an SLE of $50,000. The threat is expected to occur once every 5 years. What is the Annual Loss Expectancy (ALE)?",
-    opts:["$250,000","$50,000","$10,000","$25,000"],
-    ans:2,
-    exp:"ALE = SLE × ARO. ARO = 1 ÷ 5 = 0.2 (once every 5 years). ALE = $50,000 × 0.2 = $10,000 per year. The ARO trap: 'once every 5 years' = 0.2, NOT 5." },
-  { q:"A threat is expected to occur once every 5 years. What is the Annual Rate of Occurrence (ARO)?",
-    opts:["5","0.5","0.2","1"],
-    ans:2,
-    exp:"ARO = 1 ÷ number of years between occurrences. Once every 5 years = 1/5 = 0.2. This is the most-tested ARO trap. Do NOT use 5 — that would mean 5 times per year." },
-  { q:"An asset is worth $500,000. A flood is expected to destroy 20% of it, and occurs once every 10 years. What is the ALE?",
-    opts:["$100,000","$10,000","$50,000","$1,000"],
-    ans:1,
-    exp:"Step 1: SLE = AV × EF = $500,000 × 0.2 = $100,000. Step 2: ARO = 1 ÷ 10 = 0.1. Step 3: ALE = SLE × ARO = $100,000 × 0.1 = $10,000 per year." },
-  { q:"An organization's ALE for a server breach is $60,000 per year. A security vendor offers a control that costs $45,000 per year. Should the organization implement it?",
-    opts:["No — the control costs too much relative to the risk","Yes — the control cost ($45,000) is less than the ALE ($60,000), so it is financially justified","No — ALE calculations don't apply to purchasing decisions","Yes — all security controls must always be implemented regardless of cost"],
-    ans:1,
-    exp:"If control cost < ALE, implement the control. $45,000 < $60,000 — the organization saves $15,000/year by implementing it. If the control cost MORE than the ALE, it would be cheaper to accept the risk." },
-  { q:"An organization posts a program on HackerOne offering cash rewards for finding and responsibly reporting security vulnerabilities. What is this called?",
-    opts:["Penetration test","Vulnerability scan","Bug bounty program","Red team exercise"],
-    ans:2,
-    exp:"Bug bounty programs use platforms like HackerOne and BugCrowd to crowdsource vulnerability discovery. Organizations define scope, eligible vuln types, and payout tiers based on CVSS severity." },
-  { q:"What is the PRIMARY advantage of a bug bounty program over an internal security team alone?",
-    opts:["It is cheaper than buying a firewall","It replaces the need for penetration testing entirely","It gives thousands of skilled external researchers access to find complex hidden vulnerabilities","It is fully automated"],
-    ans:2,
-    exp:"Bug bounties provide crowdsourced security testing — thousands of skilled researchers looking for issues instead of just your internal team. This dramatically increases the chances of finding complex or hidden vulnerabilities." },
-  { q:"An organization reviews its server patch levels, access control configurations, and system hardening baselines. What type of audit is this?",
-    opts:["Process audit","Financial audit","System audit","Compliance audit"],
-    ans:2,
-    exp:"System audit = TECHNICAL focus. It reviews IT systems including configurations, access controls, permissions, and patch levels. Process audit = procedural focus on how people follow policies." },
-  { q:"An organization discovers that employees are not following the documented incident response procedures, even though all technical controls are properly configured. What type of audit would have caught this?",
-    opts:["System audit","Vulnerability scan","Process audit","Network audit"],
-    ans:2,
-    exp:"Process audit = PROCEDURE-focused. It evaluates whether people and workflows follow security policies. A company can PASS a system audit (technical config correct) but FAIL a process audit (employees not following procedures). Both are needed." },
-  { q:"Which statement about system audits and process audits is TRUE?",
-    opts:["A company that passes a system audit automatically passes a process audit","System audits are always performed by 3rd parties only","A company can pass a system audit but fail a process audit","Process audits only apply to HR departments"],
-    ans:2,
-    exp:"A company can pass a system audit (everything technically configured correctly) but fail a process audit if employees aren't following security procedures. This is why both types of audits are necessary together." },
-  { q:"An email scanner is letting certain phishing messages through for a specific group of users. Multiple users in the department are affected. What is the BEST solution?",
-    opts:["Tell each individual user to mark future emails as spam","Have each user create their own email filter rules","Fine-tune the scanner's configuration at the admin level to close the filtering gap","Remove the email scanner and replace it with a firewall"],
-    ans:2,
-    exp:"When a scanner misses something for a GROUP of people, the correct answer is always to fine-tune the scanner centrally — not to tell individuals to work around it. Individual fixes are band-aids; the scalable solution is adjusting the scanner's configuration." },
-  { q:"Risk is calculated as:",
-    opts:["Threat × Vulnerability","Likelihood + Impact","Likelihood × Impact","Asset Value ÷ Threat"],
-    ans:2,
-    exp:"Risk = Likelihood × Impact. Likelihood = how probable the threat is. Impact = how much damage it would cause. High likelihood × high impact = highest risk — address first." },
-  { q:"An organization identifies a vulnerability with a high likelihood of exploitation but very low impact if exploited. How should they prioritize it?",
-    opts:["Treat it as the highest priority immediately","Treat it as moderate — high likelihood raises risk even with low impact","Ignore it completely — low impact means no risk","Transfer the risk immediately to cyber insurance"],
-    ans:1,
-    exp:"Risk = Likelihood × Impact. High likelihood but low impact results in moderate risk. It's not the highest priority (which would be high × high), but it shouldn't be ignored. Context and the full Risk calculation matter." },
-  { q:"A company buys cyber insurance to cover the financial losses from a potential data breach. Which risk response strategy is this?",
-    opts:["Avoid","Mitigate","Accept","Transfer"],
-    ans:3,
-    exp:"Transfer = shifting risk to a 3rd party. Cyber insurance is the classic example — you transfer financial risk to the insurer. Outsourcing a high-risk function is another form of risk transfer." },
-  { q:"Which of the following represents a PROACTIVE security measure? (Select the BEST answer)",
-    opts:["Restoring systems from backup after a ransomware attack","Issuing a breach notification to affected customers","Conducting regular penetration tests and vulnerability scans before an attack occurs","Resetting all passwords after a credential leak is discovered"],
-    ans:2,
-    exp:"Proactive = done BEFORE an attack. Vulnerability scans, pen tests, bug bounties, audits, patching, and dark web monitoring are all proactive. The other options are reactive — they happen AFTER a security event." },
-  { q:"A SIEM performs two primary functions. What are they?",
-    opts:["Scanning and Patching","Aggregation and Correlation","Monitoring and Blocking","Authentication and Authorization"],
-    ans:1,
-    exp:"SIEM does exactly 2 things: (1) AGGREGATES — collects logs from all devices and systems into one centralized dashboard; (2) CORRELATES — sifts through those logs looking for Indicators of Compromise (IoC). Dashboard is the keyword exam questions use for the centralized view." },
-  { q:"A SIEM stores all collected log data in a special drive to prevent tampering. What type of drive is this?",
-    opts:["SSD (Solid-State Drive)","RAID array","WORM drive (Write Once, Read Many)","Encrypted external drive"],
-    ans:2,
-    exp:"SIEM stores logs on a WORM drive — Write Once, Read Many. Once logs are written they cannot be modified, which protects their integrity for audits and forensic investigations. The SIEM also hashes logs for deduplication — if it finds the same hash it skips re-storing the duplicate to save space." },
-  { q:"Why is accurate time synchronization critical for a SIEM?",
-    opts:["It speeds up the correlation algorithm","Without it, SIEM alerts are sent to the wrong devices","Logs from different systems must align chronologically so events can be accurately correlated across sources","It prevents duplicate logs on the WORM drive"],
-    ans:2,
-    exp:"SIEM correlates events from many different systems. If those systems have drifted clocks, correlation is wrong — an event from one system might appear to precede an alert from another when they are actually the same attack. NTP (Network Time Protocol) keeps all devices time-synchronized so logs are accurate." },
-  { q:"Malware is detected on the network. The SIEM generates an alert. What does the SIEM do regarding stopping the attack?",
-    opts:["Automatically quarantines the infected system","Patches the vulnerability the malware exploited","Alerts security personnel and other tools — but does NOT directly block the attack","Deletes the malware files from the WORM drive"],
-    ans:2,
-    exp:"SIEM does NOT stop attacks directly. It detects, alerts, and can notify other tools (firewalls, IPS) to take blocking action — but SIEM itself is the detection and notification platform, not the prevention tool. It also must be fine-tuned to detect specific threats effectively." },
-  { q:"SOAR differs from a SIEM primarily because SOAR:",
-    opts:["Only monitors network traffic","Stores logs on WORM drives","Automatically responds to threats using other tools and playbooks, not just alerts","Replaces vulnerability scanners"],
-    ans:2,
-    exp:"SOAR = SIEM on steroids. Both detect threats and alert. But SOAR goes further — it automatically responds using playbooks and integrations with other security tools (it orchestrates them). If you see 'automated response' in an exam question, think SOAR." },
-  { q:"What is the correct order of the log management lifecycle?",
-    opts:["Alerting → Aggregation → Archiving → Reporting → Scanning","Aggregation → Scanning/Analysis → Alerting → Reporting → Archiving","Archiving → Aggregation → Scanning → Alerting → Reporting","Reporting → Aggregation → Scanning → Alerting → Archiving"],
-    ans:1,
-    exp:"Log management lifecycle in order: (1) Aggregation — collect logs into a central location; (2) Scanning/Analysis — analyze for threats using rules/signatures; (3) Alerting — notify security personnel; (4) Reporting — summarize events and trends; (5) Archiving — securely store for long-term retention. Together these form a continuous cycle." },
-  { q:"SCAP stands for:",
-    opts:["Security Compliance Audit Protocol","Structured Configuration and Assessment Platform","Security Content Automation Protocol","System Configuration and Analysis Process"],
-    ans:2,
-    exp:"SCAP = Security Content Automation Protocol. It is a collection of standards (not a single tool) used to automate vulnerability management, configuration compliance, and security policy enforcement. It improves accuracy and interoperability by providing a common format for measuring and reporting security posture across tools." },
-  { q:"In SCAP, which component defines what to look for during a scan — such as checking for missing patches or insecure settings?",
-    opts:["XCCDF — Extensible Configuration Checklist Description Format","ARF — Asset Reporting Format","OVAL — Open Vulnerability and Assessment Language","CIS Benchmarks"],
-    ans:2,
-    exp:"OVAL (Open Vulnerability and Assessment Language) defines WHAT to look for during a scan — the specific vulnerability checks and configuration state checks like missing patches or insecure settings. XCCDF defines HOW systems should be configured (the compliance policies). ARF is the results report that combines both." },
-  { q:"CIS benchmarks are used to evaluate system configuration security. What does CIS stand for?",
-    opts:["Cybersecurity Information Standard","Critical Infrastructure Security","Center for Internet Security","Configuration Integration System"],
-    ans:2,
-    exp:"CIS = Center for Internet Security. CIS Benchmarks provide detailed, authoritative guidance on configuring operating systems, servers, databases, and devices securely. They are used in vulnerability scanning and compliance assessments — tools compare current configuration against these benchmarks to find weaknesses." },
-  { q:"Instead of a management system periodically polling for device status, a router automatically sends an alert to the SIEM when its CPU spikes. What mechanism is this?",
-    opts:["NetFlow analysis","SNMP polling","SNMP trap","Syslog forwarding"],
-    ans:2,
-    exp:"SNMP Trap = a device proactively PUSHES an alert to a management system when a specific event occurs. This is the opposite of SNMP Polling, where the management system periodically asks the device if everything is OK. Traps provide immediate notification, reducing response time compared to traditional polling." },
-  { q:"A firewall has a list of rules. Traffic arrives and no rule explicitly permits it. What happens under a properly configured firewall?",
-    opts:["The traffic is allowed by default","The firewall restarts to apply new rules","The traffic is denied — the last rule is an implicit denial that blocks all unmatched traffic","The traffic is flagged and forwarded to the SIEM for review"],
-    ans:2,
-    exp:"Implicit Denial = the last rule on a firewall denies ALL traffic not explicitly permitted. Any IP, any source, any destination, any port, any protocol that didn't match a previous rule is blocked. This is the default deny posture and a critical exam concept." },
-  { q:"A firewall reads its rules and the FIRST matching rule for a packet is ALLOW TCP port 80. A later rule says DENY TCP port 80. What happens?",
-    opts:["The packet is denied because the deny rule is more specific","The packet is allowed — firewalls read top to bottom and stop at the first match","Both rules cancel each other out and the packet is dropped","The firewall logs the conflict and asks the admin"],
-    ans:1,
-    exp:"Firewalls read rules TOP TO BOTTOM and stop at the FIRST match. If the first matching rule says ALLOW, the packet is allowed — even if a later rule would have denied it. Rule order matters critically — more specific rules should appear higher in the list." },
-  { q:"Which firewall type tracks active connections and allows or denies traffic based on the state of those connections?",
-    opts:["Packet filtering firewall","Next Generation Firewall (NGFW)","Stateful firewall","Application proxy firewall"],
-    ans:2,
-    exp:"Stateful firewalls track active connection state. They know whether traffic belongs to an established session. Packet filtering (stateless) only looks at individual packets without tracking sessions. NGFW goes further with deep packet inspection, IPS, and application-level filtering." },
-  { q:"An NGFW blocks an application like Tor even though it runs on a standard HTTPS port (443). What capability allows this?",
-    opts:["Port-based filtering","Implicit denial","Deep packet inspection and application-level filtering","Stateful connection tracking"],
-    ans:2,
-    exp:"NGFW (Next Generation Firewall) uses deep packet inspection and application-level filtering to identify and block specific applications regardless of what port they use. Traditional packet filtering only blocks by port/protocol — it cannot distinguish Tor on port 443 from legitimate HTTPS traffic." },
-  { q:"A router uses a list of rules to permit traffic from 192.168.1.0/24 to TCP port 443 and deny all other traffic. What is this list called?",
-    opts:["Firewall policy","ACL — Access Control List","Implicit denial rule","NGFW inspection profile"],
-    ans:1,
-    exp:"ACL = Access Control List. ACLs are sets of rules used by network devices (routers, switches, firewalls) to permit or deny traffic based on defined criteria: source/destination IP, port numbers, and protocols. They are how firewalls enforce security policies at the packet level." },
-  { q:"What security concept does a layered approach using firewalls + IPS + SIEM + endpoint protection represent?",
-    opts:["Zero Trust","Least Privilege","Defense in Depth","Implicit Denial"],
-    ans:2,
-    exp:"Defense in Depth = layered security strategy. No single technology provides complete protection — multiple overlapping controls ensure that if one layer fails, others remain. Firewalls + IDS/IPS + SIEM + endpoint protection + DLP + network segmentation working together is the textbook example." },
-  { q:"An ACL has rules permitting specific traffic. A packet arrives that matches none of the rules. What happens?",
-    opts:["The packet is forwarded to the next router for evaluation","The packet is allowed — unmatched traffic is permitted by default","The packet is denied — an implicit denial blocks all unmatched traffic at the end of every ACL","The packet is logged and held in a queue for admin review"],
-    ans:2,
-    exp:"Implicit denial ends every ACL. Any traffic not explicitly permitted by a rule is automatically blocked. This applies to both ACLs and firewalls. The exam will test whether you know that the default behavior is deny — not allow — when no rule matches." },
-  { q:"A Standard ACL differs from an Extended ACL in that a Standard ACL filters traffic based only on:",
-    opts:["Destination IP address","Source IP address only","Port numbers and protocols","Application data"],
-    ans:1,
-    exp:"Standard ACL = source IP address only. Extended ACL = source IP + destination IP + port numbers + protocols. Extended ACLs provide granular control (e.g., allow only HTTPS from a specific subnet to a specific server). Standard ACLs are simpler but less precise." },
-  { q:"A company places its web server, email server, and DNS server in a separate network zone that is accessible from the internet but isolated from the internal corporate network. What is this zone called?",
-    opts:["VLAN","Intranet","DMZ (Demilitarized Zone) / Screen Subnet","Honeypot"],
-    ans:2,
-    exp:"DMZ (Demilitarized Zone) = screen subnet = a network segment between the untrusted internet and the trusted internal network. It hosts public-facing services so external users can access them without reaching the internal network. If a DMZ system is compromised, the attacker is contained within that isolated segment." },
-  { q:"An organization uses two firewalls to create a DMZ: one between the internet and the DMZ, and another between the DMZ and the internal network. What is this architecture called?",
-    opts:["Dual-homed firewall","Transparent firewall","Back-to-back firewall","Bastion host"],
-    ans:2,
-    exp:"Back-to-back firewall = two firewalls creating a DMZ. Architecture: Internet → [Firewall 1] → DMZ → [Firewall 2] → Internal Network. The DMZ hosts public services; even if an attacker breaches the first firewall and compromises a DMZ server, the second firewall prevents them from reaching the internal network." },
-  { q:"A security system detects a SQL injection attempt and immediately drops the malicious packets without notifying an admin first. Which technology is this?",
-    opts:["IDS — Intrusion Detection System","Firewall with packet filtering","IPS — Intrusion Prevention System","SIEM correlation rule"],
-    ans:2,
-    exp:"IPS = Intrusion Prevention System — ACTIVE. It sits inline with network traffic and automatically blocks/drops threats in real time without waiting for admin input. IDS is passive — it only detects and alerts, but does NOT take action to stop the threat. IPS acts; IDS notifies." },
-  { q:"An IDS flags unusual outbound traffic that doesn't match any known malware signature, but the volume and timing are abnormal compared to the baseline. Which detection method identified this?",
-    opts:["Signature-based detection","Heuristic scanning","Anomaly-based detection","Log correlation"],
-    ans:2,
-    exp:"Anomaly-based detection compares current traffic/behavior to a baseline of 'normal' — deviations trigger alerts. It can catch zero-day attacks and unknown threats that have no signature yet. Signature-based detection matches against a database of known attack patterns and misses new, unknown attacks." },
-  { q:"A user types a website URL into their browser. Before any connection is established, the request is checked against a list of blocked domains and access is denied. What technology prevented this?",
-    opts:["Web application firewall","Full content inspection","DNS filtering","NGFW deep packet inspection"],
-    ans:2,
-    exp:"DNS filtering operates at the DNS resolution stage — before a connection is ever established. It checks the requested domain against an allow/block list based on reputation, category, or policy. If the domain is blocked, DNS resolution is denied, so the connection never starts. This is faster than full content inspection but provides less visibility (domain name only, not payload)." },
-  { q:"Which email security protocol attaches a digital signature to outgoing messages so the receiving server can verify the message was not altered and truly came from the claimed domain?",
-    opts:["SPF — Sender Policy Framework","DMARC — Domain-based Message Authentication","DKIM — DomainKeys Identified Mail","S/MIME"],
-    ans:2,
-    exp:"DKIM (DomainKeys Identified Mail) attaches a cryptographic digital signature to outgoing email. The receiving server uses the public key published in the sender's DNS to verify: (1) the message wasn't altered in transit, and (2) it genuinely came from the claimed domain. This provides message integrity and authentication." },
-  { q:"A domain owner wants to tell receiving mail servers to REJECT emails that fail SPF and DKIM checks, and also receive weekly reports on failed authentication attempts. Which protocol provides this capability?",
-    opts:["SPF","DKIM","DMARC","TLS"],
-    ans:2,
-    exp:"DMARC (Domain-based Message Authentication, Reporting and Conformance) builds on SPF and DKIM. It defines the policy for what receiving servers should do when authentication fails (none, quarantine, or reject) AND generates reports that let domain owners see authentication results and detect spoofing attempts." },
-  { q:"An organization's spam filter is being bypassed by attackers who simply change the display name in the From field. What is the BEST solution?",
-    opts:["Configure a stricter spam filter keyword list","Implement a mail gateway that enforces SPF, DKIM, and DMARC validation","Train users to manually verify every email sender","Block all external email"],
-    ans:1,
-    exp:"Spam filters alone are easily bypassed by spoofing the display name. A Mail Gateway uses SPF (verifies authorized sending server), DKIM (verifies message integrity and authenticity), and DMARC (enforces policy on failures) together — combined with content filtering, malware scanning, and DLP. Mail Gateway does NOT replace SPF/DKIM/DMARC — it uses them." },
-  { q:"SELinux and Group Policy both enforce security controls. SELinux differs from Group Policy primarily because SELinux:",
-    opts:["Only works on Windows servers","Enforces mandatory access control that cannot be overridden even by administrators","Manages Active Directory user accounts","Provides cloud-based policy enforcement"],
-    ans:1,
-    exp:"SELinux = Linux-based Mandatory Access Control (MAC). It enforces strict policies on how processes and users interact with files and system resources — and these policies CANNOT be overridden even by users with administrator privileges. Group Policy is Windows-based centralized configuration management via Active Directory — it manages settings but relies on administrator-level permissions." },
-  { q:"Port security is often given credit for shutting down a switch port when an unauthorized device connects. What technology actually enforces this action?",
-    opts:["MAC filtering alone","Port security itself","NAC — Network Access Control","802.1X supplicant"],
-    ans:2,
-    exp:"EXAM TRAP: Port security gets the glory, but NAC (Network Access Control) is what actually shuts down the port. If a MAC address doesn't match what MAC filtering has configured on the switch, NAC shuts down the port and tells port security it did it. NAC is the 'health policy' enforcer." },
-  { q:"A laptop connects to the corporate network. NAC performs a posture assessment and finds the antivirus definitions are 30 days out of date. What should NAC do?",
-    opts:["Grant full network access — the device is still partially compliant","Block the device permanently","Place the device in a quarantine network where it can only reach remediation services","Disable the switch port permanently"],
-    ans:2,
-    exp:"When NAC finds a non-compliant device, the correct response is quarantine — not full block and not full access. The quarantine network allows the device to reach remediation services (Windows Update, AV update servers) so it can become compliant, then be granted full access. This is the 'health policy' in action." },
-  { q:"A NAC solution checks a device's patch level and antivirus status at the moment it connects, grants access if compliant, but does NOT continue monitoring after that. What type of NAC is this?",
-    opts:["Persistent NAC / post-admission control","Agent-based NAC","Dissolvable NAC / pre-admission control","Continuous compliance NAC"],
-    ans:2,
-    exp:"Dissolvable NAC performs a one-time check at connection time (pre-admission), then the enforcement 'dissolves' — there is no ongoing monitoring after access is granted. Persistent NAC continuously monitors after connection (post-admission) and will restrict or quarantine a device that later falls out of compliance." },
-  { q:"A company wants to continuously monitor connected devices and automatically quarantine any device that disables its antivirus after connecting. Which NAC configuration provides this?",
-    opts:["Dissolvable NAC with pre-admission checks","Agentless NAC using network scans","Persistent NAC with post-admission enforcement","One-time posture check only"],
-    ans:2,
-    exp:"Persistent NAC provides continuous post-admission enforcement — it keeps monitoring devices after they connect and dynamically adjusts access if a device falls out of compliance (e.g., AV disabled, patch missing). Dissolvable NAC only checks at connection time and would miss a device that becomes non-compliant after connecting." },
-  { q:"An organization needs NAC for a hospital guest Wi-Fi network where thousands of unknown personal devices connect daily. Which NAC approach is most appropriate?",
-    opts:["Agent-based NAC — install software on every guest device","Persistent NAC with continuous post-admission monitoring","Agentless NAC — no software installation required, uses network scans","Mandatory 802.1X certificate-based authentication for guests"],
-    ans:2,
-    exp:"Agentless NAC requires no software installation on endpoints — it uses native protocols and network scans to evaluate devices. This is ideal for guest networks, BYOD scenarios, and unmanaged devices where you cannot install agents. It provides limited visibility and typically only supports pre-admission checks, but that is acceptable for guest access." },
-  { q:"A security analyst notices that a user who normally logs in from Chicago at 9 AM has suddenly logged in from another country at 3 AM and is accessing financial records they have never touched before. What technology would BEST detect this as anomalous?",
-    opts:["Signature-based IDS","Vulnerability scanner","UBA — User Behavior Analytics","SNMP trap"],
-    ans:2,
-    exp:"UBA (User Behavior Analytics) establishes a baseline of normal user behavior — login times, locations, access patterns, file usage. When a user deviates significantly (different country, odd hours, unusual data access), UBA flags it as a potential insider threat or compromised account. Signature-based IDS only catches known attack patterns — it would not detect this behavioral anomaly." },
-  { q:"UBA is especially effective against which type of threat that often bypasses traditional perimeter defenses?",
-    opts:["Zero-day software vulnerabilities","DDoS attacks","Insider threats and compromised legitimate accounts","SQL injection attacks"],
-    ans:2,
-    exp:"UBA is designed specifically for insider threats and compromised accounts — attackers who have valid credentials and bypass perimeter controls like firewalls and IDS. Traditional security tools look for malicious traffic patterns; UBA detects anomalous BEHAVIOR even when the credentials being used are legitimate. It's also effective against APTs that move slowly and blend in." },
-  { q:"What does IAM stand for, and what is its primary purpose?",
-    opts:["Integrated Access Module — encrypts user credentials","Identity and Access Management — ensures only authorized users and devices access the right resources at the right time","Internet Authentication Mechanism — manages firewall rules","Internal Audit Management — tracks compliance violations"],
-    ans:1,
-    exp:"IAM = Identity and Access Management. It is a framework of policies, technologies, and processes ensuring that only authorized users and devices can access specific organizational resources. It manages digital identities and controls what those identities are permitted to do — enforcing Authentication, Authorization, and Accounting (AAA/IAAA)." },
-  { q:"An administrator must access a critical internal server. Instead of connecting directly, they first authenticate to a hardened server in a secure zone, then reach the internal system from there. What is this hardened server called?",
-    opts:["Honeypot","Bastion host / Jump box","Proxy server","DMZ web server"],
-    ans:1,
-    exp:"A Jump Box (also called a jump server or bastion host) is a hardened server in a secure network zone that acts as the single controlled entry point for administrative access to internal systems. All admin traffic is routed through it, creating an auditable chokepoint. It is commonly combined with SSO so admins authenticate once with corporate identity." },
-  { q:"Which AAA component answers the question 'What did the user do and when?'",
-    opts:["Authentication","Authorization","Accounting","Identification"],
-    ans:2,
-    exp:"Accounting = the AAA component that tracks and logs user activity — what resources were accessed, what actions were taken, and when. This produces the audit trail used for forensic investigations, compliance reporting, and detecting policy violations. Authentication = proving identity. Authorization = defining what is permitted." },
-  { q:"A new employee is created in Active Directory and given access only to the files needed for their specific job role. What process is this, and which principle does it follow?",
-    opts:["Authentication following separation of duties","Account provisioning following least privilege","Authorization following need-to-know only","Identity federation following zero trust"],
-    ans:1,
-    exp:"Account provisioning = creating the user account AND assigning appropriate permissions. The principle of least privilege requires that users receive only the minimum access needed to do their job — nothing more. Both steps (creating the user and assigning permissions) must apply least privilege from the start." },
-  { q:"A financial system requires that the person who initiates a wire transfer cannot also be the person who approves it. What security principle is this?",
-    opts:["Least privilege","Mandatory access control","Separation of duties","Account provisioning"],
-    ans:2,
-    exp:"Separation of duties = no single person has enough access to complete a sensitive or high-risk task alone. It distributes critical capabilities across multiple people to prevent fraud, errors, and abuse of privilege. It upholds least privilege by ensuring no one individual accumulates excessive access." },
-  { q:"A military system assigns access based on classification labels — Unclassified, Secret, Top Secret. Users cannot change who has access to their own files. Which access control model is this?",
-    opts:["DAC — Discretionary Access Control","RBAC — Role-Based Access Control","MAC — Mandatory Access Control","ABAC — Attribute-Based Access Control"],
-    ans:2,
-    exp:"MAC (Mandatory Access Control) is centrally controlled and based on classification levels or labels. The owner cannot change permissions — the system enforces them. Even if you own the file, you cannot grant access to someone with a lower classification level. MAC is used in government, military, and high-security environments." },
-  { q:"A user creates a shared folder and decides which coworkers can read or edit its contents. Which access control model is in use?",
-    opts:["MAC — the system enforces the labels","RBAC — access is tied to job roles","Rule-Based — system rules determine access","DAC — the resource owner controls access"],
-    ans:3,
-    exp:"DAC (Discretionary Access Control) lets the resource OWNER decide who gets access. The owner has discretion to grant or revoke permissions on their own resources. It is the most flexible model but also carries the most risk — if the owner makes a poor decision, access is misconfigured." },
-  { q:"An organization assigns permissions by grouping users into 'Nurse,' 'Doctor,' and 'Admin' categories. Each category has a predefined set of permissions. Which access control model is this?",
-    opts:["MAC","DAC","RBAC — Role-Based Access Control","Rule-Based Access Control"],
-    ans:2,
-    exp:"RBAC (Role-Based Access Control) assigns access based on job roles. Users inherit permissions from their assigned role. This makes it easy to manage at scale — onboard a new nurse, assign them the 'Nurse' role, and they immediately get the right access. Common in enterprise environments and Active Directory." },
-  { q:"A cloud system grants a user access to a sensitive document only if: they are in the Finance department, the document is rated Internal, and they are accessing from within the corporate network during business hours. Which access control model supports this multi-attribute decision?",
-    opts:["MAC — classification label controls it","DAC — the document owner approved it","RBAC — the user has the Finance role","ABAC — multiple dynamic attributes determine access"],
-    ans:3,
-    exp:"ABAC (Attribute-Based Access Control) makes access decisions based on multiple dynamic attributes: user attributes (department, clearance), resource attributes (sensitivity rating), and environmental attributes (time of day, location). This flexibility makes ABAC ideal for cloud and zero-trust architectures where context matters." },
-  { q:"A firewall rule states: 'Deny all inbound traffic after 11 PM regardless of user identity.' Which access control model does this represent?",
-    opts:["RBAC — a role named 'after-hours' is denied","ABAC — time is an attribute","Rule-Based Access Control — static system rules apply universally","MAC — the classification level blocks after-hours traffic"],
-    ans:2,
-    exp:"Rule-Based Access Control enforces static, system-defined rules that apply uniformly to all users regardless of identity or role. Firewall ACL rules, time-based access restrictions, and router rules are classic examples. Unlike ABAC, rule-based controls are not tied to user attributes — the rule applies to everyone equally." },
-  { q:"Before creating an account for a new contractor, the IT team requires the contractor to present a government-issued ID and have a manager verify their identity. What step in the identity lifecycle is this?",
-    opts:["Account provisioning","Authorization assignment","Identity proofing","Attestation"],
-    ans:2,
-    exp:"Identity proofing is the initial step in identity lifecycle management — verifying a user's real-world identity BEFORE their account is created. It ensures the access control system begins with a trusted, validated identity. Skipping identity proofing means all subsequent access decisions are built on an unverified foundation." },
-  { q:"A company wants to allow employees to access a partner organization's portal using their own corporate credentials, without creating separate accounts. What IAM concept enables this?",
-    opts:["Account provisioning","Identity proofing","LDAP directory sync","Federation with SSO"],
-    ans:3,
-    exp:"Federation establishes trust between different organizations or systems to allow shared authentication through a single identity. It enables SSO across organizational boundaries — employees use their own corporate credentials to access partner systems without managing separate accounts. SAML is commonly used to implement federation." },
-  { q:"An application wants to access a user's Google Calendar on their behalf without ever seeing the user's Google password. Which protocol enables this token-based delegated access?",
-    opts:["LDAP","SAML","OAuth 2.0","Kerberos"],
-    ans:2,
-    exp:"OAuth 2.0 provides delegated access using tokens without exposing user credentials. The user authorizes the app, Google issues an access token, and the app uses that token — never seeing the password. This is the 'Sign in with Google/Facebook' pattern used across the web." },
-  { q:"What does OpenID Connect add on top of OAuth 2.0?",
-    opts:["Encrypted password storage","Network segmentation policies","Identity verification via ID tokens — confirming WHO the user is","Time-based access restrictions"],
-    ans:2,
-    exp:"OAuth 2.0 handles authorization (what the app can access). OpenID Connect (OIDC) extends it by adding authentication — it issues an ID token that contains claims about the user's identity (who they are). OIDC = OAuth 2.0 + identity. Together they handle both 'who are you' and 'what can you do.'" },
-  { q:"An organization uses Active Directory for centralized user management. What protocol do systems use to query Active Directory for authentication and authorization information, and what is its secure version?",
-    opts:["RADIUS over UDP; secure version is TACACS+","SAML over HTTPS; secure version is OAuth","LDAP; secure version is LDAPS (LDAP over SSL/TLS)","Kerberos; secure version is Kerberos v5"],
-    ans:2,
-    exp:"LDAP (Lightweight Directory Access Protocol) is the standardized protocol used to access and manage directory information — associate it with Active Directory on the exam. Plain LDAP transmits data unencrypted. LDAPS (LDAP over SSL/TLS) adds encryption to ensure confidentiality and integrity of directory queries." },
-  { q:"A laptop must prove it has current patches and active antivirus before the VPN grants it access. The proof is validated using a hardware chip on the device. What is this process called, and what hardware is involved?",
-    opts:["Authorization via RADIUS","Network Access Control posture check using a RADIUS server","Attestation validated by a TPM (Trusted Platform Module)","Federation using SAML assertions"],
-    ans:2,
-    exp:"Attestation = providing proof that a device meets security requirements before access is granted. The device reports its security posture (OS version, patch level, AV status) which is verified against policy. A TPM (Trusted Platform Module) is the hardware chip that validates system integrity and ensures the device hasn't been tampered with." },
-  { q:"An admin account is elevated to Domain Admin only for the 30 minutes needed to complete a server migration, then automatically returns to standard user permissions. What PAM control is this?",
-    opts:["Password vaulting","Temporal account","Just-in-Time (JIT) permissions","Separation of duties"],
-    ans:2,
-    exp:"JIT (Just-in-Time) permissions dynamically grant elevated access only when needed, for only as long as needed, then automatically revoke it. This aligns with least privilege — accounts are unprivileged by default and elevated on-demand. It significantly reduces the attack window by ensuring privilege doesn't linger." },
-  { q:"A PAM system stores all administrator passwords in an encrypted repository. Admins never see or know the actual passwords — they request access and the system grants a session. What PAM control is this?",
-    opts:["Just-in-Time permissions","Temporal accounts","Password vaulting","Attestation"],
-    ans:2,
-    exp:"Password vaulting stores privileged credentials in a secure encrypted vault. Admins request access rather than handling passwords directly — the system grants the session, then rotates the password afterward. This prevents credential sharing, reuse, and exposure. Even if an admin is compromised, they cannot leak a password they never knew." },
-  { q:"A user logs into their laptop by pressing their finger on a sensor — no password is entered at any point. What type of authentication is this, and which factor does it use?",
-    opts:["Multi-factor authentication using something you know","Single-factor password authentication","Passwordless authentication using something you are (biometrics)","Federation using SAML assertions"],
-    ans:2,
-    exp:"Passwordless authentication replaces the 'something you know' factor (password) with alternatives. Biometrics (fingerprint, face ID) = 'something you are.' No password is transmitted or stored in a way attackers can exploit — making it resistant to brute force, credential stuffing, phishing, and credential theft." },
-  { q:"Which open standard for passwordless authentication uses hardware security keys and platform authenticators, and is commonly associated with YubiKeys?",
-    opts:["SAML","OAuth 2.0","FIDO (Fast Identity Online)","LDAPS"],
-    ans:2,
-    exp:"FIDO (Fast Identity Online) is an open industry standard for passwordless authentication. It uses hardware security keys and platform authenticators (like Windows Hello or Touch ID) that never transmit a shared secret. Know the FIDO name for the Security+ exam." },
-  { q:"A security team configures their tools to automatically block any IP address that fails authentication 10 times in a row. What is this an example of?",
-    opts:["Orchestration — multiple tools coordinated into a workflow","Automation — a single task executed without manual effort","SOAR responding to a full incident","Workforce multiplication"],
-    ans:1,
-    exp:"Automation = a single task executed automatically without manual effort. Auto-blocking an IP after failed logins is one discrete action triggered by a rule. Orchestration goes further by coordinating MULTIPLE automated tasks across different systems into a complete end-to-end workflow (detect → isolate → alert → report)." },
-  { q:"When a threat is detected, the security platform automatically isolates the infected endpoint, sends an alert to the SOC, opens a ticket, and generates a forensic report — all without human intervention. What is this an example of?",
-    opts:["Automation — a single task automated","Orchestration — multiple tasks coordinated into a complete incident response workflow","Workforce multiplier — fewer staff needed","Password vaulting — credentials secured automatically"],
-    ans:1,
-    exp:"Orchestration coordinates multiple automated tasks into a complete end-to-end workflow. Detect threat → isolate system → alert SOC → generate report = one integrated process across multiple tools. SOAR (Security Orchestration, Automation and Response) is the platform that makes this possible, tying together SIEM, firewalls, and endpoint tools." },
-  { q:"A CISO presents a business case: by implementing security automation, a 5-person security team can monitor and respond to threats at the scale previously requiring a 25-person team. What concept describes this benefit?",
-    opts:["Just-in-Time provisioning","Workforce multiplier","Separation of duties","Temporal access scaling"],
-    ans:1,
-    exp:"Workforce multiplier = automation allows a small security team to accomplish the work of a much larger one. By handling repetitive and time-consuming tasks automatically, automation frees security personnel to focus on higher-level analysis and decision-making. This is a key justification for investing in automation and SOAR platforms." }
-];
 
-let ptAnswered = {};
 
-function startPtQuiz() {
-  document.getElementById('ptStartBtn').style.display = 'none';
-  const container = document.getElementById('ptQuestions');
-  container.style.display = 'block';
-  container.innerHTML = '<button class="btn btn-green" style="margin-bottom:1.5rem" onclick="submitPtQuiz()">&#10003; Submit Answers</button>';
-  ptQs.forEach((q, i) => {
-    const card = document.createElement('div');
-    card.className = 'question-card';
-    card.id = 'pt' + i;
-    card.innerHTML = `
-      <div class="question-top">
-        <span class="q-num">Q${i+1}</span>
-        <span class="q-text">${q.q}</span>
-      </div>
-      <div class="options" id="ptopts${i}">
-        ${q.opts.map((o,j) => `<div class="option" onclick="ptpick(${i},${j})" id="ptopt${i}_${j}">
-          <span class="opt-letter">${'ABCD'[j]}</span>${o}</div>`).join('')}
-      </div>
-      <div class="explanation" id="ptexp${i}">${q.exp}</div>`;
-    container.appendChild(card);
-  });
-  container.innerHTML += '<button class="btn btn-green" style="margin-top:.5rem" onclick="submitPtQuiz()">&#10003; Submit Answers</button>';
-}
-
-function ptpick(qi, oi) {
-  if (ptAnswered[qi] !== undefined) return;
-  document.querySelectorAll(`#ptopts${qi} .option`).forEach(o => o.classList.remove('selected'));
-  document.getElementById(`ptopt${qi}_${oi}`).classList.add('selected');
-  ptAnswered[qi] = oi;
-}
-
-function submitPtQuiz() {
-  let score = 0;
-  ptQs.forEach((q, i) => {
-    const chosen = ptAnswered[i];
-    const opts = document.querySelectorAll(`#ptopts${i} .option`);
-    opts.forEach(o => o.classList.add('locked'));
-    opts[q.ans].classList.add('correct-ans');
-    if (chosen !== undefined && chosen !== q.ans) {
-      opts[chosen].classList.add('wrong-ans');
-      document.getElementById('pt'+i).classList.add('incorrect');
-    } else if (chosen === q.ans) {
-      score++;
-      document.getElementById('pt'+i).classList.add('correct');
-    } else {
-      document.getElementById('pt'+i).classList.add('incorrect');
-    }
-    document.getElementById('ptexp'+i).classList.add('show');
-  });
-  const pct = Math.round(score / ptQs.length * 100);
-  const bar = document.getElementById('ptScoreBar');
-  bar.classList.add('show');
-  document.getElementById('ptScoreNum').textContent = score + '/' + ptQs.length;
-  document.getElementById('ptScoreFill').style.width = pct + '%';
-  let msg = pct >= 90 ? '🏆 Excellent — exam ready on this material!' :
-            pct >= 75 ? '✅ Good — review any missed questions.' :
-                        '📖 Go back through the notes and retry.';
-  document.getElementById('ptScoreLabel').textContent = pct + '% — ' + msg;
-  bar.scrollIntoView({ behavior: 'smooth' });
-  document.querySelectorAll('#ptQuestions .btn-green').forEach(b => b.style.display = 'none');
-}
-
-function resetPtQuiz() {
-  ptAnswered = {};
-  document.getElementById('ptScoreBar').classList.remove('show');
-  document.getElementById('ptStartBtn').style.display = 'inline-flex';
-  document.getElementById('ptQuestions').style.display = 'none';
-  document.getElementById('ptQuestions').innerHTML = '';
-}
-</script>
+  </script>
 
 <script>
 /* NAV */
 function showPage(id, el) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.page').forEach(p => {
+    p.classList.remove('active');
+    p.style.display = 'none';
+  });
+  const target = document.getElementById(id);
+  target.classList.add('active');
+  target.style.display = 'block';
   document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
   if (el) el.classList.add('active');
 }
@@ -3567,6 +3824,43 @@ const questions = [
   { q:"You run a vulnerability scan and find CVE-2021-44228 (Log4Shell) on a server with a CVSS score of 10.0. What action should you take FIRST?",
     opts:["Schedule it for next quarter's patch cycle","Document it and monitor","Remediate IMMEDIATELY — CVSS 10.0 is Critical","Run another scan to confirm"], ans:2,
     exp:"CVSS 10.0 = CRITICAL. Log4Shell is one of the most severe vulnerabilities ever found (remote code execution). Remediate immediately — this is why CVSS scoring exists: to prioritize the most dangerous vulnerabilities first." }
+
+  { q:"A vulnerability scanner finds a device on the network that has no registered owner and no documented purpose. What type of risk does this represent?",
+    opts:["False positive","Unknown device vulnerability","Shadow IT","Rogue access point"],
+    ans:1,
+    exp:"CLAUDE IMPORTANT: Unknown/unmanaged devices are considered vulnerabilities because they may be unpatched, misconfigured, or controlled by attackers. An unknown device on your network is a vulnerability by definition." },
+  { q:"MAC-based port security restricts access by allowing only specific MAC addresses. What is this approach's BIGGEST weakness?",
+    opts:["It requires a RADIUS server","MAC addresses can be spoofed","It only works on wireless networks","It conflicts with 802.1X"],
+    ans:1,
+    exp:"CLAUDE IMPORTANT: MAC address filtering sounds secure but MAC addresses can be easily spoofed. An attacker can observe a valid MAC, then clone it. This is why 802.1X with EAP is preferred for stronger port-based security." },
+  { q:"Agent-based NAC versus agentless NAC - which provides DEEPER and more CONTINUOUS monitoring?",
+    opts:["Agentless NAC - no software to manage","Agent-based NAC - software installed on endpoint","Both provide identical monitoring depth","Neither - only RADIUS can provide deep monitoring"],
+    ans:1,
+    exp:"CLAUDE IMPORTANT FOR TEST: Agent-based NAC offers deep, continuous monitoring through installed software on the endpoint. Agentless NAC provides simpler, limited checks without requiring installed software. Deep = agent-based." },
+  { q:"From an exam perspective, User Behavior Analytics (UBA) is BEST described as:",
+    opts:["A firewall rule set that blocks malicious IPs","A technique that analyzes normal user activity patterns and detects deviations to identify potential threats","A SIEM feature that only counts login failures","A physical access control method"],
+    ans:1,
+    exp:"CLAUDE IMPORTANT FOR TEST: UBA analyzes patterns of NORMAL user activity, then detects deviations from those patterns to identify potential insider threats or compromised accounts. It is a security monitoring technique, not a blocking tool." },
+  { q:"Identity and Access Management (IAM) is essential because it:",
+    opts:["Only manages passwords in Active Directory","Manages identities AND enforces access control by authenticating users and authorizing appropriate resource access","Replaces firewalls in modern networks","Only applies to cloud environments"],
+    ans:1,
+    exp:"CLAUDE IMPORTANT: IAM manages identities (who you are) AND enforces access control (what you can do) by authenticating users and authorizing appropriate access. It is the core framework for controlling who accesses what resources." },
+  { q:"For exam purposes, LDAP is important because:",
+    opts:["It is a wireless encryption protocol","It provides a standardized way to access and manage central directory information for authentication and authorization","It replaces RADIUS in modern networks","It only works with Microsoft Active Directory"],
+    ans:1,
+    exp:"CLAUDE IMPORTANT: LDAP (Lightweight Directory Access Protocol) provides a standardized way to access and manage centralized directory information. It is the protocol used to query directories like Active Directory for user auth." },
+  { q:"SAML, OAuth, and OpenID Connect are all used for federated identity. What is their KEY difference?",
+    opts:["SAML is for mobile only; OAuth is for web only","SAML handles authentication AND authorization (SSO for enterprise); OAuth is for delegated authorization (API access); OpenID Connect adds identity layer on top of OAuth","SAML is deprecated; only OAuth and OpenID are used","They are functionally identical - different names for the same protocol"],
+    ans:1,
+    exp:"CLAUDE IMPORTANT: SAML = enterprise SSO (authentication + authorization XML-based). OAuth = delegated authorization (grants API access without sharing passwords). OpenID Connect = identity layer built on top of OAuth (adds 'who you are'). Know the distinction." },
+  { q:"Just-in-Time (JIT) permissions provide elevated access ONLY when needed and for a short duration. What is the PRIMARY security benefit?",
+    opts:["It eliminates the need for passwords","It dynamically grants then REVOKES privileges - limiting the window of opportunity for privilege abuse or lateral movement","It replaces MFA","It only works with cloud resources"],
+    ans:1,
+    exp:"CLAUDE IMPORTANT: JIT provides elevated access only when needed and revokes it after. The key benefit is that privileges are NOT persistent - an attacker who compromises an account outside that window gets no elevated access. Reduces standing privilege attack surface." },
+  { q:"At the end of every Access Control List (ACL) there is an implicit denial. What does this mean?",
+    opts:["The last rule always allows all traffic","Any traffic NOT explicitly allowed by a rule is automatically BLOCKED","ACLs only deny traffic, never allow it","Implicit denial only applies to inbound traffic"],
+    ans:1,
+    exp:"CLAUDE IMPORTANT: Every ACL ends with an implicit DENY ALL. If traffic doesn't match any explicit ALLOW rule, it is automatically dropped. This is a fundamental firewall/ACL principle - security by default. Always assume deny unless explicitly permitted." }
 ];
 
 let answered = {};
@@ -3691,6 +3985,27 @@ const irQs = [
     opts:["Containment — block the compromised account immediately","Detection — add a SIEM correlation rule","Lessons Learned — enforce password manager + MFA policy to prevent recurrence","Recovery — restore the affected systems"],
     ans:2,
     exp:"RCA belongs to the Lessons Learned phase — after resolution, find the root cause and implement long-term fixes. Password reuse = root cause. Long-term fix = enforce unique passwords via password manager + require MFA. RCA drives policy and tooling improvements, not just immediate patches." }
+
+  { q:"Threat hunting DIFFERS from traditional security monitoring because:",
+    opts:["Threat hunting waits for alerts before investigating","Threat hunting is PROACTIVE - analysts actively search for hidden threats that bypassed traditional defenses","Threat hunting only analyzes firewall logs","Threat hunting is automated and requires no analyst involvement"],
+    ans:1,
+    exp:"Threat hunting is PROACTIVE - instead of waiting for alerts, analysts actively search networks and systems for indicators of compromise, attacker behaviors, and anomalies. Traditional monitoring is reactive; threat hunting is active." },
+  { q:"A SIEM system performs two primary functions. They are:",
+    opts:["Encrypt and Decrypt","Block and Allow","AGGREGATE and CORRELATE","Scan and Patch"],
+    ans:2,
+    exp:"CLAUDE IMPORTANT SIEM: SIEM does exactly TWO things: (1) AGGREGATES - collects logs from all sources into one dashboard; (2) CORRELATES - sifts through logs to find patterns and indicators of compromise. Aggregation + Correlation. That's it." },
+  { q:"SIEM stores logs in a WORM drive. What does WORM stand for and why is it important?",
+    opts:["Write Once Read Many - prevents log tampering","Wireless Operational Remote Management","Write Over Read Multiple - saves space","Web-Oriented Resource Management - enables cloud sync"],
+    ans:0,
+    exp:"WORM = Write Once Read Many. SIEM writes logs to WORM drives so they CANNOT be modified or deleted after being written. This preserves log integrity for forensic investigations and compliance audits. SIEM also hashes logs and uses deduplication to save space." },
+  { q:"What is the difference between a Tabletop Exercise and a Simulation in Incident Response testing?",
+    opts:["They are identical - just different names","Tabletop = discussion-based walk-through (no systems affected); Simulation = hands-on technical exercise in a controlled environment (real tools, real response)","Tabletop requires expensive tools; Simulation is just a meeting","Simulation only tests physical security; Tabletop tests cyber"],
+    ans:1,
+    exp:"Tabletop exercises = discussion-based, team verbally walks through a scenario, no systems touched. Simulations = hands-on technical, realistic attack scenarios in controlled environment, teams actively respond with real tools. Both test IR readiness but at different depths." },
+  { q:"During digital forensics, what is a FORENSIC IMAGE and why must investigators use it instead of working on the original drive?",
+    opts:["A screenshot of the suspect's screen - used for documentation","An exact bit-by-bit copy of the original drive - used so analysis doesn't alter the original evidence, maintaining legal admissibility","A compressed backup of important files only","A RAID mirror created automatically by the operating system"],
+    ans:1,
+    exp:"A forensic image is an exact bit-by-bit copy of the original data. Investigators MUST work on the image, never the original, because: (1) preserves original evidence integrity; (2) prevents accidental modification; (3) maintains chain of custody; (4) ensures admissibility in court." }
 ];
 
 let irAnswered = {};
@@ -3845,6 +4160,35 @@ const govQs = [
   { q:"What is the purpose of an NDA in vendor management?",
     opts:["Legally binding confidentiality agreement — prevents disclosure of sensitive information shared during a business relationship","Defines service uptime and performance metrics","Outlines security responsibilities between org and vendor","Specifies how connected systems must be secured"],
     ans:0, exp:"NDA = Non-Disclosure Agreement = legally binding CONFIDENTIALITY contract. Used with vendors, employees, contractors with access to proprietary data. Defines what is confidential, duration, and legal consequences for violations." }
+
+  { q:"The exam says a user requests that a company DELETE all their personal data. What regulation and concept does this fall under?",
+    opts:["HIPAA - Patient Rights","GDPR - Right to be Forgotten","PCI DSS - Data Minimization","SOX - Financial Records Retention"],
+    ans:1,
+    exp:"CLAUDE IMPORTANT ON TEST: Anytime you see 'right to be forgotten' - your answer is GDPR. The right to erasure (right to be forgotten) is a core GDPR principle allowing individuals to request deletion of their personal data." },
+  { q:"Under GDPR, a Data Subject is:",
+    opts:["The IT admin who manages the database","The organization that collects and processes the data","The individual WHOSE personal data is being collected, processed, or stored","The third-party vendor handling data"],
+    ans:2,
+    exp:"CLAUDE IMPORTANT: The Data Subject is the individual whose personal data is collected, processed, or stored. Example: a customer whose name, email, and purchase history are in a company database is the data subject." },
+  { q:"What is the KEY difference between a Data Controller and a Data Processor under GDPR?",
+    opts:["Controller stores data; Processor deletes it","Controller DECIDES why and how data is processed; Processor CARRIES OUT processing on behalf of the controller","Controller is always the end user; Processor is always the government","They are the same role - just different terminology"],
+    ans:1,
+    exp:"Data Controller = decides the PURPOSE and MEANS of processing (the 'why and how'). Data Processor = carries out the actual processing on behalf of the controller. Example: a company (controller) uses a cloud provider (processor) to store customer data." },
+  { q:"Technical Debt in cybersecurity refers to:",
+    opts:["The financial cost of a data breach","Accumulated risk from outdated, poorly maintained, or legacy code that introduces vulnerabilities or system failures","The budget allocated to security tools","The amount owed after a ransomware payment"],
+    ans:1,
+    exp:"CLAUDE IMPORTANT ON TEST: Technical debt = accumulated risk from outdated or poorly maintained code that can introduce vulnerabilities or failures. Organizations that delay patching or updating systems accumulate technical debt - a security liability." },
+  { q:"Root Cause Analysis (RCA) is a CRITICAL part of which phase of Incident Response?",
+    opts:["Preparation phase","Containment phase","Lessons Learned phase","Recovery phase"],
+    ans:2,
+    exp:"CLAUDE IMPORTANT RCA IS ON TEST: RCA is a critical part of the LESSONS LEARNED phase. After an incident is resolved, RCA identifies the UNDERLYING reason (root cause) - not just symptoms. Goal: ensure the same issue never happens again." },
+  { q:"Which of the following BEST describes the purpose of Digital Forensics?",
+    opts:["Preventing attacks before they occur","Collecting, analyzing, and PRESERVING digital evidence in a way that maintains its integrity for investigations or legal proceedings","Monitoring network traffic in real-time to detect intrusions","Encrypting evidence to prevent tampering"],
+    ans:1,
+    exp:"CLAUDE IMPORTANT DIGITAL FORENSIC ON TEST: Digital forensics = collecting, analyzing, and PRESERVING digital evidence while maintaining integrity. Key principle: never work on originals - always create forensic images. Supports legal proceedings and incident analysis." },
+  { q:"E-Discovery (Electronic Discovery) is BEST described as:",
+    opts:["Scanning networks to find new devices","Identifying, collecting, and producing Electronically Stored Information (ESI) for legal proceedings, investigations, or regulatory compliance","Recovering deleted files after accidental deletion","A type of vulnerability scan for web applications"],
+    ans:1,
+    exp:"CLAUDE IMPORTANT ON TEST: E-Discovery = identifying, collecting, and producing ESI (Electronically Stored Information) for legal/regulatory purposes. It is closely tied to Legal Hold and Chain of Custody. When litigation is anticipated, E-Discovery kicks in to preserve and produce relevant digital evidence." }
 ];
 
 let govAnswered = {};
