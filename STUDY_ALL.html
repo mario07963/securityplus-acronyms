@@ -7429,7 +7429,7 @@ function updateMeter(val) {
 }
 
 /* QUIZ */
-const questions = [
+const ch4Questions = [
   { q:"What is the most secure wireless standard?",
     opts:["WEP","WPA","WPA2","WPA3"], ans:3,
     exp:"WPA3 is the most current and secure standard. WEP and WPA are deprecated/insecure. WPA2 is still acceptable but WPA3 is preferred." },
@@ -7580,7 +7580,7 @@ function startQuiz() {
   const container = document.getElementById('quizQuestions');
   container.style.display = 'block';
   container.innerHTML = '<button class="btn btn-green" style="margin-bottom:1.5rem" onclick="submitQuiz()">&#10003; Submit All Answers</button>';
-  questions.forEach((q, i) => {
+  ch4Questions.forEach((q, i) => {
     const opts = q.actualOpts || q.opts;
     const card = document.createElement('div');
     card.className = 'question-card';
@@ -7609,7 +7609,7 @@ function pick(qi, oi) {
 
 function submitQuiz() {
   let score = 0;
-  questions.forEach((q, i) => {
+  ch4Questions.forEach((q, i) => {
     const correct = q.actualAns !== undefined ? q.actualAns : q.ans;
     const chosen = answered[i];
     const opts = document.querySelectorAll(`#opts${i} .option`);
@@ -7626,10 +7626,10 @@ function submitQuiz() {
     }
     document.getElementById('exp'+i).classList.add('show');
   });
-  const pct = Math.round(score/questions.length*100);
+  const pct = Math.round(score/ch4Questions.length*100);
   const bar = document.getElementById('scoreBar');
   bar.classList.add('show');
-  document.getElementById('scoreNum').textContent = score + '/' + questions.length;
+  document.getElementById('scoreNum').textContent = score + '/' + ch4Questions.length;
   document.getElementById('scoreFill').style.width = pct + '%';
   let msg = pct >= 90 ? '🏆 Excellent! Exam-ready on this material.' :
             pct >= 75 ? '✅ Good job! Review any missed questions.' :
